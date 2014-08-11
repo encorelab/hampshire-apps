@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Skeletor Mobile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/mobile.css" rel="stylesheet">
+    <link href="../bower_components/jquery-toastmessage-plugin/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet">
+
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone/backbone.js"></script>
+
+    <script type="text/javascript" src="../node_modules/backbone.drowsy/backbone.drowsy.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone.drowsy/wakeful.js"></script>
+
+    <script type="text/javascript" src="../bower_components/jquery-toastmessage-plugin/src/main/javascript/jquery.toastmessage.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../bower_components/purl/purl.js"></script>
+
+    <script type="text/javascript" src="../shared/js/skeletor.js"></script>
+    <script type="text/javascript" src="../shared/js/model.js"></script>
+    <script type="text/javascript" src="../shared/js/rollcall.js"></script>
+
+
+    <script type="text/javascript" src="js/mobile.js"></script>
+    <script type="text/javascript" src="js/mobile.view.js"></script>
+
+    <!-- Note Template  -->
+    <script id="notes-list-template" type="text/template">
+        <li class="list-item span12" data-id=<%= id %>>
+            <div class="note <%= me_or_others %>">
+                <div class="note-text">
+                    <p><%= text %></p>
+                    <p class="small">Sent by <%= author %>&nbsp; on <%= created_at %></p>
+                </div>
+            </a>
+        </li>
+    </script>
+
+    <!--                  -->
+    <!--   NOTE TEMPLATE  -->
+    <!--                  -->
+<!--
+    <script id="notes-list-template" type="text/template">
+        <li class="list-item <%= note_type %> <%= me_or_others %>" data-id=<%= id %>>
+            <a class="disabled" href="#">
+                <h4><%= title %></h4>
+                <i><span><%= author %></span></i>
+                <div class="note-text">
+                    <p><%= text %></p>
+                    <p class="small"><%= created_at %></p>
+                </div>
+            </a>
+        </li>
+    </script>
+-->
+    <!-- Resume unpublished notes template -->
+    <script id="resume-unpublished-notes" type="text/template">
+        <option data-id="<%= id %>" ><%= option_text %></option>
+    </script>
+
+    <!-- reply template -->
+    <script id="reply-view-template" type="text/template">
+        <a class="reply">
+            <div class="author-container">
+                <div class="author"><%= author %></div>
+            </div>
+            <div class="content"><%= content %></div>
+        </a>
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navigation">
+                <li class="read-button active"><a href="#read">Read notes</a></li>
+                <li class="write-button"><a href="#write">Write notes</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active username-display"><a></a></li>
+                <li id="logout-user" class="active logout-user"><a>Logout</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id="read-screen" class="container">
+        <div class="row-fluid">
+            <div class="col-md-4 scrollable-y">
+                <ul class="note-list">
+                    <!-- Notes populate this element -->
+                </ul>
+            </div>
+
+            <div class="col-md-8 note-details">
+                <!-- photo-set-note template inserted here  -->
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="list-screen" class="bs-docs-sidebar">
+                <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="write-screen" class="container">
+        <div class="row-fluid">
+            <div class="col-md-12 view-container bs-docs-sidebar">
+
+                <div id="notes-screen-input" class="span12 input-box-wrapper">
+
+                    <div class="row">
+                        <a class="resume-note-btn btn btn-large btn-primary span6">Resume Note</a>
+                        <a class="new-note-btn btn btn-large btn-primary span6">New Note</a>
+                    </div>
+
+                    <div class="note-taking-toggle">
+                        <div class="row">
+                            <textarea class="note-body row-fuild" name="body" rows="10" placeholder="Enter observastions..."></textarea>
+                        </div>
+
+                        <div class="row">
+                            <a class="cancel-note-btn btn btn-large btn-danger span6">Cancel</a>
+                            <a class="share-note-btn btn btn-large btn-success span6">Submit</a>
+                        </div>
+                    </div>
+
+                    <!--  Unpublished Notes Modal-->
+                    <div class="modal fade unpublished-note-picker" tabindex="-1" role="dialog" aria-labelledby="unpublished-note-picker" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Unpublished Notes</h3>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label for="selec-note-modal">Select an unpublished note to edit:</label>
+                                            <select id="select-note-modal" class="form-control span10">
+                                              <!-- Filled by template from view -->
+                                            </select>
+                                            <br>
+                                            <a class="modal-select-note btn btn-success">Edit</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end modal -->
+
+                </div> <!-- end #note-screen-input -->
+            </div>
+        </div>
+    </div>
+    <!-- Modals -->
+
+    <!-- Login Modal -->
+    <div id="login-picker" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="login-picker" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+                <h3>Please log in</h3>
+                </div>
+                <div class="modal-body login-buttons">
+                <!-- filled by java script with buttons for user login -->
+                </div>
+                <!-- <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Note Picker Modal -->
+
+    <div class="orientation-warning">
+        <p>If you hold Skeletor like that I am of no use :(<p>
+        <img src="img/skeletor-unicorn.jpg" alt="Skeletor Battle a Unicorn" />
+        <p>Please hold the device in landscape orientation!</p>
+    </div>
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+          // extending jQuery http://stackoverflow.com/questions/31044/is-there-an-exists-function-for-jquery
+          jQuery.fn.exists = function(){return this.length>0;}
+          Skeletor.Mobile.init();
+          jQuery('.note-taking-toggle').hide();
+        });
+    </script>
+</body>
+</html>
