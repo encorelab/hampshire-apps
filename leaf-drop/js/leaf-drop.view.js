@@ -3,7 +3,7 @@
 
 (function() {
   "use strict";
-  var HG = this.HG || {};
+  var Skeletor = this.Skeletor || {};
   this.Skeletor.Mobile = this.Skeletor.Mobile || {};
   var app = this.Skeletor.Mobile;
   app.View = {};
@@ -227,5 +227,120 @@
 
   });
 
-  this.HG = HG;
+  /**
+    InputView
+  **/
+  app.View.CollectView = Backbone.View.extend({
+    view: this,
+    //template: "#resume-unpublished-notes",
+
+    initialize: function() {
+      var view = this;
+      console.log('Initializing CollectView...', view.el);
+    },
+
+    events: {
+      'click .next-btn'        : "populateNextPage"
+      // 'click .resume-note-btn'   : "resumeNote",
+      // 'click .new-note-btn'      : 'showNewNote',
+      // 'click .modal-select-note' : 'selectNoteToResume',
+      // 'click .cancel-note-btn'   : 'cancelNote',
+      // 'click .share-note-btn'    : 'shareNote',
+      // //'click .note-body'         : 'createOrRestoreNote',
+      // 'keyup :input': function(ev) {
+      //   var view = this,
+      //     field = ev.target.name,
+      //     input = ev.target.value;
+      //   // clear timer on keyup so that a save doesn't happen while typing
+      //   window.clearTimeout(app.autoSaveTimer);
+
+      //   // save after 10 keystrokes
+      //   app.autoSave(app.currentNote, field, input, false);
+
+      //   // setting up a timer so that if we stop typing we save stuff after 5 seconds
+      //   app.autoSaveTimer = setTimeout(function(){
+      //     app.autoSave(app.currentNote, field, input, true);
+      //   }, 5000);
+      // }
+    },
+
+    populateNextPage: function() {
+      var view = this;
+
+      var pageLabel = jQuery('.leaf-page').attr('id');
+      var pageNumber = 0;
+      pageNumber = pageLabel.substr(5, pageLabel.length - 5);
+
+      view.collectInputValues();
+
+      view.updateProgressBar();
+
+      view.removeOldContent();
+
+      view.addNewContent(pageNumber);
+    },
+
+    collectInputValues: function() {
+      var view = this;
+      // lots to add here, think about this
+      view.addToJSON(jQuery('.input-field .text-field').text());
+      view.addToJSON(jQuery('.input-field .radio-field').val());
+    },
+
+    updateProgressBar: function() {
+      // change jpg src or whatever
+    },
+
+    removeOldContent: function() {
+      jQuery('#variable-content-container').html('');
+    },
+
+    addNewContent: function(pNum) {
+      var pNumStr = pNum;
+      var pageNumber = Number(pNumStr);
+      pageNumber += 1;
+      var pageLabel = 'leaf-';
+      pageLabel = pageLabel + pageNumber;
+      jQuery('#variable-content-container').html(jQuery('#' + pageLabel));
+
+      jQuery('#variable-content-container .leaf-page').removeClass('hidden');
+    },
+
+    addToJSON: function(value) {
+      // this will add the value to the JSON object
+
+      /*
+      {
+        "type" : "bird",
+        "location" : SOEMTHING,
+
+      }
+      */
+
+    },
+
+    resumeNote: function(){
+      var view = this;
+
+      // retrieve unpublished notes of user
+      var notesToRestore = view.collection.where({author: app.username, published: false});
+
+      // fill the modal
+      jQuery('#select-note-modal').html('');
+      _.each(notesToRestore, function(note){
+        var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
+        jQuery('#select-note-modal').append(option);
+      });
+
+      //show modal
+      console.log('Show modal to pick previous note.');
+      jQuery('.unpublished-note-picker').modal('show');
+    },
+
+    render: function () {
+      console.log('Rendering CollectView...');
+    }
+  });
+
+  this.Skeletor = Skeletor;
 }).call(this);

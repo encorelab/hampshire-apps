@@ -39,6 +39,7 @@
 
   app.inputView = null;
   app.listView = null;
+  app.collectView = null;
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -185,6 +186,13 @@
         });
       }
 
+      if (app.collectView === null) {
+        app.collectView = new app.View.CollectView({
+          el: '#collect-screen',
+          collection: Skeletor.Model.awake.notes
+        });
+      }
+
       setProjectName("Leaf Drop");
 
       /* ======================================================
@@ -194,9 +202,7 @@
        */
       setUpClickListeners();
 
-      // show notes-screen - is this the default? TODO: check with design team where the first pedagogical step should be
-      jQuery('#read-screen').removeClass('hidden');
-      // jQuery('.nav-pills .notes-button').addClass('active'); // highlight notes selection in nav bar
+      jQuery('#collect-screen').removeClass('hidden');
   };
 
 
@@ -279,13 +285,19 @@
 
     jQuery('.leaf-button').click(function() {
       if (app.username) {
-
         jQuery('.navigation li').removeClass('active'); // unmark all nav items
-
         jQuery(this).addClass('active');
-
         app.hideAllContainers();
         jQuery('#leaf-screen').removeClass('hidden');
+      }
+    });
+
+    jQuery('.collect-button').click(function() {
+      if (app.username) {
+        jQuery('.navigation li').removeClass('active'); // unmark all nav items
+        jQuery(this).addClass('active');
+        app.hideAllContainers();
+        jQuery('#collect-screen').removeClass('hidden');
       }
     });
 
