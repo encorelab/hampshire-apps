@@ -277,6 +277,20 @@
       }
     });
 
+    jQuery('.leaf-button').click(function() {
+      if (app.username) {
+
+        jQuery('.navigation li').removeClass('active'); // unmark all nav items
+
+        jQuery(this).addClass('active');
+
+        app.hideAllContainers();
+        jQuery('#leaf-screen').removeClass('hidden');
+      }
+    });
+
+
+
     /*
     * ======================================
     * Other click listeners for the UI
