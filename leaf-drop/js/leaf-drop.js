@@ -185,7 +185,7 @@
         });
       }
 
-      setProjectName(app.config.project_name);
+      setProjectName("Leaf Drop");
 
       /* ======================================================
        * Function to enable click listeners in the UI

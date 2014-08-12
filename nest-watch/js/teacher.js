@@ -99,7 +99,7 @@
       //   });
       // }
 
-      setProjectName(app.config.project_name);
+      setProjectName("Nest Watch");
 
       /* ======================================================
        * Function to enable click listeners in the UI
