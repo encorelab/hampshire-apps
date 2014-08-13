@@ -267,7 +267,11 @@
     populateNextPage: function() {
       var view = this;
 
-      var pageLabel = jQuery('.leaf-page').attr('id');
+      // find the currently shown page
+      var pageLabel = jQuery('.current-page').attr('id');
+
+
+      // get the page number from it
       var pageNumber = 0;
       pageNumber = pageLabel.substr(5, pageLabel.length - 5);
 
@@ -282,7 +286,7 @@
 
     collectInputValues: function() {
       var view = this;
-      // lots to add here, think about this
+      // lots to add here, think about this, probably needs to use class names again
       view.addToJSON(jQuery('.input-field .text-field').text());
       view.addToJSON(jQuery('.input-field .radio-field').val());
     },
@@ -292,7 +296,8 @@
     },
 
     removeOldContent: function() {
-      jQuery('#variable-content-container').html('');
+      jQuery('.leaf-page').addClass('hidden');
+      jQuery('.leaf-page').removeClass('current-page');
     },
 
     addNewContent: function(pNum) {
@@ -301,9 +306,10 @@
       pageNumber += 1;
       var pageLabel = 'leaf-';
       pageLabel = pageLabel + pageNumber;
-      jQuery('#variable-content-container').html(jQuery('#' + pageLabel));
+      //jQuery('#variable-content-container').html(jQuery('#' + pageLabel));
 
-      jQuery('#variable-content-container .leaf-page').removeClass('hidden');
+      jQuery('#' + pageLabel).removeClass('hidden');
+      jQuery('#' + pageLabel).addClass('current-page');
     },
 
     addToJSON: function(value) {
