@@ -32,50 +32,8 @@
 
     <script type="text/javascript" src="js/leaf-drop.js"></script>
     <script type="text/javascript" src="js/leaf-drop.view.js"></script>
+    <script type="text/javascript" src="js/sandbox.js"></script>
 
-    <!-- Note Template  -->
-    <script id="notes-list-template" type="text/template">
-        <li class="list-item span12" data-id=<%= id %>>
-            <div class="note <%= me_or_others %>">
-                <div class="note-text">
-                    <p><%= text %></p>
-                    <p class="small">Sent by <%= author %>&nbsp; on <%= created_at %></p>
-                </div>
-            </a>
-        </li>
-    </script>
-
-    <!--                  -->
-    <!--   NOTE TEMPLATE  -->
-    <!--                  -->
-<!--
-    <script id="notes-list-template" type="text/template">
-        <li class="list-item <%= note_type %> <%= me_or_others %>" data-id=<%= id %>>
-            <a class="disabled" href="#">
-                <h4><%= title %></h4>
-                <i><span><%= author %></span></i>
-                <div class="note-text">
-                    <p><%= text %></p>
-                    <p class="small"><%= created_at %></p>
-                </div>
-            </a>
-        </li>
-    </script>
--->
-    <!-- Resume unpublished notes template -->
-    <script id="resume-unpublished-notes" type="text/template">
-        <option data-id="<%= id %>" ><%= option_text %></option>
-    </script>
-
-    <!-- reply template -->
-    <script id="reply-view-template" type="text/template">
-        <a class="reply">
-            <div class="author-container">
-                <div class="author"><%= author %></div>
-            </div>
-            <div class="content"><%= content %></div>
-        </a>
-    </script>
 </head>
 
 <body>

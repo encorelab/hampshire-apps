@@ -172,13 +172,8 @@
        * coming from Collections and Models
        * ======================================================
        */
-      if (app.inputView === null) {
-        app.inputView = new app.View.InputView({
-          el: '#notes-screen-input',
-          collection: Skeletor.Model.awake.notes
-        });
-      }
 
+      // remove me
       if (app.listView === null) {
         app.listView = new app.View.ListView({
           el: '#list-screen',
@@ -190,6 +185,13 @@
         app.collectView = new app.View.CollectView({
           el: '#collect-screen',
           collection: Skeletor.Model.awake.notes
+        });
+      }
+
+      if (app.mapView === null) {
+        app.mapView = new app.View.MapView({
+          el: '#map-screen',
+          collection: Skeletor.Model.awake.notes        // switch this collection to users TODO
         });
       }
 
@@ -208,33 +210,13 @@
 
   //*************** MAIN FUNCTIONS (RENAME ME) ***************//
 
-  app.addNote = function(noteData) {
-    app.currentNote = new Model.Note(noteData);
-    app.currentNote.wake(app.config.wakeful.url);
-    app.currentNote.save();
-    Model.awake.notes.add(app.currentNote);
-    return app.currentNote;
-  };
+  // Functions related to Collect screen
 
-  app.saveCurrentNote = function() {
-    // app.currentNote.published = true;
-    app.currentNote.save();
-    app.currentNote = null;
-  };
 
-  app.createReply = function(noteId) {
-    app.currentReply.content = '';
-    app.currentReply.author = app.username;
-    app.currentReply.related_note_id = noteId;
-  };
+  // Functions related to Weather screen
 
-  app.saveCurrentReply = function(replyText) {
-    var note = Skeletor.Model.awake.notes.get(app.currentReply.related_note_id);
-    note.addBuildOn(app.username, replyText);
-    note.wake(app.config.wakeful.url);
-    note.save();
-    app.currentReply = {};
-  };
+
+  // Functions related to Map screen
 
 
   //*************** HELPER FUNCTIONS ***************//
