@@ -260,55 +260,32 @@
 
     /*
     * ======================================
-    * Buttons that manage the naviation
+    * Buttons that manage the navigation
     * ======================================
     */
-    jQuery('.write-button').click(function() {
-      if (app.username) {
-        jQuery('.navigation li').removeClass('active'); // unmark all nav items
-        jQuery(this).addClass('active');
 
-        app.hideAllContainers();
-        jQuery('#write-screen').removeClass('hidden');
-      }
-    });
-
-    jQuery('.read-button').click(function() {
-      if (app.username) {
-        jQuery('.navigation li').removeClass('active'); // unmark all nav items
-        jQuery(this).addClass('active');
-
-        app.hideAllContainers();
-        jQuery('#read-screen').removeClass('hidden');
-      }
-    });
-
-    jQuery('.leaf-button').click(function() {
+    jQuery('.nav-btn').click(function() {
       if (app.username) {
         jQuery('.navigation li').removeClass('active'); // unmark all nav items
         jQuery(this).addClass('active');
         app.hideAllContainers();
-        jQuery('#leaf-screen').removeClass('hidden');
+        if (jQuery(this).attr('id') === 'collect-nav-btn') {
+          jQuery('#collect-screen').removeClass('hidden');
+        } else if (jQuery(this).attr('id') === 'weather-nav-btn') {
+          jQuery('#weather-screen').removeClass('hidden');
+        } else if (jQuery(this).attr('id') === 'map-nav-btn') {
+          jQuery('#map-screen').removeClass('hidden');
+        } else {
+          console.log('ERROR: unknown nav button');
+        }
       }
     });
-
-    jQuery('.collect-button').click(function() {
-      if (app.username) {
-        jQuery('.navigation li').removeClass('active'); // unmark all nav items
-        jQuery(this).addClass('active');
-        app.hideAllContainers();
-        jQuery('#collect-screen').removeClass('hidden');
-      }
-    });
-
-
 
     /*
-    * ======================================
-    * Other click listeners for the UI
-    * ======================================
+    * ===================================================================
+    * Other click listeners for the UI that don't belong to any one view
+    * ===================================================================
     */
-
 
   };
 
