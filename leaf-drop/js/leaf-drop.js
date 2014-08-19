@@ -37,9 +37,12 @@
   app.currentNote = null;
   app.currentReply = {};
 
+  app.treeSpeciesCollection = {};
+
   app.inputView = null;
   app.listView = null;
   app.collectView = null;
+  app.treeSpeciesView = null;
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -156,15 +159,24 @@
     })
     .done(function () {
       console.log('model awake - now calling ready');
-      app.ready();
+      //app.ready();
+      app.grabMiscData();
     });
 
     /* MISC */
     jQuery().toastmessage({
       position : 'middle-center'
     });
-
   };
+
+  app.grabMiscData = function() {
+    // TODO: do this correctly, using the model, before Armin catches wind and yells at me - set up with model, move to setup, etc
+    jQuery.get("http://drowsy.badger.encorelab.org/hampshire-apps/leaf_drop_tree_species", function( data ) {
+      app.treeSpeciesCollection = data;
+      app.ready();
+    });
+  }
+
 
   app.ready = function() {
       /* ======================================================
@@ -185,6 +197,13 @@
         app.collectView = new app.View.CollectView({
           el: '#collect-screen',
           collection: Skeletor.Model.awake.notes
+        });
+      }
+
+      if (app.treeSpeciesView === null) {
+        app.treeSpeciesView = new app.View.TreeSpeciesView({
+          el: '.tree-species-screen',
+          collection: app.treeSpeciesCollection
         });
       }
 

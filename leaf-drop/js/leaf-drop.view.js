@@ -191,6 +191,44 @@
 
 
   /**
+    TreeSpeciesView
+  **/
+  app.View.TreeSpeciesView = Backbone.View.extend({
+    view: this,
+    //template: "#something with tree species?",
+
+    initialize: function() {
+      var view = this;
+      console.log('Initializing TreeSpeciesView...', view.el);
+      this.populateTreeSpeciesEls();
+    },
+
+    events: {
+
+    },
+
+    populateTreeSpeciesEls: function(){
+      var view = this;
+
+      //_.each(notesToRestore, function(note){
+        // OLD TEMPLATE CODE THAT MIGHT BE USEFUL
+        // var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
+        // jQuery('#select-note-modal').append(option);
+      //});
+
+      _.each(view.collection, function(tree) {
+        console.log(tree);
+      });
+
+    },
+
+    render: function () {
+      console.log('Rendering TreeSpeciesView...');
+    }
+  });
+
+
+  /**
     MapView
   **/
   app.View.MapView = Backbone.View.extend({
