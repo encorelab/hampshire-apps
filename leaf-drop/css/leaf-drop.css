@@ -107,6 +107,16 @@
         margin-top: 2%;
     }
 
+    /* IMAGES */
+
+    .logo {
+        width: 25%;
+    }
+
+    .icon {
+        width: 75px;
+    }
+
 
     /* BODY - ALL */
 
