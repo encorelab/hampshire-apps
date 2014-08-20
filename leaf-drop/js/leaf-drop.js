@@ -31,7 +31,9 @@
   var DATABASE = null;
   app.stateData = null;
 
-  app.treeSpeciesCollection = {};
+  app.currentObservation = null;
+
+  app.treeSpeciesCollection = null;
 
   app.listView = null;
   app.collectView = null;

@@ -78,23 +78,20 @@
 
     <div id="collect-screen" class="container">
         <div class="row-fluid">
-            <div id="variable-content-container" class="bs-docs-sidebar">
-                <h2 class="page-title">New Observation</h2>
-
-                <!-- to be filled by addNewContent(), other than for first page -->
-                <div id="leaf-1" class="leaf-page current-page">
-                    <div id="progress-bar-container">
-                        <img id="progress-bar" src="">
-                    </div>
-                    <div>
-                        <img class="logo" src="img/_LeafDrop Logo.png" alt="Leaf Drop logo">
-                        <h1>Leaf Drop</h1>
-                        <button class="btn btn-default btn-lg">Start New Observation</button>
-                        <button class="btn btn-default btn-lg">View Past Observations</button>
-                    </div>
+            <div id="title-page">
+                <div>
+                    <!-- the source really shouldn't have a blank space in it -->
+                    <img class="logo" src="img/_LeafDrop Logo.png" alt="Leaf Drop logo">
+                    <h1>Leaf Drop</h1>
+                    <button id="new-observation">Start New Observation</button>
+                    <button>View Past Observations</button>
                 </div>
+            </div>
 
-                <div id="leaf-2" class="tree-species-screen leaf-page hidden">
+            <div id="variable-content-container" class="bs-docs-sidebar hidden">
+                <h2 class="page-title"></h2>
+
+                <div id="leaf-1" class="tree-species-screen leaf-page hidden">
                     <div id="progress-bar-container">
                         <img id="progress-bar" src="">
                     </div>
@@ -124,6 +121,15 @@
 
                 </div>
 
+                <div id="leaf-2" class="leaf-page hidden">
+                    <h2>New Observation</h2>
+                    <div id="progress-bar-container">
+                        <img id="progress-bar" src="">
+                    </div>
+                    <div class="input-field">
+                    </div>
+                </div>
+
                 <div id="leaf-3" class="leaf-page hidden">
                     <h2>New Observation</h2>
                     <div id="progress-bar-container">
@@ -150,72 +156,9 @@
                     <div class="input-field">
                     </div>
                 </div>
-
-                <div id="leaf-6" class="leaf-page hidden">
-                    <h2>New Observation</h2>
-                    <div id="progress-bar-container">
-                        <img id="progress-bar" src="">
-                    </div>
-                    <div class="input-field">
-                    </div>
-                </div>
-
-                <div id="leaf-7" class="leaf-page hidden">
-                    <h2>New Observation</h2>
-                    <div id="progress-bar-container">
-                        <img id="progress-bar" src="">
-                    </div>
-                    <div class="input-field">
-                    </div>
-                </div>
-
-                <div id="leaf-8" class="leaf-page hidden">
-                    <h2>New Observation</h2>
-                    <div id="progress-bar-container">
-                        <img id="progress-bar" src="">
-                    </div>
-                    <div class="input-field">
-                    </div>
-                </div>
-
-                <div id="leaf-9" class="leaf-page hidden">
-                    <h2>New Observation</h2>
-                    <div id="progress-bar-container">
-                        <img id="progress-bar" src="">
-                    </div>
-                    <div class="input-field">
-                    </div>
-                </div>
-
-                <div id="leaf-10" class="leaf-page hidden">
-                    <h2>New Observation</h2>
-                    <div id="progress-bar-container">
-                        <img id="progress-bar" src="">
-                    </div>
-                    <div class="input-field">
-                    </div>
-                </div>
-
-                <div id="leaf-11" class="leaf-page hidden">
-                    <h2>New Observation</h2>
-                    <div id="progress-bar-container">
-                        <img id="progress-bar" src="">
-                    </div>
-                    <div class="input-field">
-                    </div>
-                </div>
-
-                <div id="leaf-12" class="leaf-page hidden">
-                    <h2>New Observation</h2>
-                    <div id="progress-bar-container">
-                        <img id="progress-bar" src="">
-                    </div>
-                    <div class="input-field">
-                    </div>
-                </div>
             </div>
-            <button class="back-btn btn btn-large btn-success">Back</button>
-            <button class="next-btn btn btn-large btn-success">Next</button>
+            <button class="back-btn btn btn-large btn-success hidden">Back</button>
+            <button class="next-btn btn btn-large btn-success hidden">Next</button>
         </div>
     </div>
 
