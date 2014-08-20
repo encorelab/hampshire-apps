@@ -82,7 +82,8 @@
 
     events: {
       'click .next-btn'        : "moveForward",
-      'click .back-btn'        : "moveBack"
+      'click .back-btn'        : "moveBack",
+      'click .wiki-link'       : "openModal"
       // 'keyup :input': function(ev) {
       //   var view = this,
       //     field = ev.target.name,
@@ -175,6 +176,13 @@
       jQuery('#' + pageLabel).removeClass('hidden');
       jQuery('#' + pageLabel).addClass('current-page');
 
+    },
+
+    // the target of the link is an image (book icon) so .parent() targets the link
+    openModal: function(ev) {
+      ev.preventDefault();
+      var url = jQuery(ev.target).parent().attr('href');
+      jQuery('.modal-body').html('<iframe width="100%" height="500px" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
     },
 
     resumeNote: function(){
