@@ -81,6 +81,7 @@
     },
 
     events: {
+      'click #new-observation' : "startNewObservation",
       'click .next-btn'        : "moveForward",
       'click .back-btn'        : "moveBack"
       // 'keyup :input': function(ev) {
@@ -98,6 +99,22 @@
       //     app.autoSave(app.currentNote, field, input, true);
       //   }, 5000);
       // }
+    },
+
+    startNewObservation: function() {
+      var view = this;
+      // create the JSON observation object - really want to be using the model for this TODO! Seriously, this is top priority now
+
+      // delete the old observation
+      app.currentObservation = {};
+
+      jQuery('#title-page').addClass('hidden');
+      jQuery('#variable-content-container').removeClass('hidden');
+      jQuery('.back-btn').removeClass('hidden');
+      jQuery('.next-btn').removeClass('hidden');
+
+      // we're on page '0', the title page - this will move us to page 1
+      view.populatePage(0, 'next');
     },
 
     moveForward: function() {
@@ -133,7 +150,7 @@
 
     updateJSONObject: function() {
       var view = this;
-      // lots to add here, think about this, probably needs to use class names again - also, probably move to leaf-drop.js
+
       //view.addToJSON(jQuery('.input-field .text-field').text());
       //view.addToJSON(jQuery('.input-field .radio-field').val());
     },
