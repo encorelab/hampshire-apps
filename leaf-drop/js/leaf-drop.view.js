@@ -194,21 +194,24 @@
     TreeSpeciesView
   **/
   app.View.TreeSpeciesView = Backbone.View.extend({
-    view: this,
-    //template: "#something with tree species?",
+    template: "#tree-species-list-template",
 
     initialize: function() {
       var view = this;
       console.log('Initializing TreeSpeciesView...', view.el);
-      this.populateTreeSpeciesEls();
+
+      view.render()
     },
 
     events: {
 
     },
 
-    populateTreeSpeciesEls: function(){
+    render: function () {
       var view = this;
+      console.log('Rendering TreeSpeciesView...');
+
+      var list = jQuery('#tree-species-list');
 
       //_.each(notesToRestore, function(note){
         // OLD TEMPLATE CODE THAT MIGHT BE USEFUL
@@ -217,13 +220,12 @@
       //});
 
       _.each(view.collection, function(tree) {
-        console.log(tree);
+
+        var listItem = _.template(jQuery(view.template).text(),{'common_name': tree.common_name, 'latin_name': tree.latin_name, 'wikipedia_url': tree.wikipedia_url});
+
+        list.append(listItem);
+
       });
-
-    },
-
-    render: function () {
-      console.log('Rendering TreeSpeciesView...');
     }
   });
 

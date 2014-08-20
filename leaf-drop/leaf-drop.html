@@ -33,6 +33,16 @@
     <script type="text/javascript" src="js/leaf-drop.js"></script>
     <script type="text/javascript" src="js/leaf-drop.view.js"></script>
 
+    <!-- Tree Species Template -->
+    <script id="tree-species-list-template" type="text/template">
+        <li class="list-item">
+            <input type="radio" name="tree-species" value="<%= common_name %>">
+            <h4><%= common_name %></h4>
+            <i><%= latin_name %></i>
+            <a href="<%= wikipedia_url %>"><img src="" alt=""></a>
+        </li>
+    </script>
+
 </head>
 
 <body>
@@ -107,9 +117,11 @@
                     <div id="progress-bar-container">
                         <img id="progress-bar" src="">
                     </div>
-                    <div class="input-field">
-                        SOME OTHER OTHER STUFF
-                    </div>
+                    <h2>New Observation</h2>
+                    <h3>Tree Species</h3>
+                    Tree Number <input type="number">
+                    Branch Letter <input type="text">
+                    <ul id="tree-species-list"></ul>
                 </div>
 
             </div>
