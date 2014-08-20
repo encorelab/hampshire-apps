@@ -27,19 +27,12 @@
   app.runId= null;
   app.users = null; // users collection
   app.username = null;
-  app.runState = null;
-  app.userState = null;
-  app.numOfStudents = 0;
 
   var DATABASE = null;
   app.stateData = null;
 
-  app.currentNote = null;
-  app.currentReply = {};
-
   app.treeSpeciesCollection = {};
 
-  app.inputView = null;
   app.listView = null;
   app.collectView = null;
   app.treeSpeciesView = null;

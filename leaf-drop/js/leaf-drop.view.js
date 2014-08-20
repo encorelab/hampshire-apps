@@ -82,6 +82,7 @@
 
     events: {
       'click .next-btn'        : "populateNextPage"
+      'click .back-btn'        : "populatePrevPage"
       // 'click .resume-note-btn'   : "resumeNote",
       // 'click .new-note-btn'      : 'showNewNote',
       // 'click .modal-select-note' : 'selectNoteToResume',
@@ -123,6 +124,10 @@
       view.removeOldContent();
 
       view.addNewContent(pageNumber);
+    },
+
+    populatePrevPage: function() {
+
     },
 
     collectInputValues: function() {
