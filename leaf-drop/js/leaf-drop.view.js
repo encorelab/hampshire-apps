@@ -81,14 +81,8 @@
     },
 
     events: {
-      'click .next-btn'        : "populateNextPage"
-      'click .back-btn'        : "populatePrevPage"
-      // 'click .resume-note-btn'   : "resumeNote",
-      // 'click .new-note-btn'      : 'showNewNote',
-      // 'click .modal-select-note' : 'selectNoteToResume',
-      // 'click .cancel-note-btn'   : 'cancelNote',
-      // 'click .share-note-btn'    : 'shareNote',
-      // //'click .note-body'         : 'createOrRestoreNote',
+      'click .next-btn'        : "moveForward",
+      'click .back-btn'        : "moveBack"
       // 'keyup :input': function(ev) {
       //   var view = this,
       //     field = ev.target.name,
@@ -106,35 +100,42 @@
       // }
     },
 
-    populateNextPage: function() {
+    moveForward: function() {
       var view = this;
+      var pageNum = view.getPageNum();
 
+      view.updateJSONObject();
+      view.updateProgressBar();
+      view.removeOldContent();
+      view.populatePage(pageNum, 'next');
+    },
+
+    moveBack: function() {
+      var view = this;
+      var pageNum = view.getPageNum();
+
+      view.updateJSONObject();
+      view.updateProgressBar();
+      view.removeOldContent();
+      view.populatePage(pageNum, 'prev');
+    },
+
+    getPageNum: function() {
       // find the currently shown page
       var pageLabel = jQuery('.current-page').attr('id');
-
 
       // get the page number from it
       var pageNumber = 0;
       pageNumber = pageLabel.substr(5, pageLabel.length - 5);
 
-      view.collectInputValues();
-
-      view.updateProgressBar();
-
-      view.removeOldContent();
-
-      view.addNewContent(pageNumber);
+      return pageNumber;
     },
 
-    populatePrevPage: function() {
-
-    },
-
-    collectInputValues: function() {
+    updateJSONObject: function() {
       var view = this;
       // lots to add here, think about this, probably needs to use class names again - also, probably move to leaf-drop.js
-      view.addToJSON(jQuery('.input-field .text-field').text());
-      view.addToJSON(jQuery('.input-field .radio-field').val());
+      //view.addToJSON(jQuery('.input-field .text-field').text());
+      //view.addToJSON(jQuery('.input-field .radio-field').val());
     },
 
     updateProgressBar: function() {
@@ -146,28 +147,33 @@
       jQuery('.leaf-page').removeClass('current-page');
     },
 
-    addNewContent: function(pNum) {
+    populatePage: function(pNum, direction) {
+      // TODO: find a better way to do this or figure out what the actual last page is
+      if (pNum === 26) {
+        jQuery('.page-title').text('Review Data');
+        jQuery('.next-btn').text('Finish');
+      } else {
+        jQuery('.page-title').text('New Observation');
+        jQuery('.next-btn').text('Next');
+      }
+
+      // decide on next or previous page, and update to that
       var pNumStr = pNum;
       var pageNumber = Number(pNumStr);
-      pageNumber += 1;
+      if (direction === 'next') {
+        pageNumber += 1;
+      } else if (direction === 'prev') {
+        pageNumber -= 1;
+      } else {
+        console.error('ERROR: unexpected direction');
+      }
+
       var pageLabel = 'leaf-';
       pageLabel = pageLabel + pageNumber;
       //jQuery('#variable-content-container').html(jQuery('#' + pageLabel));
 
       jQuery('#' + pageLabel).removeClass('hidden');
       jQuery('#' + pageLabel).addClass('current-page');
-    },
-
-    addToJSON: function(value) {
-      // this will add the value to the JSON object
-
-      /*
-      {
-        "type" : "bird",
-        "location" : SOEMTHING,
-
-      }
-      */
 
     },
 
