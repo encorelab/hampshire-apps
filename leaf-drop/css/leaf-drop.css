@@ -145,9 +145,19 @@
     }
 
 
-    /* SPECIFIC PAGES */
+    /********** SPECIFIC PAGES **********/
 
-    /*tree species*/
+    /***** first page *****/
+
+    .first-page {
+        text-align: center;
+    }
+
+    .first-page img {
+        margin: 0 auto;
+    }
+
+    /***** tree species *****/
 
     #tree-species-list li {
         border-radius: 10px;
@@ -155,20 +165,25 @@
         margin-bottom: 20px;
     }
 
+    /*TODO: change using bootstrap gutters??*/
     #tree-species-list li:nth-of-type(2n) {
         margin-left: 20px;
     }
 
+    /*TODO: make input background full height of list element*/
     #tree-species-list div.row {
         height: 100%;
     }
-
     div.tree-species {
         height: 100%;
         background: #f3f3f5;
     }
 
+    /***** leaf fallen *****/
 
+    input[type="radio"].leaf-fallen {
+        display: none;
+    }
 
 
     /* WEATHER SCREEN */
