@@ -35,11 +35,15 @@
 
     <!-- Tree Species Template -->
     <script id="tree-species-list-template" type="text/template">
-        <li class="list-item">
-            <input type="radio" name="tree-species" value="<%= common_name %>">
-            <h4><%= common_name %></h4>
-            <i><%= latin_name %></i>
-            <a href="<%= wikipedia_url %>" data-toggle="modal" data-target="#myModal"><img class="icon wiki-link" src="img/open_book.svg" alt="Learn more icon"></a>
+        <li class="list-item col-xs-12 col-sm-5">
+            <div class="row">
+                <div class="tree-species col-xs-2">
+                    <input class="tree-species" type="radio" name="tree-species" value="<%= common_name %>">
+                </div>
+                <h4 class="tree-species col-xs-8"><%= common_name %></h4>
+                <a class="col-xs-2 pull-right" href="<%= wikipedia_url %>" data-toggle="modal" data-target="#myModal"><img class="icon wiki-link img-responsive" src="img/open_book.svg" alt="Learn more icon"></a>
+                <i class="tree-species col-xs-8"><%= latin_name %></i>
+            </div>
         </li>
     </script>
 
@@ -80,7 +84,7 @@
         <div class="row-fluid">
             <div id="title-page">
                 <div>
-                    <img class="logo" src="img/_LeafDrop_Logo.png" alt="Leaf Drop logo">
+                    <img class="logo img-responsive" src="img/_LeafDrop_Logo.png" alt="Leaf Drop logo">
                     <h1>Leaf Drop</h1>
                     <button class="btn btn-default btn-lg" id="new-observation">Start New Observation</button>
                     <button class="btn btn-default btn-lg">View Past Observations</button>
@@ -95,10 +99,10 @@
                         <img id="progress-bar" src="">
                     </div>
 
-                    <h3>Tree Species</h3>
-                    Tree Number <input type="number">
+                    Tree Number <input type="text">
                     Branch Letter <input type="text">
-                    <ul id="tree-species-list"></ul>
+                    <h3>Tree Species</h3>
+                    <ul class="row" id="tree-species-list"></ul>
 
                     <!-- Modal -->
                     <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
