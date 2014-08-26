@@ -6,6 +6,11 @@
         font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
     }
 
+    /*to arrange buttons at bottom of screen, needs revising - maybe using calc??*/
+    .leaf-page {
+        min-height: 70vh;
+    }
+
     .view-container {
         margin: 0 2%;
     }
@@ -150,11 +155,9 @@
     /***** first page *****/
 
     .first-page {
+        width: 100%;
+        max-width: 300px;
         text-align: center;
-    }
-
-    .first-page img {
-        margin: 0 auto;
     }
 
     /***** tree species *****/
@@ -165,24 +168,47 @@
         margin-bottom: 20px;
     }
 
-    /*TODO: change using bootstrap gutters??*/
+    /*getting rid of bootstrap default margins*/
+    #tree-species-list.row {
+        margin: 0;
+    }
+
+    /*TODO: need to eliminate left margin at xs size*/
     #tree-species-list li:nth-of-type(2n) {
         margin-left: 20px;
     }
 
-    /*TODO: make input background full height of list element*/
-    #tree-species-list div.row {
-        height: 100%;
-    }
+    /*TODO: make input & link backgrounds full height of list element*/
     div.tree-species {
-        height: 100%;
+        min-height: 100%;
         background: #f3f3f5;
+        border-right: solid #eee 1px;
+    }
+
+    a.tree-species {
+        min-height: 100%;
+        border-left: solid #eee 1px;
     }
 
     /***** leaf fallen *****/
 
     input[type="radio"].leaf-fallen {
         display: none;
+    }
+
+    #leaf-3>h3 {
+        text-align: center;
+    }
+
+    .btn-container {
+        width: 100%;
+        max-width: 100px;
+    }
+
+    /***** additional field notes *****/
+
+    .field-notes {
+        height: 40vh;
     }
 
 
