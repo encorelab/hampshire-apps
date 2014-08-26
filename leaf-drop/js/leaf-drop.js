@@ -38,6 +38,7 @@
   app.listView = null;
   app.collectView = null;
   app.treeSpeciesView = null;
+  app.reviewDataView = null;
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -199,6 +200,13 @@
         app.treeSpeciesView = new app.View.TreeSpeciesView({
           el: '.tree-species-screen',
           collection: app.treeSpeciesCollection
+        });
+      }
+
+      if (app.reviewDataView === null) {
+        app.reviewDataView = new app.View.ReviewDataView({
+          el: '.review-data-screen',
+          collection: Skeletor.Model.awake.notes        // switch this collection to something or nothing
         });
       }
 

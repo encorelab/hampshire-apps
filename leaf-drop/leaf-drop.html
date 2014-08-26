@@ -49,6 +49,18 @@
         </li>
     </script>
 
+    <!-- Review Data Template -->
+    <script id="review-data-list-template" type="text/template">
+        <li class="data-list-item col-xs-12 col-sm-5">
+            <h4>Leaf <span class=""><%= leaf_num %><span>:</h4>
+            <div class="row">
+                <p class="col-xs-12 pull-left">Length<span class="leaf-length col-xs-6 pull-right"><%= leaf_length %><span></p>
+                <p class="col-xs-12 pull-left">Width<span class="leaf-width col-xs-6 pull-right"><%= leaf_width %><span></p>
+                <p class="col-xs-12 pull-left">Percent Color<span class="percent-colored-leaf col-xs-6 pull-right"><%= percent_colored %><span></p>
+            </div>
+        </li>
+    </script>
+
 </head>
 
 <body>
@@ -103,7 +115,7 @@
                     <label for="id-tree-number">Tree Number</label><input id="id-tree-number" class="input-field tree-number" type="text">
                     <label for="id-branch-letter">Branch Letter</label><input id="id-branch-letter" class="input-field branch-letter" type="text">
                     <h3>Tree Species</h3>
-                    <ul id="tree-species-list" class="row"></ul>
+                    <ul id="tree-species-list" class="list-styles row"></ul>
 
                     <!-- Modal Wikipedia Tree Species Page Pop-Up -->
                     <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -220,6 +232,20 @@
                 <p class="text-muted">Notes about field conditions, other plants, wildlife, or any human activity you notice while collecting data</p>
                 <div class="row">
                     <input class="input-field field-notes col-xs-12 col-sm-9" type="textarea">
+                </div>
+            </div>
+
+            <!-- Review data screen -->
+            <div id="leaf-7" class="review-data-screen leaf-page hidden">
+                <div class="row">
+                    <h3 class="col-xs-6 col-sm-3">Tree Number:<span class="tree-number-field"></span></h3>
+                    <h3 class="col-xs-6 col-sm-3">Branch Letter:<span class="branch-letter-field"></span></h3>
+                    <h3 class="col-xs-6 col-sm-3">Tree Species:<span class="tree-species-field"></span></h3>
+                    <h3 class="col-xs-6 col-sm-3">&#37;Color:<span class="percent-colored-tree-field"></span></h3>
+                </div>
+                <ul id="review-data-list" class="list-styles row"></ul>
+                <div class="row">
+                    <h3 class="col-xs-6 col-sm-3">Additional Field Notes:</h3><p class="col-xs-6 col-sm-9"><span class="field-notes-field"></span></p>
                 </div>
             </div>
 

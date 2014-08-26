@@ -115,7 +115,7 @@
       jQuery('.next-btn').removeClass('hidden');
 
       // we're on page '0', the title page - this will move us to page 1
-      view.populatePage(0, 'next');
+      view.populatePage(6, 'next');
     },
 
     moveForward: function() {
@@ -167,7 +167,7 @@
 
     populatePage: function(pNum, direction) {
       // TODO: find a better way to do this or figure out what the actual last page is
-      if (pNum === 26) {
+      if (pNum === 6) {
         jQuery('.page-title').text('Review Data');
         jQuery('.next-btn').text('Finish');
       } else {
@@ -260,6 +260,105 @@
         var listItem = _.template(jQuery(view.template).text(),{'common_name': tree.common_name, 'latin_name': tree.latin_name, 'wikipedia_url': tree.wikipedia_url});
 
         list.append(listItem);
+
+      });
+    }
+  });
+
+  /**
+    ReviewData
+  **/
+  app.View.ReviewDataView = Backbone.View.extend({
+    template: "#review-data-list-template",
+
+    initialize: function() {
+      var view = this;
+      console.log('Initializing ReviewDataView...', view.el);
+
+      view.render()
+    },
+
+    events: {
+
+    },
+
+    render: function () {
+      var view = this;
+      console.log('Rendering ReviewDataView...');
+
+      var fakeObservation = {
+        "tree_number": 3,
+        "branch_letter": "A",
+        "tree_species": "Acer pensylvanicum",
+        "percent_colored_tree": "76-100%",
+        "leaves": [
+          {
+            "leaf_num":1,
+            "fallen": "no",
+            "leaf_length": 31.5,
+            "leaf_width": 12,
+            "percent_colored": "26-50%"
+          },
+          {
+            "leaf_num":2,
+            "fallen": "no",
+            "leaf_length": 28.5,
+            "leaf_width": 12,
+            "percent_colored": "0-25%"
+          },
+          {
+            "leaf_num":3,
+            "fallen": "yes"
+          },
+          {
+            "leaf_num":4,
+            "fallen": "no",
+            "leaf_length": 20,
+            "leaf_width": 12.5,
+            "percent_colored": "0-25%"
+          },
+          {
+            "leaf_num": 5,
+            "fallen": "yes"
+          },
+          {
+            "leaf_num": 6,
+            "fallen": "yes"
+          }
+          ],
+          "additional_notes": "bla bla bla they are never going to fill this in"
+      };
+
+      jQuery('.tree-number-field').text(fakeObservation.tree_number);
+      jQuery('.branch-letter-field').text(fakeObservation.branch_letter);
+      jQuery('.tree-species-field').text(fakeObservation.tree_species);
+      jQuery('.percent-colored-tree-field').text(fakeObservation.percent_colored_tree);
+      jQuery('.field-notes-field').text(fakeObservation.additional_notes);
+
+      var list = jQuery('#review-data-list');
+
+      //_.each(notesToRestore, function(note){
+        // OLD TEMPLATE CODE THAT MIGHT BE USEFUL
+        // var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
+        // jQuery('#select-note-modal').append(option);
+      //});
+
+      _.each(fakeObservation.leaves, function(leaf) {
+        console.log(leaf);
+
+        var listItem = null;
+
+        if (leaf.fallen === "yes") {
+          listItem = _.template(jQuery(view.template).text(),{'leaf_num': leaf.leaf_num, 'leaf_length': 'fallen', 'leaf_width': 'fallen', 'percent_colored': 'fallen'});
+        } else {
+          listItem = _.template(jQuery(view.template).text(),{'leaf_num': leaf.leaf_num, 'leaf_length': leaf.leaf_length + ' cm', 'leaf_width': leaf.leaf_width + ' cm', 'percent_colored': leaf.percent_colored});
+        }
+
+        if (listItem !== null) {
+          list.append(listItem);
+        } else {
+          console.error('KABOOM! review-data-view issue');
+        }
 
       });
     }

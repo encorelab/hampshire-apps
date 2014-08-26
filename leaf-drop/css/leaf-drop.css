@@ -81,9 +81,26 @@
         padding: 0;
     }
 
-    li {
+    .list-styles li {
+        border-radius: 10px;
+        border: solid #eee 1px;
+        margin-bottom: 20px;
         list-style: none;
     }
+
+    /*getting rid of bootstrap default margins*/
+    .list-styles.row {
+        margin: 0;
+    }
+
+    /*TODO: need to eliminate left margin at xs size*/
+    .list-styles li:nth-of-type(2n) {
+        margin-left: 20px;
+    }/*
+
+    li {
+        list-style: none;
+    }*/
 
 
     /* NAVBAR */
@@ -161,22 +178,6 @@
     }
 
     /***** tree species *****/
-
-    #tree-species-list li {
-        border-radius: 10px;
-        border: solid #eee 1px;
-        margin-bottom: 20px;
-    }
-
-    /*getting rid of bootstrap default margins*/
-    #tree-species-list.row {
-        margin: 0;
-    }
-
-    /*TODO: need to eliminate left margin at xs size*/
-    #tree-species-list li:nth-of-type(2n) {
-        margin-left: 20px;
-    }
 
     /*TODO: make input & link backgrounds full height of list element*/
     div.tree-species {
