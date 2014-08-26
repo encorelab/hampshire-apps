@@ -1,10 +1,6 @@
 @media all and (orientation:landscape) {
 
-    /* MISC */
-
-    body {
-        font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
-    }
+    /********** MISC **********/
 
     /*to arrange buttons at bottom of screen, needs revising - maybe using calc??*/
     .leaf-page {
@@ -33,14 +29,22 @@
         -webkit-user-select: text;
         user-select: text;
         color: #333;
-        border-radius: 10px;
-        border: solid #eee 1px;
-        height: 40px;
+        border-radius: 7px;
+        border: solid #ddd 1px;
+        height: 45px;
         margin-left: 20px;
     }
 
+    input[type=text] {
+       font-size: 20px;
+       font-weight: lighter;
+       padding-left: 20px;
+    }
+
     .btn {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        height: 45px;
+        min-width: 160px;
     }
 
     .scrollable {
@@ -82,8 +86,8 @@
     }
 
     .list-styles li {
-        border-radius: 10px;
-        border: solid #eee 1px;
+        border-radius: 7px;
+        border: solid #ddd 1px;
         margin-bottom: 20px;
         list-style: none;
     }
@@ -96,14 +100,52 @@
     /*TODO: need to eliminate left margin at xs size*/
     .list-styles li:nth-of-type(2n) {
         margin-left: 20px;
-    }/*
+    }
 
-    li {
+    /*this may have to go back in??*/
+/*    li {
         list-style: none;
     }*/
 
+    /********** TYPOGRAPHY **********/
 
-    /* NAVBAR */
+    body {
+        font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    h1 {
+        font-size: 55px;
+        color: #444;
+        font-weight: 500;
+        margin-bottom: 35px;
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 25px;
+    }
+
+    h3,
+    label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #555;
+    }
+
+    h4 {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    p {
+
+    }
+
+    label {
+        vertical-align: middle;
+    }
+
+    /********** NAVBAR **********/
 
     /* This hides any element with class alert directly after an input field with a pattern (regex) */
     input[pattern] + .alert {
@@ -141,18 +183,15 @@
         margin-top: 2%;
     }
 
-    /* IMAGES */
+    /********** IMAGES **********/
 
-    .logo {
-        width: 25%;
-    }
-
-    .icon {
+    /*for icons in sidebar?*/
+/*    .icon {
         width: 75px;
-    }
+    }*/
 
 
-    /* BODY - ALL */
+    /********** BODY - ALL **********/
 
     .row-fluid {
         /*width: 98%;*/
@@ -173,22 +212,54 @@
 
     .first-page {
         width: 100%;
-        max-width: 300px;
+        max-width: 250px;
         text-align: center;
+        margin-top: 5%;
+    }
+
+    .first-page>button {
+        height: 55px;
     }
 
     /***** tree species *****/
 
-    /*TODO: make input & link backgrounds full height of list element*/
-    div.tree-species {
-        min-height: 100%;
-        background: #f3f3f5;
-        border-right: solid #eee 1px;
+    .branch-letter-styles {
+        margin-left: 50px;
     }
 
-    a.tree-species {
-        min-height: 100%;
-        border-left: solid #eee 1px;
+    /*to make input & link/images full height of list element*/
+    div.tree-species-styles,
+    a.tree-species-styles,
+    .wiki-link {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    div.tree-species-styles {
+        background: #f3f3f5;
+        border-right: solid #ddd 1px;
+        padding-left: 7%;
+        padding-top: 1%;
+    }
+
+    h4.tree-species-styles {
+        margin-bottom: 0;
+    }
+
+    p.tree-species-styles {
+        font-style: italic;
+    }
+
+    a.tree-species-styles {
+        border-left: solid #ddd 1px;
+    }
+
+    .wiki-link {
+        margin: auto;
+        width: 50%;
     }
 
     /***** leaf fallen *****/
@@ -197,13 +268,13 @@
         display: none;
     }
 
-    #leaf-3>h3 {
+    #leaf-3>h2 {
         text-align: center;
     }
 
     .btn-container {
         width: 100%;
-        max-width: 100px;
+        max-width: 150px;
     }
 
     /***** additional field notes *****/
@@ -213,7 +284,7 @@
     }
 
 
-    /* WEATHER SCREEN */
+    /********** WEATHER SCREEN **********/
 
     .iframe-container {
         width: 100%;

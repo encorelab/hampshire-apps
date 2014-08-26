@@ -115,7 +115,7 @@
       jQuery('.next-btn').removeClass('hidden');
 
       // we're on page '0', the title page - this will move us to page 1
-      view.populatePage(6, 'next');
+      view.populatePage(0, 'next');
     },
 
     moveForward: function() {

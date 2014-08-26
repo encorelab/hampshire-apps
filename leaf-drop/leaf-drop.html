@@ -37,14 +37,14 @@
     <script id="tree-species-list-template" type="text/template">
         <li class="list-item col-xs-12 col-sm-5">
             <div class="row">
-                <div class="tree-species col-xs-2">
+                <div class="tree-species-styles col-xs-2">
                     <input class="input-field tree-species" name="tree-species" type="radio" value="<%= common_name %>">
                 </div>
-                <div class="col-xs-8">
-                    <h4 class="tree-species"><%= common_name %></h4>
-                    <i class="tree-species text-muted"><%= latin_name %></i>
+                <div class="col-xs-8 col-xs-offset-2">
+                    <h4 class="tree-species-styles"><%= common_name %></h4>
+                    <p class="tree-species-styles text-muted"><%= latin_name %></i>
                 </div>
-                <a class="tree-species col-xs-2" href="<%= wikipedia_url %>" data-toggle="modal" data-target="#myModal"><img class="icon wiki-link img-responsive" src="img/open_book.svg" alt="Learn more icon"></a>
+                <a class="tree-species-styles col-xs-2 col-xs-offset-10" href="<%= wikipedia_url %>" data-toggle="modal" data-target="#myModal"><img class="wiki-link img-responsive" src="img/learn_more.svg" alt="Learn more icon"></a>
             </div>
         </li>
     </script>
@@ -113,7 +113,7 @@
                 <!-- Selecting tree number, branch letter, tree species -->
                 <div id="leaf-1" class="tree-species-screen leaf-page hidden">
                     <label for="id-tree-number">Tree Number</label><input id="id-tree-number" class="input-field tree-number" type="text">
-                    <label for="id-branch-letter">Branch Letter</label><input id="id-branch-letter" class="input-field branch-letter" type="text">
+                    <label for="id-branch-letter" class="branch-letter-styles">Branch Letter</label><input id="id-branch-letter" class="input-field branch-letter" type="text">
                     <h3>Tree Species</h3>
                     <ul id="tree-species-list" class="list-styles row"></ul>
 
@@ -164,7 +164,7 @@
                     <div id="progress-bar-container">
                         <img id="progress-bar" src="">
                     </div>
-                    <h3>Has this leaf fallen?</h3>
+                    <h2>Has this leaf fallen?</h2>
                     <div class="btn-container center-block">
                         <label for="id-leaf-fallen-yes" class="btn btn-default btn-lg btn-block">Yes</label><input id="id-leaf-fallen-yes" class="input-field leaf-fallen" type="radio" name="leaf-fallen" checked>
                         <label for="id-leaf-fallen-no" class="btn btn-default btn-lg btn-block">No</label><input id="id-leaf-fallen-no" class="input-field leaf-fallen" type="radio" name="leaf-fallen">
@@ -238,10 +238,10 @@
             <!-- Review data screen -->
             <div id="leaf-7" class="review-data-screen leaf-page hidden">
                 <div class="row">
-                    <h3 class="col-xs-6 col-sm-3">Tree Number:<span class="tree-number-field"></span></h3>
-                    <h3 class="col-xs-6 col-sm-3">Branch Letter:<span class="branch-letter-field"></span></h3>
-                    <h3 class="col-xs-6 col-sm-3">Tree Species:<span class="tree-species-field"></span></h3>
-                    <h3 class="col-xs-6 col-sm-3">&#37;Color:<span class="percent-colored-tree-field"></span></h3>
+                    <h3 class="col-xs-6 col-sm-3">Tree Number: <span class="tree-number-field"></span></h3>
+                    <h3 class="col-xs-6 col-sm-3">Branch Letter: <span class="branch-letter-field"></span></h3>
+                    <h3 class="col-xs-6 col-sm-3">Tree Species: <span class="tree-species-field"></span></h3>
+                    <h3 class="col-xs-6 col-sm-3">&#37;Color: <span class="percent-colored-tree-field"></span></h3>
                 </div>
                 <ul id="review-data-list" class="list-styles row"></ul>
                 <div class="row">
