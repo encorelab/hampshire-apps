@@ -1,4 +1,4 @@
-@media all and (orientation:landscape) {
+/*@media all and (orientation:landscape) {*/
 
     /********** MISC **********/
 
@@ -37,7 +37,7 @@
 
     input[type=text] {
        font-size: 20px;
-       font-weight: lighter;
+       font-weight: 300;
        padding-left: 20px;
     }
 
@@ -47,8 +47,41 @@
         min-width: 160px;
     }
 
+    /*removing linear gradients from button defaults*/
+    .btn-default,
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default:active,
+    .btn-success,
+    .btn-success:hover,
+    .btn-success:focus,
+    .btn-success:active {
+        background-image: none;
+        text-shadow: none;
+    }
+
+    .btn-success,
+    .btn-success:hover,
+    .btn-success:focus,
+    .btn-success:active {
+        font-size: 16px;
+        letter-spacing: 0.05em;
+        border: none;
+    }
+
     .scrollable {
         overflow-y: auto;
+    }
+
+    /*so the scroll bar appears at all times*/
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0,0,0,.5);
+        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
     }
 
     .hidden {
@@ -110,11 +143,11 @@
     /********** TYPOGRAPHY **********/
 
     body {
-        font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
+        font-family: 'Open Sans', 'HelveticaNeue', 'Helvetica Neue', Helvetica, sans-serif;
     }
 
     h1 {
-        font-size: 55px;
+        font-size: 54px;
         color: #444;
         font-weight: 500;
         margin-bottom: 35px;
@@ -143,6 +176,12 @@
 
     label {
         vertical-align: middle;
+    }
+
+    .label-lg {
+        font-size: 20px;
+        font-weight: 300;
+        margin-top: -25px;
     }
 
     /********** NAVBAR **********/
@@ -183,7 +222,18 @@
         margin-top: 2%;
     }
 
+
+    /********** PROGRESS BAR **********/
+
+    #progress-bar-container {
+        display: none;
+    }
+
     /********** IMAGES **********/
+
+    img.space-bottom {
+        margin-bottom: 15px;
+    }
 
     /*for icons in sidebar?*/
 /*    .icon {
@@ -213,7 +263,6 @@
     .first-page {
         width: 100%;
         max-width: 250px;
-        text-align: center;
         margin-top: 5%;
     }
 
@@ -225,6 +274,11 @@
 
     .branch-letter-styles {
         margin-left: 50px;
+    }
+
+    ul#tree-species-list {
+        height: 53vh;
+        /*overflow: scroll;*/
     }
 
     /*to make input & link/images full height of list element*/
@@ -242,7 +296,6 @@
         background: #f3f3f5;
         border-right: solid #ddd 1px;
         padding-left: 7%;
-        padding-top: 1%;
     }
 
     h4.tree-species-styles {
@@ -262,25 +315,61 @@
         width: 50%;
     }
 
+    button.close {
+        font-size: 50px;
+        color: #555;
+        position: absolute;
+        top: 15px;
+        right: 40px;
+        z-index: 999;
+        opacity: 1;
+    }
+
+    /*trying to get rid of 'last edited' in wikipedia pop-up - use javascript?
+    iframe div#mw-mf-last-modified.top-bar.truncated-text {
+        display: none !important;
+    }*/
+
     /***** leaf fallen *****/
 
     input[type="radio"].leaf-fallen {
         display: none;
     }
 
-    #leaf-3>h2 {
-        text-align: center;
-    }
-
     .btn-container {
         width: 100%;
         max-width: 150px;
+        margin-bottom: -20px;
     }
 
     /***** additional field notes *****/
 
     .field-notes {
         height: 40vh;
+    }
+
+    /***** review data *****/
+
+    .review-data-screen > .row > h3 {
+        margin-top: 0;
+    }
+
+    .data-list-item > h3 {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .row > p:first-child,
+    .row > p + p {
+        margin-bottom: 3px;
+    }
+
+    .row > p:last-child {
+        margin-bottom: 5px;
+    }
+
+    .align-top {
+        margin-top: 0;
     }
 
 
@@ -356,7 +445,7 @@
 
 }
 
-@media all and (orientation:portrait){
+/*@media all and (orientation:portrait){
     .row-fluid {
         display: none;
     }
@@ -378,3 +467,4 @@
     }
 }
 
+*/
