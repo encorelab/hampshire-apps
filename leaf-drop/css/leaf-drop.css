@@ -2,6 +2,10 @@
 
     /********** MISC **********/
 
+/*    #collect-screen {
+        height: 100vh;
+    }*/
+
     /*to arrange buttons at bottom of screen, needs revising - maybe using calc??*/
     .leaf-page {
         min-height: 70vh;
@@ -226,7 +230,16 @@
     /********** PROGRESS BAR **********/
 
     #progress-bar-container {
-        display: none;
+        margin-bottom: 10%;
+    }
+
+    .leaf-progress {
+        height: 50px;
+    }
+
+    .leaf-progress > img {
+        height: 100%;
+        margin: 0 auto;
     }
 
     /********** IMAGES **********/
@@ -270,7 +283,7 @@
         height: 55px;
     }
 
-    /***** tree species *****/
+    /***** #leaf-1  tree species *****/
 
     .branch-letter-styles {
         margin-left: 50px;
@@ -330,7 +343,7 @@
         display: none !important;
     }*/
 
-    /***** leaf fallen *****/
+    /***** #leaf-3  leaf fallen *****/
 
     input[type="radio"].leaf-fallen {
         display: none;
@@ -342,13 +355,18 @@
         margin-bottom: -20px;
     }
 
-    /***** additional field notes *****/
+    .btn-select {
+        background-color: #e0e0e0;
+        background-position: 0 -15px;
+    }
+
+    /***** #leaf-6  additional field notes *****/
 
     .field-notes {
         height: 40vh;
     }
 
-    /***** review data *****/
+    /***** #leaf-7  review data *****/
 
     .review-data-screen > .row > h3 {
         margin-top: 0;
