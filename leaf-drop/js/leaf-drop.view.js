@@ -13,7 +13,6 @@
   **/
   app.View.CollectView = Backbone.View.extend({
     view: this,
-    //template: "#resume-unpublished-notes",
 
     initialize: function() {
       var view = this;
@@ -26,21 +25,6 @@
       'click .back-btn'         : "moveBack",
       'click .wiki-link'        : "openModal",
       'click .leaf-fallen-btn'  : "buttonSelected"
-      // 'keyup :input': function(ev) {
-      //   var view = this,
-      //     field = ev.target.name,
-      //     input = ev.target.value;
-      //   // clear timer on keyup so that a save doesn't happen while typing
-      //   window.clearTimeout(app.autoSaveTimer);
-
-      //   // save after 10 keystrokes
-      //   app.autoSave(app.currentNote, field, input, false);
-
-      //   // setting up a timer so that if we stop typing we save stuff after 5 seconds
-      //   app.autoSaveTimer = setTimeout(function(){
-      //     app.autoSave(app.currentNote, field, input, true);
-      //   }, 5000);
-      // }
     },
 
     buttonSelected: function(ev) {
@@ -99,8 +83,23 @@
     updateJSONObject: function() {
       var view = this;
 
-      //view.addToJSON(jQuery('.input-field .text-field').text());
-      //view.addToJSON(jQuery('.input-field .radio-field').val());
+      _.each(jQuery('.current-page .input-field'), function(i) {
+        console.log(i);
+
+        // if this is of type text take the text and put it straight up into the json
+        if (i.type === "text" || i.type === "textarea") {
+          // add text value to json
+          app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
+
+        // else if this is of type radio, capture selected
+        } else if (i.type === "radio") {
+          // do something
+        }
+
+      });
+
+      // view.addToJSON(jQuery('.input-field .text-field').text());
+      // view.addToJSON(jQuery('.input-field .radio-field').val());
     },
 
     updateProgressBar: function() {
