@@ -81,10 +81,11 @@
     },
 
     events: {
-      'click #new-observation' : "startNewObservation",
-      'click .next-btn'        : "moveForward",
-      'click .back-btn'        : "moveBack",
-      'click .wiki-link'       : "openModal"
+      'click #new-observation'  : "startNewObservation",
+      'click .next-btn'         : "moveForward",
+      'click .back-btn'         : "moveBack",
+      'click .wiki-link'        : "openModal",
+      'click .leaf-fallen-btn'  : "buttonSelected"
       // 'keyup :input': function(ev) {
       //   var view = this,
       //     field = ev.target.name,
@@ -100,6 +101,13 @@
       //     app.autoSave(app.currentNote, field, input, true);
       //   }, 5000);
       // }
+    },
+
+    buttonSelected: function(ev) {
+      var view = this;
+
+      jQuery('.btn-select').removeClass("btn-select");
+      jQuery(ev.target).addClass("btn-select");
     },
 
     startNewObservation: function() {
@@ -167,7 +175,7 @@
 
     populatePage: function(pNum, direction) {
       // TODO: find a better way to do this or figure out what the actual last page is
-      if (pNum === 6) {
+      if (pNum === "6") {
         jQuery('.page-title').text('Review Data');
         jQuery('.next-btn').text('Finish');
       } else {
@@ -223,6 +231,7 @@
     render: function () {
       console.log('Rendering CollectView...');
     }
+
   });
 
 
