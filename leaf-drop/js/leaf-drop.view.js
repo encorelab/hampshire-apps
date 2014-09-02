@@ -9,66 +9,6 @@
   app.View = {};
 
   /**
-    ListView
-  **/
-  app.View.ListView = Backbone.View.extend({
-    template: "#notes-list-template",
-
-    initialize: function () {
-      var view = this;
-      console.log('Initializing ListView...', view.el);
-
-      view.collection.on('change', function(n) {
-        view.render();
-      });
-
-      view.collection.on('add', function(n) {
-        view.render();
-      });
-
-      view.render();
-
-      return view;
-    },
-
-    events: {
-      // nothing here yet, but could be click events on list items to have actions (delete, response and so forth)
-    },
-
-    render: function () {
-      var view = this;
-      console.log("Rendering ListView");
-
-      // find the list where items are rendered into
-      var list = this.$el.find('ul');
-
-      // Only want to show published notes at some point
-      var publishedNotes = view.collection.where({published: true});
-
-      _.each(publishedNotes, function(note){
-        var me_or_others = 'others';
-        // add class 'me' or 'other' to note
-        if (note.get('author') === app.username) {
-          me_or_others = 'me';
-        }
-
-        //
-        var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': note.get('body'), 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
-
-        var existingNote = list.find("[data-id='" + note.id + "']");
-
-        if (existingNote.length === 0) {
-          list.append(listItem);
-        } else {
-          existingNote.replaceWith(listItem);
-        }
-      });
-
-    }
-
-  });
-
-  /**
     CollectView
   **/
   app.View.CollectView = Backbone.View.extend({
@@ -104,7 +44,6 @@
 
     startNewObservation: function() {
       var view = this;
-      // create the JSON observation object - really want to be using the model for this TODO! Seriously, this is top priority now
 
       // delete the old observation
       app.currentObservation = {};
@@ -249,18 +188,9 @@
 
       var list = jQuery('#tree-species-list');
 
-      //_.each(notesToRestore, function(note){
-        // OLD TEMPLATE CODE THAT MIGHT BE USEFUL
-        // var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
-        // jQuery('#select-note-modal').append(option);
-      //});
-
       _.each(view.collection, function(tree) {
-
         var listItem = _.template(jQuery(view.template).text(),{'common_name': tree.common_name, 'latin_name': tree.latin_name, 'wikipedia_url': tree.wikipedia_url});
-
         list.append(listItem);
-
       });
     }
   });

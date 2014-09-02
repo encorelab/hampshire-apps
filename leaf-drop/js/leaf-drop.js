@@ -156,7 +156,7 @@
     .done(function () {
       console.log('model awake - now calling ready');
       //app.ready();
-      app.grabMiscData();
+      app.grabStaticData();
     });
 
     /* MISC */
@@ -165,9 +165,9 @@
     });
   };
 
-  app.grabMiscData = function() {
+  app.grabStaticData = function() {
     // TODO: do this correctly, using the model, before Armin catches wind and yells at me - set up with model, move to setup, etc
-    jQuery.get("http://drowsy.badger.encorelab.org/hampshire-apps/leaf_drop_tree_species", function( data ) {
+    jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
       app.treeSpeciesCollection = data;
       app.ready();
     });
@@ -181,18 +181,10 @@
        * ======================================================
        */
 
-      // remove me
-      if (app.listView === null) {
-        app.listView = new app.View.ListView({
-          el: '#list-screen',
-          collection: Skeletor.Model.awake.notes
-        });
-      }
-
       if (app.collectView === null) {
         app.collectView = new app.View.CollectView({
           el: '#collect-screen',
-          collection: Skeletor.Model.awake.notes
+          collection: Skeletor.Model.awake.leaf_drop_observations
         });
       }
 
@@ -206,14 +198,14 @@
       if (app.reviewDataView === null) {
         app.reviewDataView = new app.View.ReviewDataView({
           el: '.review-data-screen',
-          collection: Skeletor.Model.awake.notes        // switch this collection to something or nothing
+          collection: Skeletor.Model.awake.leaf_drop_observations        // switch this collection to something or nothing
         });
       }
 
       if (app.mapView === null) {
         app.mapView = new app.View.MapView({
           el: '#map-screen',
-          collection: Skeletor.Model.awake.notes        // switch this collection to users TODO
+          collection: Skeletor.Model.awake.leaf_drop_observations        // switch this collection to users TODO
         });
       }
 
@@ -312,8 +304,8 @@
         jQuery.cookie('hunger-games_mobile_username', app.username, { expires: 1, path: '/' });
         jQuery('.username-display a').text(app.runId+' - '+user.get('display_name'));
 
-        // show notes-screen
-        jQuery('#notes-screen').removeClass('hidden');
+        // show leaf_drop_observations-screen
+        jQuery('#leaf_drop_observations-screen').removeClass('hidden');
 
         hideLogin();
         hideUserLoginPicker();

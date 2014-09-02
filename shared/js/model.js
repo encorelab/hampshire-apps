@@ -25,7 +25,7 @@
   Skeletor.Model = (function() {
     function Model() {}
 
-    Model.requiredCollections = ['notes', 'tags', 'states'];
+    Model.requiredCollections = ['leaf_drop_observations', 'tags', 'states'];
 
     Model.init = function(url, db) {
       var dfrInit,
@@ -203,15 +203,13 @@
         }
       };
 
-      /** Note **/
+      /** LeafDropObservation **/
 
-      this.Note = this.db.Document('notes').extend({
+      this.LeafDropObservation = this.db.Document('leaf_drop_observations').extend({
         tagRel: function(tag, tagger) {
           return {
             id: tag.id.toLowerCase(),
-            name: tag.get('name'),
-            tagger: tagger,
-            tagged_at: new Date()
+            name: tag.get('name')
           };
         }
       })
@@ -220,8 +218,8 @@
       .extend(VotableTrait)
       .extend(BuildOnableTrait);
 
-      this.Notes = this.db.Collection('notes').extend({
-        model: Skeletor.Model.Note
+      this.LeafDropObservations = this.db.Collection('leaf_drop_observations').extend({
+        model: Skeletor.Model.LeafDropObservation
       });
 
       /** Tag **/
