@@ -1,467 +1,522 @@
-/*@media all and (orientation:landscape) {*/
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
 
-    /********** MISC **********/
+/********** MISC **********/
 
 /*    #collect-screen {
-        height: 100vh;
-    }*/
+    height: 100vh;
+}*/
 
-    /*to arrange buttons at bottom of screen, needs revising - maybe using calc??*/
-    .leaf-page {
-        min-height: 70vh;
+/*to arrange buttons at bottom of screen, needs revising - maybe using calc??*/
+.leaf-page {
+    min-height: 70vh;
+}
+
+.view-container {
+    margin: 0 2%;
+}
+
+.orientation-warning {
+    display: none;
+}
+
+textarea.note-body {
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    color: #333;
+    width: 98%;
+    padding: 1%;
+}
+
+input {
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    color: #333;
+    border-radius: 7px;
+    border: solid #ddd 1px;
+    height: 45px;
+    margin-left: 20px;
+}
+
+input[type=text] {
+   font-size: 20px;
+   font-weight: 300;
+   padding-left: 20px;
+}
+
+.btn {
+    margin-bottom: 20px;
+    height: 45px;
+    min-width: 160px;
+}
+
+/*removing linear gradients from button defaults*/
+.btn-default,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-success,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+    background-image: none;
+    text-shadow: none;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    border: none;
+}
+
+.scrollable {
+    overflow-y: auto;
+}
+
+/*so the scroll bar appears at all times*/
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.hidden {
+    display: none;
+}
+
+.top-btn-container {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+}
+
+.view-container {
+    min-height: 300px !important;
+    /*border: 1px solid;*/
+    /*padding: 5px;*/
+    margin-bottom: 10px;
+    position: relative;
+    /*border-radius: 7px;*/
+    /*box-shadow: rgba(0,0,0,0.2) 1px 4px 15px;*/
+    background-color: white;
+}
+
+#graphs-screen .view-container {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#bout-picker-label .caret {
+    margin-left: 5px;
+}
+
+ul {
+    padding: 0;
+}
+
+.list-styles li {
+    border-radius: 7px;
+    border: solid #ddd 1px;
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+/*getting rid of bootstrap default margins*/
+.list-styles.row {
+    margin: 0;
+}
+
+/*this may have to go back in??*/
+/*    li {
+    list-style: none;
+}*/
+
+/********** TYPOGRAPHY **********/
+
+body {
+    font-family: 'Open Sans', 'HelveticaNeue', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 54px;
+    color: #444;
+    font-weight: 500;
+    margin-bottom: 35px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 25px;
+}
+
+h3,
+label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+}
+
+h4 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+p {
+
+}
+
+label {
+    vertical-align: middle;
+}
+
+.label-lg {
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: -25px;
+}
+
+/********** NAVBAR **********/
+
+/* This hides any element with class alert directly after an input field with a pattern (regex) */
+input[pattern] + .alert {
+    display: none;
+}
+
+/* If pattern (regex) is violated alert is shown */
+input[pattern]:invalid + .alert {
+    display: inline-block;
+}
+
+/* If pattern (regex) is violated submit button is hidden */
+input[pattern]:invalid ~ button {
+    display: none;
+}
+
+input:disabled {
+    display: none;
+}
+
+#login-button:disabled {
+    display: none;
+}
+
+.login-button {
+    margin: 1%;
+    min-width: 6em;
+}
+
+.username-display .hide {
+    display: none;
+}
+
+.input-alert {
+    margin-top: 2%;
+}
+
+
+/********** PROGRESS BAR **********/
+
+#progress-bar-container {
+    margin-bottom: 10%;
+}
+
+.leaf-progress {
+    height: 50px;
+}
+
+.leaf-progress > img {
+    height: 100%;
+    margin: 0 auto;
+}
+
+/********** IMAGES **********/
+
+img.space-bottom {
+    margin-bottom: 15px;
+}
+
+/*for icons in sidebar?*/
+/*    .icon {
+    width: 75px;
+}*/
+
+
+/********** BODY - ALL **********/
+
+.row-fluid {
+    /*width: 98%;*/
+    /*padding-left: 1%;*/
+    padding-top: 50px;
+}
+
+/* hide a row */
+.row-fluid .hidden {
+    /* TODO: this is a crude way of hiding right now and should be improved */
+    display: none;
+}
+
+
+/********** SPECIFIC PAGES **********/
+
+/***** first page *****/
+
+.first-page {
+    width: 100%;
+    max-width: 250px;
+    margin-top: 5%;
+}
+
+.first-page > button {
+    height: 55px;
+}
+
+.leaf-drop {
+    padding: 0;
+}
+
+/***** #leaf-1  tree species *****/
+
+.branch-letter-styles {
+    margin-left: 50px;
+}
+
+ul#tree-species-list {
+    height: 53vh;
+    /*overflow: scroll;*/
+}
+
+/*to make input & link/images full height of list element*/
+div.tree-species-styles,
+a.tree-species-styles,
+.wiki-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+div.tree-species-styles {
+    background: #f3f3f5;
+    border-right: solid #ddd 1px;
+    padding-left: 7%;
+}
+
+h4.tree-species-styles {
+    margin-bottom: 0;
+}
+
+p.tree-species-styles {
+    font-style: italic;
+}
+
+a.tree-species-styles {
+    border-left: solid #ddd 1px;
+}
+
+.wiki-link {
+    margin: auto;
+    width: 50%;
+}
+
+button.close {
+    font-size: 50px;
+    color: #555;
+    position: absolute;
+    top: 15px;
+    right: 40px;
+    z-index: 999;
+    opacity: 1;
+}
+
+/*trying to get rid of 'last edited' in wikipedia pop-up - use javascript?
+iframe div#mw-mf-last-modified.top-bar.truncated-text {
+    display: none !important;
+}*/
+
+/***** #leaf-3  leaf fallen *****/
+
+input[type="radio"].leaf-fallen {
+    display: none;
+}
+
+.btn-container {
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: -20px;
+}
+
+.btn-select {
+    background-color: #e0e0e0;
+    background-position: 0 -15px;
+}
+
+/***** #leaf-6  additional field notes *****/
+
+.field-notes {
+    height: 40vh;
+}
+
+/***** #leaf-7  review data *****/
+
+.review-data-screen > .row > h3 {
+    margin-top: 0;
+}
+
+.data-list-item > h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.row > p:first-child,
+.row > p + p {
+    margin-bottom: 3px;
+}
+
+.row > p:last-child {
+    margin-bottom: 5px;
+}
+
+.align-top {
+    margin-top: 0;
+}
+
+
+/********** WEATHER SCREEN **********/
+
+.iframe-container {
+    width: 100%;
+    height: 1000px;
+}
+
+
+/* chat bubble styles REMOVE ME?*/
+
+.others {
+    color: white;
+}
+
+.me {
+    color: black;
+}
+
+.others {
+    float: right;
+    position: relative;
+    padding: 15px;
+    margin: 1em 0 3em;
+    background: #2980b9;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.others:after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    right: 50px;
+    border-width: 15px 15px 0;
+    border-style: solid;
+    border-color: #2980b9 transparent;
+    display: block;
+    width: 0;
+}
+
+.me {
+    float: left;
+    position: relative;
+    padding: 15px;
+    margin: 1em 0 3em;
+    background: #95a5a6;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.me:after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50px;
+    border-width: 15px 15px 0;
+    border-style: solid;
+    border-color: #95a5a6 transparent;
+    display: block;
+    width: 0;
+}
+
+.note-text p {
+    margin: 0;
+}
+
+
+/* Extra small devices landscape (phones, less than 768px) */
+@media all and (max-width: 767px) and (orientation: landscape) {
+
+    .first-page {
+        max-width: 100%;
     }
 
-    .view-container {
-        margin: 0 2%;
+    .first-page img {
+        max-height: 20%;
     }
 
-    .orientation-warning {
-        display: none;
+    .first-page >
+
+    .leaf-drop {
+        vertical-align: middle;
     }
 
-    textarea.note-body {
-        -moz-user-select: text;
-        -webkit-user-select: text;
-        user-select: text;
-        color: #333;
-        width: 98%;
-        padding: 1%;
-    }
+}
 
-    input {
-        -moz-user-select: text;
-        -webkit-user-select: text;
-        user-select: text;
-        color: #333;
-        border-radius: 7px;
-        border: solid #ddd 1px;
-        height: 45px;
-        margin-left: 20px;
-    }
+/* Small devices portrait (tablets, 768px and up) */
+@media all and (min-width: 768px) and (orientation: portrait) {
 
-    input[type=text] {
-       font-size: 20px;
-       font-weight: 300;
-       padding-left: 20px;
-    }
-
-    .btn {
-        margin-bottom: 20px;
-        height: 45px;
-        min-width: 160px;
-    }
-
-    /*removing linear gradients from button defaults*/
-    .btn-default,
-    .btn-default:hover,
-    .btn-default:focus,
-    .btn-default:active,
-    .btn-success,
-    .btn-success:hover,
-    .btn-success:focus,
-    .btn-success:active {
-        background-image: none;
-        text-shadow: none;
-    }
-
-    .btn-success,
-    .btn-success:hover,
-    .btn-success:focus,
-    .btn-success:active {
-        font-size: 16px;
-        letter-spacing: 0.05em;
-        border: none;
-    }
-
-    .scrollable {
-        overflow-y: auto;
-    }
-
-    /*so the scroll bar appears at all times*/
-    ::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 7px;
-    }
-    ::-webkit-scrollbar-thumb {
-        border-radius: 4px;
-        background-color: rgba(0,0,0,.5);
-        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .top-btn-container {
-        position: absolute;
-        top: 3px;
-        right: 3px;
-    }
-
-    .view-container {
-        min-height: 300px !important;
-        /*border: 1px solid;*/
-        /*padding: 5px;*/
-        margin-bottom: 10px;
-        position: relative;
-        /*border-radius: 7px;*/
-        /*box-shadow: rgba(0,0,0,0.2) 1px 4px 15px;*/
-        background-color: white;
-    }
-
-    #graphs-screen .view-container {
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
-
-    #bout-picker-label .caret {
-        margin-left: 5px;
-    }
-
-    ul {
-        padding: 0;
-    }
-
-    .list-styles li {
-        border-radius: 7px;
-        border: solid #ddd 1px;
-        margin-bottom: 20px;
-        list-style: none;
-    }
-
-    /*getting rid of bootstrap default margins*/
-    .list-styles.row {
-        margin: 0;
-    }
-
-    /*TODO: need to eliminate left margin at xs size*/
     .list-styles li:nth-of-type(2n) {
         margin-left: 20px;
     }
 
-    /*this may have to go back in??*/
-/*    li {
-        list-style: none;
-    }*/
-
-    /********** TYPOGRAPHY **********/
-
-    body {
-        font-family: 'Open Sans', 'HelveticaNeue', 'Helvetica Neue', Helvetica, sans-serif;
-    }
-
-    h1 {
-        font-size: 54px;
-        color: #444;
-        font-weight: 500;
-        margin-bottom: 35px;
-    }
-
-    h2 {
-        color: #333;
-        margin-bottom: 25px;
-    }
-
-    h3,
-    label {
-        font-size: 16px;
-        font-weight: 500;
-        color: #555;
-    }
-
-    h4 {
-        font-size: 14px;
-        font-weight: 500;
-    }
-
-    p {
-
-    }
-
-    label {
-        vertical-align: middle;
-    }
-
-    .label-lg {
-        font-size: 20px;
-        font-weight: 300;
-        margin-top: -25px;
-    }
-
-    /********** NAVBAR **********/
-
-    /* This hides any element with class alert directly after an input field with a pattern (regex) */
-    input[pattern] + .alert {
-        display: none;
-    }
-
-    /* If pattern (regex) is violated alert is shown */
-    input[pattern]:invalid + .alert {
-        display: inline-block;
-    }
-
-    /* If pattern (regex) is violated submit button is hidden */
-    input[pattern]:invalid ~ button {
-        display: none;
-    }
-
-    input:disabled {
-        display: none;
-    }
-
-    #login-button:disabled {
-        display: none;
-    }
-
-    .login-button {
-        margin: 1%;
-        min-width: 6em;
-    }
-
-    .username-display .hide {
-        display: none;
-    }
-
-    .input-alert {
-        margin-top: 2%;
-    }
-
-
-    /********** PROGRESS BAR **********/
-
-    #progress-bar-container {
-        margin-bottom: 10%;
-    }
-
-    .leaf-progress {
-        height: 50px;
-    }
-
-    .leaf-progress > img {
-        height: 100%;
-        margin: 0 auto;
-    }
-
-    /********** IMAGES **********/
-
-    img.space-bottom {
-        margin-bottom: 15px;
-    }
-
-    /*for icons in sidebar?*/
-/*    .icon {
-        width: 75px;
-    }*/
-
-
-    /********** BODY - ALL **********/
-
-    .row-fluid {
-        /*width: 98%;*/
-        /*padding-left: 1%;*/
-        padding-top: 50px;
-    }
-
-    /* hide a row */
-    .row-fluid .hidden {
-        /* TODO: this is a crude way of hiding right now and should be improved */
-        display: none;
-    }
-
-
-    /********** SPECIFIC PAGES **********/
-
-    /***** first page *****/
-
     .first-page {
-        width: 100%;
-        max-width: 250px;
-        margin-top: 5%;
+        margin-top: 25%;
     }
-
-    .first-page>button {
-        height: 55px;
-    }
-
-    /***** #leaf-1  tree species *****/
-
-    .branch-letter-styles {
-        margin-left: 50px;
-    }
-
-    ul#tree-species-list {
-        height: 53vh;
-        /*overflow: scroll;*/
-    }
-
-    /*to make input & link/images full height of list element*/
-    div.tree-species-styles,
-    a.tree-species-styles,
-    .wiki-link {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
-
-    div.tree-species-styles {
-        background: #f3f3f5;
-        border-right: solid #ddd 1px;
-        padding-left: 7%;
-    }
-
-    h4.tree-species-styles {
-        margin-bottom: 0;
-    }
-
-    p.tree-species-styles {
-        font-style: italic;
-    }
-
-    a.tree-species-styles {
-        border-left: solid #ddd 1px;
-    }
-
-    .wiki-link {
-        margin: auto;
-        width: 50%;
-    }
-
-    button.close {
-        font-size: 50px;
-        color: #555;
-        position: absolute;
-        top: 15px;
-        right: 40px;
-        z-index: 999;
-        opacity: 1;
-    }
-
-    /*trying to get rid of 'last edited' in wikipedia pop-up - use javascript?
-    iframe div#mw-mf-last-modified.top-bar.truncated-text {
-        display: none !important;
-    }*/
-
-    /***** #leaf-3  leaf fallen *****/
-
-    input[type="radio"].leaf-fallen {
-        display: none;
-    }
-
-    .btn-container {
-        width: 100%;
-        max-width: 150px;
-        margin-bottom: -20px;
-    }
-
-    .btn-select {
-        background-color: #e0e0e0;
-        background-position: 0 -15px;
-    }
-
-    /***** #leaf-6  additional field notes *****/
-
-    .field-notes {
-        height: 40vh;
-    }
-
-    /***** #leaf-7  review data *****/
-
-    .review-data-screen > .row > h3 {
-        margin-top: 0;
-    }
-
-    .data-list-item > h3 {
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-
-    .row > p:first-child,
-    .row > p + p {
-        margin-bottom: 3px;
-    }
-
-    .row > p:last-child {
-        margin-bottom: 5px;
-    }
-
-    .align-top {
-        margin-top: 0;
-    }
-
-
-    /********** WEATHER SCREEN **********/
-
-    .iframe-container {
-        width: 100%;
-        height: 1000px;
-    }
-
-
-
-    /* chat bubble styles REMOVE ME?*/
-
-    .others {
-        color: white;
-    }
-
-    .me {
-        color: black;
-    }
-
-    .others {
-        float: right;
-        position: relative;
-        padding: 15px;
-        margin: 1em 0 3em;
-        background: #2980b9;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    .others:after {
-        content: "";
-        position: absolute;
-        bottom: -15px;
-        right: 50px;
-        border-width: 15px 15px 0;
-        border-style: solid;
-        border-color: #2980b9 transparent;
-        display: block;
-        width: 0;
-    }
-
-    .me {
-        float: left;
-        position: relative;
-        padding: 15px;
-        margin: 1em 0 3em;
-        background: #95a5a6;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    .me:after {
-        content: "";
-        position: absolute;
-        bottom: -15px;
-        left: 50px;
-        border-width: 15px 15px 0;
-        border-style: solid;
-        border-color: #95a5a6 transparent;
-        display: block;
-        width: 0;
-    }
-
-    .note-text p {
-        margin: 0;
-    }
-
 
 }
+
+/* Small devices landscape(tablets, 768px and up) */
+@media all and (min-width: 768px) and (orientation: landscape) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media all and (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media all and (min-width: 1200px) {
+
+    .first-page {
+        margin-top: 10%;
+    }
+
+}
+
+
+
+
+
+
+
 
 /*@media all and (orientation:portrait){
     .row-fluid {
