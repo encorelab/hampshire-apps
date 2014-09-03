@@ -113,7 +113,17 @@
 
       /********** ALL OTHER PAGES *********/
       } else {
-        view.populatePage(pageNumber);
+        // if there are radio buttons on this page, make sure they're checked
+        if (jQuery('.current-page [type="radio"]').length > 0) {
+          var checkedEl = jQuery('.current-page [type="radio"]:checked');
+          if (checkedEl.length > 0) {
+            view.populatePage(pageNumber);
+          } else {
+            jQuery().toastmessage('showErrorToast', "Please make a selection");
+          }
+        }  else {
+          view.populatePage(pageNumber);
+        }
       }
     },
 
@@ -129,9 +139,9 @@
         // else if this is of type radio, capture selected
         } else if (i.type === "radio") {
           var el = jQuery('[type="radio"]:checked');
-          app.currentObservation[el.data().fieldName] = jQuery(el).val();               // we need a condition here to check if el is null (this can also be used to prompt user to make a selection)
+          app.currentObservation[el.data().fieldName] = jQuery(el).val();
         }
-
+        // TODO: clean this up - way overkill, very inefficient
       });
     },
 
@@ -145,7 +155,7 @@
     },
 
     clearPageContent: function() {
-      jQuery('.current-page .input-field').val('');
+      jQuery('.current-page .input-field').text('');
       jQuery('.current-page .leaf-fallen').prop('checked', false);
       jQuery('.current-page .btn-select').removeClass('btn-select');
     },
@@ -156,7 +166,12 @@
       view.updateJSONObject();
       view.updateProgressBar();
       view.removePageClasses();
-      view.clearPageContent();
+
+      if (pageNumber === 1) {
+        jQuery('.back-btn').addClass('hidden');
+      } else {
+        jQuery('.back-btn').removeClass('hidden');
+      }
 
       if (pageNumber === 7) {
         jQuery('.page-title').text('Review Data');
@@ -172,6 +187,7 @@
 
       jQuery('#' + pageLabel).removeClass('hidden');
       jQuery('#' + pageLabel).addClass('current-page');
+      view.clearPageContent();
     },
 
     getPageNum: function() {
@@ -259,15 +275,7 @@
 
       var list = jQuery('#review-data-list');
 
-      //_.each(notesToRestore, function(note){
-        // OLD TEMPLATE CODE THAT MIGHT BE USEFUL
-        // var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
-        // jQuery('#select-note-modal').append(option);
-      //});
-
       _.each(app.currentObservation.leaves, function(leaf) {
-        console.log(leaf);
-
         var listItem = null;
 
         if (leaf.fallen === "yes") {
