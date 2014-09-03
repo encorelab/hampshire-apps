@@ -64,14 +64,21 @@
       var view = this;
 
       // decide on next or previous page, and update the page number to that
+      // we don't deal with 'special pages' (eg leaf cycle ones) on back
       var pageNumber = Number(view.getPageNum());
       if (direction === 'next') {
         pageNumber += 1;
+        view.handleSpecialPages(pageNumber);
       } else if (direction === 'prev') {
         pageNumber -= 1;
+        view.populatePage(pageNumber);
       } else {
         console.error('ERROR: unexpected direction');
       }
+    },
+
+    handleSpecialPages: function(pageNumber) {
+      var view = this;
 
       // determine which of the 6 leaf observations we are on
       var leafCycleNum = app.currentObservation.leaves.length + 1;
@@ -92,14 +99,23 @@
           }
 
         // if user said leaf has not fallen
-        } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
+        } else {
           app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
 
           view.populatePage(pageNumber);
-        } else {
-          jQuery().toastmessage('showErrorToast', "Please select whether this leaf has fallen");
         }
 
+
+       // TODO: bring me back in for PROD
+        // } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
+        //   app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
+
+        //   view.populatePage(pageNumber);
+        // }
+        // TODO: bring me back in for PROD (and make the above else -> else if)
+        // else {
+        //   jQuery().toastmessage('showErrorToast', "Please select whether this leaf has fallen");
+        // }
 
       /********** PAGE 6 *********/
       } else if (pageNumber === 6) {            // special case for leaf cycle pages to loop
@@ -116,11 +132,14 @@
         // if there are radio buttons on this page, make sure they're checked
         if (jQuery('.current-page [type="radio"]').length > 0) {
           var checkedEl = jQuery('.current-page [type="radio"]:checked');
-          if (checkedEl.length > 0) {
-            view.populatePage(pageNumber);
-          } else {
-            jQuery().toastmessage('showErrorToast', "Please make a selection");
-          }
+
+          view.populatePage(pageNumber);
+          // TODO: bring me back in for PROD
+          // if (checkedEl.length > 0) {
+          //   view.populatePage(pageNumber);
+          // } else {
+          //   jQuery().toastmessage('showErrorToast', "Please make a selection");
+          // }
         }  else {
           view.populatePage(pageNumber);
         }
@@ -135,14 +154,14 @@
         if (i.type === "text" || i.type === "textarea" || i.type === "number") {
           // add text value to json
           app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
-
-        // else if this is of type radio, capture selected
-        } else if (i.type === "radio") {
-          var el = jQuery('[type="radio"]:checked');
-          app.currentObservation[el.data().fieldName] = jQuery(el).val();
         }
-        // TODO: clean this up - way overkill, very inefficient
       });
+
+      var el = jQuery('.current-page [type="radio"]:checked');
+      // if there is a radio button on this page that is checked
+      if (el.length > 0) {
+        app.currentObservation[el.data().fieldName] = jQuery(el).val();
+      }
     },
 
     updateProgressBar: function() {
