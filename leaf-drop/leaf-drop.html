@@ -40,7 +40,7 @@
         <li class="list-item col-xs-12 col-sm-5">
             <div class="row">
                 <div class="tree-species-styles col-xs-2">
-                    <input class="input-field tree-species" name="tree-species" type="radio" value="<%= common_name %>">
+                    <input class="input-field tree-species" name="tree-species" type="radio" value="<%= common_name %>" data-field-name="tree_species">
                 </div>
                 <div class="col-xs-8 col-xs-offset-2">
                     <h4 class="tree-species-styles"><%= common_name %></h4>
@@ -135,7 +135,7 @@
                     <h3>Percent Colored (Whole Tree)</h3>
                     <div class="row">
                         <div class="col-xs-12 col-sm-3">
-                            <input id="colored-tree-0-25" class="input-field percent-colored-tree" type="radio" name="percent-colored-tree" value="0-25&#37;" checked>
+                            <input id="colored-tree-0-25" class="input-field percent-colored-tree" type="radio" name="percent-colored-tree" value="0-25&#37;">
                             <label for="colored-tree-0-25" class="label-lg text-center"><img src="img/whole_tree_colour_0-25.png" class="img-responsive space-bottom" alt="Tree with up to 25 percent of leaves colored">0-25&#37;</label>
                         </div>
                         <div class="col-xs-12 col-sm-3">
@@ -186,7 +186,7 @@
 
                     <h2 class="text-center">Has this leaf fallen?</h2>
                     <div class="btn-container center-block">
-                        <label for="id-leaf-fallen-yes" class="btn btn-default btn-lg btn-block leaf-fallen-btn">Yes</label><input id="id-leaf-fallen-yes" class="input-field leaf-fallen" type="radio" name="leaf-fallen" checked>
+                        <label for="id-leaf-fallen-yes" class="btn btn-default btn-lg btn-block leaf-fallen-btn">Yes</label><input id="id-leaf-fallen-yes" class="input-field leaf-fallen" type="radio" name="leaf-fallen">
                         <label for="id-leaf-fallen-no" class="btn btn-default btn-lg btn-block leaf-fallen-btn">No</label><input id="id-leaf-fallen-no" class="input-field leaf-fallen" type="radio" name="leaf-fallen">
                     </div>
                 </div>
@@ -227,7 +227,7 @@
                             <img src="img/leaf_length.png" class="img-responsive" alt="Leaf length">
                             <label for="id-leaf-length">Leaf Length</label>
                             <span>
-                                <input id="id-leaf-length" class="input-field leaf-length" type="number">
+                                <input id="id-leaf-length" class="input-field leaf-length" type="number" data-field-name="leaf_length">
                                 <label>cm</label>
                             </span>
                         </div>
@@ -235,7 +235,7 @@
                             <img src="img/leaf_width.png" class="img-responsive" alt="Leaf width">
                             <label for="id-leaf-width">Leaf Width</label>
                             <span>
-                                <input id="id-leaf-width" class="input-field leaf-width" type="number">
+                                <input id="id-leaf-width" class="input-field leaf-width" type="number" data-field-name="leaf_width">
                                 <label>cm</label>
                             </span>
                         </div>
@@ -276,7 +276,7 @@
                     <h3>Percent Colored</h3>
                     <div class="row">
                         <div class="col-xs-12 col-sm-3">
-                            <input id="colored-leaf-0-25" class="input-field percent-colored-leaf" type="radio" name="percent-colored-leaf" value="0-25&#37;" checked>
+                            <input id="colored-leaf-0-25" class="input-field percent-colored-leaf" type="radio" name="percent-colored-leaf" value="0-25&#37;">
                             <label for="colored-leaf-0-25" class="label-lg text-center"><img src="img/leaf_colour_0-25.png" class="img-responsive space-bottom" alt="Leaf with up to 25 percent colored">0-25&#37;</label>
                         </div>
                         <div class="col-xs-12 col-sm-3">
@@ -300,7 +300,7 @@
                 <h3>Additional Field Notes (Optional)</h3>
                 <p class="text-muted">Notes about field conditions, other plants, wildlife, or any human activity you notice while collecting data</p>
                 <div class="row">
-                    <input class="input-field field-notes col-xs-12 col-sm-9" type="textarea">
+                    <input class="input-field field-notes col-xs-12 col-sm-9" type="textarea" data-field-name="additional_notes">
                 </div>
             </div>
 

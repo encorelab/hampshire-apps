@@ -87,13 +87,14 @@
         console.log(i);
 
         // if this is of type text take the text and put it straight up into the json
-        if (i.type === "text" || i.type === "textarea") {
+        if (i.type === "text" || i.type === "textarea" || i.type === "number") {
           // add text value to json
           app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
 
         // else if this is of type radio, capture selected
         } else if (i.type === "radio") {
-          // do something
+          var el = jQuery('[type="radio"]:checked');
+          app.currentObservation[el.data().fieldName] = jQuery(el).val();
         }
 
       });
