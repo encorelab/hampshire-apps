@@ -47,7 +47,8 @@
       jQuery('.next-btn').removeClass('hidden');
 
       // we're on page '0', the title page - this will move us to page 1
-      view.determineTargetPage('next');
+      //view.determineTargetPage('next');
+      view.populatePage(1);
     },
 
     moveForward: function() {
@@ -125,6 +126,14 @@
         } else {
           view.populatePage(3);
         }
+
+
+      /********** PAGE 8 (eg back to home screen) *********/
+      } else if (pageNumber === 8) {
+        jQuery('#title-page').removeClass('hidden');
+        jQuery('#variable-content-container').addClass('hidden');
+        jQuery('.back-btn').addClass('hidden');
+        jQuery('.next-btn').addClass('hidden');
 
 
       /********** ALL OTHER PAGES *********/
