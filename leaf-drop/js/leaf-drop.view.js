@@ -39,6 +39,7 @@
 
       // delete the old observation
       app.currentObservation = {};
+      app.currentObservation.leaves = [];
 
       jQuery('#title-page').addClass('hidden');
       jQuery('#variable-content-container').removeClass('hidden');
@@ -46,38 +47,74 @@
       jQuery('.next-btn').removeClass('hidden');
 
       // we're on page '0', the title page - this will move us to page 1
-      view.populatePage(0, 'next');
+      view.determineTargetPage('next');
     },
 
     moveForward: function() {
       var view = this;
-      var pageNum = view.getPageNum();
-
-      view.updateJSONObject();
-      view.updateProgressBar();
-      view.removeOldContent();
-      view.populatePage(pageNum, 'next');
+      view.determineTargetPage('next');
     },
 
     moveBack: function() {
       var view = this;
-      var pageNum = view.getPageNum();
-
-      view.updateJSONObject();
-      view.updateProgressBar();
-      view.removeOldContent();
-      view.populatePage(pageNum, 'prev');
+      view.determineTargetPage('prev');
     },
 
-    getPageNum: function() {
-      // find the currently shown page
-      var pageLabel = jQuery('.current-page').attr('id');
+    determineTargetPage: function(direction) {
+      var view = this;
 
-      // get the page number from it
-      var pageNumber = 0;
-      pageNumber = pageLabel.substr(5, pageLabel.length - 5);
+      // decide on next or previous page, and update the page number to that
+      var pageNumber = Number(view.getPageNum());
+      if (direction === 'next') {
+        pageNumber += 1;
+      } else if (direction === 'prev') {
+        pageNumber -= 1;
+      } else {
+        console.error('ERROR: unexpected direction');
+      }
 
-      return pageNumber;
+      // determine which of the 6 leaf observations we are on
+      var leafCycleNum = app.currentObservation.leaves.length + 1;
+
+      /********** PAGE 4 *********/
+      if (pageNumber == 4) {
+        // if user said leaf has fallen
+        var checkedEl = jQuery('.current-page [type="radio"]:checked');
+        if (jQuery(checkedEl).is("#id-leaf-fallen-yes")) {
+          // update the observation for fallen
+          app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
+
+          // if this is the last observation, go to page 6. Else go to page 3
+          if (leafCycleNum === 6) {
+            view.populatePage(6);
+          } else {
+            view.populatePage(3);
+          }
+
+        // if user said leaf has not fallen
+        } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
+          app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
+
+          view.populatePage(pageNumber);
+        } else {
+          jQuery().toastmessage('showErrorToast', "Please select whether this leaf has fallen");
+        }
+
+
+      /********** PAGE 6 *********/
+      } else if (pageNumber === 6) {            // special case for leaf cycle pages to loop
+        // go to page 3 if the leaves aren't all done (eg array length is 6)
+        if (leafCycleNum === 6) {
+          view.populatePage(6);
+        } else {
+          view.populatePage(3);
+        }
+
+
+      /********** ALL OTHER PAGES *********/
+      } else {
+        view.populatePage(pageNumber);
+      }
     },
 
     updateJSONObject: function() {
@@ -94,27 +131,36 @@
         // else if this is of type radio, capture selected
         } else if (i.type === "radio") {
           var el = jQuery('[type="radio"]:checked');
-          app.currentObservation[el.data().fieldName] = jQuery(el).val();
+          app.currentObservation[el.data().fieldName] = jQuery(el).val();               // we need a condition here to check if el is null (this can also be used to prompt user to make a selection)
         }
 
       });
-
-      // view.addToJSON(jQuery('.input-field .text-field').text());
-      // view.addToJSON(jQuery('.input-field .radio-field').val());
     },
 
     updateProgressBar: function() {
       // change jpg src or whatever
     },
 
-    removeOldContent: function() {
+    removePageClasses: function() {
       jQuery('.leaf-page').addClass('hidden');
       jQuery('.leaf-page').removeClass('current-page');
     },
 
-    populatePage: function(pNum, direction) {
-      // TODO: find a better way to do this or figure out what the actual last page is
-      if (pNum === "6") {
+    clearPageContent: function() {
+      jQuery('.current-page .input-field').val('');
+      jQuery('.current-page .leaf-fallen').prop('checked', false);
+      jQuery('.current-page .btn-select').removeClass('btn-select');
+    },
+
+    populatePage: function(pageNumber) {
+      var view = this;
+
+      view.updateJSONObject();
+      view.updateProgressBar();
+      view.removePageClasses();
+      view.clearPageContent();
+
+      if (pageNumber === 7) {
         jQuery('.page-title').text('Review Data');
         jQuery('.next-btn').text('Finish');
       } else {
@@ -122,24 +168,25 @@
         jQuery('.next-btn').text('Next');
       }
 
-      // decide on next or previous page, and update to that
-      var pNumStr = pNum;
-      var pageNumber = Number(pNumStr);
-      if (direction === 'next') {
-        pageNumber += 1;
-      } else if (direction === 'prev') {
-        pageNumber -= 1;
-      } else {
-        console.error('ERROR: unexpected direction');
-      }
-
       var pageLabel = 'leaf-';
       pageLabel = pageLabel + pageNumber;
-      //jQuery('#variable-content-container').html(jQuery('#' + pageLabel));
 
       jQuery('#' + pageLabel).removeClass('hidden');
       jQuery('#' + pageLabel).addClass('current-page');
+    },
 
+    getPageNum: function() {
+      // find the currently shown page
+      var pageLabel = jQuery('.current-page').attr('id');
+
+      // get the page number from it
+      var pageNumber = 0;
+      if (pageLabel) {
+        pageNumber = pageLabel.substr(5, pageLabel.length - 5);
+      }
+      // else we're starting a new observation
+
+      return pageNumber;
     },
 
     // the target of the link is an image (book icon) so .parent() targets the link
@@ -147,24 +194,6 @@
       ev.preventDefault();
       var url = jQuery(ev.target).parent().attr('href');
       jQuery('.modal-body').html('<iframe width="100%" height="500px" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
-    },
-
-    resumeNote: function(){
-      var view = this;
-
-      // retrieve unpublished notes of user
-      var notesToRestore = view.collection.where({author: app.username, published: false});
-
-      // fill the modal
-      jQuery('#select-note-modal').html('');
-      _.each(notesToRestore, function(note){
-        var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
-        jQuery('#select-note-modal').append(option);
-      });
-
-      //show modal
-      console.log('Show modal to pick previous note.');
-      jQuery('.unpublished-note-picker').modal('show');
     },
 
     render: function () {
