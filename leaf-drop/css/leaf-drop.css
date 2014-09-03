@@ -44,6 +44,7 @@ input[type=text] {
    font-size: 20px;
    font-weight: 300;
    padding-left: 20px;
+   width: 20%;
 }
 
 .btn {
@@ -128,6 +129,10 @@ ul {
     border: solid #ddd 1px;
     margin-bottom: 20px;
     list-style: none;
+}
+
+.list-styles li:nth-of-type(2n) {
+    margin-left: 20px;
 }
 
 /*getting rid of bootstrap default margins*/
@@ -459,6 +464,21 @@ input[type="radio"].leaf-fallen {
     margin: 0;
 }
 
+/* Extra small devices portrait (phones, less than 768px) */
+@media all and (max-width: 767px) and (orientation: portrait) {
+
+    .list-styles li:nth-of-type(2n) {
+        margin-left: 0;
+    }
+
+    input[type=text] {
+       width: 50%;
+    }
+
+    .branch-letter-styles {
+        margin-left: 0;
+    }
+}
 
 /* Extra small devices landscape (phones, less than 768px) */
 @media all and (max-width: 767px) and (orientation: landscape) {
@@ -468,23 +488,35 @@ input[type="radio"].leaf-fallen {
     }
 
     .first-page img {
-        max-height: 20%;
+        height: auto;
+        width: 30%;
     }
 
-    .first-page >
+    .first-page > h1,
+    .first-page > img {
+        max-width: 45%;
+        display: inline-block;
+    }
+
+    .first-page > button {
+        max-width: 40%;
+        margin: 0 10px 20px 10px;
+        display: inline-block;
+    }
 
     .leaf-drop {
         vertical-align: middle;
+    }
+
+
+    .list-styles li:nth-of-type(2n) {
+        margin-left: 0;
     }
 
 }
 
 /* Small devices portrait (tablets, 768px and up) */
 @media all and (min-width: 768px) and (orientation: portrait) {
-
-    .list-styles li:nth-of-type(2n) {
-        margin-left: 20px;
-    }
 
     .first-page {
         margin-top: 25%;
