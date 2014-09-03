@@ -99,14 +99,23 @@
           }
 
         // if user said leaf has not fallen
-        } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
+        } else {
           app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
 
           view.populatePage(pageNumber);
-        } else {
-          jQuery().toastmessage('showErrorToast', "Please select whether this leaf has fallen");
         }
 
+
+       // TODO: bring me back in for PROD
+        // } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
+        //   app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
+
+        //   view.populatePage(pageNumber);
+        // }
+        // TODO: bring me back in for PROD (and make the above else -> else if)
+        // else {
+        //   jQuery().toastmessage('showErrorToast', "Please select whether this leaf has fallen");
+        // }
 
       /********** PAGE 6 *********/
       } else if (pageNumber === 6) {            // special case for leaf cycle pages to loop
@@ -123,11 +132,14 @@
         // if there are radio buttons on this page, make sure they're checked
         if (jQuery('.current-page [type="radio"]').length > 0) {
           var checkedEl = jQuery('.current-page [type="radio"]:checked');
-          if (checkedEl.length > 0) {
-            view.populatePage(pageNumber);
-          } else {
-            jQuery().toastmessage('showErrorToast', "Please make a selection");
-          }
+
+          view.populatePage(pageNumber);
+          // TODO: bring me back in for PROD
+          // if (checkedEl.length > 0) {
+          //   view.populatePage(pageNumber);
+          // } else {
+          //   jQuery().toastmessage('showErrorToast', "Please make a selection");
+          // }
         }  else {
           view.populatePage(pageNumber);
         }
