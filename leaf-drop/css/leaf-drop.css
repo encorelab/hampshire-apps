@@ -75,6 +75,10 @@ input[type=text] {
     border: none;
 }
 
+.btn-move {
+    margin-top: 20px;
+}
+
 .scrollable {
     overflow-y: auto;
 }
@@ -231,7 +235,7 @@ input:disabled {
 /********** PROGRESS BAR **********/
 
 #progress-bar-container {
-    margin-bottom: 10%;
+    margin-bottom: 4%;
 }
 
 .leaf-progress {
@@ -352,6 +356,10 @@ iframe div#mw-mf-last-modified.top-bar.truncated-text {
 
 input[type="radio"].leaf-fallen {
     display: none;
+}
+
+.fallen-title {
+    margin-top: 5%;
 }
 
 .btn-container {
@@ -518,8 +526,28 @@ input[type="radio"].leaf-fallen {
 /* Small devices portrait (tablets, 768px and up) */
 @media all and (min-width: 768px) and (orientation: portrait) {
 
+/*    .bs-docs-sidebar {
+        margin-top: 20%;
+    }*/
+
     .first-page {
         margin-top: 25%;
+    }
+
+    .leaf-page {
+        min-height: 80vh;
+    }
+
+    ul#tree-species-list {
+        height: 61vh;
+    }
+
+    .fallen-title {
+        margin-top: 25%;
+    }
+
+    input[type=number] {
+       width: 45%;
     }
 
 }
@@ -531,6 +559,10 @@ input[type="radio"].leaf-fallen {
 
 /* Medium devices (desktops, 992px and up) */
 @media all and (min-width: 992px) {
+
+    .fallen-title {
+        margin-top: 10%;
+    }
 
 }
 
