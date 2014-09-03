@@ -166,7 +166,6 @@
   };
 
   app.grabStaticData = function() {
-    // TODO: do this correctly, using the model, before Armin catches wind and yells at me - set up with model, move to setup, etc
     jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
       app.treeSpeciesCollection = data;
       app.ready();

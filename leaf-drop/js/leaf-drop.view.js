@@ -113,7 +113,17 @@
 
       /********** ALL OTHER PAGES *********/
       } else {
-        view.populatePage(pageNumber);
+        // if there are radio buttons on this page, make sure they're checked
+        if (jQuery('.current-page [type="radio"]').length > 0) {
+          var checkedEl = jQuery('.current-page [type="radio"]:checked');
+          if (checkedEl.length > 0) {
+            view.populatePage(pageNumber);
+          } else {
+            jQuery().toastmessage('showErrorToast', "Please make a selection");
+          }
+        }  else {
+          view.populatePage(pageNumber);
+        }
       }
     },
 
@@ -121,8 +131,6 @@
       var view = this;
 
       _.each(jQuery('.current-page .input-field'), function(i) {
-        console.log(i);
-
         // if this is of type text take the text and put it straight up into the json
         if (i.type === "text" || i.type === "textarea" || i.type === "number") {
           // add text value to json
@@ -131,9 +139,9 @@
         // else if this is of type radio, capture selected
         } else if (i.type === "radio") {
           var el = jQuery('[type="radio"]:checked');
-          app.currentObservation[el.data().fieldName] = jQuery(el).val();               // we need a condition here to check if el is null (this can also be used to prompt user to make a selection)
+          app.currentObservation[el.data().fieldName] = jQuery(el).val();
         }
-
+        // TODO: clean this up - way overkill, very inefficient
       });
     },
 
@@ -147,7 +155,7 @@
     },
 
     clearPageContent: function() {
-      jQuery('.current-page .input-field').val('');
+      jQuery('.current-page .input-field').text('');
       jQuery('.current-page .leaf-fallen').prop('checked', false);
       jQuery('.current-page .btn-select').removeClass('btn-select');
     },
@@ -158,11 +166,17 @@
       view.updateJSONObject();
       view.updateProgressBar();
       view.removePageClasses();
-      view.clearPageContent();
+
+      if (pageNumber === 1) {
+        jQuery('.back-btn').addClass('hidden');
+      } else {
+        jQuery('.back-btn').removeClass('hidden');
+      }
 
       if (pageNumber === 7) {
         jQuery('.page-title').text('Review Data');
         jQuery('.next-btn').text('Finish');
+        app.reviewDataView.render();
       } else {
         jQuery('.page-title').text('New Observation');
         jQuery('.next-btn').text('Next');
@@ -173,6 +187,7 @@
 
       jQuery('#' + pageLabel).removeClass('hidden');
       jQuery('#' + pageLabel).addClass('current-page');
+      view.clearPageContent();
     },
 
     getPageNum: function() {
@@ -242,8 +257,6 @@
     initialize: function() {
       var view = this;
       console.log('Initializing ReviewDataView...', view.el);
-
-      view.render()
     },
 
     events: {
@@ -254,66 +267,15 @@
       var view = this;
       console.log('Rendering ReviewDataView...');
 
-      var fakeObservation = {
-        "tree_number": 3,
-        "branch_letter": "A",
-        "tree_species": "Acer pensylvanicum",
-        "percent_colored_tree": "76-100%",
-        "leaves": [
-          {
-            "leaf_num":1,
-            "fallen": "no",
-            "leaf_length": 31.5,
-            "leaf_width": 12,
-            "percent_colored": "26-50%"
-          },
-          {
-            "leaf_num":2,
-            "fallen": "no",
-            "leaf_length": 28.5,
-            "leaf_width": 12,
-            "percent_colored": "0-25%"
-          },
-          {
-            "leaf_num":3,
-            "fallen": "yes"
-          },
-          {
-            "leaf_num":4,
-            "fallen": "no",
-            "leaf_length": 20,
-            "leaf_width": 12.5,
-            "percent_colored": "0-25%"
-          },
-          {
-            "leaf_num": 5,
-            "fallen": "yes"
-          },
-          {
-            "leaf_num": 6,
-            "fallen": "yes"
-          }
-          ],
-          "additional_notes": "bla bla bla they are never going to fill this in"
-      };
-
-      jQuery('.tree-number-field').text(fakeObservation.tree_number);
-      jQuery('.branch-letter-field').text(fakeObservation.branch_letter);
-      jQuery('.tree-species-field').text(fakeObservation.tree_species);
-      jQuery('.percent-colored-tree-field').text(fakeObservation.percent_colored_tree);
-      jQuery('.field-notes-field').text(fakeObservation.additional_notes);
+      jQuery('.tree-number-field').text(app.currentObservation.tree_number);
+      jQuery('.branch-letter-field').text(app.currentObservation.branch_letter);
+      jQuery('.tree-species-field').text(app.currentObservation.tree_species);
+      jQuery('.percent-colored-tree-field').text(app.currentObservation.percent_colored_tree);
+      jQuery('.field-notes-field').text(app.currentObservation.additional_notes);
 
       var list = jQuery('#review-data-list');
 
-      //_.each(notesToRestore, function(note){
-        // OLD TEMPLATE CODE THAT MIGHT BE USEFUL
-        // var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
-        // jQuery('#select-note-modal').append(option);
-      //});
-
-      _.each(fakeObservation.leaves, function(leaf) {
-        console.log(leaf);
-
+      _.each(app.currentObservation.leaves, function(leaf) {
         var listItem = null;
 
         if (leaf.fallen === "yes") {
