@@ -64,14 +64,21 @@
       var view = this;
 
       // decide on next or previous page, and update the page number to that
+      // we don't deal with 'special pages' (eg leaf cycle ones) on back
       var pageNumber = Number(view.getPageNum());
       if (direction === 'next') {
         pageNumber += 1;
+        view.handleSpecialPages(pageNumber);
       } else if (direction === 'prev') {
         pageNumber -= 1;
+        view.populatePage(pageNumber);
       } else {
         console.error('ERROR: unexpected direction');
       }
+    },
+
+    handleSpecialPages: function(pageNumber) {
+      var view = this;
 
       // determine which of the 6 leaf observations we are on
       var leafCycleNum = app.currentObservation.leaves.length + 1;
@@ -135,14 +142,14 @@
         if (i.type === "text" || i.type === "textarea" || i.type === "number") {
           // add text value to json
           app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
-
-        // else if this is of type radio, capture selected
-        } else if (i.type === "radio") {
-          var el = jQuery('[type="radio"]:checked');
-          app.currentObservation[el.data().fieldName] = jQuery(el).val();
         }
-        // TODO: clean this up - way overkill, very inefficient
       });
+
+      var el = jQuery('.current-page [type="radio"]:checked');
+      // if there is a radio button on this page that is checked
+      if (el.length > 0) {
+        app.currentObservation[el.data().fieldName] = jQuery(el).val();
+      }
     },
 
     updateProgressBar: function() {
