@@ -121,8 +121,6 @@
       var view = this;
 
       _.each(jQuery('.current-page .input-field'), function(i) {
-        console.log(i);
-
         // if this is of type text take the text and put it straight up into the json
         if (i.type === "text" || i.type === "textarea" || i.type === "number") {
           // add text value to json
@@ -163,6 +161,7 @@
       if (pageNumber === 7) {
         jQuery('.page-title').text('Review Data');
         jQuery('.next-btn').text('Finish');
+        app.reviewDataView.render();
       } else {
         jQuery('.page-title').text('New Observation');
         jQuery('.next-btn').text('Next');
@@ -242,8 +241,6 @@
     initialize: function() {
       var view = this;
       console.log('Initializing ReviewDataView...', view.el);
-
-      view.render()
     },
 
     events: {
@@ -254,54 +251,11 @@
       var view = this;
       console.log('Rendering ReviewDataView...');
 
-      var fakeObservation = {
-        "tree_number": 3,
-        "branch_letter": "A",
-        "tree_species": "Acer pensylvanicum",
-        "percent_colored_tree": "76-100%",
-        "leaves": [
-          {
-            "leaf_num":1,
-            "fallen": "no",
-            "leaf_length": 31.5,
-            "leaf_width": 12,
-            "percent_colored": "26-50%"
-          },
-          {
-            "leaf_num":2,
-            "fallen": "no",
-            "leaf_length": 28.5,
-            "leaf_width": 12,
-            "percent_colored": "0-25%"
-          },
-          {
-            "leaf_num":3,
-            "fallen": "yes"
-          },
-          {
-            "leaf_num":4,
-            "fallen": "no",
-            "leaf_length": 20,
-            "leaf_width": 12.5,
-            "percent_colored": "0-25%"
-          },
-          {
-            "leaf_num": 5,
-            "fallen": "yes"
-          },
-          {
-            "leaf_num": 6,
-            "fallen": "yes"
-          }
-          ],
-          "additional_notes": "bla bla bla they are never going to fill this in"
-      };
-
-      jQuery('.tree-number-field').text(fakeObservation.tree_number);
-      jQuery('.branch-letter-field').text(fakeObservation.branch_letter);
-      jQuery('.tree-species-field').text(fakeObservation.tree_species);
-      jQuery('.percent-colored-tree-field').text(fakeObservation.percent_colored_tree);
-      jQuery('.field-notes-field').text(fakeObservation.additional_notes);
+      jQuery('.tree-number-field').text(app.currentObservation.tree_number);
+      jQuery('.branch-letter-field').text(app.currentObservation.branch_letter);
+      jQuery('.tree-species-field').text(app.currentObservation.tree_species);
+      jQuery('.percent-colored-tree-field').text(app.currentObservation.percent_colored_tree);
+      jQuery('.field-notes-field').text(app.currentObservation.additional_notes);
 
       var list = jQuery('#review-data-list');
 
@@ -311,7 +265,7 @@
         // jQuery('#select-note-modal').append(option);
       //});
 
-      _.each(fakeObservation.leaves, function(leaf) {
+      _.each(app.currentObservation.leaves, function(leaf) {
         console.log(leaf);
 
         var listItem = null;
