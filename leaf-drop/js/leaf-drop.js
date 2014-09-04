@@ -197,14 +197,14 @@
       if (app.reviewDataView === null) {
         app.reviewDataView = new app.View.ReviewDataView({
           el: '.review-data-screen',
-          collection: Skeletor.Model.awake.leaf_drop_observations        // switch this collection to something or nothing
+          collection: Skeletor.Model.awake.LeafDropObservation        // switch this collection to something or nothing
         });
       }
 
       if (app.mapView === null) {
         app.mapView = new app.View.MapView({
           el: '#map-screen',
-          collection: Skeletor.Model.awake.leaf_drop_observations        // switch this collection to users TODO
+          collection: Skeletor.Model.awake.LeafDropObservation        // switch this collection to users?
         });
       }
 

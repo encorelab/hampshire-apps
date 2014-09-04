@@ -6,6 +6,8 @@
   var Skeletor = this.Skeletor || {};
   this.Skeletor.Mobile = this.Skeletor.Mobile || {};
   var app = this.Skeletor.Mobile;
+  var Model = this.Skeletor.Model;
+  Skeletor.Model = Model;
   app.View = {};
 
   /**
@@ -17,6 +19,10 @@
     initialize: function() {
       var view = this;
       console.log('Initializing CollectView...', view.el);
+
+      // _.bindAll(this, 'onModelSaved');
+      // this.model.bind('sync', onSuccessCallback);
+      // do I need to attach a model to the view as well first?
     },
 
     events: {
@@ -25,6 +31,10 @@
       'click .back-btn'         : "moveBack",
       'click .wiki-link'        : "openModal",
       'click .leaf-fallen-btn'  : "buttonSelected"
+    },
+
+    onModelSaved: function(model, response, options) {
+      app.currentObservation.set('modified_at', new Date());
     },
 
     buttonSelected: function(ev) {
@@ -38,16 +48,16 @@
       var view = this;
 
       // delete the old observation
-      app.currentObservation = {};
-      app.currentObservation.leaves = [];
+      app.currentObservation = new Model.LeafDropObservation();
+      app.currentObservation.wake(app.config.wakeful.url);
+      app.currentObservation.save();
+      view.collection.add(app.currentObservation);
 
       jQuery('#title-page').addClass('hidden');
       jQuery('#variable-content-container').removeClass('hidden');
       jQuery('.back-btn').removeClass('hidden');
       jQuery('.next-btn').removeClass('hidden');
 
-      // we're on page '0', the title page - this will move us to page 1
-      //view.determineTargetPage('next');
       view.populatePage(1);
     },
 
@@ -82,7 +92,8 @@
       var view = this;
 
       // determine which of the 6 leaf observations we are on
-      var leafCycleNum = app.currentObservation.leaves.length + 1;
+      var leafCycleNum = app.currentObservation.get('leaves').length + 1;
+      var leafAr = app.currentObservation.get('leaves');
 
       /********** PAGE 4 *********/
       if (pageNumber == 4) {
@@ -90,7 +101,10 @@
         var checkedEl = jQuery('.current-page [type="radio"]:checked');
         if (jQuery(checkedEl).is("#id-leaf-fallen-yes")) {
           // update the observation for fallen
-          app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
+          leafAr[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
+          app.currentObservation.set('leaves', leafAr);
+          app.currentObservation.save();
+          //app.currentObservation.leaves.set('');
 
           // if this is the last observation, go to page 6. Else go to page 3
           if (leafCycleNum === 6) {
@@ -101,7 +115,9 @@
 
         // if user said leaf has not fallen
         } else {
-          app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
+          leafAr[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
+          app.currentObservation.set('leaves', leafAr);
+          app.currentObservation.save();
 
           view.populatePage(pageNumber);
         }
@@ -109,7 +125,7 @@
 
        // TODO: bring me back in for PROD
         // } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
-        //   app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
+        //   app.currentObservation.get('leaves')[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
 
         //   view.populatePage(pageNumber);
         // }
@@ -163,9 +179,11 @@
         if (i.type === "text" || i.type === "textarea" || i.type === "number") {
           // add text value to json
           if (jQuery('.current-page').hasClass('leaf-cycle')) {
-            app.currentObservation.leaves[app.currentObservation.leaves.length-1][jQuery(i).data().fieldName] = jQuery(i).val();
+            app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1][jQuery(i).data().fieldName] = jQuery(i).val();
           } else {
-            app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
+            // MEGS: these two are the same (sort of). Using getters and setters now, so the uncommented one is the one we want
+            //app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
+            app.currentObservation.set(jQuery(i).data().fieldName, jQuery(i).val());
           }
         }
       });
@@ -175,11 +193,13 @@
       if (el.length > 0) {
         // if we're on the leaf cycle pages, otherwise it's a regular type of recording
         if (jQuery('.current-page').hasClass('leaf-cycle')) {
-          app.currentObservation.leaves[app.currentObservation.leaves.length-1][el.data().fieldName] = jQuery(el).val();
+          app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1][el.data().fieldName] = jQuery(el).val();
         } else {
-          app.currentObservation[el.data().fieldName] = jQuery(el).val();
+          app.currentObservation.set(el.data().fieldName, jQuery(el).val())
         }
       }
+
+      app.currentObservation.save();
     },
 
     updateProgressBar: function() {
@@ -195,10 +215,10 @@
       });
     },
 
-    // TODO: move me to the model (and other things to model)
+    // TODO: move me to the model (and other things to model?)
     getNumCompletedLeaves: function() {
       var numCompletedLeaves = 0;
-      _.each(app.currentObservation.leaves, function(leaf) {
+      _.each(app.currentObservation.get('leaves'), function(leaf) {
         // either of these conditions denote 'completeness'
         if (leaf.fallen == "yes" || leaf.percent_colored != null) {
           numCompletedLeaves++;
@@ -219,7 +239,7 @@
       jQuery('.current-page .input-field').prop('checked', false);
 
       // special case of the number input fields (can't use text clear)
-      jQuery('.leaf-measurement').val('');
+      jQuery('.leaf-measurement-input').val('');
 
       // clear yes/no buttons since it's a fake radio
       jQuery('.current-page .btn-select').removeClass('btn-select');
@@ -332,15 +352,18 @@
       var view = this;
       console.log('Rendering ReviewDataView...');
 
-      jQuery('.tree-number-field').text(app.currentObservation.tree_number);
-      jQuery('.branch-letter-field').text(app.currentObservation.branch_letter);
-      jQuery('.tree-species-field').text(app.currentObservation.tree_species);
-      jQuery('.percent-colored-tree-field').text(app.currentObservation.percent_colored_tree);
-      jQuery('.field-notes-field').text(app.currentObservation.additional_notes);
+      jQuery('.tree-number-field').text(app.currentObservation.get('tree_number'));
+
+
+
+      jQuery('.branch-letter-field').text(app.currentObservation.get('branch_letter'));
+      jQuery('.tree-species-field').text(app.currentObservation.get('tree_species'));
+      jQuery('.percent-colored-tree-field').text(app.currentObservation.get('percent_colored_tree'));
+      jQuery('.field-notes-field').text(app.currentObservation.get('additional_notes'));
 
       var list = jQuery('#review-data-list');
 
-      _.each(app.currentObservation.leaves, function(leaf) {
+      _.each(app.currentObservation.get('leaves'), function(leaf) {
         var listItem = null;
 
         if (leaf.fallen === "yes") {
