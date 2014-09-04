@@ -208,6 +208,13 @@
         });
       }
 
+      if (app.weatherView === null) {
+        app.weatherView = new app.View.WeatherView({
+          el: '#weather-screen',
+          collection: Skeletor.Model.awake.leaf_drop_observations        // switch this collection to users TODO
+        });
+      }
+
       setProjectName("Leaf Drop");
 
       /* ======================================================

@@ -9,7 +9,7 @@
 
 /*to arrange buttons at bottom of screen, needs revising - maybe using calc??*/
 .leaf-page {
-    min-height: 70vh;
+    min-height: 65vh;
 }
 
 .view-container {
@@ -144,11 +144,6 @@ ul {
     margin: 0;
 }
 
-/*this may have to go back in??*/
-/*    li {
-    list-style: none;
-}*/
-
 /********** TYPOGRAPHY **********/
 
 body {
@@ -177,10 +172,6 @@ label {
 h4 {
     font-size: 14px;
     font-weight: 500;
-}
-
-p {
-
 }
 
 label {
@@ -303,7 +294,7 @@ img.space-bottom {
 }
 
 ul#tree-species-list {
-    height: 53vh;
+    height: 50vh;
     /*overflow: scroll;*/
 }
 
@@ -377,10 +368,17 @@ input[type="radio"].leaf-fallen {
     background-position: 0 -15px;
 }
 
+/***** #leaf-4  leaf dimensions *****/
+
+.leaf-dimension {
+
+}
+
 /***** #leaf-5  percentage leaf colored *****/
 
 .percent-leaf-img {
-    max-width: 90%;
+    max-width: 80%;
+    height: auto;
     margin: 0 auto;
 }
 
@@ -570,10 +568,24 @@ input[type="radio"].leaf-fallen {
 /* Small devices landscape(tablets, 768px and up) */
 @media all and (min-width: 768px) and (orientation: landscape) {
 
+    ul#tree-species-list {
+        height: 45vh;
+    }
+
+    .leaf-dimension {
+        max-width: 80%;
+        height: auto;
+        margin-left: 0;
+    }
+
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media all and (min-width: 992px) {
+
+    ul#tree-species-list {
+        height: 50vh;
+    }
 
     .fallen-title {
         margin-top: 10%;
