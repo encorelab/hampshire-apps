@@ -247,6 +247,10 @@ input:disabled {
     margin: 0 auto;
 }
 
+.unfinished-leaf-progress {
+    opacity: 0.4;
+}
+
 /********** IMAGES **********/
 
 img.space-bottom {
