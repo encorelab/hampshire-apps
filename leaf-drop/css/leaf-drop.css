@@ -144,11 +144,6 @@ ul {
     margin: 0;
 }
 
-/*this may have to go back in??*/
-/*    li {
-    list-style: none;
-}*/
-
 /********** TYPOGRAPHY **********/
 
 body {
@@ -177,10 +172,6 @@ label {
 h4 {
     font-size: 14px;
     font-weight: 500;
-}
-
-p {
-
 }
 
 label {
@@ -591,6 +582,10 @@ input[type="radio"].leaf-fallen {
 
 /* Medium devices (desktops, 992px and up) */
 @media all and (min-width: 992px) {
+
+    ul#tree-species-list {
+        height: 50vh;
+    }
 
     .fallen-title {
         margin-top: 10%;
