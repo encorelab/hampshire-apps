@@ -162,19 +162,50 @@
         // if this is of type text take the text and put it straight up into the json
         if (i.type === "text" || i.type === "textarea" || i.type === "number") {
           // add text value to json
-          app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
+          if (jQuery('.current-page').hasClass('leaf-cycle')) {
+            app.currentObservation.leaves[app.currentObservation.leaves.length-1][jQuery(i).data().fieldName] = jQuery(i).val();
+          } else {
+            app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
+          }
         }
       });
 
       var el = jQuery('.current-page [type="radio"]:checked');
       // if there is a radio button on this page that is checked
       if (el.length > 0) {
-        app.currentObservation[el.data().fieldName] = jQuery(el).val();
+        // if we're on the leaf cycle pages, otherwise it's a regular type of recording
+        if (jQuery('.current-page').hasClass('leaf-cycle')) {
+          app.currentObservation.leaves[app.currentObservation.leaves.length-1][el.data().fieldName] = jQuery(el).val();
+        } else {
+          app.currentObservation[el.data().fieldName] = jQuery(el).val();
+        }
       }
     },
 
     updateProgressBar: function() {
-      // change jpg src or whatever
+      var view = this;
+      // make them all opaque
+      jQuery('.current-page .leaf-progress-img').addClass('unfinished-leaf-progress');
+
+      // unopaque some of them
+      jQuery('.current-page .leaf-progress-img').each(function(index, el) {
+        if (index < view.getNumCompletedLeaves() + 1) {
+          jQuery(el).removeClass('unfinished-leaf-progress');
+        }
+      });
+    },
+
+    // TODO: move me to the model (and other things to model)
+    getNumCompletedLeaves: function() {
+      var numCompletedLeaves = 0;
+      _.each(app.currentObservation.leaves, function(leaf) {
+        // either of these conditions denote 'completeness'
+        if (leaf.fallen == "yes" || leaf.percent_colored != null) {
+          numCompletedLeaves++;
+        }
+      });
+
+      return numCompletedLeaves;
     },
 
     removePageClasses: function() {
@@ -183,8 +214,14 @@
     },
 
     clearPageContent: function() {
+      // standard clears
       jQuery('.current-page .input-field').text('');
-      jQuery('.current-page .leaf-fallen').prop('checked', false);
+      jQuery('.current-page .input-field').prop('checked', false);
+
+      // special case of the number input fields (can't use text clear)
+      jQuery('.leaf-measurement').val('');
+
+      // clear yes/no buttons since it's a fake radio
       jQuery('.current-page .btn-select').removeClass('btn-select');
     },
 
@@ -192,7 +229,6 @@
       var view = this;
 
       view.updateJSONObject();
-      view.updateProgressBar();
       view.removePageClasses();
 
       if (pageNumber === 1) {
@@ -216,6 +252,7 @@
       jQuery('#' + pageLabel).removeClass('hidden');
       jQuery('#' + pageLabel).addClass('current-page');
       view.clearPageContent();
+      view.updateProgressBar();
     },
 
     getPageNum: function() {
