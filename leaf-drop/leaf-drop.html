@@ -324,21 +324,33 @@
         </div>
     </div>
 
+    <!-- Weather Screen -->
     <div id="weather-screen" class="container">
         <div class="row-fluid">
             <!-- <iframe class="iframe-container" src="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=43.661900,-79.395203"></iframe> -->
             <div id="title-page">
-                <h2 class="page-title"></h2>
+
+                <div class="row">
+                    <img src="placeholder.png" alt="weather icon" class="weather-image">
+                    <p class="temp"> <span class="temp_f">##</span>&#176;F</p>
+                    <span class="weather-string">{ Weather Text }</span>
+                    <p class="wind-mph"></p><p class="wind-dir"></p>
+                    <p class="precipitation"></p>
+                    <p class="uv"></p>
+                </div>
+
                 <div class="first-page text-center center-block row">
                     <img src="img/_LeafDrop_Logo.png" class="img-responsive" alt="Leaf Drop logo">
                     <h1 class="leaf-drop">It is Warm</h1>
                     <button id="new-observation" class="btn btn-default btn-lg btn-block">Start New Observation</button>
                     <button class="btn btn-default btn-lg btn-block">View Past Observations</button>
                 </div>
+
             </div>
         </div>
     </div>
 
+    <!-- Map Screen -->
     <div id="map-screen" class="container">
         <div class="row-fluid">
             <div id="title-page">
