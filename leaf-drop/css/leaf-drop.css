@@ -373,6 +373,13 @@ input[type="radio"].leaf-fallen {
     background-position: 0 -15px;
 }
 
+/***** #leaf-5  percentage leaf colored *****/
+
+.percent-leaf-img {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
 /***** #leaf-6  additional field notes *****/
 
 .field-notes {
@@ -542,8 +549,12 @@ input[type="radio"].leaf-fallen {
         height: 61vh;
     }
 
+    #progress-bar-container {
+        margin-bottom: 15%;
+    }
+
     .fallen-title {
-        margin-top: 25%;
+        margin-top: 20%;
     }
 
     input[type=number] {
