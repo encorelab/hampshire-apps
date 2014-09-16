@@ -370,8 +370,8 @@ input[type="radio"].leaf-fallen {
 
 /***** #leaf-4  leaf dimensions *****/
 
-.leaf-dimension {
-
+.leaf-measurement-input {
+    padding-left: 10px;
 }
 
 /***** #leaf-5  percentage leaf colored *****/
