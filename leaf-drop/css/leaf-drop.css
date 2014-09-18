@@ -350,7 +350,9 @@ iframe div#mw-mf-last-modified.top-bar.truncated-text {
 /***** #leaf-3  leaf fallen *****/
 
 input[type="radio"].leaf-fallen {
-    display: none;
+    margin-right: 20px;
+    margin-left: 20%;
+    vertical-align: middle;
 }
 
 .fallen-title {
@@ -360,12 +362,16 @@ input[type="radio"].leaf-fallen {
 .btn-container {
     width: 100%;
     max-width: 150px;
+    display: block;
+}
+
+.btn-container:first-of-type {
     margin-bottom: -20px;
 }
 
-.btn-select {
-    background-color: #e0e0e0;
-    background-position: 0 -15px;
+.btn-container label {
+    font-size: 24px;
+    margin-top: 8px;
 }
 
 /***** #leaf-4  leaf dimensions *****/
