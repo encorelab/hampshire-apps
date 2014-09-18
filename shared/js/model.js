@@ -206,11 +206,11 @@
       /** LeafDropObservation **/
 
       this.LeafDropObservation = this.db.Document('leaf_drop_observations').extend({
-        tagRel: function(tag, tagger) {
-          return {
-            id: tag.id.toLowerCase(),
-            name: tag.get('name')
-          };
+        defaults: {
+          'created_at': new Date(),
+          'modified_at': new Date(),
+          'author': Skeletor.Mobile.username,
+          'leaves': []
         }
       })
       .extend(TaggableTrait)

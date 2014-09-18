@@ -1,7 +1,7 @@
-ck-brainstorm
-=============
+Hampshire apps
+==============
 
-CommonKnowledge for class room brainstorming
+Suite of apps for the Hampshire PVCS project
 
 
 This software is available under the MIT licence (http://www.opensource.org/licenses/mit-license.php)

@@ -6,6 +6,8 @@
   var Skeletor = this.Skeletor || {};
   this.Skeletor.Mobile = this.Skeletor.Mobile || {};
   var app = this.Skeletor.Mobile;
+  var Model = this.Skeletor.Model;
+  Skeletor.Model = Model;
   app.View = {};
 
   /**
@@ -17,6 +19,10 @@
     initialize: function() {
       var view = this;
       console.log('Initializing CollectView...', view.el);
+
+      // _.bindAll(this, 'onModelSaved');
+      // this.model.bind('sync', onSuccessCallback);
+      // do I need to attach a model to the view as well first?
     },
 
     events: {
@@ -25,6 +31,10 @@
       'click .back-btn'         : "moveBack",
       'click .wiki-link'        : "openModal",
       'click .leaf-fallen-btn'  : "buttonSelected"
+    },
+
+    onModelSaved: function(model, response, options) {
+      app.currentObservation.set('modified_at', new Date());
     },
 
     buttonSelected: function(ev) {
@@ -38,16 +48,16 @@
       var view = this;
 
       // delete the old observation
-      app.currentObservation = {};
-      app.currentObservation.leaves = [];
+      app.currentObservation = new Model.LeafDropObservation();
+      app.currentObservation.wake(app.config.wakeful.url);
+      app.currentObservation.save();
+      view.collection.add(app.currentObservation);
 
       jQuery('#title-page').addClass('hidden');
       jQuery('#variable-content-container').removeClass('hidden');
       jQuery('.back-btn').removeClass('hidden');
       jQuery('.next-btn').removeClass('hidden');
 
-      // we're on page '0', the title page - this will move us to page 1
-      //view.determineTargetPage('next');
       view.populatePage(1);
     },
 
@@ -69,59 +79,86 @@
       var pageNumber = Number(view.getPageNum());
       if (direction === 'next') {
         pageNumber += 1;
-        view.handleSpecialPages(pageNumber);
+        view.handleSpecialPagesNext(pageNumber);
       } else if (direction === 'prev') {
         pageNumber -= 1;
-        view.populatePage(pageNumber);
+        view.handleSpecialPagesBack(pageNumber);
+        //view.populatePage(pageNumber);
       } else {
         console.error('ERROR: unexpected direction');
       }
     },
 
-    handleSpecialPages: function(pageNumber) {
+    handleSpecialPagesBack: function(targetPageNumber) {
+      var view = this;
+
+      // TODO - needs to not clear data
+
+      //var leafCycleNum = app.currentObservation.get('leaves').length + 1;
+
+      if (targetPageNumber === 2) {
+        // if leaf cycle beginning, go back to page 3 else go back one in the leaf cycle (and delete!)
+        if (view.getNumCompletedLeaves() === 0) {
+          view.populatePage(2);
+        } else {
+          view.popLastLeaf();
+          view.populatePage(3);
+        }
+      }
+
+      else if (targetPageNumber === 3) {
+        view.popLastLeaf();
+        view.populatePage(3);
+      }
+
+      else if (targetPageNumber === 5) {
+        view.popLastLeaf();
+        view.populatePage(3);
+      }
+
+      else {
+        view.populatePage(targetPageNumber);
+      }
+    },
+
+    handleSpecialPagesNext: function(pageNumber) {
       var view = this;
 
       // determine which of the 6 leaf observations we are on
-      var leafCycleNum = app.currentObservation.leaves.length + 1;
+      var leafCycleNum = view.getNumCompletedLeaves() + 1;
+      var leafAr = app.currentObservation.get('leaves');
 
       /********** PAGE 4 *********/
-      if (pageNumber == 4) {
+      if (pageNumber === 4) {
         // if user said leaf has fallen
         var checkedEl = jQuery('.current-page [type="radio"]:checked');
         if (jQuery(checkedEl).is("#id-leaf-fallen-yes")) {
           // update the observation for fallen
-          app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
+          leafAr[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
+          app.currentObservation.set('leaves', leafAr);
+          app.currentObservation.save();
 
           // if this is the last observation, go to page 6. Else go to page 3
-          if (leafCycleNum === 6) {
+          if (view.getNumCompletedLeaves() === 6) {
             view.populatePage(6);
           } else {
             view.populatePage(3);
           }
 
-        // if user said leaf has not fallen
-        } else {
-          app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
+        } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
+          app.currentObservation.get('leaves')[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
 
           view.populatePage(pageNumber);
         }
 
-
-       // TODO: bring me back in for PROD
-        // } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
-        //   app.currentObservation.leaves[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
-
-        //   view.populatePage(pageNumber);
-        // }
-        // TODO: bring me back in for PROD (and make the above else -> else if)
-        // else {
-        //   jQuery().toastmessage('showErrorToast', "Please select whether this leaf has fallen");
-        // }
+        else {
+          jQuery().toastmessage('showErrorToast', "Please select whether this leaf has fallen");
+        }
 
       /********** PAGE 6 *********/
       } else if (pageNumber === 6) {            // special case for leaf cycle pages to loop
-        // go to page 3 if the leaves aren't all done (eg array length is 6)
-        if (leafCycleNum === 6) {
+        // go to page 3 if the leaves aren't all done (eg array length is 6). Only 5 leaves completed at this point, about to complete 6th
+        if (view.getNumCompletedLeaves() === 5) {
           view.populatePage(6);
         } else {
           view.populatePage(3);
@@ -141,15 +178,12 @@
         // if there are radio buttons on this page, make sure they're checked
         if (jQuery('.current-page [type="radio"]').length > 0) {
           var checkedEl = jQuery('.current-page [type="radio"]:checked');
-
-          view.populatePage(pageNumber);
-          // TODO: bring me back in for PROD
-          // if (checkedEl.length > 0) {
-          //   view.populatePage(pageNumber);
-          // } else {
-          //   jQuery().toastmessage('showErrorToast', "Please make a selection");
-          // }
-        }  else {
+          if (checkedEl.length > 0) {
+            view.populatePage(pageNumber);
+          } else {
+            jQuery().toastmessage('showErrorToast', "Please make a selection");
+          }
+        } else {
           view.populatePage(pageNumber);
         }
       }
@@ -161,11 +195,13 @@
       _.each(jQuery('.current-page .input-field'), function(i) {
         // if this is of type text take the text and put it straight up into the json
         if (i.type === "text" || i.type === "textarea" || i.type === "number") {
-          // add text value to json
-          if (jQuery('.current-page').hasClass('leaf-cycle')) {
-            app.currentObservation.leaves[app.currentObservation.leaves.length-1][jQuery(i).data().fieldName] = jQuery(i).val();
+          // add text value to json - the && is an outlier check for when the user hits the back button with no field values on the first leaf
+          if (jQuery('.current-page').hasClass('leaf-cycle') && app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1]) {
+            app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1][jQuery(i).data().fieldName] = jQuery(i).val();
           } else {
-            app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
+            // MEGS: these two are the same (sort of). Using getters and setters now, so the uncommented one is the one we want
+            //app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
+            app.currentObservation.set(jQuery(i).data().fieldName, jQuery(i).val());
           }
         }
       });
@@ -175,11 +211,13 @@
       if (el.length > 0) {
         // if we're on the leaf cycle pages, otherwise it's a regular type of recording
         if (jQuery('.current-page').hasClass('leaf-cycle')) {
-          app.currentObservation.leaves[app.currentObservation.leaves.length-1][el.data().fieldName] = jQuery(el).val();
+          app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1][el.data().fieldName] = jQuery(el).val();
         } else {
-          app.currentObservation[el.data().fieldName] = jQuery(el).val();
+          app.currentObservation.set(el.data().fieldName, jQuery(el).val())
         }
       }
+
+      app.currentObservation.save();
     },
 
     updateProgressBar: function() {
@@ -195,10 +233,10 @@
       });
     },
 
-    // TODO: move me to the model (and other things to model)
+    // TODO: move me to the model (and other things to model?)
     getNumCompletedLeaves: function() {
       var numCompletedLeaves = 0;
-      _.each(app.currentObservation.leaves, function(leaf) {
+      _.each(app.currentObservation.get('leaves'), function(leaf) {
         // either of these conditions denote 'completeness'
         if (leaf.fallen == "yes" || leaf.percent_colored != null) {
           numCompletedLeaves++;
@@ -206,6 +244,13 @@
       });
 
       return numCompletedLeaves;
+    },
+
+    popLastLeaf: function() {
+      var leafAr = app.currentObservation.get('leaves');
+      leafAr = _.without(leafAr, _.last(leafAr));
+      app.currentObservation.set('leaves', leafAr);
+      app.currentObservation.save();
     },
 
     removePageClasses: function() {
@@ -219,7 +264,7 @@
       jQuery('.current-page .input-field').prop('checked', false);
 
       // special case of the number input fields (can't use text clear)
-      jQuery('.leaf-measurement').val('');
+      jQuery('.leaf-measurement-input').val('');
 
       // clear yes/no buttons since it's a fake radio
       jQuery('.current-page .btn-select').removeClass('btn-select');
@@ -236,6 +281,10 @@
       } else {
         jQuery('.back-btn').removeClass('hidden');
       }
+
+      // if (pageNumber === 4 || pageNumber === 5 || pageNumber === 6 || pageNumber === 7) {
+      //   jQuery('.back-btn').addClass('hidden');
+      // }
 
       if (pageNumber === 7) {
         jQuery('.page-title').text('Review Data');
@@ -330,17 +379,21 @@
 
     render: function () {
       var view = this;
+      jQuery('#review-data-list').html('');             // clear out any previous values
       console.log('Rendering ReviewDataView...');
 
-      jQuery('.tree-number-field').text(app.currentObservation.tree_number);
-      jQuery('.branch-letter-field').text(app.currentObservation.branch_letter);
-      jQuery('.tree-species-field').text(app.currentObservation.tree_species);
-      jQuery('.percent-colored-tree-field').text(app.currentObservation.percent_colored_tree);
-      jQuery('.field-notes-field').text(app.currentObservation.additional_notes);
+      jQuery('.tree-number-field').text(app.currentObservation.get('tree_number'));
+
+
+
+      jQuery('.branch-letter-field').text(app.currentObservation.get('branch_letter'));
+      jQuery('.tree-species-field').text(app.currentObservation.get('tree_species'));
+      jQuery('.percent-colored-tree-field').text(app.currentObservation.get('percent_colored_tree'));
+      jQuery('.field-notes-field').text(app.currentObservation.get('additional_notes'));
 
       var list = jQuery('#review-data-list');
 
-      _.each(app.currentObservation.leaves, function(leaf) {
+      _.each(app.currentObservation.get('leaves'), function(leaf) {
         var listItem = null;
 
         if (leaf.fallen === "yes") {
