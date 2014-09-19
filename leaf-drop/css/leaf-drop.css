@@ -553,6 +553,10 @@ input[type="radio"].leaf-fallen {
         min-height: 80vh;
     }
 
+    #leaf-1 input[type="text"] {
+        max-width: 50px;
+    }
+
     ul#tree-species-list {
         height: 61vh;
     }
