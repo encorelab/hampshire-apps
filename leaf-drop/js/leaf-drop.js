@@ -36,11 +36,14 @@
   app.currentObservation = null;
 
   app.treeSpeciesCollection = null;
+  app.weatherData = null;
 
   app.listView = null;
   app.collectView = null;
   app.treeSpeciesView = null;
   app.reviewDataView = null;
+  app.weatherView = null;
+  app.mapView = null;
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -181,10 +184,22 @@
   app.grabStaticData = function() {
     jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
       app.treeSpeciesCollection = data;
-      app.ready();
+      app.grabWeatherData();
     });
-  }
+  };
 
+  app.grabWeatherData = function() {
+    // grab weather data
+    jQuery.ajax({
+      //http://api.wunderground.com/api/Your_Key/geolookup/q/37.776289,-122.395234.json
+      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/IA/Cedar_Rapids.json",
+      dataType : "jsonp",
+      success : function(parsedJson) {
+        app.weatherData = parsedJson.current_observation;
+        app.ready();
+      }
+    });
+  };
 
   app.ready = function() {
       /* ======================================================
@@ -210,21 +225,19 @@
       if (app.reviewDataView === null) {
         app.reviewDataView = new app.View.ReviewDataView({
           el: '.review-data-screen',
-          collection: Skeletor.Model.awake.LeafDropObservation        // switch this collection to something or nothing
-        });
-      }
-
-      if (app.mapView === null) {
-        app.mapView = new app.View.MapView({
-          el: '#map-screen',
-          collection: Skeletor.Model.awake.LeafDropObservation        // switch this collection to users?
+          collection: Skeletor.Model.awake.leaf_drop_observations       // switch this collection to something or nothing
         });
       }
 
       if (app.weatherView === null) {
         app.weatherView = new app.View.WeatherView({
-          el: '#weather-screen',
-          collection: Skeletor.Model.awake.leaf_drop_observations        // switch this collection to users TODO
+          el: '#weather-screen'
+        });
+      }
+
+      if (app.mapView === null) {
+        app.mapView = new app.View.MapView({
+          el: '#map-screen'
         });
       }
 

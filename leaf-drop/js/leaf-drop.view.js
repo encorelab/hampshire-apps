@@ -414,6 +414,47 @@
 
 
   /**
+    WeatherView
+  **/
+  app.View.WeatherView = Backbone.View.extend({
+    view: this,
+
+    initialize: function() {
+      var view = this;
+      console.log('Initializing WeatherView...', view.el);
+      view.render();
+    },
+
+    events: {
+
+    },
+
+    render: function () {
+      var view = this;
+      console.log('Rendering WeatherView...');
+
+      jQuery('.weather-image').attr('src', app.weatherData.icon_url);
+      jQuery('.temp-f').text(app.weatherData.temp_f);
+      jQuery('.weather-string').text(app.weatherData.weather);
+      jQuery('.wind-mph').text(app.weatherData.wind_mph);
+      jQuery('.wind-dir').text(app.weatherData.wind_dir);
+      jQuery('.precipitation').text(app.weatherData.precip_today_string);
+      jQuery('.uv').text(app.weatherData.UV);
+
+      // temp_f
+      // icon_url
+      // weather
+      // local_time_rfc822
+      // wind_mph wind_dir
+      // precip_today_string
+      // UV
+
+      // temp_f for 5 hours starting now
+    }
+
+  });
+
+  /**
     MapView
   **/
   app.View.MapView = Backbone.View.extend({
@@ -430,53 +471,6 @@
 
     render: function () {
       console.log('Rendering MapView...');
-
-      var weatherPage = {
-        weatherData: {},
-
-        init: function(){
-          $.ajax('http://api.wunderground.com/api/3fb52372e8662ab2/conditions/q/CA/San_Francisco.json', {
-            type: 'GET',
-            dataType: 'jsonp',
-            success: weatherPage.parseData
-          });
-        },
-
-        parseData: function(responseData){
-          var tempData = responseData.current_observation;
-          weatherPage.weatherData.icon = tempData.icon_url;
-          weatherPage.weatherData.temp_f = tempData.temp_f;
-          weatherPage.weatherData.string = tempData.weather;
-          weatherPage.weatherData.date = tempData.observation_time_rfc822;
-          weatherPage.weatherData.wind_mph = tempData.wind_mph;
-          weatherPage.weatherData.wind_dir = tempData.wind_dir;
-          weatherPage.weatherData.preciptitation = tempData.precip_today_string;
-          weatherPage.weatherData.uvindex = tempData.UV;
-
-          weatherPage.updateDOM();
-        },
-
-        updateDOM: function(){
-          jQuery('.weather-image').attr('src', weatherPage.weatherData.icon);
-          jQuery('.temp_f').text(weatherPage.weatherData.temp_f);
-          jQuery('.weather-string').text(weatherPage.weatherData.string);
-          jQuery('.wind-mph').text(weatherPage.weatherData.wind_mph);
-          jQuery('.wind-dir').text(weatherPage.weatherData.wind_dir);
-          jQuery('.precipitation').text(weatherPage.weatherData.precipitation);
-          jQuery('.uv').text(weatherPage.weatherData.uvindex);
-        }
-      };
-
-      // temp_f
-      // icon_url
-      // weather
-      // local_time_rfc822
-      // wind_mph wind_dir
-      // precip_today_string
-      // UV
-
-      // temp_f for 5 hours starting now
-
 
     }
   });
