@@ -47,6 +47,11 @@ input[type=text] {
    width: 20%;
 }
 
+/*trying to get additional field notes text to align to top, currently not working*/
+input[type=textarea] {
+    vertical-align: top;
+}
+
 .btn {
     margin-bottom: 20px;
     height: 45px;
@@ -349,7 +354,7 @@ iframe div#mw-mf-last-modified.top-bar.truncated-text {
 
 /***** #leaf-3  leaf fallen *****/
 
-input[type="radio"].leaf-fallen {
+input[type=radio].leaf-fallen {
     margin-right: 20px;
     margin-left: 20%;
     vertical-align: middle;
@@ -553,7 +558,7 @@ input[type="radio"].leaf-fallen {
         min-height: 80vh;
     }
 
-    #leaf-1 input[type="text"] {
+    #leaf-1 input[type=text] {
         max-width: 50px;
     }
 
