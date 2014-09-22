@@ -1,14 +1,13 @@
 {
-  "name": "CommonKnowledgeBrainstorm",
+  "name": "PVCitizenScience",
   "version": "0.0.1",
   "description": "...",
-  "main": "server.js",
   "scripts": {
     "start": "http-server ."
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:encorelab/ck-brainstorm.git"
+    "url": "git@github.com:encorelab/hampshire-apps.git"
   },
   "dependencies": {
     "jquery": "1.8.3",
