@@ -495,11 +495,11 @@ input[type="radio"].leaf-fallen {
     }
 
     input[type=text] {
-       width: 50%;
+       width: 25%;
     }
 
     .branch-letter-styles {
-        margin-left: 0;
+        margin-left: 25px;
     }
 }
 
