@@ -128,10 +128,10 @@
       var leafCycleNum = view.getNumCompletedLeaves() + 1;
       var leafAr = app.currentObservation.get('leaves');
 
+      var checkedEl = jQuery('.current-page [type="radio"]:checked');
+
       /********** PAGE 4 *********/
       if (pageNumber === 4) {
-        // if user said leaf has fallen
-        var checkedEl = jQuery('.current-page [type="radio"]:checked');
         if (jQuery(checkedEl).is("#id-leaf-fallen-yes")) {
           // update the observation for fallen
           leafAr[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
@@ -177,7 +177,6 @@
       } else {
         // if there are radio buttons on this page, make sure they're checked
         if (jQuery('.current-page [type="radio"]').length > 0) {
-          var checkedEl = jQuery('.current-page [type="radio"]:checked');
           if (checkedEl.length > 0) {
             view.populatePage(pageNumber);
           } else {
@@ -213,7 +212,7 @@
         if (jQuery('.current-page').hasClass('leaf-cycle')) {
           app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1][el.data().fieldName] = jQuery(el).val();
         } else {
-          app.currentObservation.set(el.data().fieldName, jQuery(el).val())
+          app.currentObservation.set(el.data().fieldName, jQuery(el).val());
         }
       }
 
@@ -238,7 +237,7 @@
       var numCompletedLeaves = 0;
       _.each(app.currentObservation.get('leaves'), function(leaf) {
         // either of these conditions denote 'completeness'
-        if (leaf.fallen == "yes" || leaf.percent_colored != null) {
+        if (leaf.fallen === "yes" || leaf.percent_colored !== null) {
           numCompletedLeaves++;
         }
       });
@@ -342,7 +341,7 @@
       var view = this;
       console.log('Initializing TreeSpeciesView...', view.el);
 
-      view.render()
+      view.render();
     },
 
     events: {
