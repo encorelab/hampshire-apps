@@ -50,6 +50,7 @@ input[type=text] {
 /*trying to get additional field notes text to align to top, currently not working*/
 input[type=textarea] {
     vertical-align: top;
+    line-height: 100%;
 }
 
 .btn {
