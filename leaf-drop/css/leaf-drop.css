@@ -509,6 +509,7 @@ input[type=radio].leaf-fallen {
     }
 }
 
+/********** MEDIA QUERIES **********/
 /* Extra small devices landscape (phones, less than 768px) */
 @media handheld and (max-width: 767px) and (orientation: landscape) {
 
