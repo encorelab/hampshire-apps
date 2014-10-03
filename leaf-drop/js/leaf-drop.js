@@ -36,7 +36,8 @@
   app.currentObservation = null;
 
   app.treeSpeciesCollection = null;
-  app.weatherData = null;
+  app.weatherConditions = null;
+  app.weatherForecast = null;
 
   app.listView = null;
   app.collectView = null;
@@ -184,18 +185,30 @@
   app.grabStaticData = function() {
     jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
       app.treeSpeciesCollection = data;
-      app.grabWeatherData();
+      app.grabWeatherConditions();
     });
   };
 
-  app.grabWeatherData = function() {
+  app.grabWeatherConditions = function() {
     // grab weather data
     jQuery.ajax({
       //http://api.wunderground.com/api/Your_Key/geolookup/q/37.776289,-122.395234.json
-      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/IA/Cedar_Rapids.json",
+      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/MA/Amherst.json",
       dataType : "jsonp",
       success : function(parsedJson) {
-        app.weatherData = parsedJson.current_observation;
+        app.weatherConditions = parsedJson.current_observation;
+        app.grabWeatherForecast();
+      }
+    });
+  };
+
+  app.grabWeatherForecast = function() {
+    // grab weather forecast
+    jQuery.ajax({
+      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/forecast/q/MA/Amherst.json",
+      dataType : "jsonp",
+      success : function(parsedJson) {
+        app.weatherForecast = parsedJson.forecast;
         app.ready();
       }
     });

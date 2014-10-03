@@ -432,23 +432,17 @@
       var view = this;
       console.log('Rendering WeatherView...');
 
-      jQuery('.weather-image').attr('src', app.weatherData.icon_url);
-      jQuery('.temp-f').text(app.weatherData.temp_f);
-      jQuery('.weather-string').text(app.weatherData.weather);
-      jQuery('.wind-mph').text(app.weatherData.wind_mph);
-      jQuery('.wind-dir').text(app.weatherData.wind_dir);
-      jQuery('.precipitation').text(app.weatherData.precip_today_string);
-      jQuery('.humidity').text(app.weatherData.relative_humidity);
-      jQuery('.uv').text(app.weatherData.UV);
-      jQuery('.dewpoint_f').text(app.weatherData.dewpoint_f);
-
-      // temp_f
-      // icon_url
-      // weather
-      // local_time_rfc822
-      // wind_mph wind_dir
-      // precip_today_string
-      // UV
+      jQuery('.weather-image').attr('src', app.weatherConditions.icon_url);
+      jQuery('.temp-f').text(app.weatherConditions.temp_f);
+      jQuery('.weather-string').text(app.weatherConditions.weather);
+      jQuery('.wind-mph').text(app.weatherConditions.wind_mph);
+      jQuery('.wind-dir').text(app.weatherConditions.wind_dir);
+      // looking at the percent precipitation for the 1st period available
+      jQuery('.precipitation-percent').text(app.weatherForecast.txt_forecast.forecastday[0].pop);
+      jQuery('.precipitation-string').text(app.weatherConditions.precip_today_string);
+      jQuery('.humidity').text(app.weatherConditions.relative_humidity);
+      jQuery('.uv').text(app.weatherConditions.UV);
+      jQuery('.dewpoint_f').text(app.weatherConditions.dewpoint_f);
 
       // temp_f for 5 hours starting now
     }
