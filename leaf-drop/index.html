@@ -332,14 +332,30 @@
             <!-- <iframe class="iframe-container" src="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=43.661900,-79.395203"></iframe> -->
             <div id="title-page">
 
+            <div class="row">
+                <img src="" alt="weather icon" class="weather-image col-xs-8 col-xs-offset-2 col-sm-5">
                 <div class="row">
-                    <img src="" alt="weather icon" class="weather-image">
-                    <p class="temp"><span class="temp-f">##</span>&#176;F</p>
-                    <span class="weather-string">{ Weather Text }</span>
-                    <p class="wind-mph"></p><p class="wind-dir"></p>
-                    <p class="precipitation"></p>
-                    <p class="uv"></p>
+                    <p class="temp col-xs-8 col-xs-offset-2 col-sm-5"><span class="temp-f">##</span>&#176;F</p>
+                    <span class="weather-string col-xs-8 col-xs-offset-2 col-sm-5">{ Weather Text }</span>
                 </div>
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2 col-sm-2">
+
+                    <p><span class="wind-mph">##</span> mph <span class="wind-dir">##</span></p>
+                    <!-- <p class="wind-mph"></p><p>mph</p><p class="wind-dir"></p> -->
+                    <p class="precipitation"></p>
+                    <p class="humidity"></p>
+                    <p class="uv"></p>
+                    <p><span class="dewpoint_f">##</span>&#176;F</p>
+                </div>
+                <div class="row">
+                    <div class="hidden-xs col-sm-2"></div>
+                    <div class="hidden-xs col-sm-2"></div>
+                    <div class="hidden-xs col-sm-2"></div>
+                    <div class="hidden-xs col-sm-2"></div>
+                    <div class="hidden-xs col-sm-2"></div>
+                </div>
+            </div>
 
             </div>
         </div>

@@ -438,7 +438,9 @@
       jQuery('.wind-mph').text(app.weatherData.wind_mph);
       jQuery('.wind-dir').text(app.weatherData.wind_dir);
       jQuery('.precipitation').text(app.weatherData.precip_today_string);
+      jQuery('.humidity').text(app.weatherData.relative_humidity);
       jQuery('.uv').text(app.weatherData.UV);
+      jQuery('.dewpoint_f').text(app.weatherData.dewpoint_f);
 
       // temp_f
       // icon_url
