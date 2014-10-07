@@ -444,7 +444,11 @@ input[type=radio].leaf-fallen {
     margin-left: 0;
 }
 
-.weather-image,
+#weather-screen .weather-image {
+    margin: 15% 0 0 5%;
+    color: #333;
+}
+
 .temperature {
     margin-top: 20%;
     color: #333;
@@ -453,6 +457,7 @@ input[type=radio].leaf-fallen {
 .temperature > p {
     font-size: 7em;
     font-weight: 300;
+    padding-left: 5%;
 }
 
 p.weather-string {
@@ -468,7 +473,7 @@ p.weather-string {
     font-size: 1.1em;
     padding: 15px 30px;
     margin-top: 15%;
-    /*margin-left: -5%;*/
+    margin-left: 3%;
 }
 
 .weather img {
