@@ -439,18 +439,13 @@ input[type=radio].leaf-fallen {
     width: 100%;
 }*/
 
-/*#weather-screen .col-sm-2,*/
-#weather-screen .col-sm-4 {
-    margin-left: 0;
-}
-
 #weather-screen .weather-image {
-    margin: 15% 0 0 5%;
+    margin-top: 15%;
     color: #333;
 }
 
 .temperature {
-    margin-top: 20%;
+    margin-top: 20px;
     color: #333;
 }
 
@@ -642,6 +637,16 @@ p.weather-string {
        width: 45%;
     }
 
+    /*#weather-screen .col-sm-2,*/
+    #weather-screen .col-sm-4 {
+        margin-left: 0;
+    }
+
+    #weather-screen .temperature {
+        margin-top: 20%;
+        padding: 0;
+    }
+
 }
 
 /* Small devices landscape(tablets, 768px and up) */
@@ -657,6 +662,16 @@ p.weather-string {
         margin-left: 0;
     }
 
+    /*#weather-screen .col-sm-2,*/
+    #weather-screen .col-sm-4 {
+        margin-left: 0;
+    }
+
+    #weather-screen .temperature {
+        margin-top: 20%;
+        padding: 0;
+    }
+
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -668,6 +683,14 @@ p.weather-string {
 
     .fallen-title {
         margin-top: 10%;
+    }
+
+    #weather-screen .weather-image {
+        margin-left: 5%;
+    }
+
+    #weather-screen .temperature {
+        padding: 0 15px;
     }
 
 }
