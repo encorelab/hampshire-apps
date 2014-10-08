@@ -430,11 +430,38 @@
 
     render: function () {
       var view = this;
+      var weather_string = app.weatherConditions.weather;
       console.log('Rendering WeatherView...');
 
-      jQuery('.weather-image').attr('src', app.weatherConditions.icon_url);
+      if (weather_string === 'Clear') {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/clear.svg')
+      } else if (weather_string.indexOf('Cloud') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/cloud.svg')
+      } else if (weather_string.indexOf('Drizzle' || 'Mist' || 'Haze') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
+      } else if (weather_string.indexOf('Rain') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/rain.svg')
+      } else if (weather_string.indexOf('Snow') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/snow.svg')
+      } else if (weather_string.indexOf('Hail' || 'Ice') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg')
+      } else if (weather_string.indexOf('Fog') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/fog.svg')
+      } else if (weather_string.indexOf('Thunderstorm') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/thunderstorm.svg')
+      } else if (weather_string.indexOf('Freezing') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/freezing.svg')
+      } else if (weather_string.indexOf('Squalls') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/squalls.svg')
+      } else {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/na.svg')
+      };
+
+      // jQuery('.weather-image').attr('src', app.weatherConditions.icon_url);
+
       jQuery('.temp-f').text(app.weatherConditions.temp_f);
       jQuery('.weather-string').text(app.weatherConditions.weather);
+
       jQuery('.wind-mph').text(app.weatherConditions.wind_mph);
       jQuery('.wind-dir').text(app.weatherConditions.wind_dir);
       // looking at the percent precipitation for the 1st period available
@@ -444,7 +471,7 @@
       jQuery('.uv').text(app.weatherConditions.UV);
       jQuery('.dewpoint_f').text(app.weatherConditions.dewpoint_f);
 
-      // temp_f for 5 hours starting now
+      // temp_f for 5 hours starting now??
     }
 
   });
