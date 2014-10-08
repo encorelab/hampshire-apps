@@ -440,35 +440,38 @@ input[type=radio].leaf-fallen {
 }*/
 
 #weather-screen .weather-image {
-    margin-top: 15%;
+    margin-top: 25px;
     color: #333;
 }
 
 .temperature {
-    margin-top: 20px;
+    margin-top: 25px;
     color: #333;
 }
 
 .temperature > p {
-    font-size: 7em;
+    font-size: 5em;
     font-weight: 300;
-    padding-left: 5%;
+}
+
+p.temp-f-container {
+    text-align: center;
 }
 
 p.weather-string {
     font-size: 2.5em;
     font-weight: 300;
-    padding-left: 15%;
+    text-align: center;
 }
 
 .weather {
     background: rgba(51, 51, 51, 0.5);
     color: #fff;
     font-weight: 300;
-    font-size: 1.1em;
+    font-size: 1.3em;
     padding: 15px 30px;
-    margin-top: 15%;
-    margin-left: 3%;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .weather img {
@@ -488,6 +491,242 @@ p.weather-string {
 .weather .row:last-child {
     margin-bottom: 0;
 }
+
+/* Extra small devices portrait (phones, less than 768px) */
+@media all and (max-width: 767px) and (orientation: portrait) {
+
+    .list-styles li:nth-of-type(2n) {
+        margin-left: 0;
+    }
+
+    input[type=text] {
+       width: 25%;
+    }
+
+    .branch-letter-styles {
+        margin-left: 25px;
+    }
+}
+
+/********** MEDIA QUERIES **********/
+/* Extra small devices landscape (phones, less than 768px) */
+@media handheld and (max-width: 767px) and (orientation: landscape) {
+
+    .first-page {
+        max-width: 100%;
+    }
+
+    .first-page img {
+        height: auto;
+        width: 30%;
+    }
+
+    .first-page > h1,
+    .first-page > img {
+        max-width: 45%;
+        display: inline-block;
+    }
+
+    .first-page > button {
+        max-width: 40%;
+        margin: 0 10px 20px 10px;
+        display: inline-block;
+    }
+
+    .leaf-drop {
+        vertical-align: middle;
+    }
+
+
+    .list-styles li:nth-of-type(2n) {
+        margin-left: 0;
+    }
+
+    .weather {
+        padding: 30px 15%;
+        font-size: 1.7em;
+    }
+
+}
+
+/* Small devices portrait (tablets, 768px and up) */
+@media all and (min-width: 768px) and (orientation: portrait) {
+
+/*    .bs-docs-sidebar {
+        margin-top: 20%;
+    }*/
+
+    .first-page {
+        margin-top: 25%;
+    }
+
+    .leaf-page {
+        min-height: 80vh;
+    }
+
+    #leaf-1 input[type=text] {
+        max-width: 50px;
+    }
+
+    ul#tree-species-list {
+        height: 61vh;
+    }
+
+    #progress-bar-container {
+        margin-bottom: 15%;
+    }
+
+    .fallen-title {
+        margin-top: 20%;
+    }
+
+    input[type=number] {
+       width: 45%;
+    }
+
+    /*#weather-screen .col-sm-2,*/
+    #weather-screen .col-sm-4:nth-child(2) {
+        margin-left: 0;
+    }
+
+    #weather-screen .weather-image {
+        margin-top: 15%;
+    }
+
+    #weather-screen .temperature {
+        margin-top: 20%;
+        padding: 0;
+    }
+
+    .temperature > p {
+        font-size: 7em;
+        padding-left: 5%;
+    }
+
+    p.weather-string {
+        font-size: 2.5em;
+    }
+
+    .weather {
+        margin-top: 15%;
+        margin-left: 25%;
+        width: 50%;
+        font-size: 2em;
+        padding: 30px 10%;
+    }
+
+}
+
+/* Small devices landscape(tablets, 768px and up) */
+@media all and (min-width: 768px) and (orientation: landscape) {
+
+    ul#tree-species-list {
+        height: 45vh;
+    }
+
+    .leaf-dimension {
+        max-width: 80%;
+        height: auto;
+        margin-left: 0;
+    }
+
+    /*#weather-screen .col-sm-2,*/
+    #weather-screen .col-sm-4 {
+        margin-left: 0;
+    }
+
+    #weather-screen .weather-image {
+        margin-top: 8%;
+    }
+
+    #weather-screen .temperature {
+        margin-top: 15%;
+        padding: 0;
+    }
+
+    .temperature > p {
+        font-size: 7em;
+        /*padding-left: 5%;*/
+    }
+
+    p.weather-string {
+        font-size: 4em;
+        /*padding-left: 15%;*/
+    }
+
+    .weather {
+        margin-top: 10%;
+        margin-left: 3%;
+        font-size: 1.3em;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media all and (min-width: 992px) {
+
+    ul#tree-species-list {
+        height: 50vh;
+    }
+
+    .fallen-title {
+        margin-top: 10%;
+    }
+
+    #weather-screen .weather-image {
+        margin-left: 5%;
+        margin-top: 15%;
+    }
+
+    #weather-screen .temperature {
+        margin-top: 20%;
+        padding: 0 15px;
+    }
+
+    .weather {
+        margin-top: 15%;
+        font-size: 1.1em;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media all and (min-width: 1200px) {
+
+    .first-page {
+        margin-top: 10%;
+    }
+
+}
+
+
+
+
+
+
+
+
+/*@media all and (orientation:portrait){
+    .row-fluid {
+        display: none;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .orientation-warning {
+        text-align: center;
+        font-size: 2em;
+        margin-top: 25%;
+    }
+}
+
+@media (max-width: 980px) {
+    .row-fluid {
+        padding-top: 0px;
+    }
+}
+
+*/
 
 
 /* chat bubble styles REMOVE ME?*/
@@ -549,188 +788,3 @@ p.weather-string {
 .note-text p {
     margin: 0;
 }
-
-/* Extra small devices portrait (phones, less than 768px) */
-@media all and (max-width: 767px) and (orientation: portrait) {
-
-    .list-styles li:nth-of-type(2n) {
-        margin-left: 0;
-    }
-
-    input[type=text] {
-       width: 25%;
-    }
-
-    .branch-letter-styles {
-        margin-left: 25px;
-    }
-}
-
-/********** MEDIA QUERIES **********/
-/* Extra small devices landscape (phones, less than 768px) */
-@media handheld and (max-width: 767px) and (orientation: landscape) {
-
-    .first-page {
-        max-width: 100%;
-    }
-
-    .first-page img {
-        height: auto;
-        width: 30%;
-    }
-
-    .first-page > h1,
-    .first-page > img {
-        max-width: 45%;
-        display: inline-block;
-    }
-
-    .first-page > button {
-        max-width: 40%;
-        margin: 0 10px 20px 10px;
-        display: inline-block;
-    }
-
-    .leaf-drop {
-        vertical-align: middle;
-    }
-
-
-    .list-styles li:nth-of-type(2n) {
-        margin-left: 0;
-    }
-
-}
-
-/* Small devices portrait (tablets, 768px and up) */
-@media all and (min-width: 768px) and (orientation: portrait) {
-
-/*    .bs-docs-sidebar {
-        margin-top: 20%;
-    }*/
-
-    .first-page {
-        margin-top: 25%;
-    }
-
-    .leaf-page {
-        min-height: 80vh;
-    }
-
-    #leaf-1 input[type=text] {
-        max-width: 50px;
-    }
-
-    ul#tree-species-list {
-        height: 61vh;
-    }
-
-    #progress-bar-container {
-        margin-bottom: 15%;
-    }
-
-    .fallen-title {
-        margin-top: 20%;
-    }
-
-    input[type=number] {
-       width: 45%;
-    }
-
-    /*#weather-screen .col-sm-2,*/
-    #weather-screen .col-sm-4 {
-        margin-left: 0;
-    }
-
-    #weather-screen .temperature {
-        margin-top: 20%;
-        padding: 0;
-    }
-
-}
-
-/* Small devices landscape(tablets, 768px and up) */
-@media all and (min-width: 768px) and (orientation: landscape) {
-
-    ul#tree-species-list {
-        height: 45vh;
-    }
-
-    .leaf-dimension {
-        max-width: 80%;
-        height: auto;
-        margin-left: 0;
-    }
-
-    /*#weather-screen .col-sm-2,*/
-    #weather-screen .col-sm-4 {
-        margin-left: 0;
-    }
-
-    #weather-screen .temperature {
-        margin-top: 20%;
-        padding: 0;
-    }
-
-}
-
-/* Medium devices (desktops, 992px and up) */
-@media all and (min-width: 992px) {
-
-    ul#tree-species-list {
-        height: 50vh;
-    }
-
-    .fallen-title {
-        margin-top: 10%;
-    }
-
-    #weather-screen .weather-image {
-        margin-left: 5%;
-    }
-
-    #weather-screen .temperature {
-        padding: 0 15px;
-    }
-
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media all and (min-width: 1200px) {
-
-    .first-page {
-        margin-top: 10%;
-    }
-
-}
-
-
-
-
-
-
-
-
-/*@media all and (orientation:portrait){
-    .row-fluid {
-        display: none;
-    }
-
-    .navbar {
-        display: none;
-    }
-
-    .orientation-warning {
-        text-align: center;
-        font-size: 2em;
-        margin-top: 25%;
-    }
-}
-
-@media (max-width: 980px) {
-    .row-fluid {
-        padding-top: 0px;
-    }
-}
-
-*/
