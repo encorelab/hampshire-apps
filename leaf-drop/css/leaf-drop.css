@@ -636,11 +636,11 @@ p.weather-string {
     }
 
     #weather-screen .weather-image {
-        margin-top: 8%;
+        margin-top: 18%;
     }
 
     #weather-screen .temperature {
-        margin-top: 15%;
+        margin-top: 19%;
         padding: 0;
     }
 
@@ -655,7 +655,7 @@ p.weather-string {
     }
 
     .weather {
-        margin-top: 10%;
+        margin-top: 14%;
         margin-left: 3%;
         font-size: 1.3em;
     }
