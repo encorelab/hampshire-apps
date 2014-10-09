@@ -421,6 +421,7 @@
     initialize: function() {
       var view = this;
       console.log('Initializing WeatherView...', view.el);
+
       view.render();
     },
 
@@ -435,19 +436,27 @@
 
       if (weather_string === 'Clear') {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/clear.svg')
+      } else if (weather_string === 'Overcast') {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/overcast.svg')
       } else if (weather_string.indexOf('Cloud') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/cloud.svg')
       } else if (weather_string.indexOf('Thunderstorm') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/thunderstorm.svg')
       } else if (weather_string.indexOf('Freezing') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/freezing.svg')
-      } else if (weather_string.indexOf('Drizzle' || 'Mist' || 'Haze') > -1) {
+      } else if (weather_string.indexOf('Drizzle') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
+      } else if (weather_string.indexOf('Mist') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
+      } else if (weather_string.indexOf('Haze') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
       } else if (weather_string.indexOf('Rain') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/rain.svg')
       } else if (weather_string.indexOf('Snow') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/snow.svg')
-      } else if (weather_string.indexOf('Hail' || 'Ice') > -1) {
+      } else if (weather_string.indexOf('Hail') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg')
+      } else if (weather_string.indexOf('Ice') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg')
       } else if (weather_string.indexOf('Fog') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/fog.svg')

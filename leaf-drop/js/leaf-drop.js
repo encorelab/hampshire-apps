@@ -134,7 +134,7 @@
             logoutUser();
           }
         } else {
-          console.log("Either run is wrong or run has not users. Wrong URL or Cookie? Show login");
+          console.log("Either run is wrong or run has no users. Wrong URL or Cookie? Show login");
           // fill modal dialog with user login buttons
           logoutUser();
         }
