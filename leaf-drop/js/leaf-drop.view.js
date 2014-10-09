@@ -437,6 +437,10 @@
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/clear.svg')
       } else if (weather_string.indexOf('Cloud') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/cloud.svg')
+      } else if (weather_string.indexOf('Thunderstorm') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/thunderstorm.svg')
+      } else if (weather_string.indexOf('Freezing') > -1) {
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/freezing.svg')
       } else if (weather_string.indexOf('Drizzle' || 'Mist' || 'Haze') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
       } else if (weather_string.indexOf('Rain') > -1) {
@@ -447,10 +451,6 @@
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg')
       } else if (weather_string.indexOf('Fog') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/fog.svg')
-      } else if (weather_string.indexOf('Thunderstorm') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/thunderstorm.svg')
-      } else if (weather_string.indexOf('Freezing') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/freezing.svg')
       } else if (weather_string.indexOf('Squalls') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/squalls.svg')
       } else {

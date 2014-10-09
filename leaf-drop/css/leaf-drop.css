@@ -674,16 +674,17 @@ p.weather-string {
 
     #weather-screen .weather-image {
         margin-left: 5%;
-        margin-top: 18%;
+        margin-top: 13%;
+        max-height: 350px;
     }
 
     #weather-screen .temperature {
-        margin-top: 20%;
+        margin-top: 17%;
         padding: 0 15px;
     }
 
     .weather {
-        margin-top: 15%;
+        margin-top: 12%;
         font-size: 1.1em;
     }
 }
