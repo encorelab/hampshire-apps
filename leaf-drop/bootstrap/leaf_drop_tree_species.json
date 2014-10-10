@@ -1,0 +1,87 @@
+[
+    {
+        "common_name": "Striped maple",
+        "latin_name": "Acer pensylvanicum",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Acer_pensylvanicum"
+    },
+    {
+        "common_name": "Black maple",
+        "latin_name": "Acer nigrum",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Acer_nigrum"
+    },
+    {
+        "common_name": "Silver maple",
+        "latin_name": "Acer saccharinum",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Acer_saccharinum"
+    },
+    {
+        "common_name": "Sugar maple",
+        "latin_name": "Acer saccharum",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Acer_saccharum"
+    },
+    {
+        "common_name": "Sweet birch",
+        "latin_name": "Betula lenta",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Betula_lenta"
+    },
+    {
+        "common_name": "Black birch",
+        "latin_name": "Betula nigra",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Betula_nigra"
+    },
+    {
+        "common_name": "White ash",
+        "latin_name": "Fraxinus americana",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Fraxinus_americana"
+    },
+    {
+        "common_name": "Red ash",
+        "latin_name": "Fraxinus pennsylvanica",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Fraxinus_pennsylvanica"
+    },
+    {
+        "common_name": "American sycamore",
+        "latin_name": "Platanus occidentalis",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Platanus_occidentalis"
+    },
+    {
+        "common_name": "American aspen",
+        "latin_name": "Populus grandidentata",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Populus_grandidentata"
+    },
+    {
+        "common_name": "Quaking aspen",
+        "latin_name": "Populus tremuloides",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Populus_tremuloides"
+    },
+    {
+        "common_name": "White oak",
+        "latin_name": "Quercus alba",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Quercus_alba"
+    },
+    {
+        "common_name": "Swamp white oak",
+        "latin_name": "Quercus bicolor",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Quercus_bicolor"
+    },
+    {
+        "common_name": "Bear oak",
+        "latin_name": "Quercus ilicifolia",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Quercus_ilicifolia"
+    },
+    {
+        "common_name": "Chestnut oak",
+        "latin_name": "Quercus prinus",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Quercus_prinus"
+    },
+    {
+        "common_name": "Northern red oak",
+        "latin_name": "Quercus rubra",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Quercus_rubra"
+    },
+    {
+        "common_name": "American elm",
+        "latin_name": "Ulmus americana",
+        "wikipedia_url": "http://en.m.wikipedia.org/wiki/Ulmus_americana"
+    }
+]
