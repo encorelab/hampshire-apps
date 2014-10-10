@@ -38,6 +38,7 @@
   app.treeSpeciesCollection = null;
   app.weatherConditions = null;
   app.weatherForecast = null;
+  app.mapData = null;
 
   app.listView = null;
   app.collectView = null;
@@ -173,7 +174,7 @@
     .done(function () {
       console.log('model awake - now calling ready');
       //app.ready();
-      app.grabStaticData();
+      app.grabMapData();
     });
 
     /* MISC */
@@ -182,11 +183,43 @@
     });
   };
 
-  app.grabStaticData = function() {
-    jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
-      app.treeSpeciesCollection = data;
-      app.grabWeatherConditions();
+  app.grabMapData = function() {
+    // grab data from google maps API
+    var map;
+    var center;
+    var bounds;
+    var geocoder;
+
+    function initialize() {
+      var mapOptions = {
+          center: new google.maps.LatLng(46.490002, -81.010002),
+          zoom: 8
+          // mapTypeId: google.maps.mapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+      // geocoder to convert street addresses to LatLng
+      geocoder = new google.maps.Geocoder();
+      bounds = new google.maps.LatLngBounds();
+    }
+    function addMarkerToMap(location){
+      var marker = new google.maps.Marker({map: map, position: location});
+      bounds.extend(location);
+      map.fitBounds(bounds);
+    }
+    // event listener to load the map after the page has loaded - necessary?
+    // google.maps.event.addDomListener(window, 'load', initialize);
+    initialize();
+
+    // so that the center of the map stays in the middle upon screen resize - keep??
+    google.maps.event.addDomListener(map, 'idle', function(){
+      center = map.getCenter();
     });
+    $(window).resize(function(){
+      map.setCenter(center);
+    });
+
+    app.grabWeatherConditions();
   };
 
   app.grabWeatherConditions = function() {
@@ -209,8 +242,15 @@
       dataType : "jsonp",
       success : function(parsedJson) {
         app.weatherForecast = parsedJson.forecast;
-        app.ready();
+        app.grabStaticData();
       }
+    });
+  };
+
+  app.grabStaticData = function() {
+    jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
+      app.treeSpeciesCollection = data;
+      app.ready();
     });
   };
 

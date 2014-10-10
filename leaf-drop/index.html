@@ -20,6 +20,8 @@
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN_MbOFGBx4i5G8dclAAphSWUUruTTTOg&sensor=false"></script>
+
     <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
     <script type="text/javascript" src="../node_modules/backbone/backbone.js"></script>
 
@@ -376,13 +378,17 @@
     <div id="map-screen" class="container">
         <div class="row-fluid">
             <div id="title-page">
-                <h2 class="page-title"></h2>
+                <div id="map-canvas"></div>
+
+<!--                 <h2 class="page-title"></h2>
                 <div class="first-page text-center center-block row">
                     <img src="img/_LeafDrop_Logo.png" class="img-responsive" alt="Leaf Drop logo">
                     <h1 class="leaf-drop">You Are Here</h1>
                     <button id="new-observation" class="btn btn-default btn-lg btn-block">Start New Observation</button>
                     <button class="btn btn-default btn-lg btn-block">View Past Observations</button>
-                </div>
+                </div> -->
+
+
             </div>
         </div>
     </div>
