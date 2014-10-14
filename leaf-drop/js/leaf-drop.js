@@ -46,6 +46,7 @@
   app.reviewDataView = null;
   app.weatherView = null;
   app.mapView = null;
+  app.map = null;
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -236,7 +237,7 @@
         zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
-      map = new google.maps.Map(document.getElementById('map-canvas'),
+      app.map = map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
 
       // Try HTML5 geolocation
@@ -426,6 +427,9 @@
           jQuery('#weather-screen').removeClass('hidden');
         } else if (jQuery(this).attr('id') === 'map-nav-btn') {
           jQuery('#map-screen').removeClass('hidden');
+          // Fix for resizing problem of map
+          // http://stackoverflow.com/questions/9483396/google-maps-not-displaying-in-full-size-as-the-container
+          google.maps.event.trigger(app.map, 'resize');
         } else {
           console.log('ERROR: unknown nav button');
         }
