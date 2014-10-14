@@ -190,11 +190,14 @@
     var bounds;
     var geocoder;
 
-    function initialize() {
+    // var initialLocation;
+    // var amherst = new google.maps.LatLong(42.366667000000000000, -72.516666999999980000);
+
+    /*function initialize() {
       var mapOptions = {
           center: new google.maps.LatLng(46.490002, -81.010002),
-          zoom: 8
-          // mapTypeId: google.maps.mapTypeId.ROADMAP
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
@@ -202,22 +205,89 @@
       geocoder = new google.maps.Geocoder();
       bounds = new google.maps.LatLngBounds();
     }
-    function addMarkerToMap(location){
+    function addMarkerToMap(location, address){
       var marker = new google.maps.Marker({map: map, position: location});
       bounds.extend(location);
       map.fitBounds(bounds);
+      var infoWindow = new google.maps.InfoWindow({content: address});
+      infoWindow.open(map, marker);
     }
     // event listener to load the map after the page has loaded - necessary?
     // google.maps.event.addDomListener(window, 'load', initialize);
+    initialize();
+
+    jQuery('address').each(function(){
+      var $address = $(this);
+      geocoder.geocode({address: $address.text()}, function(results, status){
+        if(status == google.maps.GeocoderStatus.OK) addMarkerToMap(results[0].geometry.location, $address.text());
+      });
+    });
+
+    // so that the center of the map stays in the middle upon screen resize - keep??
+    google.maps.event.addDomListener(map, 'idle', function(){
+      center = map.getCenter();
+    });
+    jQuery(window).resize(function(){
+      map.setCenter(center);
+    });*/
+
+    function initialize() {
+      var mapOptions = {
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+      // Try HTML5 geolocation
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = new google.maps.LatLng(position.coords.latitude,
+                                           position.coords.longitude);
+
+          var infowindow = new google.maps.InfoWindow({
+            map: map,
+            position: pos,
+            content: 'Location found using HTML5.'
+          });
+
+          map.setCenter(pos);
+        }, function() {
+          handleNoGeolocation(true);
+        });
+      } else {
+        // Browser doesn't support Geolocation
+        handleNoGeolocation(false);
+      }
+    }
+
+    function handleNoGeolocation(errorFlag) {
+      if (errorFlag) {
+        var content = 'Error: The Geolocation service failed.';
+      } else {
+        var content = 'Error: Your browser doesn\'t support geolocation.';
+      }
+
+      var options = {
+        map: map,
+        position: new google.maps.LatLng(42.3670, -72.5170),
+        content: content
+      };
+
+      var infowindow = new google.maps.InfoWindow(options);
+      map.setCenter(options.position);
+    }
+
     initialize();
 
     // so that the center of the map stays in the middle upon screen resize - keep??
     google.maps.event.addDomListener(map, 'idle', function(){
       center = map.getCenter();
     });
-    $(window).resize(function(){
+    jQuery(window).resize(function(){
       map.setCenter(center);
     });
+
 
     app.grabWeatherConditions();
   };
