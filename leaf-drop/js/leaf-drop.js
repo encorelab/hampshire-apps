@@ -188,6 +188,7 @@
     // grab data from google maps API
     var map;
     var center;
+    var elevation;
 
     // var initialLocation;
     // var amherst = new google.maps.LatLong(42.366667000000000000, -72.516666999999980000);
@@ -206,11 +207,13 @@
           var pos = new google.maps.LatLng(position.coords.latitude,
                                            position.coords.longitude);
 
-          // var infowindow = new google.maps.InfoWindow({
-          //   map: map,
-          //   position: pos,
-          //   content: 'You are here.'
-          // });
+          var elevationInfoWindow = new google.maps.InfoWindow({
+            map: map,
+            position: pos,
+            content: position.coords.altitude
+          });
+
+
 
           var marker = new google.maps.Marker({
             map: map,
@@ -220,9 +223,6 @@
           });
 
           map.setCenter(pos);
-
-          var elevation = position.coords.altitude;
-          console.log(elevation);
 
         }, function() {
           handleNoGeolocation(true);
