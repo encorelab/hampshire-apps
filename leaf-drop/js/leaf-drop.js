@@ -47,6 +47,7 @@
   app.weatherView = null;
   app.mapView = null;
   app.map = null;
+  app.mapPosition = null;
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -188,14 +189,11 @@
     // grab data from google maps API
     var map;
     var center;
-    var elevation;
-
-    // var initialLocation;
-    // var amherst = new google.maps.LatLong(42.366667000000000000, -72.516666999999980000);
 
     function initializeMap() {
       var mapOptions = {
         zoom: 16,
+        scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       app.map = map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -207,13 +205,11 @@
           var pos = new google.maps.LatLng(position.coords.latitude,
                                            position.coords.longitude);
 
-          var elevationInfoWindow = new google.maps.InfoWindow({
-            map: map,
-            position: pos,
-            content: position.coords.altitude
-          });
+          map.setCenter(pos);
 
+          app.mapPosition = position.coords;
 
+          var elevation = new google.maps.ElevationService(pos);
 
           var marker = new google.maps.Marker({
             map: map,
@@ -222,7 +218,12 @@
             title: 'You are here.'
           });
 
-          map.setCenter(pos);
+          var panoramaOptions = {
+            position: pos
+          };
+
+          var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+          map.setStreetView(panorama);
 
         }, function() {
           handleNoGeolocation(true);
@@ -242,6 +243,7 @@
 
       var options = {
         map: map,
+        // if geolocation is not available the default map that shows up is of Amherst, MA
         position: new google.maps.LatLng(42.3670, -72.5170),
         content: content
       };
@@ -250,7 +252,8 @@
       map.setCenter(options.position);
     }
 
-    initializeMap();
+    // initializeMap();
+    google.maps.event.addDomListener(window, 'load', initializeMap());
 
     // so that the center of the map stays in the middle upon screen resize - keep??
     google.maps.event.addDomListener(map, 'idle', function(){

@@ -495,23 +495,63 @@ p.weather-string {
 /********** MAP SCREEN **********/
 /*suggested in https://developers.google.com/maps/documentation/javascript/tutorial; height: 100%; wasn't working but using viewport height seems to*/
 html,
-body,
-#map-canvas {
-    height: 100vh;
+body {
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
 #map-screen {
-    margin: 0;
     width: 100%;
+    margin: 0;
     padding: 0;
 }
 
 #map-canvas {
+    height: 100vh;
     width: 100%;
+    margin-bottom: -50px;
 }
 
+#pano {
+    height: 300px;
+    width: 100%;
+    background: #ccc;
+    z-index: 1;
+}
+
+.map-sidebar {
+    position: absolute;
+    top: 13%;
+    right: 50px;
+    z-index: 1;
+}
+
+.map-sidebar .row {
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 15px 25px;
+}
+
+.map-sidebar .row:first-child {
+    padding: 15px 0 0 0;
+}
+
+.map-sidebar h3 {
+    margin-top: 0;
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+.map-sidebar p {
+    font-weight: 300;
+    font-size: 1.3em;
+}
+
+.streetview {
+    padding-left: 25px;
+}
 
 
 /* Extra small devices portrait (phones, less than 768px) */

@@ -350,7 +350,6 @@
                         <div class="row">
                             <img src="img/icons/icon_rain.png" class="img-responsive icon" alt=""><p><span class="precipitation-percent">##</span> pop</p>
                         </div>
-                        <!-- <p class="precipitation-string"></p> -->
                         <div class="row">
                             <img src="img/icons/icon_humidity.png" class="img-responsive icon" alt=""><p><span class="humidity">##</span> humidity</p>
                         </div>
@@ -378,7 +377,26 @@
     <div id="map-screen" class="container">
         <div class="row-fluid">
             <div id="title-page">
+
                 <div id="map-canvas"></div>
+
+                <div class="row">
+                    <div class="map-sidebar col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-8">
+                        <div class="row">
+                            <h3 class="streetview">Street View:</h3>
+                            <div id="pano"></div>
+                        </div>
+                        <div class="row">
+                            <h3>GPS Position:</h3>
+                            <p><span class="latitude">##</span>&nbsp;&nbsp;&nbsp;<span class="longitude">##</span></p>
+                        </div>
+                        <div class="row">
+                            <h3>Elevation:</h3>
+                            <p><span class="elevation">##</span> ft</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

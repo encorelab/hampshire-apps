@@ -494,6 +494,8 @@
     initialize: function() {
       var view = this;
       console.log('Initializing MapView...', view.el);
+
+      view.render();
     },
 
     events: {
@@ -502,6 +504,10 @@
 
     render: function () {
       console.log('Rendering MapView...');
+
+      jQuery('.latitude').text(app.mapPosition.latitude);
+      jQuery('.longitude').text(app.mapPosition.longitude);
+      jQuery('.elevation').text(app.mapPosition.elevation);
 
     }
   });
