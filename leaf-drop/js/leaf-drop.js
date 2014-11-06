@@ -209,8 +209,6 @@
 
           app.mapPosition = position.coords;
 
-          var elevation = new google.maps.ElevationService(pos);
-
           var marker = new google.maps.Marker({
             map: map,
             position: pos,
@@ -224,6 +222,11 @@
 
           var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
           map.setStreetView(panorama);
+
+          var elevation = new google.maps.ElevationService();
+          console.log(elevation.getElevationForLocations(pos));
+          // map.ElevationResults(elevation);
+          // console.log(google.maps.ElevationResult);
 
         }, function() {
           handleNoGeolocation(true);

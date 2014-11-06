@@ -493,7 +493,7 @@ p.weather-string {
 }
 
 /********** MAP SCREEN **********/
-/*suggested in https://developers.google.com/maps/documentation/javascript/tutorial; height: 100%; wasn't working but using viewport height seems to*/
+/*html & body properties suggested in https://developers.google.com/maps/documentation/javascript/tutorial;*/
 html,
 body {
     height: 100%;
