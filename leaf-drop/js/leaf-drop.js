@@ -223,6 +223,7 @@
           var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
           map.setStreetView(panorama);
 
+          // ** Meagan see https://snippetlib.com/google_maps/elevation_service
           var elevation = new google.maps.ElevationService();
           console.log(elevation.getElevationForLocations(pos));
           // map.ElevationResults(elevation);
