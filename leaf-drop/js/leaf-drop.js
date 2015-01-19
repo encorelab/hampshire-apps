@@ -36,9 +36,15 @@
   app.currentObservation = null;
 
   app.treeSpeciesCollection = null;
+
   app.weatherConditions = null;
   app.weatherForecast = null;
+
   app.mapData = null;
+  app.map = null;
+  app.mapPosition = null;
+  app.mapMarker = null;
+  app.latLng = null;
 
   app.listView = null;
   app.collectView = null;
@@ -46,8 +52,7 @@
   app.reviewDataView = null;
   app.weatherView = null;
   app.mapView = null;
-  app.map = null;
-  app.mapPosition = null;
+
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -209,7 +214,7 @@
 
           app.mapPosition = position.coords;
 
-          var marker = new google.maps.Marker({
+          app.mapMarker = new google.maps.Marker({
             map: map,
             position: pos,
             animation: google.maps.Animation.DROP,
@@ -228,6 +233,8 @@
           console.log(elevation.getElevationForLocations(pos));
           // map.ElevationResults(elevation);
           // console.log(google.maps.ElevationResult);
+
+
 
         }, function() {
           handleNoGeolocation(true);
@@ -408,6 +415,7 @@
           // Fix for resizing problem of map
           // http://stackoverflow.com/questions/9483396/google-maps-not-displaying-in-full-size-as-the-container
           google.maps.event.trigger(app.map, 'resize');
+          app.mapView.render();                               // this is probably how we should do all the nav buttons
         } else {
           console.log('ERROR: unknown nav button');
         }

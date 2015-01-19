@@ -494,8 +494,6 @@
     initialize: function() {
       var view = this;
       console.log('Initializing MapView...', view.el);
-
-      view.render();
     },
 
     events: {
@@ -509,6 +507,11 @@
       jQuery('.longitude').text(app.mapPosition.longitude);
       jQuery('.elevation').text(app.mapPosition.elevation);
 
+      // we need to recenter the map here - for reasons unknown
+      var latLng = app.mapMarker.getPosition(); // returns LatLng object
+      app.map.setCenter(latLng); // setCenter takes a LatLng object
+
+      // streetview needs a redraw - it's there, but not drawn or something
     }
   });
 
