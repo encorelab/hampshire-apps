@@ -259,8 +259,8 @@
   app.grabWeatherConditions = function() {
     // grab weather data
     jQuery.ajax({
-      //http://api.wunderground.com/api/Your_Key/geolookup/q/37.776289,-122.395234.json
-      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/MA/Amherst.json",
+      //url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/MA/Amherst.json",
+      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
       dataType : "jsonp",
       success : function(parsedJson) {
         app.weatherConditions = parsedJson.current_observation;
@@ -272,7 +272,7 @@
   app.grabWeatherForecast = function() {
     // grab weather forecast
     jQuery.ajax({
-      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/forecast/q/MA/Amherst.json",
+      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
       dataType : "jsonp",
       success : function(parsedJson) {
         app.weatherForecast = parsedJson.forecast;
