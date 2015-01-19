@@ -272,7 +272,7 @@
   app.grabWeatherForecast = function() {
     // grab weather forecast
     jQuery.ajax({
-      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
+      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/forecast/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
       dataType : "jsonp",
       success : function(parsedJson) {
         app.weatherForecast = parsedJson.forecast;
@@ -388,6 +388,7 @@
           jQuery('#collect-screen').removeClass('hidden');
         } else if (jQuery(this).attr('id') === 'weather-nav-btn') {
           jQuery('#weather-screen').removeClass('hidden');
+          app.weatherView.render();
         } else if (jQuery(this).attr('id') === 'map-nav-btn') {
           jQuery('#map-screen').removeClass('hidden');
           // Fix for resizing problem of map

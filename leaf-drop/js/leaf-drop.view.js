@@ -421,8 +421,6 @@
     initialize: function() {
       var view = this;
       console.log('Initializing WeatherView...', view.el);
-
-      view.render();
     },
 
     events: {
@@ -474,7 +472,7 @@
       jQuery('.wind-mph').text(app.weatherConditions.wind_mph);
       jQuery('.wind-dir').text(app.weatherConditions.wind_dir);
       // looking at the percent precipitation for the 1st period available
-      //jQuery('.precipitation-percent').text(app.weatherForecast.txt_forecast.forecastday[0].pop);
+      jQuery('.precipitation-percent').text(app.weatherForecast.txt_forecast.forecastday[0].pop);
       jQuery('.precipitation-string').text(app.weatherConditions.precip_today_string);
       jQuery('.humidity').text(app.weatherConditions.relative_humidity);
       jQuery('.uv').text(app.weatherConditions.UV);
