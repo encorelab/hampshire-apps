@@ -192,7 +192,6 @@
 
   app.grabMapData = function() {
     // grab data from google maps API
-    var map;
     var center;
 
     function initializeMap() {
@@ -201,40 +200,28 @@
         scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
-      app.map = map = new google.maps.Map(document.getElementById('map-canvas'),
-          mapOptions);
+      var mapElement = jQuery('#map-canvas')[0];
+
+      app.map = new google.maps.Map(mapElement, mapOptions);
 
       // Try HTML5 geolocation
-      if(navigator.geolocation) {
+      if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           var pos = new google.maps.LatLng(position.coords.latitude,
                                            position.coords.longitude);
 
-          map.setCenter(pos);
-
           app.mapPosition = position.coords;
 
           app.mapMarker = new google.maps.Marker({
-            map: map,
+            map: app.map,
             position: pos,
             animation: google.maps.Animation.DROP,
             title: 'You are here.'
           });
 
-          var panoramaOptions = {
-            position: pos
-          };
-
-          var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
-          map.setStreetView(panorama);
-
           // ** Meagan see https://snippetlib.com/google_maps/elevation_service
           var elevation = new google.maps.ElevationService();
-          console.log(elevation.getElevationForLocations(pos));
-          // map.ElevationResults(elevation);
-          // console.log(google.maps.ElevationResult);
-
-
+          //console.log(elevation.getElevationForLocations(pos));
 
         }, function() {
           handleNoGeolocation(true);
@@ -253,25 +240,25 @@
       }
 
       var options = {
-        map: map,
+        map: app.map,
         // if geolocation is not available the default map that shows up is of Amherst, MA
         position: new google.maps.LatLng(42.3670, -72.5170),
-        content: content
+        content: content        // how is this var used? It never shows up, so the user doesn't know what's going on... TODO
       };
 
       var infowindow = new google.maps.InfoWindow(options);
-      map.setCenter(options.position);
+      app.map.setCenter(options.position);
     }
 
     // initializeMap();
     google.maps.event.addDomListener(window, 'load', initializeMap());
 
-    // so that the center of the map stays in the middle upon screen resize - keep??
-    google.maps.event.addDomListener(map, 'idle', function(){
-      center = map.getCenter();
+    // so that the center of the map stays in the middle upon screen resize
+    google.maps.event.addDomListener(app.map, 'idle', function(){
+      center = app.map.getCenter();
     });
     jQuery(window).resize(function(){
-      map.setCenter(center);
+      app.map.setCenter(center);
     });
 
 

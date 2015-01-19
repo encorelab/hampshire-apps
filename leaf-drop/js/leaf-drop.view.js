@@ -503,15 +503,29 @@
     render: function () {
       console.log('Rendering MapView...');
 
-      jQuery('.latitude').text(app.mapPosition.latitude);
-      jQuery('.longitude').text(app.mapPosition.longitude);
-      jQuery('.elevation').text(app.mapPosition.elevation);
+      // if we've got a map, we can render it, otherwise...
+      if (app.map && app.mapPosition) {
+        jQuery('.latitude').text(app.mapPosition.latitude);
+        jQuery('.longitude').text(app.mapPosition.longitude);
+        jQuery('.elevation').text(app.mapPosition.elevation);             // doesn't do anything, afa I can tell TODO
 
-      // we need to recenter the map here - for reasons unknown
-      var latLng = app.mapMarker.getPosition(); // returns LatLng object
-      app.map.setCenter(latLng); // setCenter takes a LatLng object
+        // re-center the map
+        var latLng = app.mapMarker.getPosition(); // returns LatLng object
+        app.map.setCenter(latLng);
 
-      // streetview needs a redraw - it's there, but not drawn or something
+        // draw the streetview stuff
+        var panoramaOptions = {
+          position: latLng
+        };
+        var panoramaElement = jQuery('#pano')[0]
+        var panorama = new google.maps.StreetViewPanorama(panoramaElement, panoramaOptions);
+        app.map.setStreetView(panorama);
+      }
+      // will we need to re-handle errors here? Doesn't feel right, points to an issue with how the code has been divided
+      else {
+        console.log('Map data probably hasnt loaded yet - but think about proper error handling here');
+      }
+
     }
   });
 
