@@ -507,14 +507,15 @@
 
     },
 
-    render: function () {
+    render: function() {
       console.log('Rendering MapView...');
 
       // if we've got a map, we can render it, otherwise...
       if (app.map && app.mapPosition) {
-        jQuery('.latitude').text(app.mapPosition.latitude);
-        jQuery('.longitude').text(app.mapPosition.longitude);
-        jQuery('.elevation').text(app.mapPosition.elevation);             // this variable doesn't exist. Are you referring to elevation set in 223 of leaf-drop.js?
+        // now with rounding cause the 8th decimal place doesn't mean all that much to a human
+        jQuery('.latitude').text(app.roundToTwo(app.mapPosition.latitude));
+        jQuery('.longitude').text(app.roundToTwo(app.mapPosition.longitude));
+        jQuery('.elevation').text(app.roundToTwo(app.mapElevation));
 
         // re-center the map
         var latLng = app.mapMarker.getPosition(); // returns LatLng object

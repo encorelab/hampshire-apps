@@ -44,7 +44,7 @@
   app.map = null;
   app.mapPosition = null;
   app.mapMarker = null;
-  app.latLng = null;
+  app.mapElevation = null;
 
   app.listView = null;
   app.collectView = null;
@@ -218,11 +218,30 @@
             title: 'You are here.'
           });
 
-          // ** Meagan see https://snippetlib.com/google_maps/elevation_service
-          var elevation = new google.maps.ElevationService();
-          console.log(elevation.getElevationForLocations(pos));
+          // this may not be the right way to do this. Feels very clunky
+          var elevator = new google.maps.ElevationService();
+          // this array nonsense because this service is set up to take multiple values
+          var locations = [];
+          locations.push(pos);
+          var positionalRequest = {
+            'locations': locations
+          }
+          // we now have an array of 1 location (lat/lng google object)
 
-          app.grabWeatherConditions();
+          elevator.getElevationForLocations(positionalRequest, function(results, status) {
+            // success
+            if (status == google.maps.ElevationStatus.OK) {
+              if (results[0]) {
+                app.mapElevation = results[0].elevation;
+                app.grabWeatherForecast();
+              }
+            }
+            // failure
+            else {
+              console.log("Elevator crashed into the ground");
+            }
+          });
+
 
         }, function() {
           // couldn't get geolocation
@@ -361,6 +380,10 @@
     return seconds;
     // date = new Date( parseInt(timestamp, 16) * 1000 );
     // return date;
+  };
+
+  app.roundToTwo = function(num) {
+    return Math.round(num * 100) / 100
   };
 
   /**
