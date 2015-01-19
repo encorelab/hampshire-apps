@@ -192,7 +192,7 @@
 
   app.grabMapData = function() {
     // grab data from google maps API
-    var center;
+    // this assumes the user is not moving around - this is a problem
 
     function initializeMap() {
       var mapOptions = {
@@ -207,8 +207,7 @@
       // Try HTML5 geolocation
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = new google.maps.LatLng(position.coords.latitude,
-                                           position.coords.longitude);
+          var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
           app.mapPosition = position.coords;
 
@@ -221,20 +220,23 @@
 
           // ** Meagan see https://snippetlib.com/google_maps/elevation_service
           var elevation = new google.maps.ElevationService();
-          //console.log(elevation.getElevationForLocations(pos));
+          console.log(elevation.getElevationForLocations(pos));
+
+          app.grabWeatherConditions();
 
         }, function() {
+          // couldn't get geolocation
           handleNoGeolocation(true);
         });
       } else {
-        // Browser doesn't support Geolocation
+        // browser doesn't support geolocation
         handleNoGeolocation(false);
       }
     }
 
     function handleNoGeolocation(errorFlag) {
       if (errorFlag) {
-        var content = 'Error: The Geolocation service failed.';
+        var content = 'Error: The geolocation service failed.';
       } else {
         var content = 'Error: Your browser doesn\'t support geolocation.';
       }
@@ -250,19 +252,8 @@
       app.map.setCenter(options.position);
     }
 
-    // initializeMap();
+
     google.maps.event.addDomListener(window, 'load', initializeMap());
-
-    // so that the center of the map stays in the middle upon screen resize
-    google.maps.event.addDomListener(app.map, 'idle', function(){
-      center = app.map.getCenter();
-    });
-    jQuery(window).resize(function(){
-      app.map.setCenter(center);
-    });
-
-
-    app.grabWeatherConditions();
   };
 
   app.grabWeatherConditions = function() {

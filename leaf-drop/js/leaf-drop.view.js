@@ -431,36 +431,36 @@
 
     render: function () {
       var view = this;
-      var weather_string = app.weatherConditions.weather;
+      var weatherString = app.weatherConditions.weather;
       console.log('Rendering WeatherView...');
 
-      if (weather_string === 'Clear') {
+      if (weatherString === 'Clear') {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/clear.svg')
-      } else if (weather_string === 'Overcast') {
+      } else if (weatherString === 'Overcast') {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/overcast.svg')
-      } else if (weather_string.indexOf('Cloud') > -1) {
+      } else if (weatherString.indexOf('Cloud') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/cloud.svg')
-      } else if (weather_string.indexOf('Thunderstorm') > -1) {
+      } else if (weatherString.indexOf('Thunderstorm') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/thunderstorm.svg')
-      } else if (weather_string.indexOf('Freezing') > -1) {
+      } else if (weatherString.indexOf('Freezing') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/freezing.svg')
-      } else if (weather_string.indexOf('Drizzle') > -1) {
+      } else if (weatherString.indexOf('Drizzle') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
-      } else if (weather_string.indexOf('Mist') > -1) {
+      } else if (weatherString.indexOf('Mist') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
-      } else if (weather_string.indexOf('Haze') > -1) {
+      } else if (weatherString.indexOf('Haze') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
-      } else if (weather_string.indexOf('Rain') > -1) {
+      } else if (weatherString.indexOf('Rain') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/rain.svg')
-      } else if (weather_string.indexOf('Snow') > -1) {
+      } else if (weatherString.indexOf('Snow') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/snow.svg')
-      } else if (weather_string.indexOf('Hail') > -1) {
+      } else if (weatherString.indexOf('Hail') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg')
-      } else if (weather_string.indexOf('Ice') > -1) {
+      } else if (weatherString.indexOf('Ice') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg')
-      } else if (weather_string.indexOf('Fog') > -1) {
+      } else if (weatherString.indexOf('Fog') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/fog.svg')
-      } else if (weather_string.indexOf('Squalls') > -1) {
+      } else if (weatherString.indexOf('Squalls') > -1) {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/squalls.svg')
       } else {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/na.svg')
@@ -494,6 +494,15 @@
     initialize: function() {
       var view = this;
       console.log('Initializing MapView...', view.el);
+
+      // so that the center of the map stays in the middle upon screen resize - this is more view than not, right?
+      var center;
+      google.maps.event.addDomListener(app.map, 'idle', function(){
+        center = app.map.getCenter();
+      });
+      jQuery(window).resize(function(){
+        app.map.setCenter(center);
+      });
     },
 
     events: {
@@ -507,7 +516,7 @@
       if (app.map && app.mapPosition) {
         jQuery('.latitude').text(app.mapPosition.latitude);
         jQuery('.longitude').text(app.mapPosition.longitude);
-        jQuery('.elevation').text(app.mapPosition.elevation);             // doesn't do anything, afa I can tell TODO
+        jQuery('.elevation').text(app.mapPosition.elevation);             // this variable doesn't exist. Are you referring to elevation set in 223 of leaf-drop.js?
 
         // re-center the map
         var latLng = app.mapMarker.getPosition(); // returns LatLng object
