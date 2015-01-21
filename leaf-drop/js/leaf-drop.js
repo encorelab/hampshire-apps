@@ -233,7 +233,7 @@
             if (status == google.maps.ElevationStatus.OK) {
               if (results[0]) {
                 app.mapElevation = results[0].elevation;
-                app.grabWeatherForecast();
+                app.grabWeatherConditions();
               }
             }
             // failure

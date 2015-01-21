@@ -47,12 +47,65 @@
     startNewObservation: function() {
       var view = this;
 
-      // delete the old observation
+      // delete the old observation?
       app.currentObservation = new Model.LeafDropObservation();
       app.currentObservation.wake(app.config.wakeful.url);
       app.currentObservation.save();
       view.collection.add(app.currentObservation);
 
+      // add the location data
+      var locationObj = {
+        'latitude': app.mapPosition.latitude,
+        'longitude': app.mapPosition.longitude,
+        'elevation': app.mapElevation
+      }
+      app.currentObservation.set('location',locationObj);
+
+      // add the weather data
+      var weatherObj = {
+        "temperature_f": app.weatherConditions.temp_f,
+        "temperature_c": app.weatherConditions.temp_c,
+        "wind_direction": app.weatherConditions.wind_dir,
+        "wind_speed_mph": app.weatherConditions.wind_mph,
+        "wind_speed_kph": app.weatherConditions.wind_kph,
+        "wind_gust_speed_mph": app.weatherConditions.wind_gust_mph,
+        "wind_gust_speed_kph": app.weatherConditions.wind_gust_kph,
+        "pressure_mb": app.weatherConditions.pressure_mb,
+        "pressure_trend": app.weatherConditions.pressure_trend,
+        "visibility_m": app.weatherConditions.visibility_mi,
+        "visibility_k": app.weatherConditions.visibility_km,
+        "precipitation_hour_in": app.weatherConditions.precip_1hr_in,
+        "precipitation_hour_cm": app.weatherConditions.precip_1hr_metric,
+        "precipitation_today_in": app.weatherConditions.precip_today_in,
+        "precipitation_today_cm": app.weatherConditions.precip_today_metric,
+        "humidity": app.weatherConditions.relative_humidity
+      }
+      app.currentObservation.set('weather',weatherObj);
+
+
+      // temp (f & c)
+      // wind (dir, mph, gust mph, kph, gust kph)
+      // pressure (mb, trend)
+      // visibility (mi, km)
+      // precip (hr in, hr metric, today in, today metric)
+
+      // jQuery('.temp-f').text(app.weatherConditions.temp_f);
+      // jQuery('.weather-string').text(app.weatherConditions.weather);
+
+      // jQuery('.wind-mph').text(app.weatherConditions.wind_mph);
+      // jQuery('.wind-dir').text(app.weatherConditions.wind_dir);
+      // // looking at the percent precipitation for the 1st period available
+      // jQuery('.precipitation-percent').text(app.weatherForecast.txt_forecast.forecastday[0].pop);
+      // jQuery('.precipitation-string').text(app.weatherConditions.precip_today_string);
+      // jQuery('.humidity').text(app.weatherConditions.relative_humidity);
+      // jQuery('.uv').text(app.weatherConditions.UV);
+      // jQuery('.dewpoint_f').text(app.weatherConditions.dewpoint_f);
+
+
+
+      app.currentObservation.save();
+
+      // UI changes
       jQuery('#title-page').addClass('hidden');
       jQuery('#variable-content-container').removeClass('hidden');
       jQuery('.back-btn').removeClass('hidden');
@@ -198,8 +251,6 @@
           if (jQuery('.current-page').hasClass('leaf-cycle') && app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1]) {
             app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1][jQuery(i).data().fieldName] = jQuery(i).val();
           } else {
-            // MEGS: these two are the same (sort of). Using getters and setters now, so the uncommented one is the one we want
-            //app.currentObservation[jQuery(i).data().fieldName] = jQuery(i).val();
             app.currentObservation.set(jQuery(i).data().fieldName, jQuery(i).val());
           }
         }
