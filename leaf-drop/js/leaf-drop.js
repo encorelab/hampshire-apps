@@ -300,7 +300,12 @@
 
                 // now we can enable the map nav button and can start on grabbing the weather data
                 wireUpViews("mapView");
-                app.grabWeatherConditions();
+                //app.grabWeatherConditions();
+
+                var deferred1 = app.grabWeatherConditions();
+                var deferred2 = app.grabWeatherForecast();
+
+                jQuery.when(deferred1, deferred2).then(wireUpViews("weatherView"));
               }
             }
             // failure
@@ -337,34 +342,27 @@
       var infowindow = new google.maps.InfoWindow(options);
       app.map.setCenter(options.position);
     }
-
-
     google.maps.event.addDomListener(window, 'load', initializeMap());
   };
 
   app.grabWeatherConditions = function() {
-    // grab weather data
-    jQuery.ajax({
-      //url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/MA/Amherst.json",
+    var deferred = jQuery.ajax({
       url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
-      dataType : "jsonp",
-      success : function(parsedJson) {
-        app.weatherConditions = parsedJson.current_observation;
-        app.grabWeatherForecast();
-      }
+      dataType : "jsonp"
+    }).then(function(response){
+      app.weatherConditions = response.current_observation;
     });
+    return deferred;
   };
 
   app.grabWeatherForecast = function() {
-    // grab weather forecast data
-    jQuery.ajax({
+    var deferred = jQuery.ajax({
       url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/forecast/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
-      dataType : "jsonp",
-      success : function(parsedJson) {
-        app.weatherForecast = parsedJson.forecast;
-        wireUpViews("weatherView");
-      }
+      dataType : "jsonp"
+    }).then(function(response){
+      app.weatherForecast = response.forecast;
     });
+    return deferred;
   };
 
 
