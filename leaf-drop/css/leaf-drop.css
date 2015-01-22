@@ -7,6 +7,14 @@
     height: 100vh;
 }*/
 
+/* what's the correct way to do this? */
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    /*background-color: #BDBDC1;*/                  /* we probably want something a little more stark than this */
+    opacity: 0.7;
+}
+
 /*to arrange buttons at bottom of screen, needs revising - maybe using calc??*/
 .leaf-page {
     min-height: 65vh;

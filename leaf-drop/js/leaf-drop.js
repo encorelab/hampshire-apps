@@ -167,12 +167,27 @@
       // prevent bubbling events that lead to reload
       return false;
     });
-
-
   };
 
   app.setup = function() {
-    /* pull users, then initialize the model and wake it up, then pull everything else */
+    /*
+      In order to get set up, we need to:
+        1: pull users
+        2: initialize the model and wake it up
+        3: pull mgaps data, and use that locational information to:
+          a: pull current weather data
+          b: pull forecast weather data
+        4: pull static data
+        5: call ready(), which setups the views - should we rename this?
+        6: setUpClickListeners() - which depends on 1 and 2 (and 5?)
+        7: wireUpViews()
+
+      I think, how we want to do this, we do the following concurrently:
+      1->2->4->5->6->7
+      and
+      3->3a->7
+       ->3b->
+    */
     Skeletor.Model.init(app.config.drowsy.url, DATABASE)
     .then(function () {
       console.log('model initialized - now waking up');
@@ -180,19 +195,68 @@
     })
     .done(function () {
       console.log('model awake - now calling ready');
-      //app.ready();
-      app.grabMapData();
+      grabMapData();
+      grabStaticData();
     });
+  };
 
+  var grabStaticData = function() {
+    jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
+      app.treeSpeciesCollection = data;
+      ready();
+    });
+  };
+
+  // this implies that we are "ready" when this function is complete (not that this function is waiting on us to be ready). Might not be great, semantically
+  var ready = function() {
+    setupUI();
+    setUpClickListeners();
+    wireUpViews("collectView");
+
+    // show the first screen
+    jQuery('#collect-screen').removeClass('hidden');
+  };
+
+  var setupUI = function() {
     /* MISC */
     jQuery().toastmessage({
       position : 'middle-center'
     });
+
+    jQuery('.brand').text("Leaf Drop");
+  }
+
+  var setUpClickListeners = function () {
+    // click listener that logs user out
+    jQuery('#logout-user').click(function() {
+      logoutUser();
+    });
+
+    /* Buttons that manage the navigation */
+    jQuery('.nav-btn').click(function() {
+      if (app.username) {
+        jQuery('.navigation li').removeClass('active'); // unmark all nav items
+        jQuery(this).addClass('active');
+        app.hideAllContainers();
+        if (jQuery(this).attr('id') === 'collect-nav-btn') {
+          jQuery('#collect-screen').removeClass('hidden');
+        } else if (jQuery(this).attr('id') === 'weather-nav-btn') {
+          jQuery('#weather-screen').removeClass('hidden');
+          app.weatherView.render();
+        } else if (jQuery(this).attr('id') === 'map-nav-btn') {
+          jQuery('#map-screen').removeClass('hidden');
+          google.maps.event.trigger(app.map, 'resize');
+          app.mapView.render();
+        } else {
+          console.log('ERROR: unknown nav button');
+        }
+      }
+    });
   };
 
-  app.grabMapData = function() {
+  var grabMapData = function() {
     // grab data from google maps API
-    // this assumes the user is not moving around - this is a problem
+    // this structure assumes the user is not moving around during the observation - is this a safe assumption?
 
     function initializeMap() {
       var mapOptions = {
@@ -233,6 +297,9 @@
             if (status == google.maps.ElevationStatus.OK) {
               if (results[0]) {
                 app.mapElevation = results[0].elevation;
+
+                // now we can enable the map nav button and can start on grabbing the weather data
+                wireUpViews("mapView");
                 app.grabWeatherConditions();
               }
             }
@@ -289,31 +356,28 @@
   };
 
   app.grabWeatherForecast = function() {
-    // grab weather forecast
+    // grab weather forecast data
     jQuery.ajax({
       url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/forecast/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
       dataType : "jsonp",
       success : function(parsedJson) {
         app.weatherForecast = parsedJson.forecast;
-        app.grabStaticData();
+        wireUpViews("weatherView");
       }
     });
   };
 
-  app.grabStaticData = function() {
-    jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
-      app.treeSpeciesCollection = data;
-      app.ready();
-    });
-  };
 
-  app.ready = function() {
-      /* ======================================================
-       * Setting up the Backbone Views to render data
-       * coming from Collections and Models
-       * ======================================================
-       */
+  var wireUpViews = function(view) {
+    /* ======================================================
+     * Setting up the Backbone Views to render data
+     * coming from Collections and Models.
+     * This also takes care of making the nav items clickable,
+     * so these can only be called when everything is set up
+     * ======================================================
+     */
 
+    if (view === "collectView") {
       if (app.collectView === null) {
         app.collectView = new app.View.CollectView({
           el: '#collect-screen',
@@ -335,29 +399,29 @@
         });
       }
 
+      jQuery('.nav-btn#collect-nav-btn').removeClass('disabled');
+    }
+
+    if (view === "weatherView") {
       if (app.weatherView === null) {
         app.weatherView = new app.View.WeatherView({
           el: '#weather-screen'
         });
       }
 
+      jQuery('.nav-btn#weather-nav-btn').removeClass('disabled');
+    }
+
+    if (view === "mapView") {
       if (app.mapView === null) {
         app.mapView = new app.View.MapView({
           el: '#map-screen'
         });
       }
 
-      setProjectName("Leaf Drop");
-
-      /* ======================================================
-       * Function to enable click listeners in the UI
-       * Beware: some click listeners might belong into Views
-       * ======================================================
-       */
-      setUpClickListeners();
-
-      jQuery('#collect-screen').removeClass('hidden');
-  };
+      jQuery('.nav-btn#map-nav-btn').removeClass('disabled');
+    }
+  }
 
 
   //*************** MAIN FUNCTIONS (RENAME ME) ***************//
@@ -385,57 +449,6 @@
   app.roundToTwo = function(num) {
     return Math.round(num * 100) / 100
   };
-
-  /**
-   *  Function where most of the click listener should be setup
-   *  called very late in the init process, will try to look it with Promise
-   */
-  var setUpClickListeners = function () {
-    // click listener that log user out
-    jQuery('#logout-user').click(function() {
-      logoutUser();
-    });
-
-    /*
-    * ======================================
-    * Buttons that manage the navigation
-    * ======================================
-    */
-
-    jQuery('.nav-btn').click(function() {
-      if (app.username) {
-        jQuery('.navigation li').removeClass('active'); // unmark all nav items
-        jQuery(this).addClass('active');
-        app.hideAllContainers();
-        if (jQuery(this).attr('id') === 'collect-nav-btn') {
-          jQuery('#collect-screen').removeClass('hidden');
-        } else if (jQuery(this).attr('id') === 'weather-nav-btn') {
-          jQuery('#weather-screen').removeClass('hidden');
-          app.weatherView.render();
-        } else if (jQuery(this).attr('id') === 'map-nav-btn') {
-          jQuery('#map-screen').removeClass('hidden');
-          // Fix for resizing problem of map
-          // http://stackoverflow.com/questions/9483396/google-maps-not-displaying-in-full-size-as-the-container
-          google.maps.event.trigger(app.map, 'resize');
-          app.mapView.render();                               // this is probably how we should do all the nav buttons
-        } else {
-          console.log('ERROR: unknown nav button');
-        }
-      }
-    });
-
-    /*
-    * ===================================================================
-    * Other click listeners for the UI that don't belong to any one view
-    * ===================================================================
-    */
-
-  };
-
-  var setProjectName = function (name) {
-    jQuery('.brand').text(name);
-  };
-
 
   //*************** LOGIN FUNCTIONS ***************//
 

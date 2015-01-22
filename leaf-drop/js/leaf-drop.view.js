@@ -82,27 +82,6 @@
       }
       app.currentObservation.set('weather',weatherObj);
 
-
-      // temp (f & c)
-      // wind (dir, mph, gust mph, kph, gust kph)
-      // pressure (mb, trend)
-      // visibility (mi, km)
-      // precip (hr in, hr metric, today in, today metric)
-
-      // jQuery('.temp-f').text(app.weatherConditions.temp_f);
-      // jQuery('.weather-string').text(app.weatherConditions.weather);
-
-      // jQuery('.wind-mph').text(app.weatherConditions.wind_mph);
-      // jQuery('.wind-dir').text(app.weatherConditions.wind_dir);
-      // // looking at the percent precipitation for the 1st period available
-      // jQuery('.precipitation-percent').text(app.weatherForecast.txt_forecast.forecastday[0].pop);
-      // jQuery('.precipitation-string').text(app.weatherConditions.precip_today_string);
-      // jQuery('.humidity').text(app.weatherConditions.relative_humidity);
-      // jQuery('.uv').text(app.weatherConditions.UV);
-      // jQuery('.dewpoint_f').text(app.weatherConditions.dewpoint_f);
-
-
-
       app.currentObservation.save();
 
       // UI changes
