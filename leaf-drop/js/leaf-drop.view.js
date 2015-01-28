@@ -58,7 +58,7 @@
         'latitude': app.mapPosition.latitude,
         'longitude': app.mapPosition.longitude,
         'elevation': app.mapElevation
-      }
+      };
       app.currentObservation.set('location',locationObj);
 
       // add the weather data
@@ -79,7 +79,7 @@
         "precipitation_today_in": app.weatherConditions.precip_today_in,
         "precipitation_today_cm": app.weatherConditions.precip_today_metric,
         "humidity": app.weatherConditions.relative_humidity
-      }
+      };
       app.currentObservation.set('weather',weatherObj);
 
       app.currentObservation.save();
@@ -463,35 +463,35 @@
       console.log('Rendering WeatherView...');
 
       if (weatherString === 'Clear') {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/clear.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/clear.svg');
       } else if (weatherString === 'Overcast') {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/overcast.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/overcast.svg');
       } else if (weatherString.indexOf('Cloud') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/cloud.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/cloud.svg');
       } else if (weatherString.indexOf('Thunderstorm') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/thunderstorm.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/thunderstorm.svg');
       } else if (weatherString.indexOf('Freezing') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/freezing.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/freezing.svg');
       } else if (weatherString.indexOf('Drizzle') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg');
       } else if (weatherString.indexOf('Mist') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg');
       } else if (weatherString.indexOf('Haze') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg');
       } else if (weatherString.indexOf('Rain') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/rain.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/rain.svg');
       } else if (weatherString.indexOf('Snow') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/snow.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/snow.svg');
       } else if (weatherString.indexOf('Hail') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg');
       } else if (weatherString.indexOf('Ice') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg');
       } else if (weatherString.indexOf('Fog') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/fog.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/fog.svg');
       } else if (weatherString.indexOf('Squalls') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/squalls.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/squalls.svg');
       } else {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/na.svg')
+        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/na.svg');
       };
 
       // jQuery('.weather-image').attr('src', app.weatherConditions.icon_url);
@@ -538,6 +538,7 @@
     },
 
     render: function() {
+      var view = this;
       console.log('Rendering MapView...');
 
       // if we've got a map, we can render it, otherwise...
@@ -559,10 +560,40 @@
         var panorama = new google.maps.StreetViewPanorama(panoramaElement, panoramaOptions);
         app.map.setStreetView(panorama);
       }
-      // will we need to re-handle errors here? Doesn't feel right, points to an issue with how the code has been divided
-      else {
-        console.log('Map data probably hasnt loaded yet - but think about proper error handling here');
-      }
+
+      // ************* PINS *************
+      // NB: this is pretty lame - doesn't use wakeful, so no new locations appearing over the evening.
+      // TODO: set things up up so that the pins appear in real time - bind this to reset or something
+      // TODO: GET http://localhost:8081/bower_components/sweetalert/lib/sweet-alert.min.js get rid of that shit
+      // TODO: fix up the grunt issues
+      // TODO: add published
+      // this is also a pretty sloppy way to handle this, redrawing the pins every time - better to just draw new pins. But waiting on results of privacy / geolocation discussion for that
+      //console.log(this.collection);
+      app.map.infowindow = new google.maps.InfoWindow({
+        // map styling would go here, if google finally got around to adding it
+      });
+
+      // filter by 'published', when we add it
+      view.collection.each(function(o) {
+        if (o.get('location')) {
+          var latLng = new google.maps.LatLng(o.get('location').latitude, o.get('location').longitude);
+          var marker = new google.maps.Marker({
+            id: o.get('_id'),
+            position: latLng,
+            title: o.get('message')
+          });
+
+          marker.setMap(app.map);
+
+          google.maps.event.addListener(marker, 'click', function() {
+            //injectThumbnail(o);   for when we have pictures
+            var mapPopupContent = o.get('author') + "'s " + o.get('tree_species') + " observation";
+            app.map.infowindow.setContent(mapPopupContent);
+            app.map.infowindow.open(app.map, marker);
+          });
+        }
+
+      });
 
     }
   });

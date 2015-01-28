@@ -224,7 +224,7 @@
     });
 
     jQuery('.brand').text("Leaf Drop");
-  }
+  };
 
   var setUpClickListeners = function () {
     // click listener that logs user out
@@ -245,7 +245,7 @@
           app.weatherView.render();
         } else if (jQuery(this).attr('id') === 'map-nav-btn') {
           jQuery('#map-screen').removeClass('hidden');
-          google.maps.event.trigger(app.map, 'resize');
+          google.maps.event.trigger(app.map,'resize');
           app.mapView.render();
         } else {
           console.log('ERROR: unknown nav button');
@@ -274,7 +274,6 @@
           var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
           app.mapPosition = position.coords;
-
           app.mapMarker = new google.maps.Marker({
             map: app.map,
             position: pos,
@@ -282,6 +281,8 @@
             title: 'You are here.'
           });
 
+
+          // ************* ELEVATION *************
           // this may not be the right way to do this. Feels very clunky
           var elevator = new google.maps.ElevationService();
           // this array nonsense because this service is set up to take multiple values
@@ -289,23 +290,22 @@
           locations.push(pos);
           var positionalRequest = {
             'locations': locations
-          }
+          };
           // we now have an array of 1 location (lat/lng google object)
 
           elevator.getElevationForLocations(positionalRequest, function(results, status) {
             // success
-            if (status == google.maps.ElevationStatus.OK) {
+            if (status === google.maps.ElevationStatus.OK) {
               if (results[0]) {
                 app.mapElevation = results[0].elevation;
 
                 // now we can enable the map nav button and can start on grabbing the weather data
                 wireUpViews("mapView");
-                //app.grabWeatherConditions();
 
-                var deferred1 = app.grabWeatherConditions();
-                var deferred2 = app.grabWeatherForecast();
+                var deferredConditions = app.grabWeatherConditions();
+                var deferredForecast = app.grabWeatherForecast();
 
-                jQuery.when(deferred1, deferred2).then(wireUpViews("weatherView"));
+                jQuery.when(deferredConditions, deferredForecast).then(wireUpViews("weatherView"));
               }
             }
             // failure
@@ -313,7 +313,6 @@
               console.log("Elevator crashed into the ground");
             }
           });
-
 
         }, function() {
           // couldn't get geolocation
@@ -326,10 +325,11 @@
     }
 
     function handleNoGeolocation(errorFlag) {
+      var content;
       if (errorFlag) {
-        var content = 'Error: The geolocation service failed.';
+        content = 'Error: The geolocation service failed.';
       } else {
-        var content = 'Error: Your browser doesn\'t support geolocation.';
+        content = 'Error: Your browser doesn\'t support geolocation.';
       }
 
       var options = {
@@ -413,13 +413,14 @@
     if (view === "mapView") {
       if (app.mapView === null) {
         app.mapView = new app.View.MapView({
-          el: '#map-screen'
+          el: '#map-screen',
+          collection: Skeletor.Model.awake.leaf_drop_observations
         });
       }
 
       jQuery('.nav-btn#map-nav-btn').removeClass('disabled');
     }
-  }
+  };
 
 
   //*************** MAIN FUNCTIONS (RENAME ME) ***************//
@@ -445,7 +446,7 @@
   };
 
   app.roundToTwo = function(num) {
-    return Math.round(num * 100) / 100
+    return Math.round(num * 100) / 100;
   };
 
   //*************** LOGIN FUNCTIONS ***************//
