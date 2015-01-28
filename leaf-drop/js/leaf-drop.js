@@ -57,7 +57,7 @@
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
-  app.autoSaveTimer = window.setTimeout(function() { console.log("timer activated"); } ,10);
+  app.autoSaveTimer = window.setTimeout(function() { } ,10);
 
   app.init = function() {
     /* CONFIG */
@@ -191,11 +191,11 @@
     */
     Skeletor.Model.init(app.config.drowsy.url, DATABASE)
     .then(function () {
-      console.log('model initialized - now waking up');
+      console.log('Model initialized - now waking up');
       return Skeletor.Model.wake(app.config.wakeful.url);
     })
     .done(function () {
-      console.log('model awake - now calling ready');
+      console.log('Model awake - now calling ready');
       grabMapData();
       grabStaticData();
     });

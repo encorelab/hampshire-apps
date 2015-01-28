@@ -523,7 +523,7 @@
       var view = this;
       console.log('Initializing MapView...', view.el);
 
-      // so that the center of the map stays in the middle upon screen resize - this is more view than not, right?
+      // so that the center of the map stays in the middle upon screen resize - this is a view thing, right?
       var center;
       google.maps.event.addDomListener(app.map, 'idle', function(){
         center = app.map.getCenter();
@@ -549,7 +549,7 @@
         jQuery('.elevation').text(app.roundToTwo(app.mapElevation));
 
         // re-center the map
-        var latLng = app.mapMarker.getPosition(); // returns LatLng object
+        var latLng = app.mapMarker.getPosition();
         app.map.setCenter(latLng);
 
         // draw the streetview stuff
@@ -562,13 +562,10 @@
       }
 
       // ************* PINS *************
-      // NB: this is pretty lame - doesn't use wakeful, so no new locations appearing over the evening.
+      // NB: this is pretty lame - doesn't use wakeful, so no new locations appearing until reload
       // TODO: set things up up so that the pins appear in real time - bind this to reset or something
-      // TODO: GET http://localhost:8081/bower_components/sweetalert/lib/sweet-alert.min.js get rid of that shit
-      // TODO: fix up the grunt issues
       // TODO: add published
       // this is also a pretty sloppy way to handle this, redrawing the pins every time - better to just draw new pins. But waiting on results of privacy / geolocation discussion for that
-      //console.log(this.collection);
       app.map.infowindow = new google.maps.InfoWindow({
         // map styling would go here, if google finally got around to adding it
       });
