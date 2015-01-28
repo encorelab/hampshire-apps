@@ -1,5 +1,5 @@
 /*jshint debug:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, undef:true, curly:true, browser: true, devel: true, jquery:true, strict:false */
-/*global Backbone, _, jQuery, Sail */
+/*global Backbone, _, jQuery, Sail, google */
 
 (function() {
   "use strict";
@@ -492,7 +492,7 @@
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/squalls.svg');
       } else {
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/na.svg');
-      };
+      }
 
       // jQuery('.weather-image').attr('src', app.weatherConditions.icon_url);
 
@@ -556,7 +556,7 @@
         var panoramaOptions = {
           position: latLng
         };
-        var panoramaElement = jQuery('#pano')[0]
+        var panoramaElement = jQuery('#pano')[0];
         var panorama = new google.maps.StreetViewPanorama(panoramaElement, panoramaOptions);
         app.map.setStreetView(panorama);
       }

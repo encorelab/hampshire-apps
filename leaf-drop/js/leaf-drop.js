@@ -1,5 +1,5 @@
 /*jshint debug:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, undef:true, curly:true, browser: true, devel: true, jquery:true, strict:true */
-/*global  Backbone, Skeletor, _, jQuery, Rollcall */
+/*global  Backbone, Skeletor, _, jQuery, Rollcall, google */
 
 (function() {
   "use strict";
@@ -45,6 +45,7 @@
   app.mapPosition = null;
   app.mapMarker = null;
   app.mapElevation = null;
+  //google.maps = null;         // TODO: look into me, where am I created?
 
   app.listView = null;
   app.collectView = null;
