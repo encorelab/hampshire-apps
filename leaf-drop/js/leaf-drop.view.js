@@ -26,7 +26,7 @@
     },
 
     events: {
-      'click #new-observation'  : "startNewObservation",
+      'click #new-observation-btn'  : "startNewObservation",
       'click .next-btn'         : "moveForward",
       'click .back-btn'         : "moveBack",
       'click .wiki-link'        : "openModal",

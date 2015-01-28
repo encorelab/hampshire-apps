@@ -420,6 +420,9 @@
       }
 
       jQuery('.nav-btn#map-nav-btn').removeClass('disabled');
+
+      // this button shouldn't be clicked until we have location, so tied to mapView
+      jQuery("#new-observation-btn").animate({"opacity": "1"}, 700);
     }
   };
 
