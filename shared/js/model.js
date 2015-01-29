@@ -102,7 +102,7 @@
           'author': Skeletor.Mobile.username,
           'leaves': []
         }
-      })
+      });
 
       this.LeafDropObservations = this.db.Collection('leaf_drop_observations').extend({
         model: Skeletor.Model.LeafDropObservation
@@ -117,7 +117,7 @@
           'modified_at': new Date(),
           'author': Skeletor.Mobile.username
         }
-      })
+      });
 
       this.SalamanderWatchObservations = this.db.Collection('salamander_watch_observations').extend({
         model: Skeletor.Model.SalamanderWatchObservation
