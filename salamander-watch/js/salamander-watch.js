@@ -44,14 +44,9 @@
   app.mapMarker = null;
   app.mapElevation = null;
 
-  app.listView = null;
   app.collectView = null;
-  app.treeSpeciesView = null;
-  app.reviewDataView = null;
   app.weatherView = null;
   app.mapView = null;
-
-  // app.loginButtonsView = null;
 
   app.keyCount = 0;
   app.autoSaveTimer = window.setTimeout(function() { } ,10);
@@ -83,28 +78,16 @@
     }
 
     app.handleLogin();
-
   };
 
   app.handleLogin = function () {
-
-    // if (jQuery.QueryString.runId && jQuery.QueryString.username) {
-    //   console.log ("URL parameter correct :)");
-    //   app.runId = jQuery.QueryString.runId;
-    //   app.username = jQuery.QueryString.username;
-    // } else {
-    //   // retrieve user name from cookie if possible otherwise ask user to choose name
-    //   app.runId = jQuery.cookie('hunger-games_mobile_runId');
-    //   app.username = jQuery.cookie('hunger-games_mobile_username');
-    // }
-
     if (jQuery.url().param('runId') && jQuery.url().param('username')) {
       console.log ("URL parameter correct :)");
       app.runId = jQuery.url().param('runId');
       app.username = jQuery.url().param('username');
     } else {
       // retrieve user name from cookie if possible otherwise ask user to choose name
-      app.runId = jQuery.cookie('hunger-games_mobile_runId');
+      app.runId = jQuery.cookie('hunger-games_mobile_runId');                           // START HERE, then clean out the CSS
       app.username = jQuery.cookie('hunger-games_mobile_username');
     }
 
@@ -115,7 +98,7 @@
       // make sure the app.users collection is always filled
       app.rollcall.usersWithTags([app.runId])
       .done(function (usersInRun) {
-        console.log(usersInRun);
+        console.log("Users in run: " + usersInRun);
 
         if (usersInRun && usersInRun.length > 0) {
           app.users = usersInRun;
@@ -194,18 +177,10 @@
     .done(function () {
       console.log('Model awake - now calling ready');
       grabMapData();
-      grabStaticData();
-    });
-  };
-
-  var grabStaticData = function() {
-    jQuery.get(app.config.drowsy.url+"/"+DATABASE+"/leaf_drop_tree_species", function( data ) {
-      app.treeSpeciesCollection = data;
       ready();
     });
   };
 
-  // this implies that we are "ready" when this function is complete (not that this function is waiting on us to be ready). Might not be great, semantically
   var ready = function() {
     setupUI();
     setUpClickListeners();
@@ -377,21 +352,7 @@
       if (app.collectView === null) {
         app.collectView = new app.View.CollectView({
           el: '#collect-screen',
-          collection: Skeletor.Model.awake.leaf_drop_observations
-        });
-      }
-
-      if (app.treeSpeciesView === null) {
-        app.treeSpeciesView = new app.View.TreeSpeciesView({
-          el: '.tree-species-screen',
-          collection: app.treeSpeciesCollection
-        });
-      }
-
-      if (app.reviewDataView === null) {
-        app.reviewDataView = new app.View.ReviewDataView({
-          el: '.review-data-screen',
-          collection: Skeletor.Model.awake.leaf_drop_observations       // switch this collection to something or nothing
+          collection: Skeletor.Model.awake.salamander_watch_observations
         });
       }
 
@@ -412,7 +373,7 @@
       if (app.mapView === null) {
         app.mapView = new app.View.MapView({
           el: '#map-screen',
-          collection: Skeletor.Model.awake.leaf_drop_observations
+          collection: Skeletor.Model.awake.salamander_watch_observations
         });
       }
 
@@ -424,7 +385,7 @@
   };
 
 
-  //*************** MAIN FUNCTIONS (RENAME ME) ***************//
+  //*************** MAIN FUNCTIONS ***************//
 
   // Functions related to Collect screen
 
@@ -437,18 +398,10 @@
 
   //*************** HELPER FUNCTIONS ***************//
 
-
-  var idToTimestamp = function(id) {
-    var timestamp = id.substring(0,8);
-    var seconds = parseInt(timestamp, 16);
-    return seconds;
-    // date = new Date( parseInt(timestamp, 16) * 1000 );
-    // return date;
-  };
-
   app.roundToTwo = function(num) {
     return Math.round(num * 100) / 100;
   };
+
 
   //*************** LOGIN FUNCTIONS ***************//
 
@@ -463,9 +416,6 @@
 
         jQuery.cookie('hunger-games_mobile_username', app.username, { expires: 1, path: '/' });
         jQuery('.username-display a').text(app.runId+' - '+user.get('display_name'));
-
-        // show leaf_drop_observations-screen
-        jQuery('#leaf_drop_observations-screen').removeClass('hidden');
 
         hideLogin();
         hideUserLoginPicker();
@@ -589,35 +539,15 @@
     });
   };
 
-
   app.autoSave = function(model, inputKey, inputValue, instantSave) {
     app.keyCount++;
-    //console.log("  saving stuff as we go at", app.keyCount);
-
-    // if (model.kind === 'buildOn') {
-    //   if (instantSave || app.keyCount > 9) {
-    //     // save to buildOn model to stay current with view
-    //     // app.buildOn = inputValue;
-    //     // save to contribution model so that it actually saves
-    //     // var buildOnArray = app.contribution.get('build_ons');
-    //     // var buildOnToUpdate = _.find(buildOnArray, function(b) {
-    //     //   return b.author === app.userData.account.login && b.published === false;
-    //     // });
-    //     // buildOnToUpdate.content = inputValue;
-    //     // app.contribution.set('build_ons',buildOnArray);
-    //     // app.contribution.save(null, {silent:true});
-    //     // app.keyCount = 0;
-    //   }
-    // } else {
-      if (instantSave || app.keyCount > 9) {
-        console.log('Saved');
-        model.set(inputKey, inputValue);
-        model.save(null, {silent:true});
-        app.keyCount = 0;
-      }
-    //}
+    if (instantSave || app.keyCount > 9) {
+      console.log('Saved');
+      model.set(inputKey, inputValue);
+      model.save(null, {silent:true});
+      app.keyCount = 0;
+    }
   };
-
 
   /**
     Function that is called on each keypress on username input field (in a form).
@@ -636,11 +566,7 @@
     var urlRegex = /(https?:\/\/[^\s]+)/g;
     var urlText = text.replace(urlRegex, '<a href="$1">$1</a>');
     return urlText;
-    // return text.replace(urlRegex, function (url) {
-    //     alert('<a href="' + url + '">' + url + '</a>');
-    // });
   };
-
 
   this.Skeletor = Skeletor;
 

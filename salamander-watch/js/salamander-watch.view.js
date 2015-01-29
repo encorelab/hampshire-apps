@@ -19,18 +19,12 @@
     initialize: function() {
       var view = this;
       console.log('Initializing CollectView...', view.el);
-
-      // _.bindAll(this, 'onModelSaved');
-      // this.model.bind('sync', onSuccessCallback);
-      // do I need to attach a model to the view as well first?
     },
 
     events: {
-      'click #new-observation-btn'  : "startNewObservation",
-      'click .next-btn'         : "moveForward",
-      'click .back-btn'         : "moveBack",
-      'click .wiki-link'        : "openModal",
-      'click .leaf-fallen-btn'  : "buttonSelected"
+      'click #new-observation-btn'  : "startNewObservation"
+      // 'click .next-btn'         : "moveForward",
+      // 'click .back-btn'         : "moveBack",
     },
 
     onModelSaved: function(model, response, options) {
@@ -48,7 +42,7 @@
       var view = this;
 
       // delete the old observation?
-      app.observation = new Model.LeafDropObservation();
+      app.observation = new Model.SalamanderWatchObservation();
       app.observation.wake(app.config.wakeful.url);
       app.observation.save();
       view.collection.add(app.observation);
@@ -85,273 +79,9 @@
       app.observation.save();
 
       // UI changes
-      jQuery('#title-page').addClass('hidden');
-      jQuery('#variable-content-container').removeClass('hidden');
-      jQuery('.back-btn').removeClass('hidden');
-      jQuery('.next-btn').removeClass('hidden');
-
-      view.populatePage(1);
-    },
-
-    moveForward: function() {
-      var view = this;
-      view.determineTargetPage('next');
-    },
-
-    moveBack: function() {
-      var view = this;
-      view.determineTargetPage('prev');
-    },
-
-    determineTargetPage: function(direction) {
-      var view = this;
-
-      // decide on next or previous page, and update the page number to that
-      // we don't deal with 'special pages' (eg leaf cycle ones) on back
-      var pageNumber = Number(view.getPageNum());
-      if (direction === 'next') {
-        pageNumber += 1;
-        view.handleSpecialPagesNext(pageNumber);
-      } else if (direction === 'prev') {
-        pageNumber -= 1;
-        view.handleSpecialPagesBack(pageNumber);
-        //view.populatePage(pageNumber);
-      } else {
-        console.error('ERROR: unexpected direction');
-      }
-    },
-
-    handleSpecialPagesBack: function(targetPageNumber) {
-      var view = this;
-
-      // TODO - needs to not clear data
-
-      //var leafCycleNum = app.observation.get('leaves').length + 1;
-
-      if (targetPageNumber === 2) {
-        // if leaf cycle beginning, go back to page 3 else go back one in the leaf cycle (and delete!)
-        if (view.getNumCompletedLeaves() === 0) {
-          view.populatePage(2);
-        } else {
-          view.popLastLeaf();
-          view.populatePage(3);
-        }
-      }
-
-      else if (targetPageNumber === 3) {
-        view.popLastLeaf();
-        view.populatePage(3);
-      }
-
-      else if (targetPageNumber === 5) {
-        view.popLastLeaf();
-        view.populatePage(3);
-      }
-
-      else {
-        view.populatePage(targetPageNumber);
-      }
-    },
-
-    handleSpecialPagesNext: function(pageNumber) {
-      var view = this;
-
-      // determine which of the 6 leaf observations we are on
-      var leafCycleNum = view.getNumCompletedLeaves() + 1;
-      var leafAr = app.observation.get('leaves');
-
-      var checkedEl = jQuery('.current-page [type="radio"]:checked');
-
-      /********** PAGE 4 *********/
-      if (pageNumber === 4) {
-        if (jQuery(checkedEl).is("#id-leaf-fallen-yes")) {
-          // update the observation for fallen
-          leafAr[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
-          app.observation.set('leaves', leafAr);
-          app.observation.save();
-
-          // if this is the last observation, go to page 6. Else go to page 3
-          if (view.getNumCompletedLeaves() === 6) {
-            view.populatePage(6);
-          } else {
-            view.populatePage(3);
-          }
-
-        } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
-          app.observation.get('leaves')[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
-
-          view.populatePage(pageNumber);
-        }
-
-        else {
-          jQuery().toastmessage('showErrorToast', "Please select whether this leaf has fallen");
-        }
-
-      /********** PAGE 6 *********/
-      } else if (pageNumber === 6) {            // special case for leaf cycle pages to loop
-        // go to page 3 if the leaves aren't all done (eg array length is 6). Only 5 leaves completed at this point, about to complete 6th
-        if (view.getNumCompletedLeaves() === 5) {
-          view.populatePage(6);
-        } else {
-          view.populatePage(3);
-        }
-
-
-      /********** PAGE 8 (eg back to home screen) *********/
-      } else if (pageNumber === 8) {
-        jQuery('#title-page').removeClass('hidden');
-        jQuery('#variable-content-container').addClass('hidden');
-        jQuery('.back-btn').addClass('hidden');
-        jQuery('.next-btn').addClass('hidden');
-
-
-      /********** ALL OTHER PAGES *********/
-      } else {
-        // if there are radio buttons on this page, make sure they're checked
-        if (jQuery('.current-page [type="radio"]').length > 0) {
-          if (checkedEl.length > 0) {
-            view.populatePage(pageNumber);
-          } else {
-            jQuery().toastmessage('showErrorToast', "Please make a selection");
-          }
-        } else {
-          view.populatePage(pageNumber);
-        }
-      }
-    },
-
-    updateJSONObject: function() {
-      var view = this;
-
-      _.each(jQuery('.current-page .input-field'), function(i) {
-        // if this is of type text take the text and put it straight up into the json
-        if (i.type === "text" || i.type === "textarea" || i.type === "number") {
-          // add text value to json - the && is an outlier check for when the user hits the back button with no field values on the first leaf
-          if (jQuery('.current-page').hasClass('leaf-cycle') && app.observation.get('leaves')[app.observation.get('leaves').length-1]) {
-            app.observation.get('leaves')[app.observation.get('leaves').length-1][jQuery(i).data().fieldName] = jQuery(i).val();
-          } else {
-            app.observation.set(jQuery(i).data().fieldName, jQuery(i).val());
-          }
-        }
-      });
-
-      var el = jQuery('.current-page [type="radio"]:checked');
-      // if there is a radio button on this page that is checked
-      if (el.length > 0) {
-        // if we're on the leaf cycle pages, otherwise it's a regular type of recording
-        if (jQuery('.current-page').hasClass('leaf-cycle')) {
-          app.observation.get('leaves')[app.observation.get('leaves').length-1][el.data().fieldName] = jQuery(el).val();
-        } else {
-          app.observation.set(el.data().fieldName, jQuery(el).val());
-        }
-      }
-
-      app.observation.save();
-    },
-
-    updateProgressBar: function() {
-      var view = this;
-      // make them all opaque
-      jQuery('.current-page .leaf-progress-img').addClass('unfinished-leaf-progress');
-
-      // unopaque some of them
-      jQuery('.current-page .leaf-progress-img').each(function(index, el) {
-        if (index < view.getNumCompletedLeaves() + 1) {
-          jQuery(el).removeClass('unfinished-leaf-progress');
-        }
-      });
-    },
-
-    // TODO: move me to the model (and other things to model?)
-    getNumCompletedLeaves: function() {
-      var numCompletedLeaves = 0;
-      _.each(app.observation.get('leaves'), function(leaf) {
-        // either of these conditions denote 'completeness'
-        if (leaf.fallen === "yes" || leaf.percent_colored !== null) {
-          numCompletedLeaves++;
-        }
-      });
-
-      return numCompletedLeaves;
-    },
-
-    popLastLeaf: function() {
-      var leafAr = app.observation.get('leaves');
-      leafAr = _.without(leafAr, _.last(leafAr));
-      app.observation.set('leaves', leafAr);
-      app.observation.save();
-    },
-
-    removePageClasses: function() {
-      jQuery('.leaf-page').addClass('hidden');
-      jQuery('.leaf-page').removeClass('current-page');
-    },
-
-    clearPageContent: function() {
-      // standard clears
-      jQuery('.current-page .input-field').text('');
-      jQuery('.current-page .input-field').prop('checked', false);
-
-      // special case of the number input fields (can't use text clear)
-      jQuery('.leaf-measurement-input').val('');
-
-      // clear yes/no buttons since it's a fake radio
-      jQuery('.current-page .btn-select').removeClass('btn-select');
-    },
-
-    populatePage: function(pageNumber) {
-      var view = this;
-
-      view.updateJSONObject();
-      view.removePageClasses();
-
-      if (pageNumber === 1) {
-        jQuery('.back-btn').addClass('hidden');
-      } else {
-        jQuery('.back-btn').removeClass('hidden');
-      }
-
-      // if (pageNumber === 4 || pageNumber === 5 || pageNumber === 6 || pageNumber === 7) {
-      //   jQuery('.back-btn').addClass('hidden');
-      // }
-
-      if (pageNumber === 7) {
-        jQuery('.page-title').text('Review Data');
-        jQuery('.next-btn').text('Finish');
-        app.reviewDataView.render();
-      } else {
-        jQuery('.page-title').text('New Observation');
-        jQuery('.next-btn').text('Next');
-      }
-
-      var pageLabel = 'leaf-';
-      pageLabel = pageLabel + pageNumber;
-
-      jQuery('#' + pageLabel).removeClass('hidden');
-      jQuery('#' + pageLabel).addClass('current-page');
-      view.clearPageContent();
-      view.updateProgressBar();
-    },
-
-    getPageNum: function() {
-      // find the currently shown page
-      var pageLabel = jQuery('.current-page').attr('id');
-
-      // get the page number from it
-      var pageNumber = 0;
-      if (pageLabel) {
-        pageNumber = pageLabel.substr(5, pageLabel.length - 5);
-      }
-      // else we're starting a new observation
-
-      return pageNumber;
-    },
-
-    // the target of the link is an image (book icon) so .parent() targets the link
-    openModal: function(ev) {
-      ev.preventDefault();
-      var url = jQuery(ev.target).parent().attr('href');
-      jQuery('.modal-body').html('<iframe width="100%" height="500px" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+      // jQuery('#title-page').addClass('hidden');
+      // jQuery('.back-btn').removeClass('hidden');
+      // jQuery('.next-btn').removeClass('hidden');
     },
 
     render: function () {
@@ -360,86 +90,6 @@
 
   });
 
-
-  /**
-    TreeSpeciesView
-  **/
-  app.View.TreeSpeciesView = Backbone.View.extend({
-    template: "#tree-species-list-template",
-
-    initialize: function() {
-      var view = this;
-      console.log('Initializing TreeSpeciesView...', view.el);
-
-      view.render();
-    },
-
-    events: {
-
-    },
-
-    render: function () {
-      var view = this;
-      console.log('Rendering TreeSpeciesView...');
-
-      var list = jQuery('#tree-species-list');
-
-      _.each(view.collection, function(tree) {
-        var listItem = _.template(jQuery(view.template).text(),{'common_name': tree.common_name, 'latin_name': tree.latin_name, 'wikipedia_url': tree.wikipedia_url});
-        list.append(listItem);
-      });
-    }
-  });
-
-  /**
-    ReviewData
-  **/
-  app.View.ReviewDataView = Backbone.View.extend({
-    template: "#review-data-list-template",
-
-    initialize: function() {
-      var view = this;
-      console.log('Initializing ReviewDataView...', view.el);
-    },
-
-    events: {
-
-    },
-
-    render: function () {
-      var view = this;
-      jQuery('#review-data-list').html('');             // clear out any previous values
-      console.log('Rendering ReviewDataView...');
-
-      jQuery('.tree-number-field').text(app.observation.get('tree_number'));
-
-
-
-      jQuery('.branch-letter-field').text(app.observation.get('branch_letter'));
-      jQuery('.tree-species-field').text(app.observation.get('tree_species'));
-      jQuery('.percent-colored-tree-field').text(app.observation.get('percent_colored_tree'));
-      jQuery('.field-notes-field').text(app.observation.get('additional_notes'));
-
-      var list = jQuery('#review-data-list');
-
-      _.each(app.observation.get('leaves'), function(leaf) {
-        var listItem = null;
-
-        if (leaf.fallen === "yes") {
-          listItem = _.template(jQuery(view.template).text(),{'leaf_num': leaf.leaf_num, 'leaf_length': 'fallen', 'leaf_width': 'fallen', 'percent_colored': 'fallen'});
-        } else {
-          listItem = _.template(jQuery(view.template).text(),{'leaf_num': leaf.leaf_num, 'leaf_length': leaf.leaf_length + ' cm', 'leaf_width': leaf.leaf_width + ' cm', 'percent_colored': leaf.percent_colored});
-        }
-
-        if (listItem !== null) {
-          list.append(listItem);
-        } else {
-          console.error('KABOOM! review-data-view issue');
-        }
-
-      });
-    }
-  });
 
 
   /**
@@ -494,8 +144,6 @@
         jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/na.svg');
       }
 
-      // jQuery('.weather-image').attr('src', app.weatherConditions.icon_url);
-
       jQuery('.temp-f').text(app.weatherConditions.temp_f);
       jQuery('.weather-string').text(app.weatherConditions.weather);
 
@@ -507,11 +155,9 @@
       jQuery('.humidity').text(app.weatherConditions.relative_humidity);
       jQuery('.uv').text(app.weatherConditions.UV);
       jQuery('.dewpoint_f').text(app.weatherConditions.dewpoint_f);
-
-      // temp_f for 5 hours starting now??
     }
-
   });
+
 
   /**
     MapView
@@ -566,6 +212,7 @@
       // TODO: set things up up so that the pins appear in real time - bind this to reset or something
       // TODO: add published
       // this is also a pretty sloppy way to handle this, redrawing the pins every time - better to just draw new pins. But waiting on results of privacy / geolocation discussion for that
+
       app.map.infowindow = new google.maps.InfoWindow({
         // map styling would go here, if google finally got around to adding it
       });
@@ -576,20 +223,19 @@
           var latLng = new google.maps.LatLng(o.get('location').latitude, o.get('location').longitude);
           var marker = new google.maps.Marker({
             id: o.get('_id'),
-            position: latLng,
-            title: o.get('message')
+            position: latLng
+            //title: o.get('message')       // TODO: this is very likely wrong
           });
 
           marker.setMap(app.map);
 
           google.maps.event.addListener(marker, 'click', function() {
             //injectThumbnail(o);   for when we have pictures
-            var mapPopupContent = o.get('author') + "'s " + o.get('tree_species') + " observation";
+            var mapPopupContent = o.get('author') + "'s observation";
             app.map.infowindow.setContent(mapPopupContent);
             app.map.infowindow.open(app.map, marker);
           });
         }
-
       });
 
     }
