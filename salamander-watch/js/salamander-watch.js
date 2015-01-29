@@ -33,9 +33,7 @@
   var DATABASE = null;
   app.stateData = null;
 
-  app.currentObservation = null;
-
-  app.treeSpeciesCollection = null;
+  app.observation = null;
 
   app.weatherConditions = null;
   app.weatherForecast = null;
@@ -45,7 +43,6 @@
   app.mapPosition = null;
   app.mapMarker = null;
   app.mapElevation = null;
-  //google.maps = null;         // TODO: look into me, where am I created?
 
   app.listView = null;
   app.collectView = null;

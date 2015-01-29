@@ -34,7 +34,7 @@
     },
 
     onModelSaved: function(model, response, options) {
-      app.currentObservation.set('modified_at', new Date());
+      app.observation.set('modified_at', new Date());
     },
 
     buttonSelected: function(ev) {
@@ -48,10 +48,10 @@
       var view = this;
 
       // delete the old observation?
-      app.currentObservation = new Model.LeafDropObservation();
-      app.currentObservation.wake(app.config.wakeful.url);
-      app.currentObservation.save();
-      view.collection.add(app.currentObservation);
+      app.observation = new Model.LeafDropObservation();
+      app.observation.wake(app.config.wakeful.url);
+      app.observation.save();
+      view.collection.add(app.observation);
 
       // add the location data
       var locationObj = {
@@ -59,7 +59,7 @@
         'longitude': app.mapPosition.longitude,
         'elevation': app.mapElevation
       };
-      app.currentObservation.set('location',locationObj);
+      app.observation.set('location',locationObj);
 
       // add the weather data
       var weatherObj = {
@@ -80,9 +80,9 @@
         "precipitation_today_cm": app.weatherConditions.precip_today_metric,
         "humidity": app.weatherConditions.relative_humidity
       };
-      app.currentObservation.set('weather',weatherObj);
+      app.observation.set('weather',weatherObj);
 
-      app.currentObservation.save();
+      app.observation.save();
 
       // UI changes
       jQuery('#title-page').addClass('hidden');
@@ -126,7 +126,7 @@
 
       // TODO - needs to not clear data
 
-      //var leafCycleNum = app.currentObservation.get('leaves').length + 1;
+      //var leafCycleNum = app.observation.get('leaves').length + 1;
 
       if (targetPageNumber === 2) {
         // if leaf cycle beginning, go back to page 3 else go back one in the leaf cycle (and delete!)
@@ -158,7 +158,7 @@
 
       // determine which of the 6 leaf observations we are on
       var leafCycleNum = view.getNumCompletedLeaves() + 1;
-      var leafAr = app.currentObservation.get('leaves');
+      var leafAr = app.observation.get('leaves');
 
       var checkedEl = jQuery('.current-page [type="radio"]:checked');
 
@@ -167,8 +167,8 @@
         if (jQuery(checkedEl).is("#id-leaf-fallen-yes")) {
           // update the observation for fallen
           leafAr[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"yes" };
-          app.currentObservation.set('leaves', leafAr);
-          app.currentObservation.save();
+          app.observation.set('leaves', leafAr);
+          app.observation.save();
 
           // if this is the last observation, go to page 6. Else go to page 3
           if (view.getNumCompletedLeaves() === 6) {
@@ -178,7 +178,7 @@
           }
 
         } else if (jQuery(checkedEl).is("#id-leaf-fallen-no")) {
-          app.currentObservation.get('leaves')[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
+          app.observation.get('leaves')[leafCycleNum-1] = { "leaf_num":leafCycleNum, "fallen":"no" };
 
           view.populatePage(pageNumber);
         }
@@ -227,10 +227,10 @@
         // if this is of type text take the text and put it straight up into the json
         if (i.type === "text" || i.type === "textarea" || i.type === "number") {
           // add text value to json - the && is an outlier check for when the user hits the back button with no field values on the first leaf
-          if (jQuery('.current-page').hasClass('leaf-cycle') && app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1]) {
-            app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1][jQuery(i).data().fieldName] = jQuery(i).val();
+          if (jQuery('.current-page').hasClass('leaf-cycle') && app.observation.get('leaves')[app.observation.get('leaves').length-1]) {
+            app.observation.get('leaves')[app.observation.get('leaves').length-1][jQuery(i).data().fieldName] = jQuery(i).val();
           } else {
-            app.currentObservation.set(jQuery(i).data().fieldName, jQuery(i).val());
+            app.observation.set(jQuery(i).data().fieldName, jQuery(i).val());
           }
         }
       });
@@ -240,13 +240,13 @@
       if (el.length > 0) {
         // if we're on the leaf cycle pages, otherwise it's a regular type of recording
         if (jQuery('.current-page').hasClass('leaf-cycle')) {
-          app.currentObservation.get('leaves')[app.currentObservation.get('leaves').length-1][el.data().fieldName] = jQuery(el).val();
+          app.observation.get('leaves')[app.observation.get('leaves').length-1][el.data().fieldName] = jQuery(el).val();
         } else {
-          app.currentObservation.set(el.data().fieldName, jQuery(el).val());
+          app.observation.set(el.data().fieldName, jQuery(el).val());
         }
       }
 
-      app.currentObservation.save();
+      app.observation.save();
     },
 
     updateProgressBar: function() {
@@ -265,7 +265,7 @@
     // TODO: move me to the model (and other things to model?)
     getNumCompletedLeaves: function() {
       var numCompletedLeaves = 0;
-      _.each(app.currentObservation.get('leaves'), function(leaf) {
+      _.each(app.observation.get('leaves'), function(leaf) {
         // either of these conditions denote 'completeness'
         if (leaf.fallen === "yes" || leaf.percent_colored !== null) {
           numCompletedLeaves++;
@@ -276,10 +276,10 @@
     },
 
     popLastLeaf: function() {
-      var leafAr = app.currentObservation.get('leaves');
+      var leafAr = app.observation.get('leaves');
       leafAr = _.without(leafAr, _.last(leafAr));
-      app.currentObservation.set('leaves', leafAr);
-      app.currentObservation.save();
+      app.observation.set('leaves', leafAr);
+      app.observation.save();
     },
 
     removePageClasses: function() {
@@ -411,18 +411,18 @@
       jQuery('#review-data-list').html('');             // clear out any previous values
       console.log('Rendering ReviewDataView...');
 
-      jQuery('.tree-number-field').text(app.currentObservation.get('tree_number'));
+      jQuery('.tree-number-field').text(app.observation.get('tree_number'));
 
 
 
-      jQuery('.branch-letter-field').text(app.currentObservation.get('branch_letter'));
-      jQuery('.tree-species-field').text(app.currentObservation.get('tree_species'));
-      jQuery('.percent-colored-tree-field').text(app.currentObservation.get('percent_colored_tree'));
-      jQuery('.field-notes-field').text(app.currentObservation.get('additional_notes'));
+      jQuery('.branch-letter-field').text(app.observation.get('branch_letter'));
+      jQuery('.tree-species-field').text(app.observation.get('tree_species'));
+      jQuery('.percent-colored-tree-field').text(app.observation.get('percent_colored_tree'));
+      jQuery('.field-notes-field').text(app.observation.get('additional_notes'));
 
       var list = jQuery('#review-data-list');
 
-      _.each(app.currentObservation.get('leaves'), function(leaf) {
+      _.each(app.observation.get('leaves'), function(leaf) {
         var listItem = null;
 
         if (leaf.fallen === "yes") {
