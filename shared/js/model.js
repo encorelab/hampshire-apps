@@ -25,7 +25,7 @@
   Skeletor.Model = (function() {
     function Model() {}
 
-    Model.requiredCollections = ['leaf_drop_observations', 'tags', 'states'];
+    Model.requiredCollections = ['leaf_drop_observations', 'salamander_watch_observations'];
 
     Model.init = function(url, db) {
       var dfrInit,
@@ -93,116 +93,6 @@
     };
 
     Model.defineModelClasses = function() {
-
-      var VotableTrait = {
-        addVote: function(username) {
-          var votes;
-          votes = _.clone(this.get('votes'));
-          if (!votes) {
-            votes = [];
-          }
-          votes.push(username);
-          return this.set('votes', votes);
-        },
-
-        removeVote: function(username) {
-          var votes;
-          votes = _.without(this.get('votes'), username);
-          return this.set('votes', votes);
-        }
-      };
-
-      var BuildOnableTrait = {
-        addBuildOn: function(author, content) {
-          var bo, build_ons;
-          build_ons = _.clone(this.get('build_ons'));
-          if (!build_ons) {
-            build_ons = [];
-          }
-          bo = {
-            content: content,
-            author: author,
-            created_at: new Date()
-          };
-          build_ons.push(bo);
-          return this.set('build_ons', build_ons);
-        }
-      };
-
-      /** Taggable Trait **/
-
-      var TaggableTrait = {
-        addTag: function(tag, tagger) {
-          var existingTagRelationships, tagRel,
-            _this = this;
-          if (!(tag instanceof Skeletor.Model.Tag)) {
-            console.error("Cannot addTag ", tag, " because it is not a Skeletor.Model.Tag instance!");
-            throw "Invalid tag (doesn't exist)";
-          }
-          if (!tag.id) {
-            console.error("Cannot addTag ", tag, " to contribution ", this, " because it doesn't have an id!");
-            throw "Invalid tag (no id)";
-          }
-          existingTagRelationships = this.get('tags') || [];
-          if (_.any(existingTagRelationships, function(tr) {
-            return tr.id === tag.id;
-          })) {
-            console.warn("Cannot addTag ", tag, " to contribution ", this, " because it already has this tag.");
-            return this;
-          }
-          tagRel = this.tagRel(tag, tagger);
-          existingTagRelationships.push(tagRel);
-          this.set('tags', existingTagRelationships);
-          return this;
-        },
-
-        removeTag: function(tag, tagger) {
-          var reducedTags,
-            _this = this;
-          reducedTags = _.reject(this.get('tags'), function(t) {
-            return (t.id === tag.id || t.name === tag.get('name')) && (!tagger || t.tagger === tagger);
-          });
-          this.set('tags', reducedTags);
-          return this;
-        },
-
-        hasTag: function(tag, tagger) {
-          var _this = this;
-          return _.any(this.get('tags'), function(t) {
-            return t.id.toLowerCase() === tag.id && (!tagger || t.tagger === tagger);
-          });
-        }
-      };
-
-      /** Multipos Trait **/
-
-      // Allows a balloon to have multiple sets of positions, for different contexts
-      var MultiposTrait = {
-        getPos: function(context) {
-          var ctx = context || "_";
-          var positions = this.get('pos') || {};
-          // need to clone to ensure that changes aren't unintentionally written back if return value is manipulated
-          return _.clone(positions[ctx]);
-        },
-        setPos: function(pos, context) {
-          if (_.isNull(pos.left) || _.isUndefined(pos.left) ||
-              _.isNull(pos.top)  || _.isUndefined(pos.top)) {
-            console.error("Invalid position for setPos:", pos, context, this);
-            throw new Error("Cannot setPos() because the given position is invalid.");
-          }
-          var ctx = context || "_";
-          var positions = this.has('pos') ? _.clone(this.get('pos')) : {};
-          positions[ctx] = pos;
-          this.set('pos', positions);
-          return this;
-        },
-        hasPos: function(context) {
-          var ctx = context || "_";
-          return this.has('pos') &&
-            !_.isUndefined(this.get('pos')[ctx]);
-        }
-      };
-
       /** LeafDropObservation **/
 
       this.LeafDropObservation = this.db.Document('leaf_drop_observations').extend({
@@ -213,34 +103,24 @@
           'leaves': []
         }
       })
-      .extend(TaggableTrait)
-      .extend(MultiposTrait)
-      .extend(VotableTrait)
-      .extend(BuildOnableTrait);
 
       this.LeafDropObservations = this.db.Collection('leaf_drop_observations').extend({
         model: Skeletor.Model.LeafDropObservation
       });
 
-      /** Tag **/
 
-      this.Tag = this.db.Document('tags').extend({
+      /** SalamanderWatchObservation **/
 
+      this.SalamanderWatchObservation = this.db.Document('salamander_watch_observations').extend({
+        defaults: {
+          'created_at': new Date(),
+          'modified_at': new Date(),
+          'author': Skeletor.Mobile.username
+        }
       })
-      .extend(MultiposTrait);
 
-      this.Tags = this.db.Collection('tags').extend({
-        model: Skeletor.Model.Tag
-      });
-
-      /** State **/
-
-      this.State = this.db.Document('states').extend({
-
-      });
-
-      this.States = this.db.Collection('states').extend({
-        model: Skeletor.Model.State
+      this.SalamanderWatchObservations = this.db.Collection('salamander_watch_observations').extend({
+        model: Skeletor.Model.SalamanderWatchObservation
       });
     };
 
