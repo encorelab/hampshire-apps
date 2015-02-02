@@ -24,6 +24,7 @@
     events: {
       'click #new-observation-btn'     : "startNewObservation",
       'click #resume-observation-btn'  : "resumeObservation",
+      'click input[type=radio]'        : "updateObservation",
       'click .next-btn'                : "determineTarget",
       'click .back-btn'                : "determineTarget"
     },
@@ -37,6 +38,12 @@
 
     // switch pages to page name (with label = id = obj key in the data structure)
     jumpToPage: function(page) {
+      // set the 'current_page'
+      var dataObj = app.observation.get('data');
+      dataObj.current_page = page;
+      app.observation.set('data',dataObj);
+      app.observation.save();
+
       jQuery('.page').addClass('hidden');
       jQuery('#'+page).removeClass('hidden');
     },
@@ -55,42 +62,44 @@
     startNewObservation: function() {
       var view = this;
 
-      // delete the old observation?
-      // app.observation = new Model.SalamanderWatchObservation();
-      // app.observation.wake(app.config.wakeful.url);
-      // app.observation.save();
-      // view.collection.add(app.observation);
+      app.observation = new Model.SalamanderWatchObservation();
+      app.observation.wake(app.config.wakeful.url);
+      app.observation.save();
+      view.collection.add(app.observation);
 
-      // // add the location data
-      // var locationObj = {
-      //   'latitude': app.mapPosition.latitude,
-      //   'longitude': app.mapPosition.longitude,
-      //   'elevation': app.mapElevation
-      // };
-      // app.observation.set('location',locationObj);
+      // begin the main observation content and add it to the obj
+      app.observation.set('data',{});
 
-      // // add the weather data
-      // var weatherObj = {
-      //   "temperature_f": app.weatherConditions.temp_f,
-      //   "temperature_c": app.weatherConditions.temp_c,
-      //   "wind_direction": app.weatherConditions.wind_dir,
-      //   "wind_speed_mph": app.weatherConditions.wind_mph,
-      //   "wind_speed_kph": app.weatherConditions.wind_kph,
-      //   "wind_gust_speed_mph": app.weatherConditions.wind_gust_mph,
-      //   "wind_gust_speed_kph": app.weatherConditions.wind_gust_kph,
-      //   "pressure_mb": app.weatherConditions.pressure_mb,
-      //   "pressure_trend": app.weatherConditions.pressure_trend,
-      //   "visibility_m": app.weatherConditions.visibility_mi,
-      //   "visibility_k": app.weatherConditions.visibility_km,
-      //   "precipitation_hour_in": app.weatherConditions.precip_1hr_in,
-      //   "precipitation_hour_cm": app.weatherConditions.precip_1hr_metric,
-      //   "precipitation_today_in": app.weatherConditions.precip_today_in,
-      //   "precipitation_today_cm": app.weatherConditions.precip_today_metric,
-      //   "humidity": app.weatherConditions.relative_humidity
-      // };
-      // app.observation.set('weather',weatherObj);
+      // add the location data
+      var locationObj = {
+        'latitude': app.mapPosition.latitude,
+        'longitude': app.mapPosition.longitude,
+        'elevation': app.mapElevation
+      };
+      app.observation.set('location',locationObj);
 
-      // app.observation.save();
+      // add the weather data
+      var weatherObj = {
+        "temperature_f": app.weatherConditions.temp_f,
+        "temperature_c": app.weatherConditions.temp_c,
+        "wind_direction": app.weatherConditions.wind_dir,
+        "wind_speed_mph": app.weatherConditions.wind_mph,
+        "wind_speed_kph": app.weatherConditions.wind_kph,
+        "wind_gust_speed_mph": app.weatherConditions.wind_gust_mph,
+        "wind_gust_speed_kph": app.weatherConditions.wind_gust_kph,
+        "pressure_mb": app.weatherConditions.pressure_mb,
+        "pressure_trend": app.weatherConditions.pressure_trend,
+        "visibility_m": app.weatherConditions.visibility_mi,
+        "visibility_k": app.weatherConditions.visibility_km,
+        "precipitation_hour_in": app.weatherConditions.precip_1hr_in,
+        "precipitation_hour_cm": app.weatherConditions.precip_1hr_metric,
+        "precipitation_today_in": app.weatherConditions.precip_today_in,
+        "precipitation_today_cm": app.weatherConditions.precip_today_metric,
+        "humidity": app.weatherConditions.relative_humidity
+      };
+      app.observation.set('weather',weatherObj);
+
+      app.observation.save();
 
       // UI changes
       jQuery('#title-page').addClass('hidden');
@@ -104,6 +113,24 @@
       // get the observation to resume (or is it passed in?)
       // var ev.target.data = obs.lastelementindataarray
       // jumpToPage(ev.target.data)       // this needs to duplicate what is coming in from the next/back button clicks
+    },
+
+    updateObservation: function(ev) {
+      console.log(ev.target);
+      var dataArr = app.observation.get('data');
+
+      // TODO: move this stuff to the model
+
+      // remove all copies of this type of data (eg life_status)     - this stuff is now all obsolete
+      // var key = jQuery(ev.target).attr('name');
+      // var value = jQuery(ev.target).val();
+      // var obj = {}
+      // obj[key] = value;
+      // dataArr.push(obj);
+
+      // app.observation.set('data', dataArr);
+
+      //jQuery.inArray('', dataArr)
     },
 
     render: function () {

@@ -83,17 +83,31 @@
                 </div>
             </div>
 
-            <!-- this is page 3 -->
             <div id="life_status" class="page hidden">
-                LIFE
+                <div class="progress-bar"></div>
+                LIFE STATUS
+                <div class="observation-choice text-center center-block row">
+                    <div class="btn-container center-block">
+                        <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive">Alive</label>
+                    </div>
+                    <div class="btn-container center-block">
+                        <input id="id-life-status-injured" type="radio" name="life_status" value="injured"><label for="id-life-status-injured" class="">Injured</label>
+                    </div>
+                    <div class="btn-container center-block">
+                        <input id="id-life-status-dead" type="radio" name="life_status" value="dead"><label for="id-life-status-dead">Dead</label>
+                    </div>
+                    <div class="btn-container center-block">
+                        <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown">I don't know</label>
+                    </div>
+                </div>
                 <div class="text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move">Back</button>
                     <button class="next-btn btn btn-lg btn-success hidden pull-right btn-move" data-target-page="traffic_level">Next</button>
                 </div>
             </div>
 
-            <!-- this is page 4 -->
             <div id="traffic_level" class="page hidden">
+                <div class="progress-bar"></div>
                 TRAFFIC
                 <div class="text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move" data-target-page="life_status">Back</button>
@@ -102,6 +116,7 @@
             </div>
 
             <div id="tunnel_use" class="page hidden">
+                <div class="progress-bar"></div>
                 TUNNEL
                 <div class="text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move" data-target-page="traffic_level">Back</button>
@@ -110,6 +125,7 @@
             </div>
 
             <div id="tunnel_use" class="page hidden">
+                <div class="progress-bar"></div>
                 NOTES
                 <div class="text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move" data-target-page="tunnel_use">Back</button>
