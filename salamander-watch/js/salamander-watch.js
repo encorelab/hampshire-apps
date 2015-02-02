@@ -369,6 +369,9 @@
       }
 
       jQuery('.nav-btn#weather-nav-btn').removeClass('disabled');
+
+      // this button shouldn't be clicked until we have location and weather, so tied to weatherView (which is last)
+      jQuery("#new-observation-btn").animate({"opacity": "1"}, 700);
     }
 
     if (view === "mapView") {
@@ -380,9 +383,6 @@
       }
 
       jQuery('.nav-btn#map-nav-btn').removeClass('disabled');
-
-      // this button shouldn't be clicked until we have location, so tied to mapView
-      jQuery("#new-observation-btn").animate({"opacity": "1"}, 700);
     }
   };
 
