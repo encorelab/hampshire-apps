@@ -73,16 +73,50 @@
 
     <div id="collect-screen" class="container">
         <div class="row-fluid">
-            <div id="title-page">
+
+            <div id="title-page" class="page">
                 <div class="first-page text-center center-block row">
                     <!-- <img src="img/_LeafDrop_Logo.png" class="img-responsive" alt="Leaf Drop logo"> -->
                     <h1 class="salamader-watch">Salamander Watch</h1>
-                    <button id="new-observation-btn" class="btn btn-default btn-lg btn-block">Start New Observation</button>
+                    <button id="new-observation-btn" class="btn btn-default btn-lg btn-block title-obs-btn hidden">Start New Observation</button>
+                    <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block title-obs-btn hidden">Resume Observation</button>
                 </div>
             </div>
 
-<!--             <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move">Back</button>
-            <button class="next-btn btn btn-lg btn-success hidden pull-right btn-move">Next</button> -->
+            <!-- this is page 3 -->
+            <div id="life_status" class="page hidden">
+                LIFE
+                <div class="text-center center-block row">
+                    <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move">Back</button>
+                    <button class="next-btn btn btn-lg btn-success hidden pull-right btn-move" data-target-page="traffic_level">Next</button>
+                </div>
+            </div>
+
+            <!-- this is page 4 -->
+            <div id="traffic_level" class="page hidden">
+                TRAFFIC
+                <div class="text-center center-block row">
+                    <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move" data-target-page="life_status">Back</button>
+                    <button class="next-btn btn btn-lg btn-success hidden pull-right btn-move" data-target-page="tunnel_use">Next</button>
+                </div>
+            </div>
+
+            <div id="tunnel_use" class="page hidden">
+                TUNNEL
+                <div class="text-center center-block row">
+                    <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move" data-target-page="traffic_level">Back</button>
+                    <button class="next-btn btn btn-lg btn-success hidden pull-right btn-move">Next</button>
+                </div>
+            </div>
+
+            <div id="tunnel_use" class="page hidden">
+                NOTES
+                <div class="text-center center-block row">
+                    <button class="back-btn btn btn-lg btn-success hidden pull-left btn-move" data-target-page="tunnel_use">Back</button>
+                    <button class="next-btn btn btn-lg btn-success hidden pull-right btn-move">Finish</button>
+                </div>
+            </div>
+
         </div>
     </div>
 

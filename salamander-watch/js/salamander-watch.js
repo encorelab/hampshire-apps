@@ -357,6 +357,8 @@
       }
 
       jQuery('.nav-btn#collect-nav-btn').removeClass('disabled');
+      // we call this here and not in the tab click listener, since it's the shown tab
+      app.collectView.render();
     }
 
     if (view === "weatherView") {
