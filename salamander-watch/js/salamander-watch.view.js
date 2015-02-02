@@ -119,18 +119,14 @@
       console.log(ev.target);
       var dataArr = app.observation.get('data');
 
+      var dataObj = app.observation.get('data');
+      var key = jQuery(ev.target).attr('name');
+      var value = jQuery(ev.target).val();
+      dataObj[key] = value;
+      app.observation.set('data',dataObj);
+      app.observation.save();
+
       // TODO: move this stuff to the model
-
-      // remove all copies of this type of data (eg life_status)     - this stuff is now all obsolete
-      // var key = jQuery(ev.target).attr('name');
-      // var value = jQuery(ev.target).val();
-      // var obj = {}
-      // obj[key] = value;
-      // dataArr.push(obj);
-
-      // app.observation.set('data', dataArr);
-
-      //jQuery.inArray('', dataArr)
     },
 
     render: function () {
