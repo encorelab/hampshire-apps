@@ -115,7 +115,8 @@
         defaults: {
           'created_at': new Date(),
           'modified_at': new Date(),
-          'author': Skeletor.Mobile.username
+          'author': Skeletor.Mobile.username,
+          'published': false
         }
       });
 

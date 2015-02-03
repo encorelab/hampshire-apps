@@ -355,10 +355,7 @@
           collection: Skeletor.Model.awake.salamander_watch_observations
         });
       }
-
       jQuery('.nav-btn#collect-nav-btn').removeClass('disabled');
-      // we call this here and not in the tab click listener, since it's the shown tab
-      app.collectView.render();
     }
 
     if (view === "weatherView") {
@@ -367,11 +364,10 @@
           el: '#weather-screen'
         });
       }
-
       jQuery('.nav-btn#weather-nav-btn').removeClass('disabled');
 
-      // this button shouldn't be clicked until we have location and weather, so tied to weatherView (which is last)
-      jQuery("#new-observation-btn").animate({"opacity": "1"}, 700);
+      // this view shouldn't be clickable until we have location and weather, so this is tied to weatherView (which is last)
+      app.collectView.render();
     }
 
     if (view === "mapView") {
@@ -381,7 +377,6 @@
           collection: Skeletor.Model.awake.salamander_watch_observations
         });
       }
-
       jQuery('.nav-btn#map-nav-btn').removeClass('disabled');
     }
   };

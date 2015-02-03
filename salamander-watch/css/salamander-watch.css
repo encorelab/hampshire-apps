@@ -206,10 +206,10 @@ img.space-bottom {
 /********** SPECIFIC PAGES **********/
 
 /* for fade in when geolocation is ready */
-#new-observation-btn {
+/*#new-observation-btn #resume-observation-btn {
     opacity: 0;
     text-align: center;
-}
+}*/
 
 /***** first page *****/
 

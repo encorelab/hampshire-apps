@@ -62,6 +62,15 @@
     startNewObservation: function() {
       var view = this;
 
+      // find the last unpublished observation for this user
+      //app.observation = view.collection.findWhere({published: false, author: app.username});
+      // var r = confirm("You have unpublished observations. Select OK to proceed and delete these unpublished observations");
+      // if (r == true) {
+
+      // } else {
+
+      // }
+
       app.observation = new Model.SalamanderWatchObservation();
       app.observation.wake(app.config.wakeful.url);
       app.observation.save();
@@ -103,16 +112,17 @@
 
       // UI changes
       jQuery('#title-page').addClass('hidden');
-      jQuery('.back-btn').removeClass('hidden');
-      jQuery('.next-btn').removeClass('hidden');
 
       view.jumpToPage("life_status");
     },
 
     resumeObservation: function() {
-      // get the observation to resume (or is it passed in?)
-      // var ev.target.data = obs.lastelementindataarray
-      // jumpToPage(ev.target.data)       // this needs to duplicate what is coming in from the next/back button clicks
+      var view = this;
+      // find the last unpublished observation for this user
+      app.observation = view.collection.findWhere({published: false, author: app.username});
+
+      var page = app.observation.attributes.data.current_page;      // enough - add to model!
+      view.jumpToPage(page);
     },
 
     updateObservation: function(ev) {
@@ -130,15 +140,14 @@
     },
 
     render: function () {
+      var view = this;
       console.log('Rendering CollectView...');
 
-      jQuery('.title-obs-btn').addClass('hidden');
+      jQuery('.start-obs-btn').removeClass('hidden');
 
-      // determine if we want new or resume button showing
-      if (true) {
-        jQuery('#new-observation-btn').removeClass('hidden');
-      } else {
-        jQuery('#resume-observation-btn').removeClass('hidden');
+      // determine if we want resume button showing - if any unpublished notes (note the bang), removeClass. Should also probably be contains instead of findWhere
+      if (!view.collection.findWhere({published: false, author: app.username})) {
+        jQuery('#resume-observation-btn').addClass('hidden');
       }
     }
 
