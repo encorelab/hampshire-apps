@@ -47,6 +47,7 @@
   app.collectView = null;
   app.weatherView = null;
   app.mapView = null;
+  app.findingsView = null;
 
   app.keyCount = 0;
   app.autoSaveTimer = window.setTimeout(function() { } ,10);
@@ -185,6 +186,7 @@
     setupUI();
     setUpClickListeners();
     wireUpViews("collectView");
+    wireUpViews("findingsView");
 
     // show the first screen
     jQuery('#collect-screen').removeClass('hidden');
@@ -378,6 +380,16 @@
         });
       }
       jQuery('.nav-btn#map-nav-btn').removeClass('disabled');
+    }
+
+    if (view === "findingsView") {
+      if (app.findingsView === null) {
+        app.findingsView = new app.View.FindingsView({
+          el: '#findings-screen',
+          collection: Skeletor.Model.awake.salamander_watch_observations
+        });
+      }
+      jQuery('.nav-btn#findings-nav-btn').removeClass('disabled');
     }
   };
 

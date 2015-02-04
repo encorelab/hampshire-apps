@@ -54,9 +54,8 @@
       view.jumpToPage(pageId);
     },
 
-    // switch pages to page name (with label = id = obj key in the data structure)
     jumpToPage: function(page) {
-      // set the 'current_page'
+      // set 'current_page'
       var dataObj = app.observation.get('data');
       dataObj.current_page = page;
       app.observation.set('data',dataObj);
@@ -175,7 +174,7 @@
       // UI changes
       jQuery('#title-page').addClass('hidden');
 
-      view.jumpToPage("life_status");
+      view.jumpToPage("photo-uploader");
     },
 
     render: function () {
@@ -315,7 +314,6 @@
       // ************* PINS *************
       // NB: this is pretty lame - doesn't use wakeful, so no new locations appearing until reload
       // TODO: set things up up so that the pins appear in real time - bind this to reset or something
-      // TODO: add published
       // this is also a pretty sloppy way to handle this, redrawing the pins every time - better to just draw new pins. But waiting on results of privacy / geolocation discussion for that
 
       app.map.infowindow = new google.maps.InfoWindow({
@@ -343,6 +341,28 @@
         }
       });
 
+    }
+  });
+
+
+  /**
+    FindingsView
+  **/
+  app.View.FindingsView = Backbone.View.extend({
+    view: this,
+
+    initialize: function() {
+      var view = this;
+      console.log('Initializing FindingsView...', view.el);
+    },
+
+    events: {
+
+    },
+
+    render: function() {
+      var view = this;
+      console.log('Rendering FindingsView...');
     }
   });
 
