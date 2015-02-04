@@ -536,11 +536,18 @@
     });
   };
 
-  app.autoSave = function(model, inputKey, inputValue, instantSave) {
+  app.autoSave = function(model, inputKey, inputValue, instantSave, nested) {
     app.keyCount++;
     if (instantSave || app.keyCount > 9) {
-      console.log('Saved');
-      model.set(inputKey, inputValue);
+      console.log('Autosaved');
+      if (nested === "data") {
+        var dataObj = app.observation.get('data');
+        dataObj[inputKey] = inputValue;
+        app.observation.set('data',dataObj);
+        app.observation.save();
+      } else {
+        model.set(inputKey, inputValue);
+      }
       model.save(null, {silent:true});
       app.keyCount = 0;
     }
