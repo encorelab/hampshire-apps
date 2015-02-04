@@ -349,7 +349,7 @@
     FindingsView
   **/
   app.View.FindingsView = Backbone.View.extend({
-    view: this,
+    template: '#findings-list-template',
 
     initialize: function() {
       var view = this;
@@ -363,7 +363,24 @@
     render: function() {
       var view = this;
       console.log('Rendering FindingsView...');
+
+      // clear out any previous values
+      jQuery('#findings-list').html('');
+      var list = jQuery('#findings-list');
+      // populate the list using the template
+      view.collection.each(function(obs) {
+        var listItem = null;
+        var dataObj = obs.get('data');
+        listItem = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "life_status": dataObj.life_status, "additional_notes": dataObj.additional_notes } );
+
+        if (listItem !== null) {
+          list.append(listItem);
+        } else {
+          console.error('Houston, we have a templating problem...');
+        }
+      });
     }
+
   });
 
   this.Skeletor = Skeletor;

@@ -39,6 +39,15 @@
     <script type="text/javascript" src="js/salamander-watch.js"></script>
     <script type="text/javascript" src="js/salamander-watch.view.js"></script>
 
+    <!-- Findings Template -->
+    <script id="findings-list-template" type="text/template">
+        <li class="findings-list-item col-xs-12 col-sm-5">
+            <h3>Author: <span class=""><%= author %><span></h3>
+            <h3>Life status: <span class=""><%= life_status %><span></h3>
+            <h3>Additional notes: <span class=""><%= additional_notes %><span></h3>
+        </li>
+    </script>
+
 </head>
 
 <body>
@@ -242,7 +251,7 @@
 
     <!-- Findings Screen -->
     <div id="findings-screen" class="container">
-        <div class="row-fluid">
+        <div id="findings-list" class="row-fluid">
             <!-- filled in the view -->
         </div>
     </div>

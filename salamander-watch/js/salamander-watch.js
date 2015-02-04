@@ -222,6 +222,9 @@
           jQuery('#map-screen').removeClass('hidden');
           google.maps.event.trigger(app.map,'resize');
           app.mapView.render();
+        } else if (jQuery(this).attr('id') === 'findings-nav-btn') {
+          jQuery('#findings-screen').removeClass('hidden');
+          app.findingsView.render();
         } else {
           console.log('ERROR: unknown nav button');
         }
