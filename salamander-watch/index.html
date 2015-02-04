@@ -86,7 +86,7 @@
 
             <div id="life_status" class="page hidden">
                 <div class="progress-bar"></div>
-                LIFE STATUS
+                Life Status
                 <div class="observation-choice text-center center-block row">
                     <div class="btn-container center-block">
                         <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive">Alive</label>
@@ -109,7 +109,18 @@
 
             <div id="traffic_level" class="page hidden">
                 <div class="progress-bar"></div>
-                TRAFFIC
+                Traffic Conditions
+                <div class="observation-choice text-center center-block row">
+                    <div class="btn-container center-block">
+                        <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light">Light Traffic</label>
+                    </div>
+                    <div class="btn-container center-block">
+                        <input id="id-traffic-level-medium" type="radio" name="traffic_level" value="medium"><label for="id-traffic-level-medium" class="">Moderate Traffic</label>
+                    </div>
+                    <div class="btn-container center-block">
+                        <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light">Heavy Traffic</label>
+                    </div>
+                </div>
                 <div class="text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="life_status">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="tunnel_use">Next</button>
@@ -118,7 +129,21 @@
 
             <div id="tunnel_use" class="page hidden">
                 <div class="progress-bar"></div>
-                TUNNEL
+                Tunnel Use
+                <div class="observation-choice text-center center-block row">
+                    <div class="btn-container center-block">
+                        <input id="id-tunnel-use-enter" type="radio" name="tunnel_use" value="enter"><label for="id-tunnel-use-enter">I saw this salamander ENTER a tunnel (only)</label>
+                    </div>
+                    <div class="btn-container center-block">
+                        <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="">I saw this salamander both ENTER and EXIT a tunnel</label>
+                    </div>
+                    <div class="btn-container center-block">
+                        <input id="id-tunnel-use-exit" type="radio" name="tunnel_use" value="exit"><label for="id-tunnel-use-exit">I saw this salamander EXIT a tunnel (only)</label>
+                    </div>
+                    <div class="btn-container center-block">
+                        <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none">I did not see a salamander use a tunnel</label>
+                    </div>
+                </div>
                 <div class="text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="traffic_level">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move">Next</button>
@@ -127,7 +152,9 @@
 
             <div id="tunnel_use" class="page hidden">
                 <div class="progress-bar"></div>
-                NOTES
+                Additional Field Notes (Optional)
+                Notes about field conditions, other organisms, or any human activity you noticed while collecting data
+                <!-- Reimplement autosave? <textarea></textarea> -->
                 <div class="text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="tunnel_use">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move">Finish</button>

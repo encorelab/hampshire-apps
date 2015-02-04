@@ -61,15 +61,49 @@
 
     startNewObservation: function() {
       var view = this;
+      // if there are unpublished observations, prompt
+      if (view.collection.findWhere({published: false, author: app.username})) {
+        if (confirm('You have unpublished observations. Select OK to proceed and delete these unpublished observations')) {
+          // delete the old unpublished observations
+          var modelsToDelete = view.collection.where({"published": false, "author": app.username})
+          modelsToDelete.forEach(function(model) {
+            //model.wake(Skeletor.Mobile.config.wakeful.url);
+            model.destroy();
+          })
 
+          // begin new observation
+          view.setupNewObservation();
+        }
+      } else {
+        // else just being new observation
+        view.setupNewObservation();
+      }
+    },
+
+    resumeObservation: function() {
+      var view = this;
       // find the last unpublished observation for this user
-      //app.observation = view.collection.findWhere({published: false, author: app.username});
-      // var r = confirm("You have unpublished observations. Select OK to proceed and delete these unpublished observations");
-      // if (r == true) {
+      app.observation = view.collection.findWhere({published: false, author: app.username});
 
-      // } else {
+      var page = app.observation.attributes.data.current_page;      // enough - add to model!
+      view.jumpToPage(page);
+    },
 
-      // }
+    updateObservation: function(ev) {
+      console.log(ev.target);
+      var dataArr = app.observation.get('data');
+
+      var dataObj = app.observation.get('data');
+      var key = jQuery(ev.target).attr('name');
+      var value = jQuery(ev.target).val();
+      dataObj[key] = value;
+      app.observation.set('data',dataObj);
+      app.observation.save();
+      // TODO: move this stuff to the model
+    },
+
+    setupNewObservation: function() {
+      var view = this;
 
       app.observation = new Model.SalamanderWatchObservation();
       app.observation.wake(app.config.wakeful.url);
@@ -114,29 +148,6 @@
       jQuery('#title-page').addClass('hidden');
 
       view.jumpToPage("life_status");
-    },
-
-    resumeObservation: function() {
-      var view = this;
-      // find the last unpublished observation for this user
-      app.observation = view.collection.findWhere({published: false, author: app.username});
-
-      var page = app.observation.attributes.data.current_page;      // enough - add to model!
-      view.jumpToPage(page);
-    },
-
-    updateObservation: function(ev) {
-      console.log(ev.target);
-      var dataArr = app.observation.get('data');
-
-      var dataObj = app.observation.get('data');
-      var key = jQuery(ev.target).attr('name');
-      var value = jQuery(ev.target).val();
-      dataObj[key] = value;
-      app.observation.set('data',dataObj);
-      app.observation.save();
-
-      // TODO: move this stuff to the model
     },
 
     render: function () {
