@@ -26,7 +26,8 @@
       'click #resume-observation-btn'  : "resumeObservation",
       'click input[type=radio]'        : "updateObservation",
       'click .next-btn'                : "determineTarget",
-      'click .back-btn'                : "determineTarget"
+      'click .back-btn'                : "determineTarget",
+      'click .finish-btn'              : "publishObservation"
     },
 
     // this is a wrapper, since we also use jumpToPage for resume
@@ -90,9 +91,7 @@
     },
 
     updateObservation: function(ev) {
-      console.log(ev.target);
-      var dataArr = app.observation.get('data');
-
+      // update the data object (model.attributes.data{})
       var dataObj = app.observation.get('data');
       var key = jQuery(ev.target).attr('name');
       var value = jQuery(ev.target).val();
@@ -100,6 +99,18 @@
       app.observation.set('data',dataObj);
       app.observation.save();
       // TODO: move this stuff to the model
+    },
+
+    publishObservation: function() {
+      var view = this;
+
+      app.observation.set('published', true);
+      app.observation.save();
+
+      jQuery().toastmessage('showSuccessToast', "Your observation has been submitted...");
+
+      // clean up the pages and start fresh for new observation (or should it push them to community view?)
+      view.render();
     },
 
     setupNewObservation: function() {
@@ -154,6 +165,9 @@
       var view = this;
       console.log('Rendering CollectView...');
 
+      // UI updates
+      jQuery('.page').addClass('hidden');
+      jQuery('#title-page').removeClass('hidden');
       jQuery('.start-obs-btn').removeClass('hidden');
 
       // determine if we want resume button showing - if any unpublished notes (note the bang), removeClass. Should also probably be contains instead of findWhere

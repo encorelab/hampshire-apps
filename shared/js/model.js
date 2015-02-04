@@ -123,6 +123,14 @@
       this.SalamanderWatchObservations = this.db.Collection('salamander_watch_observations').extend({
         model: Skeletor.Model.SalamanderWatchObservation
       });
+
+      // TODO: do custom setting for data {}
+      // var MyModel = Backbone.Model.extend({
+      //     set: function(attributes, options) {
+      //         // Custom code...
+      //         return Backbone.Model.prototype.set.call(this, attributes, options);
+      //     }
+      // });
     };
 
     Model.wake = function(wakefulUrl) {

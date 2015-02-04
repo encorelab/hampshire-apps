@@ -87,7 +87,7 @@
       app.username = jQuery.url().param('username');
     } else {
       // retrieve user name from cookie if possible otherwise ask user to choose name
-      app.runId = jQuery.cookie('hunger-games_mobile_runId');                           // START HERE, then clean out the CSS
+      app.runId = jQuery.cookie('hunger-games_mobile_runId');
       app.username = jQuery.cookie('hunger-games_mobile_username');
     }
 
