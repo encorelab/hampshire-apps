@@ -28,21 +28,23 @@
       'click .next-btn'                : "determineTarget",
       'click .back-btn'                : "determineTarget",
       'click .finish-btn'              : "publishObservation",
-      'keyup :input': function(ev) {
-        var view = this,
+      'keyup :input'                   : "checkForAutoSave"
+    },
+
+    checkForAutoSave: function(ev) {
+      var view = this,
           field = ev.target.name,
           input = ev.target.value;
-        // clear timer on keyup so that a save doesn't happen while typing
-        window.clearTimeout(app.autoSaveTimer);
+      // clear timer on keyup so that a save doesn't happen while typing
+      window.clearTimeout(app.autoSaveTimer);
 
-        // save after 10 keystrokes
-        app.autoSave(app.observation, field, input, false, "data");
+      // save after 10 keystrokes
+      app.autoSave(app.observation, field, input, false, "data");
 
-        // setting up a timer so that if we stop typing we save stuff after 5 seconds
-        app.autoSaveTimer = setTimeout(function(){
-          app.autoSave(app.observation, field, input, true, "data");
-        }, 5000);
-      }
+      // setting up a timer so that if we stop typing we save stuff after 5 seconds
+      app.autoSaveTimer = setTimeout(function(){
+       app.autoSave(app.observation, field, input, true, "data");
+      }, 5000);
     },
 
     // this is a wrapper, since we also use jumpToPage for resume

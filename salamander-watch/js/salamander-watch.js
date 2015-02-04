@@ -540,10 +540,11 @@
     app.keyCount++;
     if (instantSave || app.keyCount > 9) {
       console.log('Autosaved');
+      // since we still haven't updated the model to deal with nested sets, using this instead (eww)
       if (nested === "data") {
-        var dataObj = app.observation.get('data');
-        dataObj[inputKey] = inputValue;
-        app.observation.set('data',dataObj);
+        var nestedObj = app.observation.get(nested);
+        nestedObj[inputKey] = inputValue;
+        app.observation.set(nested,nestedObj);
         app.observation.save();
       } else {
         model.set(inputKey, inputValue);
