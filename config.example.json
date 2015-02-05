@@ -10,6 +10,9 @@
     "wakeful": {
         "url": "http://wakeful.badger.encorelab.org:7777/faye"
     },
+    "pikachu": {
+        "url": "http://pikachu.badger.encorelab.org/"
+    },
     "login_picker": true,
     "runs":["test"],
     "project_name": "Hampshire Apps"

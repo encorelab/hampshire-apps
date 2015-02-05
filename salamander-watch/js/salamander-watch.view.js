@@ -19,6 +19,8 @@
     initialize: function() {
       var view = this;
       console.log('Initializing CollectView...', view.el);
+
+      view.collection.on('sync', view.onModelSaved, view);
     },
 
     events: {
@@ -27,24 +29,9 @@
       'click input[type=radio]'        : "updateObservation",
       'click .next-btn'                : "determineTarget",
       'click .back-btn'                : "determineTarget",
+      'click #upload-btn'              : "uploadPhoto",
       'click .finish-btn'              : "publishObservation",
       'keyup :input'                   : "checkForAutoSave"
-    },
-
-    checkForAutoSave: function(ev) {
-      var view = this,
-          field = ev.target.name,
-          input = ev.target.value;
-      // clear timer on keyup so that a save doesn't happen while typing
-      window.clearTimeout(app.autoSaveTimer);
-
-      // save after 10 keystrokes
-      app.autoSave(app.observation, field, input, false, "data");
-
-      // setting up a timer so that if we stop typing we save stuff after 5 seconds
-      app.autoSaveTimer = setTimeout(function(){
-       app.autoSave(app.observation, field, input, true, "data");
-      }, 5000);
     },
 
     // this is a wrapper, since we also use jumpToPage for resume
@@ -63,10 +50,6 @@
 
       jQuery('.page').addClass('hidden');
       jQuery('#'+page).removeClass('hidden');
-    },
-
-    onModelSaved: function(model, response, options) {
-      app.observation.set('modified_at', new Date());
     },
 
     buttonSelected: function(ev) {
@@ -121,6 +104,7 @@
       var view = this;
 
       app.observation.set('published', true);
+      app.observation.set('modified_at', new Date());
       app.observation.save();
 
       jQuery().toastmessage('showSuccessToast', "Your observation has been submitted...");
@@ -175,6 +159,54 @@
       jQuery('#title-page').addClass('hidden');
 
       view.jumpToPage("photo-uploader");
+    },
+
+    uploadPhoto: function() {
+      var file = fileInput[0].files.item(0);
+
+      var formData = new FormData();
+      formData.append('file', file);
+
+      jQuery.ajax({
+          url: '/',
+          type: 'POST',
+          success: success,
+          error: failure,
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false
+      });
+
+      function failure(err) {
+          console.error("UPLOAD FAILED!", err);
+      }
+
+      function success(data, status, xhr) {
+          console.log("UPLOAD SUCCEEDED!");
+          console.log(xhr.getAllResponseHeaders());
+          showResult(data.url);
+      }
+    },
+
+    checkForAutoSave: function(ev) {
+      var view = this,
+          field = ev.target.name,
+          input = ev.target.value;
+      // clear timer on keyup so that a save doesn't happen while typing
+      window.clearTimeout(app.autoSaveTimer);
+
+      // save after 10 keystrokes
+      app.autoSave(app.observation, field, input, false, "data");
+
+      // setting up a timer so that if we stop typing we save stuff after 5 seconds
+      app.autoSaveTimer = setTimeout(function(){
+       app.autoSave(app.observation, field, input, true, "data");
+      }, 5000);
+    },
+
+    onModelSaved: function(model, response, options) {
+      model.set('modified_at', new Date());
     },
 
     render: function () {
