@@ -29,20 +29,17 @@
       'click input[type=radio]'        : "updateObservation",
       'click .next-btn'                : "determineTarget",
       'click .back-btn'                : "determineTarget",
+      'change #photo-file'             : "enableUpload",
       'click #upload-btn'              : "uploadPhoto",
       'click .finish-btn'              : "publishObservation",
       'keyup :input'                   : "checkForAutoSave"
     },
 
-
-    // var fileInput = jQuery('#file');
-    //             var uploadInput = jQuery('#upload');
-
-    //             fileInput.on('change', function () {
-    //                 if (fileInput.val()) {
-    //                     uploadInput.removeAttr('disabled');
-    //                 }
-    //             });
+    enableUpload: function() {
+      if (jQuery('#photo-file').val()) {
+        jQuery('#upload-btn').removeAttr('disabled');
+      }
+    },
 
     // this is a wrapper, since we also use jumpToPage for resume
     determineTarget: function(ev) {
@@ -187,11 +184,12 @@
     },
 
     uploadPhoto: function() {
-      console.log('falsy');
-      var file = jQuery('#file')[0].files.item(0);
-
+      var file = jQuery('#photo-file')[0].files.item(0);
       var formData = new FormData();
       formData.append('file', file);
+
+      // disable the upload btn again (until a file is chosen again)
+      jQuery('#upload-btn').attr('disabled','disabled');
 
       jQuery.ajax({
         url: app.config.pikachu.url,
@@ -205,7 +203,7 @@
       });
 
       function failure(err) {
-        // TODO - figure out how we want to handle this
+        jQuery().toastmessage('showErrorToast', "Photo could not be uploaded. Please try again");
       }
 
       function success(data, status, xhr) {
@@ -215,15 +213,18 @@
         dataObj.photo_url = data.url;
         app.observation.set('data',dataObj);
         app.observation.save();
+        jQuery('#upload-btn').text("Replace Photo");          // this will get moved around when there is actually taking a photo
         showResult(data.url);
       }
 
-      function showResult(url) {
-        var picLink = jQuery('<a>');
-        picLink.text(url);
-        picLink.attr('href', url);
-        picLink.attr('target', "_blank");
-        jQuery('#result').append(picLink);
+      function showResult(photoId) {
+        // delete old photo
+        jQuery('#photo-container').html('');
+        // set up an element to hold the new photo
+        var imgEl = jQuery('<img>');
+        imgEl.attr('src',app.config.pikachu.url + photoId);
+        imgEl.addClass('photo-preview');
+        jQuery('#photo-container').append(imgEl);
       }
     },
 

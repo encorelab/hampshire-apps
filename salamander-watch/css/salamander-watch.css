@@ -203,13 +203,7 @@ img.space-bottom {
 }
 
 
-/********** SPECIFIC PAGES **********/
-
-/* for fade in when geolocation is ready */
-/*#new-observation-btn #resume-observation-btn {
-    opacity: 0;
-    text-align: center;
-}*/
+/********** COLLECT PAGES **********/
 
 /***** first page *****/
 
@@ -221,6 +215,14 @@ img.space-bottom {
 
 .first-page > button {
     height: 55px;
+}
+
+
+/***** photo page *****/
+
+.photo-preview {
+    height: 200px;
+    width: 200px;
 }
 
 

@@ -100,13 +100,11 @@
                 <div class="progress-bar"></div>
                 Take a Photo
                 <div>
-                    <p><input type="file" name="file" id="file" /></p>
-                    <!-- <p><button id="upload-btn" disabled="disabled">Upload File</button></p> -->
-                    <p><button id="upload-btn">Upload File</button></p>
-                    <p id="result"></p>
+                    <p><input id="photo-file" type="file" name="file" /></p>
+                    <p><button id="upload-btn" disabled="disabled">Upload Photo</button></p>
+                    <div id="photo-container"></div>
                 </div>
                 <div class="text-center center-block row">
-                    <button class="back-btn btn btn-lg btn-success pull-left btn-move">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="life_status">Next</button>
                 </div>
             </div>
@@ -129,7 +127,7 @@
                     </div>
                 </div>
                 <div class="text-center center-block row">
-                    <button class="back-btn btn btn-lg btn-success pull-left btn-move">Back</button>
+                    <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="photo-uploader">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="traffic_level">Next</button>
                 </div>
             </div>
