@@ -34,6 +34,16 @@
       'keyup :input'                   : "checkForAutoSave"
     },
 
+
+    // var fileInput = jQuery('#file');
+    //             var uploadInput = jQuery('#upload');
+
+    //             fileInput.on('change', function () {
+    //                 if (fileInput.val()) {
+    //                     uploadInput.removeAttr('disabled');
+    //                 }
+    //             });
+
     // this is a wrapper, since we also use jumpToPage for resume
     determineTarget: function(ev) {
       var view = this;
@@ -162,30 +172,43 @@
     },
 
     uploadPhoto: function() {
-      var file = fileInput[0].files.item(0);
+      console.log('falsy');
+      var file = jQuery('#file')[0].files.item(0);
 
       var formData = new FormData();
       formData.append('file', file);
 
       jQuery.ajax({
-          url: '/',
-          type: 'POST',
-          success: success,
-          error: failure,
-          data: formData,
-          cache: false,
-          contentType: false,
-          processData: false
+        url: app.config.pikachu.url,
+        type: 'POST',
+        success: success,
+        error: failure,
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
       });
 
       function failure(err) {
-          console.error("UPLOAD FAILED!", err);
+        // TODO - figure out how we want to handle this
       }
 
       function success(data, status, xhr) {
-          console.log("UPLOAD SUCCEEDED!");
-          console.log(xhr.getAllResponseHeaders());
-          showResult(data.url);
+        console.log("UPLOAD SUCCEEDED!");
+        console.log(xhr.getAllResponseHeaders());
+        var dataObj = app.observation.get('data');
+        dataObj.photo_url = data.url;
+        app.observation.set('data',dataObj);
+        app.observation.save();
+        showResult(data.url);
+      }
+
+      function showResult(url) {
+        var picLink = jQuery('<a>');
+        picLink.text(url);
+        picLink.attr('href', url);
+        picLink.attr('target', "_blank");
+        jQuery('#result').append(picLink);
       }
     },
 
