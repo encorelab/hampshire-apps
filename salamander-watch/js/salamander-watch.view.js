@@ -15,6 +15,7 @@
   **/
   app.View.CollectView = Backbone.View.extend({
     view: this,
+    cleanCollectHTML: null,
 
     initialize: function() {
       var view = this;
@@ -29,6 +30,7 @@
       'click input[type=radio]'        : "updateObservation",
       'click .next-btn'                : "determineTarget",
       'click .back-btn'                : "determineTarget",
+      'click #record-orientation-btn'  : "recordOrientation",
       'change #photo-file'             : "enableUpload",
       'click #upload-btn'              : "uploadPhoto",
       'click .finish-btn'              : "publishObservation",
@@ -60,13 +62,6 @@
 
       jQuery('.page').addClass('hidden');
       jQuery('#'+page).removeClass('hidden');
-    },
-
-    buttonSelected: function(ev) {
-      var view = this;
-
-      jQuery('.btn-select').removeClass("btn-select");
-      jQuery(ev.target).addClass("btn-select");
     },
 
     startNewObservation: function() {
@@ -119,11 +114,15 @@
       jQuery().toastmessage('showSuccessToast', "Your observation has been submitted...");
 
       // clean up the pages and start fresh for new observation (or should it push them to community view?)
+      jQuery('#collect-screen').html(view.cleanCollectHTML);
       view.render();
     },
 
     setupNewObservation: function() {
       var view = this;
+
+      // store an unmodified version of the html for later when we want to revert
+      view.cleanCollectHTML = jQuery('#collect-screen').html();
 
       app.observation = new Model.SalamanderWatchObservation();
       app.observation.wake(app.config.wakeful.url);
@@ -226,6 +225,11 @@
       }
     },
 
+    recordOrientation: function() {
+      // onSuccess
+      jQuery('#record-orientation-btn').text('Measure Again');
+    },
+
     checkForAutoSave: function(ev) {
       var view = this,
           field = ev.target.name,
@@ -249,6 +253,11 @@
     render: function () {
       var view = this;
       console.log('Rendering CollectView...');
+
+      // reload the DOM from the .html file
+      // jQuery('#collect-screen').load('index.html', function() {
+      //   alert('Load was performed.');
+      // });
 
       // UI updates
       jQuery('.page').addClass('hidden');
