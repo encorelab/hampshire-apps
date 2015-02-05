@@ -50,9 +50,11 @@
 
     jumpToPage: function(page) {
       // set 'current_page'
-      var dataObj = app.observation.get('data');
-      dataObj.current_page = page;
-      app.observation.set('data',dataObj);
+      // var dataObj = app.observation.get('data');
+      // dataObj.current_page = page;
+      // app.observation.set('data',dataObj);
+      // Doing the above three lines in one line, but no set and therefore no events!!
+      app.observation.get('data').current_page = page;
       app.observation.save();
 
       jQuery('.page').addClass('hidden');
