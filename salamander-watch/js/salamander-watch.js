@@ -190,6 +190,7 @@
 
     // show the first screen
     jQuery('#collect-screen').removeClass('hidden');
+    app.collectView.render();
   };
 
   var setupUI = function() {
@@ -329,8 +330,8 @@
       dataType : "jsonp"
     }).then(function(response){
       app.weatherConditions = response.current_observation;
+      return deferred;
     });
-    return deferred;
   };
 
   app.grabWeatherForecast = function() {
@@ -339,8 +340,8 @@
       dataType : "jsonp"
     }).then(function(response){
       app.weatherForecast = response.forecast;
+      return deferred;
     });
-    return deferred;
   };
 
 
@@ -370,9 +371,6 @@
         });
       }
       jQuery('.nav-btn#weather-nav-btn').removeClass('disabled');
-
-      // this view shouldn't be clickable until we have location and weather, so this is tied to weatherView (which is last)
-      app.collectView.render();
     }
 
     if (view === "mapView") {

@@ -113,6 +113,8 @@
     publishObservation: function() {
       var view = this;
 
+      view.tryAddLocationData();
+      view.tryAddWeatherData();
       app.observation.set('published', true);
       app.observation.set('modified_at', new Date());
       app.observation.save();
@@ -133,42 +135,55 @@
 
       // begin the main observation content and add it to the obj
       app.observation.set('data',{});
-
-      // add the location data
-      var locationObj = {
-        'latitude': app.mapPosition.latitude,
-        'longitude': app.mapPosition.longitude,
-        'elevation': app.mapElevation
-      };
-      app.observation.set('location',locationObj);
-
-      // add the weather data
-      var weatherObj = {
-        "temperature_f": app.weatherConditions.temp_f,
-        "temperature_c": app.weatherConditions.temp_c,
-        "wind_direction": app.weatherConditions.wind_dir,
-        "wind_speed_mph": app.weatherConditions.wind_mph,
-        "wind_speed_kph": app.weatherConditions.wind_kph,
-        "wind_gust_speed_mph": app.weatherConditions.wind_gust_mph,
-        "wind_gust_speed_kph": app.weatherConditions.wind_gust_kph,
-        "pressure_mb": app.weatherConditions.pressure_mb,
-        "pressure_trend": app.weatherConditions.pressure_trend,
-        "visibility_m": app.weatherConditions.visibility_mi,
-        "visibility_k": app.weatherConditions.visibility_km,
-        "precipitation_hour_in": app.weatherConditions.precip_1hr_in,
-        "precipitation_hour_cm": app.weatherConditions.precip_1hr_metric,
-        "precipitation_today_in": app.weatherConditions.precip_today_in,
-        "precipitation_today_cm": app.weatherConditions.precip_today_metric,
-        "humidity": app.weatherConditions.relative_humidity
-      };
-      app.observation.set('weather',weatherObj);
-
-      app.observation.save();
+      view.tryAddLocationData();
+      view.tryAddWeatherData();
 
       // UI changes
       jQuery('#title-page').addClass('hidden');
 
       view.jumpToPage("photo-uploader");
+    },
+
+
+    // NB: LOCATION AND WEATHER ARE RECORDED AT START AND FINISH OF OBS - IF AVAILABLE (so sometimes only at the end)
+
+    tryAddLocationData: function() {
+      if (app.mapPosition && app.mapElevation) {
+        // add the location data
+        var locationObj = {
+          'latitude': app.mapPosition.latitude,
+          'longitude': app.mapPosition.longitude,
+          'elevation': app.mapElevation
+        };
+        app.observation.set('location',locationObj);
+        app.observation.save();
+      }
+    },
+
+    tryAddWeatherData: function() {
+      if (app.weatherConditions && app.weatherForecast) {
+        // add the weather data
+        var weatherObj = {
+          "temperature_f": app.weatherConditions.temp_f,
+          "temperature_c": app.weatherConditions.temp_c,
+          "wind_direction": app.weatherConditions.wind_dir,
+          "wind_speed_mph": app.weatherConditions.wind_mph,
+          "wind_speed_kph": app.weatherConditions.wind_kph,
+          "wind_gust_speed_mph": app.weatherConditions.wind_gust_mph,
+          "wind_gust_speed_kph": app.weatherConditions.wind_gust_kph,
+          "pressure_mb": app.weatherConditions.pressure_mb,
+          "pressure_trend": app.weatherConditions.pressure_trend,
+          "visibility_m": app.weatherConditions.visibility_mi,
+          "visibility_k": app.weatherConditions.visibility_km,
+          "precipitation_hour_in": app.weatherConditions.precip_1hr_in,
+          "precipitation_hour_cm": app.weatherConditions.precip_1hr_metric,
+          "precipitation_today_in": app.weatherConditions.precip_today_in,
+          "precipitation_today_cm": app.weatherConditions.precip_today_metric,
+          "humidity": app.weatherConditions.relative_humidity
+        };
+        app.observation.set('weather',weatherObj);
+        app.observation.save();
+      }
     },
 
     uploadPhoto: function() {
