@@ -53,7 +53,8 @@
       // var dataObj = app.observation.get('data');
       // dataObj.current_page = page;
       // app.observation.set('data',dataObj);
-      // Doing the above three lines in one line, but no set and therefore no events!!
+
+      // NB: doing the above three lines in one line, but this does not use set and therefore no events will fire
       app.observation.get('data').current_page = page;
       app.observation.save();
 
@@ -94,19 +95,16 @@
       // find the last unpublished observation for this user
       app.observation = view.collection.findWhere({published: false, author: app.username});
 
-      var page = app.observation.attributes.data.current_page;      // enough - add to model!
+      var page = app.observation.get('data').current_page;
       view.jumpToPage(page);
     },
 
     updateObservation: function(ev) {
       // update the data object (model.attributes.data{})
-      var dataObj = app.observation.get('data');
       var key = jQuery(ev.target).attr('name');
       var value = jQuery(ev.target).val();
-      dataObj[key] = value;
-      app.observation.set('data',dataObj);
+      app.observation.get('data')[key] = value;
       app.observation.save();
-      // TODO: move this stuff to the model
     },
 
     publishObservation: function() {
@@ -211,9 +209,7 @@
       function success(data, status, xhr) {
         console.log("UPLOAD SUCCEEDED!");
         console.log(xhr.getAllResponseHeaders());
-        var dataObj = app.observation.get('data');
-        dataObj.photo_url = data.url;
-        app.observation.set('data',dataObj);
+        app.observation.get('data').photo_url = data.url;
         app.observation.save();
         jQuery('#upload-btn').text("Replace Photo");          // this will get moved around when there is actually taking a photo
         showResult(data.url);
@@ -443,8 +439,7 @@
       // populate the list using the template
       view.collection.each(function(obs) {
         var listItem = null;
-        var dataObj = obs.get('data');
-        listItem = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "life_status": dataObj.life_status, "additional_notes": dataObj.additional_notes } );
+        listItem = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "life_status": obs.get('data').life_status, "additional_notes": obs.get('data').additional_notes } );
 
         if (listItem !== null) {
           list.append(listItem);
