@@ -90,6 +90,27 @@
       // find the last unpublished observation for this user
       app.observation = view.collection.findWhere({published: false, author: app.username});
 
+      // TODO: we're going to need a better way to do this next time - maybe storing the data type on the model? Or iterating over the html elements instead? This is bad right now
+
+      // populate the radios based on the model
+      _.each(app.observation.get('data'), function(v,k) {
+        console.log(k, v);
+        // special notes field
+        if (k === 'additional_notes') {
+          jQuery('[name=additional_notes]').text(v);
+        }
+        // photo
+        else if (v.indexOf('.') !== -1) {
+          view.showPhoto(v);
+        }
+        // radios
+        else if (v.length > 0 && jQuery(':radio[value='+v+']').length > 0) {
+          jQuery(':radio[value='+v+']').attr('checked','checked');
+        }
+
+
+      })
+
       var page = app.observation.get('data').current_page;
       view.jumpToPage(page);
     },
@@ -104,6 +125,9 @@
 
     publishObservation: function() {
       var view = this;
+
+      // do a last save of the text in the additional_notes field (in case user typed anything since autoSave fired)
+      app.autoSave(app.observation, "additional_notes", jQuery('[name=additional_notes]').val(), true, "data");
 
       view.tryAddLocationData();
       view.tryAddWeatherData();
@@ -183,6 +207,8 @@
     },
 
     uploadPhoto: function() {
+      var view = this;
+
       var file = jQuery('#photo-file')[0].files.item(0);
       var formData = new FormData();
       formData.append('file', file);
@@ -211,18 +237,18 @@
         app.observation.get('data').photo_url = data.url;
         app.observation.save();
         jQuery('#upload-btn').text("Replace Photo");          // this will get moved around when there is actually taking a photo
-        showResult(data.url);
+        view.showPhoto(data.url);
       }
+    },
 
-      function showResult(photoId) {
-        // delete old photo
-        jQuery('#photo-container').html('');
-        // set up an element to hold the new photo
-        var imgEl = jQuery('<img>');
-        imgEl.attr('src',app.config.pikachu.url + photoId);
-        imgEl.addClass('photo-preview');
-        jQuery('#photo-container').append(imgEl);
-      }
+    showPhoto: function(photoId) {
+      // delete old photo
+      jQuery('#photo-container').html('');
+      // set up an element to hold the new photo
+      var imgEl = jQuery('<img>');
+      imgEl.attr('src',app.config.pikachu.url + photoId);
+      imgEl.addClass('photo-preview');
+      jQuery('#photo-container').append(imgEl);
     },
 
     recordOrientation: function() {
