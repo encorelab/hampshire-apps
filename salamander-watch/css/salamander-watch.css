@@ -225,6 +225,19 @@ img.space-bottom {
     width: 200px;
 }
 
+/***** orientation page *****/
+
+#compass-container {
+    width: 400px;
+}
+
+#compass {
+    width: 100%;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+}
+
 
 /********** WEATHER SCREEN **********/
 

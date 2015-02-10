@@ -95,7 +95,7 @@
       // populate the radios based on the model
       _.each(app.observation.get('data'), function(v,k) {
         console.log(k, v);
-        // special notes field
+        // special notes field (add other text fields here, and broaden as necessary)
         if (k === 'additional_notes') {
           jQuery('[name=additional_notes]').text(v);
         }
@@ -107,8 +107,6 @@
         else if (v.length > 0 && jQuery(':radio[value='+v+']').length > 0) {
           jQuery(':radio[value='+v+']').attr('checked','checked');
         }
-
-
       })
 
       var page = app.observation.get('data').current_page;
@@ -293,6 +291,38 @@
       // determine if we want resume button showing - if any unpublished notes (note the bang), removeClass. Should also probably be contains instead of findWhere
       if (!view.collection.findWhere({published: false, author: app.username})) {
         jQuery('#resume-observation-btn').addClass('hidden');
+      }
+
+      // orientation (this is ongoing, even when the page is hidden)
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', function(event) {
+          var alpha = 0;
+          var webkitAlpha = 0;
+
+          // checking for iOS
+          if (event.webkitCompassHeading) {
+            alpha = event.webkitCompassHeading;
+            // rotation is reversed for iOS
+            compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
+          }
+          //non iOS
+          else {
+            // NOTE: this should be event.alpha - gamma for testing only !!!!!!!!!!!!!!!!!
+            alpha = event.gamma;
+            webkitAlpha = alpha;
+            if (!window.chrome) {
+              // assume Android stock (this is crude, might need to be revised) and apply offset
+              webkitAlpha = alpha-270;
+            }
+          }
+
+          compass.style.Transform = 'rotate(' + alpha + 'deg)';
+          compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
+          // rotation is reversed for FF
+          compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
+        }, false);
+      } else {
+        // TODO: fail condition
       }
     }
 
