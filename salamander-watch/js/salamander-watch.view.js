@@ -16,6 +16,7 @@
   app.View.CollectView = Backbone.View.extend({
     view: this,
     cleanCollectHTML: null,
+    orientationAlpha: null,
 
     initialize: function() {
       var view = this;
@@ -250,8 +251,47 @@
     },
 
     recordOrientation: function() {
-      // onSuccess
-      jQuery('#record-orientation-btn').text('Measure Again');
+      var view = this;
+      if (view.orientationAlpha) {
+        app.observation.get('data').orientation = Math.round(view.orientationAlpha);
+        jQuery('#record-orientation-btn').text('Measure Again');
+        jQuery().toastmessage('showSuccessToast', "Salamander orientation recorded...");
+      } else {
+        jQuery().toastmessage('showErrorToast', "Orientation data not available. Please try again or proceed without recording the orientation.");
+      }
+    },
+
+    handleOrientation: function() {
+      var view = this;
+
+      var alpha = 0;
+      var webkitAlpha = 0;
+
+      // checking for iOS
+      if (event.webkitCompassHeading) {
+        alpha = event.webkitCompassHeading;
+        // rotation is reversed for iOS
+        compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
+      }
+      //non iOS
+      else {
+        // NOTE: this should be event.alpha - gamma for testing only !!!!!!!!!!!!!!!!!
+        alpha = event.gamma;
+        webkitAlpha = alpha;
+        if (!window.chrome) {
+          // assume Android stock (this is crude, might need to be revised) and apply offset
+          webkitAlpha = alpha-270;
+        }
+      }
+
+      // setting this to have wider scope so that the value can be used for recordOrientation
+      view.orientationAlpha = alpha;
+
+      // do the css mods for the onscreen compass
+      compass.style.Transform = 'rotate(' + alpha + 'deg)';
+      compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
+      // rotation is reversed for FF
+      compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
     },
 
     checkForAutoSave: function(ev) {
@@ -278,11 +318,6 @@
       var view = this;
       console.log('Rendering CollectView...');
 
-      // reload the DOM from the .html file
-      // jQuery('#collect-screen').load('index.html', function() {
-      //   alert('Load was performed.');
-      // });
-
       // UI updates
       jQuery('.page').addClass('hidden');
       jQuery('#title-page').removeClass('hidden');
@@ -293,36 +328,14 @@
         jQuery('#resume-observation-btn').addClass('hidden');
       }
 
-      // orientation (this is ongoing, even when the page is hidden)
+      // add orientation (this is ongoing, even when the page is hidden)
       if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', function(event) {
-          var alpha = 0;
-          var webkitAlpha = 0;
-
-          // checking for iOS
-          if (event.webkitCompassHeading) {
-            alpha = event.webkitCompassHeading;
-            // rotation is reversed for iOS
-            compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
-          }
-          //non iOS
-          else {
-            // NOTE: this should be event.alpha - gamma for testing only !!!!!!!!!!!!!!!!!
-            alpha = event.gamma;
-            webkitAlpha = alpha;
-            if (!window.chrome) {
-              // assume Android stock (this is crude, might need to be revised) and apply offset
-              webkitAlpha = alpha-270;
-            }
-          }
-
-          compass.style.Transform = 'rotate(' + alpha + 'deg)';
-          compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
-          // rotation is reversed for FF
-          compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
+          view.handleOrientation();
         }, false);
       } else {
-        // TODO: fail condition
+        // we probably want more help here?
+        jQuery().toastmessage('showErrorToast', "Orientation data not available. Please ask for technical assistance or proceed to take an incomplete observation.");
       }
     }
 
