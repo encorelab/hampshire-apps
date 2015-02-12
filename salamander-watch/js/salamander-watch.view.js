@@ -38,12 +38,6 @@
       'keyup :input'                   : "checkForAutoSave"
     },
 
-    enableUpload: function() {
-      if (jQuery('#photo-file').val()) {
-        jQuery('#upload-btn').removeAttr('disabled');
-      }
-    },
-
     // this is a wrapper, since we also use jumpToPage for resume
     determineTarget: function(ev) {
       var view = this;
@@ -205,6 +199,12 @@
       }
     },
 
+    enableUpload: function() {
+      if (jQuery('#photo-file').val()) {
+        jQuery('#upload-btn').removeAttr('disabled');
+      }
+    },
+
     uploadPhoto: function() {
       var view = this;
 
@@ -254,44 +254,63 @@
       var view = this;
       if (view.orientationAlpha) {
         app.observation.get('data').orientation = Math.round(view.orientationAlpha);
+        app.observation.save();
         jQuery('#record-orientation-btn').text('Measure Again');
         jQuery().toastmessage('showSuccessToast', "Salamander orientation recorded...");
       } else {
-        jQuery().toastmessage('showErrorToast', "Orientation data not available. Please try again or proceed without recording the orientation.");
+        jQuery().toastmessage('showErrorToast', "Orientation data not available. Please try again or proceed without recording the orientation. Note that laptops cannot generate orientation data.");
       }
     },
 
-    handleOrientation: function() {
+    handleOrientation: function(alpha) {
       var view = this;
 
-      var alpha = 0;
-      var webkitAlpha = 0;
-
-      // checking for iOS
-      if (event.webkitCompassHeading) {
-        alpha = event.webkitCompassHeading;
-        // rotation is reversed for iOS
-        compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
-      }
-      //non iOS
-      else {
-        // NOTE: this should be event.alpha - gamma for testing only !!!!!!!!!!!!!!!!!
-        alpha = event.gamma;
-        webkitAlpha = alpha;
-        if (!window.chrome) {
-          // assume Android stock (this is crude, might need to be revised) and apply offset
-          webkitAlpha = alpha-270;
-        }
-      }
-
+      // for testing - remove me
+      jQuery('.alpha-readout').text(alpha);
       // setting this to have wider scope so that the value can be used for recordOrientation
       view.orientationAlpha = alpha;
 
+      // first should check for laptop vs mobile, since laptops don't seem to have internal compasses
+
+      // based off of https://developer.mozilla.org/en-US/demos/detail/simple-compass
+      jQuery(".n").css({ "-moz-transform": "rotate(0deg)"});
+      jQuery(".n").css({ "-moz-transform": "rotate(" + alpha + "deg)"});
+
+      jQuery(".n").css({ "-o-transform": "rotate(0deg)"});
+      jQuery(".n").css({ "-o-transform": "rotate(" + alpha + "deg)"});
+
+      jQuery(".n").css({ "-ms-transform": "rotate(0deg)"});
+      jQuery(".n").css({ "-ms-transform": "rotate(" + alpha + "deg)"});
+
+      jQuery(".n").css({ "-webkit-transform": "rotate(0deg)"});
+      jQuery(".n").css({ "-webkit-transform": "rotate(" + alpha + "deg)"});
+
+      jQuery(".n").css({ "transform": "rotate(0deg)"});
+      jQuery(".n").css({ "transform": "rotate(" + alpha + "deg)"});
+
+
+      // NOTE THIS THE FOLLOWING IS BUGGY - COMPASS IS INCONSISTENT
+
+      // checking for iOS
+      // if (event.webkitCompassHeading) {
+      //   alpha = event.webkitCompassHeading;
+      //   // rotation is reversed for iOS
+      //   compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
+      // }
+      // // non iOS
+      // else {
+        // alpha = event.alpha;
+        // webkitAlpha = alpha;
+        // if (!window.chrome) {
+        //   // assume Android stock (this is crude, might need to be revised) and apply offset
+        //   webkitAlpha = alpha-270;
+        // }
+      //}
       // do the css mods for the onscreen compass
-      compass.style.Transform = 'rotate(' + alpha + 'deg)';
-      compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
-      // rotation is reversed for FF
-      compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
+      // compass.style.Transform = 'rotate(' + alpha + 'deg)';
+      // compass.style.WebkitTransform = 'rotate('+ alpha-270 + 'deg)';
+      // // rotation is reversed for FF
+      // compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
     },
 
     checkForAutoSave: function(ev) {
@@ -331,7 +350,8 @@
       // add orientation (this is ongoing, even when the page is hidden)
       if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', function(event) {
-          view.handleOrientation();
+          // we'll want to flip the orientation, it's counterclockwise for some reason, hence 360 - x
+          view.handleOrientation(360 - event.alpha);
         }, false);
       } else {
         // we probably want more help here?

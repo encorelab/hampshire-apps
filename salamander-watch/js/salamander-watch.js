@@ -395,17 +395,6 @@
   };
 
 
-  //*************** MAIN FUNCTIONS ***************//
-
-  // Functions related to Collect screen
-
-
-  // Functions related to Weather screen
-
-
-  // Functions related to Map screen
-
-
   //*************** HELPER FUNCTIONS ***************//
 
   app.roundToTwo = function(num) {
