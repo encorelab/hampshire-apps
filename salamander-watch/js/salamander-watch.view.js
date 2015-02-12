@@ -91,8 +91,11 @@
       _.each(app.observation.get('data'), function(v,k) {
         console.log(k, v);
         // special notes field (add other text fields here, and broaden as necessary)
-        if (k === 'additional_notes') {
+        if (k === "additional_notes") {
           jQuery('[name=additional_notes]').text(v);
+        }
+        else if (k === "orientation") {
+          jQuery('#orientation-field').text(v);
         }
         // photo
         else if (v.indexOf('.') !== -1) {
@@ -255,6 +258,7 @@
       if (view.orientationAlpha) {
         app.observation.get('data').orientation = Math.round(view.orientationAlpha);
         app.observation.save();
+        jQuery('#orientation-field').text(Math.round(view.orientationAlpha))
         jQuery('#record-orientation-btn').text('Measure Again');
         jQuery().toastmessage('showSuccessToast', "Salamander orientation recorded as "+view.orientationAlpha+" degrees from North...");
       } else {
@@ -451,7 +455,18 @@
     },
 
     events: {
+      'click .photo-preview'           : "showFindings"
+    },
 
+    showFindings: function() {
+      // do we want to pass the observation id or something here? Depends on filtering of findingsView
+
+      // this is so ugly, would be much better with proper routes
+      jQuery('.navigation li').removeClass('active'); // unmark all nav items
+      jQuery('#findings-nav-btn').addClass('active');
+      app.hideAllContainers();
+      jQuery('#findings-screen').removeClass('hidden');
+      app.findingsView.render();
     },
 
     render: function() {
@@ -489,22 +504,25 @@
 
       // filter by 'published', when we add it
       view.collection.each(function(o) {
-        if (o.get('location')) {
+        if (o.get('location') && o.get('published') === true) {
           var latLng = new google.maps.LatLng(o.get('location').latitude, o.get('location').longitude);
           var marker = new google.maps.Marker({
             id: o.get('_id'),
             position: latLng
-            //title: o.get('message')       // TODO: this is very likely wrong
           });
-
           marker.setMap(app.map);
 
+          var contentEl = "<div>" + o.get('author') + "'s observation</div>";
+          if (o.get('data') && o.get('data').photo_url) {
+            contentEl += "<img class='photo-preview' src='" + app.config.pikachu.url + o.get('data').photo_url + "' />";
+          }
           google.maps.event.addListener(marker, 'click', function() {
-            //injectThumbnail(o);   for when we have pictures
-            var mapPopupContent = o.get('author') + "'s observation";
-            app.map.infowindow.setContent(mapPopupContent);
+            app.map.infowindow.setContent(contentEl);
             app.map.infowindow.open(app.map, marker);
           });
+
+
+
         }
       });
 
