@@ -14,7 +14,6 @@
     drowsy: {
       url: 'string',
       db: 'string',
-      uic_url: 'string',
       username: 'string',
       password: 'string'
     },
@@ -499,7 +498,7 @@
 
   var showUserLoginPicker = function(runId) {
     // change header
-    jQuery('#login-picker .modal-header h3').text('Please login with your squirrel ID');
+    jQuery('#login-picker .modal-header h3').text('Please login with your user ID');
 
     // retrieve all users that have runId
     app.rollcall.usersWithTags([runId])

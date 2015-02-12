@@ -256,7 +256,7 @@
         app.observation.get('data').orientation = Math.round(view.orientationAlpha);
         app.observation.save();
         jQuery('#record-orientation-btn').text('Measure Again');
-        jQuery().toastmessage('showSuccessToast', "Salamander orientation recorded...");
+        jQuery().toastmessage('showSuccessToast', "Salamander orientation recorded as "+view.orientationAlpha+" degrees from North...");
       } else {
         jQuery().toastmessage('showErrorToast', "Orientation data not available. Please try again or proceed without recording the orientation. Note that laptops cannot generate orientation data.");
       }
