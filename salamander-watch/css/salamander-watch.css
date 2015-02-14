@@ -384,6 +384,19 @@ body {
 }
 
 
+/********** FINDINGS SCREEN **********/
+.findings-list-item {
+    width: 220px;
+    height: 220px;
+    padding: 20px;
+}
+
+.findings-list-photo {
+    width: 200px;
+    height: 200px;
+}
+
+
 /* Extra small devices portrait (phones, less than 768px) */
 @media all and (max-width: 767px) and (orientation: portrait) {
 

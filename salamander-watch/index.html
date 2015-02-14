@@ -40,12 +40,13 @@
     <script type="text/javascript" src="js/salamander-watch.view.js"></script>
 
     <!-- Findings Template -->
-    <script id="findings-list-template" type="text/template">
-        <li class="findings-list-item col-xs-12 col-sm-5">
-            <h3>Author: <span class=""><%= author %><span></h3>
-            <h3>Life status: <span class=""><%= life_status %><span></h3>
-            <h3>Additional notes: <span class=""><%= additional_notes %><span></h3>
-        </li>
+    <script id="findings-details-template" type="text/template">
+        <div>Author: <%= author %></div>
+        <div>Date: <%= date %></div>
+        <div>Orientation: <%= orientation %>&deg; from North</div>
+        <div>Traffic level: <%= traffic_level %></div>
+        <div>Tunnel use: <%= tunnel_use %></div>
+        <div>Additional notes: <%= additional_notes %></div>
     </script>
 
 </head>
@@ -288,6 +289,18 @@
                 </div>
                 <div class="modal-body login-buttons">
                 <!-- filled by java script with buttons for user login -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Findings Modal-->
+    <div id="findings-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="findingsModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="findings-modal-body">
+                    <!-- content inserted here -->
                 </div>
             </div>
         </div>

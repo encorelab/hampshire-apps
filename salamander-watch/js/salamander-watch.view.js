@@ -459,7 +459,7 @@
     },
 
     showFindings: function() {
-      // do we want to pass the observation id or something here? Depends on filtering of findingsView
+      // do we want to pass the observation id or something here? Depends on filtering of findingsView...
 
       // this is so ugly, would be much better with proper routes
       jQuery('.navigation li').removeClass('active'); // unmark all nav items
@@ -502,7 +502,6 @@
         // map styling would go here, if google finally got around to adding it
       });
 
-      // filter by 'published', when we add it
       view.collection.each(function(o) {
         if (o.get('location') && o.get('published') === true) {
           var latLng = new google.maps.LatLng(o.get('location').latitude, o.get('location').longitude);
@@ -520,9 +519,6 @@
             app.map.infowindow.setContent(contentEl);
             app.map.infowindow.open(app.map, marker);
           });
-
-
-
         }
       });
 
@@ -534,7 +530,7 @@
     FindingsView
   **/
   app.View.FindingsView = Backbone.View.extend({
-    template: '#findings-list-template',
+    template: '#findings-details-template',
 
     initialize: function() {
       var view = this;
@@ -542,7 +538,16 @@
     },
 
     events: {
+      "click .findings-list-item" : "openModal"
+    },
 
+    openModal: function(ev) {
+      var view = this;
+      ev.preventDefault();
+      var obsId = jQuery(ev.target).parent().data('obs-id');
+      var obs = this.collection.get(obsId);
+      var el = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "date": obs.get('modified_at'), "orientation": obs.get('data').orientation, "life_status": obs.get('data').life_status, "traffic_level": obs.get('data').traffic_level, "tunnel_use": obs.get('data').tunnel_use, "additional_notes": obs.get('data').additional_notes });
+      jQuery('.findings-modal-body').html(el);
     },
 
     render: function() {
@@ -554,15 +559,21 @@
       var list = jQuery('#findings-list');
       // populate the list using the template
       view.collection.each(function(obs) {
-        var listItem = null;
-        listItem = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "life_status": obs.get('data').life_status, "additional_notes": obs.get('data').additional_notes } );
-
-        if (listItem !== null) {
-          list.append(listItem);
-        } else {
-          console.error('Houston, we have a templating problem...');
+        // if the finding is published and has proper data
+        if (obs.get('published') === true && obs.get('data')) {
+          var listItem = null;
+          // if the finding has a photo
+          if (obs.get('data').photo_url) {
+            var el = "<div class='findings-list-item col-xs-12 col-sm-5' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><img class='findings-list-photo' src='"+app.config.pikachu.url+obs.get('data').photo_url+"'></img></div>";
+          }
+          // otherwise just throw in the author's name. Suggestions for what to do here?
+          else {
+            var el = "<div class='findings-list-item col-xs-12 col-sm-5' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><span>"+obs.get('author')+"'s observation</span></div>";
+          }
         }
+        list.append(el);
       });
+
     }
 
   });
