@@ -332,7 +332,7 @@
           input = ev.target.value;
       // clear timer on keyup so that a save doesn't happen while typing
       // window.clearTimeout(app.autoSaveTimer);
-      app.disableAutoSave();
+      app.disableAutoSaveTimer();
 
       // save after 10 keystrokes
       app.autoSave(app.observation, field, input, false, "data");
