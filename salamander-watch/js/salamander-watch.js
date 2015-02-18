@@ -278,6 +278,7 @@
                 app.mapElevation = results[0].elevation;
 
                 // now we can enable the map nav button and can start on grabbing the weather data
+                // NOTE: these kinds of deferred should be deprecated. Get them all out for the next iteration of this
                 wireUpViews("mapView");
 
                 var deferredConditions = app.grabWeatherConditions();

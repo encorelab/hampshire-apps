@@ -391,7 +391,7 @@ body {
     padding: 20px;
 }
 
-.findings-list-photo {
+.findings-list-photo, .findings-list-text {
     width: 200px;
     height: 200px;
 }
