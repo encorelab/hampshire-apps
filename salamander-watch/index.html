@@ -53,18 +53,18 @@
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand brand" href="#"></a>
-        </div>
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand brand" href="#"></a>
+            </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
@@ -83,9 +83,21 @@
       </div>
     </nav>
 
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li id="collect-nav-btn" class="nav-btn disabled"><a href="#collect-screen"><img src="img/icons/placeholder.png" alt="collect icon"></a></li>
+            <li id="weather-nav-btn" class="nav-btn disabled"><a href="#weather-screen"><img src="img/icons/placeholder.png" alt="weather icon"></a></li>
+            <li id="map-nav-btn" class="nav-btn disabled"><a href="#map-screen"><img src="img/icons/placeholder.png" alt="map icon"></a></li>
+            <li id="findings-nav-btn" class="nav-btn disabled"><a href="#findings-screen"><img src="img/icons/placeholder.png" alt="findings icon"></a></li>
+            <li id="exit-nav-btn" class="nav-btn disabled"><a href="#"><img src="img/icons/placeholder.png" alt="exit icon"></a></li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
 
     <div id="collect-screen" class="container">
         <div class="row-fluid">
+
 
             <div id="title-page" class="page">
                 <div class="first-page text-center center-block row">
