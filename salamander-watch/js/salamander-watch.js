@@ -544,15 +544,20 @@
       console.log('Autosaved');
       // since we still haven't updated the model to deal with nested sets, using this instead (eww)
       if (nested === "data") {
-        var nestedObj = app.observation.get(nested);
+        var nestedObj = model.get(nested);
         nestedObj[inputKey] = inputValue;
-        app.observation.set(nested,nestedObj);
-        app.observation.save();
+        model.set(nested,nestedObj);
       } else {
         model.set(inputKey, inputValue);
       }
       model.save(null, {silent:true});
       app.keyCount = 0;
+    }
+  };
+
+  app.disableAutoSaveTimer = function () {
+    if (app.autoSaveTimer) {
+      window.clearTimeout(app.autoSaveTimer);
     }
   };
 
