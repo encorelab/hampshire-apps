@@ -388,35 +388,35 @@
       console.log('Rendering WeatherView...');
 
       if (weatherString === 'Clear') {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/clear.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/clear.svg');
       } else if (weatherString === 'Overcast') {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/overcast.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/overcast.svg');
       } else if (weatherString.indexOf('Cloud') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/cloud.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/cloud.svg');
       } else if (weatherString.indexOf('Thunderstorm') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/thunderstorm.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/thunderstorm.svg');
       } else if (weatherString.indexOf('Freezing') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/freezing.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/freezing.svg');
       } else if (weatherString.indexOf('Drizzle') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/drizzle.svg');
       } else if (weatherString.indexOf('Mist') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/drizzle.svg');
       } else if (weatherString.indexOf('Haze') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/drizzle.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/drizzle.svg');
       } else if (weatherString.indexOf('Rain') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/rain.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/rain.svg');
       } else if (weatherString.indexOf('Snow') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/snow.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/snow.svg');
       } else if (weatherString.indexOf('Hail') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/hail.svg');
       } else if (weatherString.indexOf('Ice') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/hail.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/hail.svg');
       } else if (weatherString.indexOf('Fog') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/fog.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/fog.svg');
       } else if (weatherString.indexOf('Squalls') > -1) {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/squalls.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/squalls.svg');
       } else {
-        jQuery('.weather-image').attr('src', '/leaf-drop/img/icons/na.svg');
+        jQuery('.weather-image').attr('src', '/shared/img/weather/na.svg');
       }
 
       jQuery('.temp-f').text(app.weatherConditions.temp_f);
@@ -455,7 +455,7 @@
     },
 
     events: {
-      'click .photo-preview'           : "showFindings"
+      'click .photo-preview' : "showFindings"
     },
 
     showFindings: function() {
