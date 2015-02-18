@@ -65,11 +65,11 @@
       if (view.collection.findWhere({published: false, author: app.username})) {
         if (confirm('You have unpublished observations. Select OK to proceed and delete these unpublished observations')) {
           // delete the old unpublished observations
-          var modelsToDelete = view.collection.where({"published": false, "author": app.username})
+          var modelsToDelete = view.collection.where({"published": false, "author": app.username});
           modelsToDelete.forEach(function(model) {
             //model.wake(Skeletor.Mobile.config.wakeful.url);
             model.destroy();
-          })
+          });
 
           // begin new observation
           view.setupNewObservation();
@@ -105,7 +105,7 @@
         else if (v.length > 0 && jQuery(':radio[value='+v+']').length > 0) {
           jQuery(':radio[value='+v+']').attr('checked','checked');
         }
-      })
+      });
 
       var page = app.observation.get('data').current_page;
       view.jumpToPage(page);
@@ -125,8 +125,8 @@
       // do a last save of the text in the additional_notes field (in case user typed anything since autoSave fired)
       app.autoSave(app.observation, "additional_notes", jQuery('[name=additional_notes]').val(), true, "data");
 
-      view.tryAddLocationData();
-      view.tryAddWeatherData();
+      app.observation.set('location',view.getLocationData());
+      app.observation.set('weather', view.getWeatherData());
       app.observation.set('published', true);
       app.observation.set('modified_at', new Date());
       app.observation.save();
@@ -151,8 +151,6 @@
 
       // begin the main observation content and add it to the obj
       app.observation.set('data',{});
-      view.tryAddLocationData();
-      view.tryAddWeatherData();
 
       // UI changes
       jQuery('#title-page').addClass('hidden');
@@ -160,26 +158,29 @@
       view.jumpToPage("photo-uploader");
     },
 
-
-    // NB: LOCATION AND WEATHER ARE RECORDED AT START AND FINISH OF OBS - IF AVAILABLE (so sometimes only at the end)
-
-    tryAddLocationData: function() {
+    getLocationData: function() {
+      var locationObj;
       if (app.mapPosition && app.mapElevation) {
         // add the location data
-        var locationObj = {
+        locationObj = {
           'latitude': app.mapPosition.latitude,
           'longitude': app.mapPosition.longitude,
           'elevation': app.mapElevation
         };
-        app.observation.set('location',locationObj);
-        app.observation.save();
+        // app.observation.set('location',locationObj);
+        // app.observation.save();
+      } else {
+        locationObj = {"error":"missing location data"};
       }
+
+      return locationObj;
     },
 
-    tryAddWeatherData: function() {
+    getWeatherData: function() {
+      var weatherObj;
       if (app.weatherConditions && app.weatherForecast) {
         // add the weather data
-        var weatherObj = {
+        weatherObj = {
           "temperature_f": app.weatherConditions.temp_f,
           "temperature_c": app.weatherConditions.temp_c,
           "wind_direction": app.weatherConditions.wind_dir,
@@ -197,9 +198,14 @@
           "precipitation_today_cm": app.weatherConditions.precip_today_metric,
           "humidity": app.weatherConditions.relative_humidity
         };
-        app.observation.set('weather',weatherObj);
-        app.observation.save();
+        // app.observation.set('weather',weatherObj);
+        // app.observation.save();
+
+      } else {
+        weatherObj = {"error":"missing weather condtion data"};
       }
+
+      return weatherObj;
     },
 
     enableUpload: function() {
@@ -258,7 +264,7 @@
       if (view.orientationAlpha) {
         app.observation.get('data').orientation = Math.round(view.orientationAlpha);
         app.observation.save();
-        jQuery('#orientation-field').text(Math.round(view.orientationAlpha))
+        jQuery('#orientation-field').text(Math.round(view.orientationAlpha));
         jQuery('#record-orientation-btn').text('Measure Again');
         jQuery().toastmessage('showSuccessToast', "Salamander orientation recorded as "+view.orientationAlpha+" degrees from North...");
       } else {
@@ -559,16 +565,17 @@
       var list = jQuery('#findings-list');
       // populate the list using the template
       view.collection.each(function(obs) {
+        var el;
         // if the finding is published and has proper data
         if (obs.get('published') === true && obs.get('data')) {
           var listItem = null;
           // if the finding has a photo
           if (obs.get('data').photo_url) {
-            var el = "<div class='findings-list-item col-xs-12 col-sm-5' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><img class='findings-list-photo' src='"+app.config.pikachu.url+obs.get('data').photo_url+"'></img></div>";
+            el = "<div class='findings-list-item col-xs-12 col-sm-5' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><img class='findings-list-photo' src='"+app.config.pikachu.url+obs.get('data').photo_url+"'></img></div>";
           }
           // otherwise just throw in the author's name. Suggestions for what to do here?
           else {
-            var el = "<div class='findings-list-item col-xs-12 col-sm-5' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><div class='findings-list-text'>"+obs.get('author')+"'s observation</div></div>";
+            el = "<div class='findings-list-item col-xs-12 col-sm-5' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><div class='findings-list-text'>"+obs.get('author')+"'s observation</div></div>";
           }
         }
         list.append(el);
