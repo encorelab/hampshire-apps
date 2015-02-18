@@ -123,7 +123,7 @@
       var view = this;
 
       // clear timer to avoid side effects
-      app.disableAutoSaveTimer();
+      app.clearAutoSaveTimer();
 
       // do a last save of the text in the additional_notes field (in case user typed anything since autoSave fired)
       app.autoSave(app.observation, "additional_notes", jQuery('[name=additional_notes]').val(), true, "data");
@@ -332,7 +332,7 @@
           input = ev.target.value;
       // clear timer on keyup so that a save doesn't happen while typing
       // window.clearTimeout(app.autoSaveTimer);
-      app.disableAutoSaveTimer();
+      app.clearAutoSaveTimer();
 
       // save after 10 keystrokes
       app.autoSave(app.observation, field, input, false, "data");

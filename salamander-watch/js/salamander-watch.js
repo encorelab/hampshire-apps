@@ -555,7 +555,7 @@
     }
   };
 
-  app.disableAutoSaveTimer = function () {
+  app.clearAutoSaveTimer = function () {
     if (app.autoSaveTimer) {
       window.clearTimeout(app.autoSaveTimer);
     }
