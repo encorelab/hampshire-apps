@@ -178,6 +178,28 @@ input:disabled {
     margin-top: 2%;
 }
 
+/********** SIDE SECONDARY NAV **********/
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    /*width: 0;*/
+    height: 100%;
+    margin-left: -250px;
+    margin-top: 100px;
+    overflow-y: auto;
+    background: #eee;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper img {
+    width: 50px;
+    margin: 10px 25px;
+}
 
 /********** PROGRESS BAR **********/
 
