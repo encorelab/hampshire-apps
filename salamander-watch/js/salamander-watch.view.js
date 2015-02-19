@@ -22,6 +22,9 @@
       var view = this;
       console.log('Initializing CollectView...', view.el);
 
+      // store an unmodified version of the html for later when we want to revert
+      view.cleanCollectHTML = jQuery('#collect-screen').html();
+
       view.collection.on('sync', view.onModelSaved, view);
     },
 
@@ -46,11 +49,6 @@
     },
 
     jumpToPage: function(page) {
-      // set 'current_page'
-      // var dataObj = app.observation.get('data');
-      // dataObj.current_page = page;
-      // app.observation.set('data',dataObj);
-
       // NB: doing the above three lines in one line, but this does not use set and therefore no events will fire
       app.observation.get('data').current_page = page;
       app.observation.save();
@@ -129,8 +127,7 @@
       app.clearAutoSaveTimer();
 
       // do a last save of the text in the additional_notes field (in case user typed anything since autoSave fired)
-      app.autoSave(app.observation, "additional_notes", jQuery('[name=additional_notes]').val(), true, "data");
-
+      app.observation.get('data')['additional_notes'] = jQuery('[name=additional_notes]').val();
       app.observation.set('location',view.getLocationData());
       app.observation.set('weather', view.getWeatherData());
       app.observation.set('published', true);
@@ -146,9 +143,6 @@
 
     setupNewObservation: function() {
       var view = this;
-
-      // store an unmodified version of the html for later when we want to revert
-      view.cleanCollectHTML = jQuery('#collect-screen').html();
 
       app.observation = new Model.SalamanderWatchObservation();
       app.observation.wake(app.config.wakeful.url);
