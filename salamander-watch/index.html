@@ -13,9 +13,28 @@
     <link href='///fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
 
     <link href="css/salamander-watch.css" rel="stylesheet">
+    <link href="css/_media-queries.css" rel="stylesheet">
 
-<!--     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon"> -->
+<!--     <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff"> -->
 
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -84,7 +103,7 @@
     </nav>
 
     <!-- Sidebar -->
-<!--     <div id="sidebar-wrapper">
+    <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li id="collect-nav-btn" class="nav-btn disabled"><a href="#collect-screen"><img src="img/icons/icon_binoculars_grey.png" alt="collect icon"></a></li>
             <li id="weather-nav-btn" class="nav-btn disabled"><a href="#weather-screen"><img src="img/icons/icon_map_grey.png" alt="map icon"></a></li>
@@ -92,7 +111,7 @@
             <li id="findings-nav-btn" class="nav-btn disabled"><a href="#findings-screen"><img src="img/icons/icon_community_grey.png" alt="findings icon"></a></li>
             <li id="exit-nav-btn" class="nav-btn"><a href="https://pvcitizenscience.org/"><img src="img/icons/icon_exit_grey.png" alt="exit icon"></a></li>
         </ul>
-    </div> -->
+    </div>
     <!-- /#sidebar-wrapper -->
 
     <div id="collect-screen" class="container">
@@ -101,7 +120,7 @@
 
             <div id="title-page" class="page">
                 <div class="first-page text-center center-block row">
-                    <!-- <img src="img/_LeafDrop_Logo.png" class="img-responsive" alt="Leaf Drop logo"> -->
+                    <img src="img/salamanderlogo_colour.png" class="img-responsive salamander-logo" alt="Leaf Drop logo">
                     <h1 class="salamader-watch">Salamander Watch</h1>
                     <button id="new-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Start New Observation</button>
                     <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Resume Observation</button>
@@ -110,11 +129,12 @@
             </div>
 
             <div id="photo-uploader" class="page hidden">
-                <div class="progress-bar"></div>
-                Take a Photo
-                <div>
-                    <p><input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" /></p>
-                    <p><button id="upload-btn" disabled="disabled">Add photo to this observation</button></p>
+<!--                 <div class="progress-bar"><img src="img/progressbar_step1.png" class="img-responsive" alt="progress bar step 1">Take a Photo</div> -->
+                <img src="img/progressbar_step1.png" class="img-responsive wizard" alt="progress bar step 1 take a photo">
+                <div class="photo-wrapper">
+                    <label for="photo-file" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
+                    <input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" />
+                    <button id="upload-btn" class="btn btn-default" disabled="disabled">Add photo to this observation</button>
                     <div id="photo-container"></div>
                 </div>
                 <div class="text-center center-block row">
@@ -123,11 +143,9 @@
             </div>
 
             <div id="orientation" class="page hidden">
-                <div class="progress-bar"></div>
-                Migration Orientation
-                <div>
-                    <div class="alpha-readout"></div>
-                </div>
+                <!-- <div class="progress-bar">Migration Orientation</div> -->
+                <img src="img/progressbar_step2.png" class="img-responsive wizard" alt="progress bar step 2 migration orientation">
+                <div class="alpha-readout"></div>
                 <div id="compass-container">
                     <!-- <span style="position:absolute; top:40%; left:30px">HEAD --------------------------------------------------------------------------------------------------------------------------------------------------------- TAIL </span>
                     <img src="img/compass.png" id="compass"/> -->
@@ -145,20 +163,20 @@
             </div>
 
             <div id="life_status" class="page hidden">
-                <div class="progress-bar"></div>
-                Life Status
+                <div class="progress-bar">Life Status</div>
+                <img src="img/progressbar_step3.png" class="img-responsive wizard" alt="progress bar step 3 life status">
                 <div class="observation-choice text-center center-block row">
                     <div class="btn-container center-block">
-                        <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive">Alive</label>
+                        <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive" class="btn btn-default">Alive</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-life-status-injured" type="radio" name="life_status" value="injured"><label for="id-life-status-injured" class="">Injured</label>
+                        <input id="id-life-status-injured" type="radio" name="life_status" value="injured"><label for="id-life-status-injured" class="btn btn-default">Injured</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-life-status-dead" type="radio" name="life_status" value="dead"><label for="id-life-status-dead">Dead</label>
+                        <input id="id-life-status-dead" type="radio" name="life_status" value="dead"><label for="id-life-status-dead" class="btn btn-default">Dead</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown">I don't know</label>
+                        <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown" class="btn btn-default">I don't know</label>
                     </div>
                 </div>
                 <div class="text-center center-block row">
@@ -168,17 +186,17 @@
             </div>
 
             <div id="traffic_level" class="page hidden">
-                <div class="progress-bar"></div>
-                Traffic Conditions
+                <!-- <div class="progress-bar">Traffic Conditions</div> -->
+                <img src="img/progressbar_step4.png" class="img-responsive wizard" alt="progress bar step 4 traffic conditions">
                 <div class="observation-choice text-center center-block row">
                     <div class="btn-container center-block">
-                        <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light">Light Traffic</label>
+                        <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light" class="btn btn-default">Light Traffic</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-traffic-level-medium" type="radio" name="traffic_level" value="medium"><label for="id-traffic-level-medium" class="">Moderate Traffic</label>
+                        <input id="id-traffic-level-medium" type="radio" name="traffic_level" value="medium"><label for="id-traffic-level-medium" class="btn btn-default">Moderate Traffic</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-traffic-level-heavy" type="radio" name="traffic_level" value="heavy"><label for="id-traffic-level-heavy">Heavy Traffic</label>
+                        <input id="id-traffic-level-heavy" type="radio" name="traffic_level" value="heavy"><label for="id-traffic-level-heavy" class="btn btn-default">Heavy Traffic</label>
                     </div>
                 </div>
                 <div class="text-center center-block row">
@@ -188,20 +206,20 @@
             </div>
 
             <div id="tunnel_use" class="page hidden">
-                <div class="progress-bar"></div>
-                Tunnel Use
+                <div class="progress-bar">Tunnel Use</div>
+                <img src="img/progressbar_step5.png" class="img-responsive wizard" alt="progress bar step 5 tunnel use">
                 <div class="observation-choice text-center center-block row">
                     <div class="btn-container center-block">
-                        <input id="id-tunnel-use-enter" type="radio" name="tunnel_use" value="enter"><label for="id-tunnel-use-enter">I saw this salamander ENTER a tunnel (only)</label>
+                        <input id="id-tunnel-use-enter" type="radio" name="tunnel_use" value="enter"><label for="id-tunnel-use-enter" class="btn btn-default">I saw this salamander ENTER a tunnel (only)</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="">I saw this salamander both ENTER and EXIT a tunnel</label>
+                        <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="btn btn-default">I saw this salamander both ENTER and EXIT a tunnel</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-tunnel-use-exit" type="radio" name="tunnel_use" value="exit"><label for="id-tunnel-use-exit">I saw this salamander EXIT a tunnel (only)</label>
+                        <input id="id-tunnel-use-exit" type="radio" name="tunnel_use" value="exit"><label for="id-tunnel-use-exit" class="btn btn-default">I saw this salamander EXIT a tunnel (only)</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none">I did not see a salamander use a tunnel</label>
+                        <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none" class="btn btn-default">I did not see a salamander use a tunnel</label>
                     </div>
                 </div>
                 <div class="text-center center-block row">
@@ -211,9 +229,11 @@
             </div>
 
             <div id="additional_notes" class="page hidden">
-                <div class="progress-bar"></div>
-                Additional Field Notes (Optional)
-                Notes about field conditions, other organisms, or any human activity you noticed while collecting data
+                <!-- <div class="progress-bar"></div> -->
+                <img src="img/progressbar_step6.png" class="img-responsive wizard" alt="progress bar step 6 additional field notes">
+                <h3>Additional Field Notes (Optional)</h3>
+                <p class="text-muted">Notes about field conditions, other organisms, or any human activity you notice while collecting data</p>
+                <!-- can this text area be changed to an input?? -->
                 <textarea name="additional_notes"></textarea>
                 <div class="text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="tunnel_use">Back</button>

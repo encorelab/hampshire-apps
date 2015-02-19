@@ -14,7 +14,6 @@
     drowsy: {
       url: 'string',
       db: 'string',
-      uic_url: 'string',
       username: 'string',
       password: 'string'
     },

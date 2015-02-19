@@ -244,7 +244,7 @@
         console.log(xhr.getAllResponseHeaders());
         app.observation.get('data').photo_url = data.url;
         app.observation.save();
-        jQuery('#upload-btn').text("Replace Photo");          // this will get moved around when there is actually taking a photo
+        jQuery('#upload-btn').text("Replace Photo");
         view.showPhoto(data.url);
       }
     },
@@ -257,6 +257,9 @@
       imgEl.attr('src',app.config.pikachu.url + photoId);
       imgEl.addClass('photo-preview');
       jQuery('#photo-container').append(imgEl);
+      jQuery('.photo-preview').css("z-index","1");
+      jQuery('#photo-container').css("z-index","1");
+      jQuery('.camera-icon-label').css("opacity","0.0001").css("z-index","9999");
     },
 
     recordOrientation: function() {

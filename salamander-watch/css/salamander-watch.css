@@ -31,10 +31,30 @@ input[type=textarea] {
     line-height: 100%;
 }
 
+/*hiding radio buttons*/
+input[type=radio] {
+    display: none;
+}
+
+input[type=radio]:checked + label {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
 .btn {
     margin-bottom: 20px;
     height: 45px;
     min-width: 160px;
+    max-width: 250px;
+}
+
+.btn-default {
+    height: 55px;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 250px;
 }
 
 /*removing linear gradients from button defaults*/
@@ -61,6 +81,10 @@ input[type=textarea] {
 
 .btn-move {
     margin-top: 20px;
+}
+
+.btn-container + .btn-container {
+    margin: 20px auto 0;
 }
 
 .scrollable {
@@ -203,14 +227,20 @@ input:disabled {
 
 /********** PROGRESS BAR **********/
 
-#progress-bar-container {
-    margin-bottom: 4%;
+/*have to use wizard b/c progress & progress-bar are bootstrap classes*/
+.wizard {
+    max-width: 1000px;
+    margin: 4% auto;
 }
 
 /********** IMAGES **********/
 
 img.space-bottom {
     margin-bottom: 15px;
+}
+
+.salamander-logo {
+    margin: 0 auto;
 }
 
 /********** BODY - ALL **********/
@@ -231,20 +261,47 @@ img.space-bottom {
 
 .first-page {
     width: 100%;
-    max-width: 250px;
+    max-width: 500px;
     margin-top: 5%;
 }
 
 .first-page > button {
-    height: 55px;
+    margin: 0 auto 20px;
 }
 
 
 /***** photo page *****/
 
+.photo-wrapper {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.camera-icon {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 999;
+    /*padding: 15%;
+    border: 8px dashed #a4a6a9;
+    border-radius: 25px;*/
+}
+
+#photo-file {
+    margin: 0;
+    display: none;
+}
+
+#photo-container {
+    position: absolute;
+    top: 240px;
+}
+
 .photo-preview {
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: auto;
+    border-radius: 20px;
+    z-index: 1;
 }
 
 /***** orientation page *****/
@@ -416,173 +473,4 @@ body {
 .findings-list-photo, .findings-list-text {
     width: 200px;
     height: 200px;
-}
-
-
-/* Extra small devices portrait (phones, less than 768px) */
-@media all and (max-width: 767px) and (orientation: portrait) {
-
-    .list-styles li:nth-of-type(2n) {
-        margin-left: 0;
-    }
-
-    input[type=text] {
-       width: 25%;
-    }
-
-    .branch-letter-styles {
-        margin-left: 25px;
-    }
-}
-
-/********** MEDIA QUERIES **********/
-/* Extra small devices landscape (phones, less than 768px) */
-@media handheld and (max-width: 767px) and (orientation: landscape) {
-
-    .first-page {
-        max-width: 100%;
-    }
-
-    .first-page img {
-        height: auto;
-        width: 30%;
-    }
-
-    .first-page > h1,
-    .first-page > img {
-        max-width: 45%;
-        display: inline-block;
-    }
-
-    .first-page > button {
-        max-width: 40%;
-        margin: 0 10px 20px 10px;
-        display: inline-block;
-    }
-
-    .list-styles li:nth-of-type(2n) {
-        margin-left: 0;
-    }
-
-    .weather {
-        padding: 30px 15%;
-        font-size: 1.7em;
-    }
-
-}
-
-/* Small devices portrait (tablets, 768px and up) */
-@media all and (min-width: 768px) and (orientation: portrait) {
-    .first-page {
-        margin-top: 25%;
-    }
-
-    .fallen-title {
-        margin-top: 20%;
-    }
-
-    input[type=number] {
-       width: 45%;
-    }
-
-    #weather-screen .col-sm-4:nth-child(2) {
-        margin-left: 0;
-    }
-
-    #weather-screen .weather-image {
-        margin-top: 15%;
-    }
-
-    #weather-screen .temperature {
-        margin-top: 20%;
-        padding: 0;
-    }
-
-    .temperature > p {
-        font-size: 7em;
-        padding-left: 5%;
-    }
-
-    p.weather-string {
-        font-size: 2.5em;
-    }
-
-    .weather {
-        margin-top: 15%;
-        margin-left: 25%;
-        width: 50%;
-        font-size: 2em;
-        padding: 30px 10%;
-    }
-
-}
-
-/* Small devices landscape(tablets, 768px and up) */
-@media all and (min-width: 768px) and (orientation: landscape) {
-    #weather-screen .col-sm-4 {
-        margin-left: 0;
-    }
-
-    #weather-screen .weather-image {
-        margin-top: 18%;
-    }
-
-    #weather-screen .temperature {
-        margin-top: 19%;
-        padding: 0;
-    }
-
-    .temperature > p {
-        font-size: 7em;
-        /*padding-left: 5%;*/
-    }
-
-    p.weather-string {
-        font-size: 4em;
-        /*padding-left: 15%;*/
-    }
-
-    .weather {
-        margin-top: 14%;
-        margin-left: 3%;
-        font-size: 1.3em;
-    }
-}
-
-/* Medium devices (desktops, 992px and up) */
-@media all and (min-width: 992px) {
-
-    ul#tree-species-list {
-        height: 50vh;
-    }
-
-    .fallen-title {
-        margin-top: 10%;
-    }
-
-    #weather-screen .weather-image {
-        margin-left: 5%;
-        margin-top: 13%;
-        max-height: 350px;
-    }
-
-    #weather-screen .temperature {
-        margin-top: 17%;
-        margin-left: -2%;
-        padding: 0 15px;
-    }
-
-    .weather {
-        margin-top: 12%;
-        font-size: 1.1em;
-    }
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media all and (min-width: 1200px) {
-
-    .first-page {
-        margin-top: 10%;
-    }
-
 }
