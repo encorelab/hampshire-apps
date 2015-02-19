@@ -90,8 +90,11 @@
       // populate the radios based on the model
       _.each(app.observation.get('data'), function(v,k) {
         console.log(k, v);
-        // special notes field (add other text fields here, and broaden as necessary)
-        if (k === "additional_notes") {
+        // special fields (add other text fields here, and broaden as necessary). Holy gods this is stainy. TODO: check back how Matt did this in VEOS
+        if (v === "enter and exit") {
+          jQuery('#id-tunnel-use-enter-exit').attr('checked','checked');
+        }
+        else if (k === "additional_notes") {
           jQuery('[name=additional_notes]').text(v);
         }
         else if (k === "orientation") {
