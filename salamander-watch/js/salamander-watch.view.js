@@ -257,8 +257,8 @@
       imgEl.attr('src',app.config.pikachu.url + photoId);
       imgEl.addClass('photo-preview');
       jQuery('#photo-container').append(imgEl);
-      jQuery('.photo-preview').css("z-index","1");
-      jQuery('#photo-container').css("z-index","1");
+      jQuery('.photo-preview').css("z-index","0");
+      jQuery('#photo-container').css("z-index","0");
       jQuery('.camera-icon-label').css("opacity","0.0001").css("z-index","9999");
     },
 
