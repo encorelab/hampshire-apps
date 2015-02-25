@@ -203,6 +203,7 @@
       return weatherObj;
     },
 
+    // doing this a little differently now - we really need the user to know what to click on
     enableUpload: function() {
       if (jQuery('#photo-file').val()) {
         jQuery('#upload-btn').removeClass('waiting-for-file');
@@ -294,44 +295,51 @@
       // first should check for laptop vs mobile, since laptops don't seem to have internal compasses
 
       // based off of https://developer.mozilla.org/en-US/demos/detail/simple-compass
-      jQuery(".n").css({ "-moz-transform": "rotate(0deg)"});
-      jQuery(".n").css({ "-moz-transform": "rotate(" + alpha + "deg)"});
-
-      jQuery(".n").css({ "-o-transform": "rotate(0deg)"});
-      jQuery(".n").css({ "-o-transform": "rotate(" + alpha + "deg)"});
-
-      jQuery(".n").css({ "-ms-transform": "rotate(0deg)"});
-      jQuery(".n").css({ "-ms-transform": "rotate(" + alpha + "deg)"});
-
-      jQuery(".n").css({ "-webkit-transform": "rotate(0deg)"});
-      jQuery(".n").css({ "-webkit-transform": "rotate(" + alpha + "deg)"});
-
-      jQuery(".n").css({ "transform": "rotate(0deg)"});
-      jQuery(".n").css({ "transform": "rotate(" + alpha + "deg)"});
+      // jQuery(".n").css({ "-moz-transform": "rotate(0deg)"});
+      // jQuery(".n").css({ "-moz-transform": "rotate(" + alpha + "deg)"});
+      // jQuery(".n").css({ "-o-transform": "rotate(0deg)"});
+      // jQuery(".n").css({ "-o-transform": "rotate(" + alpha + "deg)"});
+      // jQuery(".n").css({ "-ms-transform": "rotate(0deg)"});
+      // jQuery(".n").css({ "-ms-transform": "rotate(" + alpha + "deg)"});
+      // jQuery(".n").css({ "-webkit-transform": "rotate(0deg)"});
+      // jQuery(".n").css({ "-webkit-transform": "rotate(" + alpha + "deg)"});
+      // jQuery(".n").css({ "transform": "rotate(0deg)"});
+      // jQuery(".n").css({ "transform": "rotate(" + alpha + "deg)"});
 
 
-      // NOTE THIS THE FOLLOWING IS BUGGY - COMPASS IS INCONSISTENT
 
-      // checking for iOS
-      // if (event.webkitCompassHeading) {
-      //   alpha = event.webkitCompassHeading;
-      //   // rotation is reversed for iOS
-      //   compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
-      // }
-      // // non iOS
-      // else {
-        // alpha = event.alpha;
-        // webkitAlpha = alpha;
-        // if (!window.chrome) {
-        //   // assume Android stock (this is crude, might need to be revised) and apply offset
-        //   webkitAlpha = alpha-270;
-        // }
-      //}
-      // do the css mods for the onscreen compass
-      // compass.style.Transform = 'rotate(' + alpha + 'deg)';
-      // compass.style.WebkitTransform = 'rotate('+ alpha-270 + 'deg)';
-      // // rotation is reversed for FF
-      // compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
+        // based on http://mobiforge.com/design-development/html5-mobile-web-device-orientation-events
+        //var compass = jQuery('#compass');
+        var compass = document.getElementById('compass');
+
+        if (window.DeviceOrientationEvent) {
+          window.addEventListener('deviceorientation', function(event) {
+            var alpha;
+            var webkitAlpha;
+            // check for iOS property
+            if(event.webkitCompassHeading) {
+              alpha = event.webkitCompassHeading;
+              // rotation is reversed for iOS
+              compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
+            }
+            // non iOS
+            else {
+              alpha = event.alpha;
+              webkitAlpha = alpha;
+              if(!window.chrome) {
+                // assume Android stock (CHECK THIS)
+                webkitAlpha = alpha-270;
+              }
+            }
+
+            compass.style.Transform = 'rotate(' + alpha + 'deg)';
+            compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
+            // rotation is reversed for FF
+            compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
+          }, false);
+        }
+
+
     },
 
     checkForAutoSave: function(ev) {

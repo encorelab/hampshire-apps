@@ -216,8 +216,6 @@
     });
 
 
-
-
     /* Buttons that manage the in-app navigation */
     jQuery('.sidebar-nav-btn').click(function() {
       if (app.username) {
