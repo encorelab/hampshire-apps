@@ -114,6 +114,10 @@ input[type=radio]:checked + label {
     opacity: 0.7;
 }
 
+.highlighted {
+    color: #5cb85c;
+}
+
 .top-btn-container {
     position: absolute;
     top: 3px;
@@ -272,6 +276,10 @@ img.space-bottom {
 
 /***** photo page *****/
 
+.waiting-for-file {
+    opacity: 0.6;
+}
+
 .photo-wrapper {
     width: 100%;
     max-width: 250px;
@@ -292,10 +300,10 @@ img.space-bottom {
     display: none;
 }
 
-#photo-container {
+/*#photo-container {
     position: absolute;
     top: 240px;
-}
+}*/
 
 .photo-preview {
     height: 250px;

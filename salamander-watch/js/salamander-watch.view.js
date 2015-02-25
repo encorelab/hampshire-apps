@@ -36,7 +36,7 @@
       'click .back-btn'                : "determineTarget",
       'click #record-orientation-btn'  : "recordOrientation",
       'change #photo-file'             : "enableUpload",
-      'click #upload-btn'              : "uploadPhoto",
+      'click #upload-btn'              : "checkUploadEnabled",
       'click .finish-btn'              : "publishObservation",
       'keyup :input'                   : "checkForAutoSave"
     },
@@ -168,7 +168,7 @@
           'elevation': app.mapElevation
         };
       } else {
-        locationObj = {"error":"missing location data"};
+        locationObj = { "error": "Missing location data" };
       }
 
       return locationObj;
@@ -197,7 +197,7 @@
           "humidity": app.weatherConditions.relative_humidity
         };
       } else {
-        weatherObj = {"error":"missing weather condtion data"};
+        weatherObj = { "error": "Missing weather data" };
       }
 
       return weatherObj;
@@ -205,7 +205,20 @@
 
     enableUpload: function() {
       if (jQuery('#photo-file').val()) {
-        jQuery('#upload-btn').removeAttr('disabled');
+        jQuery('#upload-btn').removeClass('waiting-for-file');
+        jQuery('#upload-btn').addClass('highlighted');
+        setTimeout(function() {
+          jQuery('#upload-btn').removeClass('highlighted');
+        }, 1500);
+      }
+    },
+
+    checkUploadEnabled: function(ev) {
+      var view = this;
+      if (jQuery(ev.target).hasClass('waiting-for-file')) {
+        jQuery().toastmessage('showErrorToast', "Click on the area above to add or replace a photo...");
+      } else {
+        view.uploadPhoto();
       }
     },
 
@@ -217,7 +230,7 @@
       formData.append('file', file);
 
       // disable the upload btn again (until a file is chosen again)
-      jQuery('#upload-btn').attr('disabled','disabled');
+      jQuery('#upload-btn').addClass('waiting-for-file');
 
       jQuery.ajax({
         url: app.config.pikachu.url,
