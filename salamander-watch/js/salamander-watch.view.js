@@ -36,7 +36,7 @@
       'click .back-btn'                : "determineTarget",
       'click #record-orientation-btn'  : "recordOrientation",
       'change #photo-file'             : "enableUpload",
-      'click #upload-btn'              : "uploadPhoto",
+      'click #upload-btn'              : "checkUploadEnabled",
       'click .finish-btn'              : "publishObservation",
       'keyup :input'                   : "checkForAutoSave"
     },
@@ -167,10 +167,8 @@
           'longitude': app.mapPosition.longitude,
           'elevation': app.mapElevation
         };
-        // app.observation.set('location',locationObj);
-        // app.observation.save();
       } else {
-        locationObj = {"error":"missing location data"};
+        locationObj = { "error": "Missing location data" };
       }
 
       return locationObj;
@@ -198,11 +196,8 @@
           "precipitation_today_cm": app.weatherConditions.precip_today_metric,
           "humidity": app.weatherConditions.relative_humidity
         };
-        // app.observation.set('weather',weatherObj);
-        // app.observation.save();
-
       } else {
-        weatherObj = {"error":"missing weather condtion data"};
+        weatherObj = { "error": "Missing weather data" };
       }
 
       return weatherObj;
@@ -210,7 +205,20 @@
 
     enableUpload: function() {
       if (jQuery('#photo-file').val()) {
-        jQuery('#upload-btn').removeAttr('disabled');
+        jQuery('#upload-btn').removeClass('waiting-for-file');
+        jQuery('#upload-btn').addClass('highlighted');
+        setTimeout(function() {
+          jQuery('#upload-btn').removeClass('highlighted');
+        }, 1500);
+      }
+    },
+
+    checkUploadEnabled: function(ev) {
+      var view = this;
+      if (jQuery(ev.target).hasClass('waiting-for-file')) {
+        jQuery().toastmessage('showErrorToast', "Click on the area above to add or replace a photo...");
+      } else {
+        view.uploadPhoto();
       }
     },
 
@@ -222,7 +230,7 @@
       formData.append('file', file);
 
       // disable the upload btn again (until a file is chosen again)
-      jQuery('#upload-btn').attr('disabled','disabled');
+      jQuery('#upload-btn').addClass('waiting-for-file');
 
       jQuery.ajax({
         url: app.config.pikachu.url,
@@ -251,15 +259,15 @@
 
     showPhoto: function(photoId) {
       // delete old photo
-      jQuery('#photo-container').html('');
+      // jQuery('.camera-icon').html('');
       // set up an element to hold the new photo
-      var imgEl = jQuery('<img>');
-      imgEl.attr('src',app.config.pikachu.url + photoId);
-      imgEl.addClass('photo-preview');
-      jQuery('#photo-container').append(imgEl);
-      jQuery('.photo-preview').css("z-index","0");
-      jQuery('#photo-container').css("z-index","0");
-      jQuery('.camera-icon-label').css("opacity","0.0001").css("z-index","9999");
+      // var imgEl = jQuery('<img>');
+      // imgEl.attr('src',app.config.pikachu.url + photoId);
+      // imgEl.addClass('photo-preview');
+      // jQuery('.camera-icon').append(imgEl);
+
+      // trying this a different way - now overwrites the photo icon instead of creating a new element
+      jQuery('.camera-icon').attr('src',app.config.pikachu.url + photoId);
     },
 
     recordOrientation: function() {

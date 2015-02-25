@@ -207,10 +207,21 @@
       logoutUser();
     });
 
-    /* Buttons that manage the navigation */
-    jQuery('.nav-btn').click(function() {
+
+    /* Buttons that manage the app/site/diaspora navigation */
+    jQuery('#investigations-nav-btn').addClass('active');           // no need to set things up here (href in html). This btn can always be highlighted, since this only applies to in-app stuff
+
+    jQuery('.not-currently-enabled').click(function() {
+      jQuery().toastmessage('showErrorToast', "These sections are currently under development...");
+    });
+
+
+
+
+    /* Buttons that manage the in-app navigation */
+    jQuery('.sidebar-nav-btn').click(function() {
       if (app.username) {
-        jQuery('.navigation li').removeClass('active'); // unmark all nav items
+        jQuery('.sidebar-navigation li').removeClass('active');     // unmark all nav items
         jQuery(this).addClass('active');
         app.hideAllContainers();
         if (jQuery(this).attr('id') === 'collect-nav-btn') {
@@ -361,7 +372,7 @@
           collection: Skeletor.Model.awake.salamander_watch_observations
         });
       }
-      jQuery('.nav-btn#collect-nav-btn').removeClass('disabled');
+      jQuery('.sidebar-nav-btn#collect-nav-btn').removeClass('disabled');
     }
 
     if (view === "weatherView") {
@@ -370,7 +381,7 @@
           el: '#weather-screen'
         });
       }
-      jQuery('.nav-btn#weather-nav-btn').removeClass('disabled');
+      jQuery('.sidebar-nav-btn#weather-nav-btn').removeClass('disabled');
     }
 
     if (view === "mapView") {
@@ -380,7 +391,7 @@
           collection: Skeletor.Model.awake.salamander_watch_observations
         });
       }
-      jQuery('.nav-btn#map-nav-btn').removeClass('disabled');
+      jQuery('.sidebar-nav-btn#map-nav-btn').removeClass('disabled');
     }
 
     if (view === "findingsView") {
@@ -390,7 +401,7 @@
           collection: Skeletor.Model.awake.salamander_watch_observations
         });
       }
-      jQuery('.nav-btn#findings-nav-btn').removeClass('disabled');
+      jQuery('.sidebar-nav-btn#findings-nav-btn').removeClass('disabled');
     }
   };
 

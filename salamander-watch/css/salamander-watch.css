@@ -114,6 +114,10 @@ input[type=radio]:checked + label {
     opacity: 0.7;
 }
 
+.highlighted {
+    color: #5cb85c;
+}
+
 .top-btn-container {
     position: absolute;
     top: 3px;
@@ -335,6 +339,10 @@ img.space-bottom {
 
 /***** photo page *****/
 
+.waiting-for-file {
+    opacity: 0.6;
+}
+
 .photo-wrapper {
     width: 100%;
     max-width: 250px;
@@ -350,22 +358,22 @@ img.space-bottom {
     border-radius: 25px;*/
 }
 
-/*#photo-file {
+#photo-file {
     margin: 0;
     display: none;
 }
 
-#photo-container {
+/*#photo-container {
     position: absolute;
     top: 240px;
-}
+}*/
 
 .photo-preview {
     height: 250px;
     width: auto;
     border-radius: 20px;
     z-index: 1;
-}*/
+}
 
 /***** orientation page *****/
 
