@@ -167,8 +167,6 @@
           'longitude': app.mapPosition.longitude,
           'elevation': app.mapElevation
         };
-        // app.observation.set('location',locationObj);
-        // app.observation.save();
       } else {
         locationObj = {"error":"missing location data"};
       }
@@ -198,9 +196,6 @@
           "precipitation_today_cm": app.weatherConditions.precip_today_metric,
           "humidity": app.weatherConditions.relative_humidity
         };
-        // app.observation.set('weather',weatherObj);
-        // app.observation.save();
-
       } else {
         weatherObj = {"error":"missing weather condtion data"};
       }
@@ -251,15 +246,15 @@
 
     showPhoto: function(photoId) {
       // delete old photo
-      jQuery('#photo-container').html('');
+      // jQuery('.camera-icon').html('');
       // set up an element to hold the new photo
-      var imgEl = jQuery('<img>');
-      imgEl.attr('src',app.config.pikachu.url + photoId);
-      imgEl.addClass('photo-preview');
-      jQuery('#photo-container').append(imgEl);
-      jQuery('.photo-preview').css("z-index","0");
-      jQuery('#photo-container').css("z-index","0");
-      jQuery('.camera-icon-label').css("opacity","0.0001").css("z-index","9999");
+      // var imgEl = jQuery('<img>');
+      // imgEl.attr('src',app.config.pikachu.url + photoId);
+      // imgEl.addClass('photo-preview');
+      // jQuery('.camera-icon').append(imgEl);
+
+      // trying this a different way - now overwrites the photo icon instead of creating a new element
+      jQuery('.camera-icon').attr('src',app.config.pikachu.url + photoId);
     },
 
     recordOrientation: function() {
