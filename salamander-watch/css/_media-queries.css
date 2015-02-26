@@ -1,12 +1,30 @@
-/* Extra small devices (phones, less than 768px) */
+/* Extra small devices (PHONES, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
-/********** MEDIA QUERIES **********/
+/********** M E D I A  Q U E R I E S **********/
 
-/* Extra small devices portrait (phones, less than 768px) */
+/* Extra small devices PORTRAIT (PHONES, less than 768px) */
 @media all and (max-width: 767px) and (orientation: portrait) {
 
-    .list-styles li:nth-of-type(2n) {
+	/*font-awesome icons*/
+	.sidebar-wrapper .fa {
+	    margin: 15px 20px;
+	}
+
+	h1 {
+	    font-size: 44px;
+		margin: 10px auto;
+	}
+
+	.salamander-logo {
+	    width: 85%;
+	}
+
+	.first-page > button {
+	    margin: 0 auto 10px;
+	}
+
+	.list-styles li:nth-of-type(2n) {
         margin-left: 0;
     }
 
@@ -14,32 +32,47 @@
        width: 25%;
     }
 
-    .branch-letter-styles {
-        margin-left: 25px;
-    }
 }
 
-/* Extra small devices landscape (phones, less than 768px) */
-@media handheld and (max-width: 767px) and (orientation: landscape) {
+/* Extra small devices LANDSCAPE (PHONES, less than 768px) */
+@media all and (max-width: 767px) and (orientation: landscape) {
+
+    /*font-awesome icons*/
+    .sidebar-wrapper .fa {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+    .sidebar-wrapper .fa-users {
+    	margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 44px;
+    }
 
     .first-page {
         max-width: 100%;
+        margin-top: 0;
+        width: calc(100% - 55px);
+        margin-left: 65px;
     }
 
-    .first-page img {
-        height: auto;
-        width: 30%;
-    }
-
-    .first-page > h1,
     .first-page > img {
-        max-width: 45%;
+        height: auto;
+        width: 40%;
+        float: left;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    .first-page > h1 {
+        max-width: 50%;
         display: inline-block;
     }
 
     .first-page > button {
-        max-width: 40%;
-        margin: 0 10px 20px 10px;
+        max-width: 45%;
+        margin: 0 5px 20px 5px;
         display: inline-block;
     }
 
@@ -54,14 +87,30 @@
 
 }
 
-/* Small devices portrait (tablets, 768px and up) */
-@media all and (min-width: 768px) and (orientation: portrait) {
-    .first-page {
-        margin-top: 25%;
-    }
+/* Small devices (TABLETS, 768px and up) */
+@media all and (min-width: 768px) {
 
-    .fallen-title {
-        margin-top: 20%;
+	.first-page {
+	    max-width: 500px;
+	    /*to position salamnder title in center at all times*/
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    margin-top: -209px;
+	    margin-left: -250px;
+	}
+
+}
+
+/* Small devices PORTRAIT (TABLETS, 768px and up) */
+@media all and (min-width: 768px) and (orientation: portrait) {
+
+    #sidebar-wrapper-bottom {
+        height: 82px;
+    }
+    /*font-awesome icons*/
+    .sidebar-wrapper .fa {
+        margin: 20px;
     }
 
     input[type=number] {
@@ -100,8 +149,20 @@
 
 }
 
-/* Small devices landscape(tablets, 768px and up) */
+/* Small devices LANDSCAPE (TABLETS, 768px and up) */
 @media all and (min-width: 768px) and (orientation: landscape) {
+
+    #sidebar-wrapper-side {
+        top: 50%;
+        left: 250px;
+        margin-left: -250px;
+        margin-top: -164px;
+    }
+    /*font-awesome icons*/
+    .sidebar-wrapper .fa {
+        margin: 20px;
+    }
+
     #weather-screen .col-sm-4 {
         margin-left: 0;
     }
@@ -132,14 +193,10 @@
     }
 }
 
-/* Medium devices (desktops, 992px and up) */
+/* Medium devices (DESKTOPS, 992px and up) */
 @media all and (min-width: 992px) {
 
-    ul#tree-species-list {
-        height: 50vh;
-    }
-
-    .fallen-title {
+	.fallen-title {
         margin-top: 10%;
     }
 
@@ -161,11 +218,26 @@
     }
 }
 
-/* Large devices (large desktops, 1200px and up) */
+/* Large devices (LARGE DESKTOPS, 1200px and up) */
 @media all and (min-width: 1200px) {
 
-    .first-page {
-        margin-top: 10%;
-    }
+
+}
+
+
+/********** S I D E - B O T T O M  S E C O N D A R Y  N A V **********/
+@media all and (max-width: 991px) and (orientation: portrait) {
+
+	#sidebar-wrapper-side {
+		display: none;
+	}
+
+}
+
+@media all and (orientation: landscape) {
+
+	#sidebar-wrapper-bottom {
+		display: none;
+	}
 
 }

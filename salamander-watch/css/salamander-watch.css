@@ -1,8 +1,23 @@
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
-/********** MISC **********/
+/********** G L O B A L **********/
+a,
+a:hover,
+li,
+li:hover,
+button,
+button:hover {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+ul {
+    margin: 0;
+}
 
+/********** M I S C **********/
 .orientation-warning {
     display: none;
 }
@@ -128,7 +143,7 @@ ul {
     padding: 0;
 }
 
-/********** TYPOGRAPHY **********/
+/********** T Y P O G R A P H Y **********/
 
 body {
     font-family: 'Open Sans', 'HelveticaNeue', 'Helvetica Neue', Helvetica, sans-serif;
@@ -168,7 +183,7 @@ label {
     margin-top: -25px;
 }
 
-/********** NAVBAR **********/
+/********** N A V B A R **********/
 
 /* This hides any element with class alert directly after an input field with a pattern (regex) */
 input[pattern] + .alert {
@@ -206,101 +221,79 @@ input:disabled {
     margin-top: 2%;
 }
 
-/********** SIDE-BOTTOM SECONDARY NAV **********/
+/********** S I D E - B O T T O M  S E C O N D A R Y  N A V **********/
 
-#sidebar-wrapper {
+.sidebar-wrapper {
     z-index: 1000;
     position: fixed;
-    left: 250px;
-    /*width: 0;*/
-    height: 100%;
-    margin-left: -250px;
-    margin-top: 100px;
-    overflow-y: auto;
     background: #eee;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    overflow-y: auto;
 }
-
-#sidebar-wrapper img {
-    width: 50px;
-    margin: 10px 25px;
+#sidebar-wrapper-side {
+    margin-top: 57px;
+    height: 100%;
+    max-height: 328px;
 }
-
 #sidebar-wrapper-bottom {
-    z-index: 1000;
-    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 400px;
     width: 100%;
-    height: 75px;
-/*    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    margin-top: 100px;
-    overflow-y: auto;
-    background: #eee;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;*/
+    height: 72px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.sidebar-nav-bottom {
-    width: 100%;
-    max-width: 475px;
-    margin: 0 auto;
-    background: #eee;
+.sidebar-wrapper li {
+    text-align: center;
 }
-
-.sidebar-nav-bottom li {
-    height: 55px;
-    display: inline-block;
-    margin: 2% 3%;
+.sidebar-wrapper li:hover,
+.sidebar-wrapper li:focus,
+.sidebar-wrapper li:active {
+    background: #27465f;
 }
-
-.sidebar-nav-bottom a {
+#sidebar-wrapper-bottom li {
+    max-width: 100px;
+    width: 25%;
     display: inline-block;
 }
-
-
-#sidebar-wrapper-bottom img {
-    height: 55px;
-    opacity: 0.4;
-    display: none;
+/*font-awesome icons*/
+.sidebar-wrapper .fa {
+    margin: 10px 20px;
+    color: #444;
 }
-
-#collect-nav-btn li {
-    background-image: url('../img/icons/icon_binoculars_grey.png');
-    background-repeat: no-repeat;
+.sidebar-wrapper li:hover .fa,
+.sidebar-wrapper li:focus .fa,
+.sidebar-wrapper li:active .fa {
+    color: #fff;
 }
-#weather-nav-btn li {
-    background: url('../img/icons/icon_weather_grey.png') no-repeat;
+/*positioning the sun on top of the cloud*/
+.sidebar-wrapper .fa-cloud {
+    position: relative;
 }
-#map-nav-btn li {
-    background: url('../img/icons/icon_map_grey.png') no-repeat;
+#sidebar-wrapper-side .fa-sun-o {
+    position: absolute;
+    right: -4px;
 }
-#findings-nav-btn li {
-    background: url('../img/icons/icon_community_grey.png') no-repeat;
-}
-#exit-nav-btn li {
-    background: url('../img/icons/icon_exit_grey.png') no-repeat;
+#sidebar-wrapper-bottom .fa-sun-o {
+    position: absolute;
+    right: 25%;
 }
 
 
-/********** PROGRESS BAR **********/
+/********** P R O G R E S S  B A R **********/
 
 /*have to use wizard b/c progress & progress-bar are bootstrap classes*/
 .wizard {
-    max-width: 1000px;
-    margin: 4% auto;
+    margin-top: 5%;
+    padding: 0 5%;
+}
+.wizard-text {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
-/********** IMAGES **********/
+/********** I M A G E S **********/
 
 img.space-bottom {
     margin-bottom: 15px;
@@ -310,7 +303,7 @@ img.space-bottom {
     margin: 0 auto;
 }
 
-/********** BODY - ALL **********/
+/********** B O D Y - A L L **********/
 
 .row-fluid {
     padding-top: 50px;
@@ -322,14 +315,14 @@ img.space-bottom {
 }
 
 
-/********** COLLECT PAGES **********/
+/********** C O L L E C T  P A G E S **********/
 
 /***** first page *****/
 
 .first-page {
     width: 100%;
     max-width: 500px;
-    margin-top: 5%;
+    margin-top: 15px;
 }
 
 .first-page > button {
