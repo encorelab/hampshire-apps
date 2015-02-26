@@ -206,7 +206,7 @@ input:disabled {
     margin-top: 2%;
 }
 
-/********** SIDE SECONDARY NAV **********/
+/********** SIDE-BOTTOM SECONDARY NAV **********/
 
 #sidebar-wrapper {
     z-index: 1000;
@@ -228,6 +228,69 @@ input:disabled {
     width: 50px;
     margin: 10px 25px;
 }
+
+#sidebar-wrapper-bottom {
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 75px;
+/*    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    margin-top: 100px;
+    overflow-y: auto;
+    background: #eee;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;*/
+}
+
+.sidebar-nav-bottom {
+    width: 100%;
+    max-width: 475px;
+    margin: 0 auto;
+    background: #eee;
+}
+
+.sidebar-nav-bottom li {
+    height: 55px;
+    display: inline-block;
+    margin: 2% 3%;
+}
+
+.sidebar-nav-bottom a {
+    display: inline-block;
+}
+
+
+#sidebar-wrapper-bottom img {
+    height: 55px;
+    opacity: 0.4;
+    display: none;
+}
+
+#collect-nav-btn li {
+    background-image: url('../img/icons/icon_binoculars_grey.png');
+    background-repeat: no-repeat;
+}
+#weather-nav-btn li {
+    background: url('../img/icons/icon_weather_grey.png') no-repeat;
+}
+#map-nav-btn li {
+    background: url('../img/icons/icon_map_grey.png') no-repeat;
+}
+#findings-nav-btn li {
+    background: url('../img/icons/icon_community_grey.png') no-repeat;
+}
+#exit-nav-btn li {
+    background: url('../img/icons/icon_exit_grey.png') no-repeat;
+}
+
 
 /********** PROGRESS BAR **********/
 

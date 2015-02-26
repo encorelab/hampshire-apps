@@ -1,0 +1,13 @@
+@media all and (max-width: 991px) and (orientation: portrait) {
+
+	#sidebar-wrapper {
+		display: none;
+	}
+}
+
+@media all and (max-width: 991px) and (orientation: landscape) {
+
+	#sidebar-wrapper-bottom {
+		display: none;
+	}
+}

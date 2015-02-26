@@ -1,6 +1,8 @@
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
+/********** MEDIA QUERIES **********/
+
 /* Extra small devices portrait (phones, less than 768px) */
 @media all and (max-width: 767px) and (orientation: portrait) {
 
@@ -17,7 +19,6 @@
     }
 }
 
-/********** MEDIA QUERIES **********/
 /* Extra small devices landscape (phones, less than 768px) */
 @media handheld and (max-width: 767px) and (orientation: landscape) {
 
