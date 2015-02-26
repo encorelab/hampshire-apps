@@ -216,8 +216,6 @@
     });
 
 
-
-
     /* Buttons that manage the in-app navigation */
     jQuery('.sidebar-nav-btn').click(function() {
       if (app.username) {
@@ -245,7 +243,7 @@
 
   var grabMapData = function() {
     // grab data from google maps API
-    // this structure assumes the user is not moving around during the observation - is this a safe assumption?
+    // this structure assumes the user is not moving around during the observation (eg only keeps one recording of location) - is this a safe assumption?
 
     function initializeMap() {
       var mapOptions = {
@@ -307,6 +305,9 @@
         }, function() {
           // couldn't get geolocation
           handleNoGeolocation(true);
+        },  {
+              enableHighAccuracy: true,
+              timeout : 5000
         });
       } else {
         // browser doesn't support geolocation

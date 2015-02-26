@@ -374,8 +374,8 @@ img.space-bottom {
     width: 400px;
 }
 
-#compass {
-    width: 100%;
+#compass{
+    width:100%;
     transform-origin: 50% 50%;
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
@@ -395,9 +395,9 @@ img.space-bottom {
 
 .n {
   top: 20%;
-  left:50%;
-  position:absolute;
-  font:5em Helvetica;
+  left: 50%;
+  position: absolute;
+  font: 5em Helvetica;
   margin: 0 0 0 -40px;
 }
 
