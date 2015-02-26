@@ -304,25 +304,27 @@
         window.addEventListener('deviceorientation', function(event) {
           var adjustedAlpha = event.alpha + window.orientation;
           var webkitAlpha;
-          // check for iOS property (TEST ME)
+          // check for iOS property (working on safari/ipad)
           if (event.webkitCompassHeading) {
-            adjustedAlpha = event.webkitCompassHeading;
-            // rotation is reversed for iOS
+            // window.orientation will return a value of 0, 90, 180, 270 depending on how the user is holding the tablet (0 and 180 are portrait, eg)
+            // rotation is reversed for iOS (hence + window.orientation)
+            adjustedAlpha = event.webkitCompassHeading + window.orientation;
             compass.style.WebkitTransform = 'rotate(-' + adjustedAlpha + 'deg)';
           }
-          // non iOS
+          // non iOS (working on chrome/phone and chrome/tablet)
           else {
+            // adjustedAlpha is the device orientation value combined with the window orientation value
             adjustedAlpha = event.alpha - window.orientation;
             webkitAlpha = adjustedAlpha;
             if (!window.chrome) {
-              // assume Android stock (CHECK THIS)
+              // assume Android stock (TEST ME)
               webkitAlpha = adjustedAlpha-270;
             }
           }
 
           compass.style.Transform = 'rotate(' + adjustedAlpha + 'deg)';
           compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
-          // rotation is reversed for FF
+          // rotation is reversed for FF (TEST ME)
           compass.style.MozTransform = 'rotate(-' + adjustedAlpha + 'deg)';
         }, false);
       }
