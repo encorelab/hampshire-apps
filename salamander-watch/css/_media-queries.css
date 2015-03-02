@@ -1,5 +1,29 @@
 /********** M E D I A  Q U E R I E S **********/
 
+/* Up to small devices PORTRAIT (PHONES & TABLETS, less than 991px) */
+@media all and (max-width: 991px) and (orientation: portrait) {
+
+    .sidebar-wrapper {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 400px;
+        width: 100%;
+        height: 72px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .sidebar-wrapper li {
+        max-width: 100px;
+        width: 25%;
+        display: inline-block;
+    }
+    .sidebar-wrapper .fa-sun-o {
+        position: absolute;
+        right: 25%;
+    }
+}
+
 /* Extra small devices PORTRAIT (PHONES, less than 768px) */
 @media all and (max-width: 767px) and (orientation: portrait) {
 
@@ -31,16 +55,37 @@
 
 }
 
+/* Extra small devices LANDSCAPE (PHONES, less than 275px HIGH) */
+@media all /*and (max-width: 767px) and */(max-height: 275px) and (orientation: landscape) {
+
+	.sidebar-wrapper {
+	    top: 50%;
+	    left: 250px;
+	    margin-left: -250px;
+	    margin-top: -164px;
+	}
+	/*font-awesome icons*/
+	.sidebar-wrapper .fa {
+	    margin-top: 10px;
+	    margin-bottom: 0;
+	}
+	.sidebar-wrapper .fa-users {
+		margin-bottom: 10px;
+	}
+}
+
 /* Extra small devices LANDSCAPE (PHONES, less than 768px) */
 @media all and (max-width: 767px) and (orientation: landscape) {
 
+    .sidebar-wrapper {
+        top: 50%;
+        left: 250px;
+        margin-left: -250px;
+        margin-top: -164px;
+    }
     /*font-awesome icons*/
     .sidebar-wrapper .fa {
-        margin-top: 10px;
-        margin-bottom: 0;
-    }
-    .sidebar-wrapper .fa-users {
-    	margin-bottom: 10px;
+        margin: 20px;
     }
 
     h1 {
@@ -89,7 +134,7 @@
 
 	.first-page {
 	    max-width: 500px;
-	    /*to position salamnder title in center at all times*/
+	    /*to position salamander title in center at all times*/
 	    position: absolute;
 	    top: 50%;
 	    left: 50%;
@@ -102,7 +147,7 @@
 /* Small devices PORTRAIT (TABLETS, 768px and up) */
 @media all and (min-width: 768px) and (orientation: portrait) {
 
-    #sidebar-wrapper-bottom {
+    .sidebar-wrapper {
         height: 82px;
     }
     /*font-awesome icons*/
@@ -149,7 +194,7 @@
 /* Small devices LANDSCAPE (TABLETS, 768px and up) */
 @media all and (min-width: 768px) and (orientation: landscape) {
 
-    #sidebar-wrapper-side {
+    .sidebar-wrapper {
         top: 50%;
         left: 250px;
         margin-left: -250px;
@@ -193,10 +238,6 @@
 /* Medium devices (DESKTOPS, 992px and up) */
 @media all and (min-width: 992px) {
 
-	.fallen-title {
-        margin-top: 10%;
-    }
-
     #weather-screen .weather-image {
         margin-left: 5%;
         margin-top: 13%;
@@ -223,7 +264,7 @@
 
 
 /********** S I D E - B O T T O M  S E C O N D A R Y  N A V **********/
-@media all and (max-width: 991px) and (orientation: portrait) {
+/*@media all and (max-width: 991px) and (orientation: portrait) {
 
 	#sidebar-wrapper-side {
 		display: none;
@@ -237,4 +278,4 @@
 		display: none;
 	}
 
-}
+}*/

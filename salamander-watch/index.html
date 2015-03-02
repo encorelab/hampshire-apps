@@ -104,28 +104,17 @@
     </nav>
 
     <!-- Sidebar -->
-    <div id="sidebar-wrapper-side" class="sidebar-wrapper">
+    <!-- the list items are written this way to get rid of the ghost space added to inline-block elements by the browser http://stackoverflow.com/questions/28011846/browser-adds-ghost-spacing-margin-to-inline-block-list-items -->
+    <div id="sidebar-wrapper" class="sidebar-wrapper">
         <ul class="sidebar-navigation">
-            <li id="collect-nav-btn" class="sidebar-nav-btn disabled"><a href="#collect-screen"><i class="fa fa-3x fa-binoculars"></i></a></li>
-            <li id="map-nav-btn" class="sidebar-nav-btn disabled"><a href="#map-screen"><i class="fa fa-3x fa-compass"></i><!--<i class="fa fa-3x fa-map-marker"></i>--></a></li>
-            <li id="weather-nav-btn" class="sidebar-nav-btn disabled"><a href="#weather-screen"><i class="fa fa-3x fa-cloud"></i><i class="fa fa-2x fa-sun-o"></i></a></li>
-            <li id="findings-nav-btn" class="sidebar-nav-btn disabled"><a href="#findings-screen"><i class="fa fa-3x fa-users"></i></a></li>
+            <li id="collect-nav-btn" class="sidebar-nav-btn disabled"><a href="#collect-screen"><i class="fa fa-3x fa-binoculars"></i></a></li
+            ><li id="map-nav-btn" class="sidebar-nav-btn disabled"><a href="#map-screen"><i class="fa fa-3x fa-compass"></i><!--<i class="fa fa-3x fa-map-marker"></i>--></a></li
+            ><li id="weather-nav-btn" class="sidebar-nav-btn disabled"><a href="#weather-screen"><i class="fa fa-3x fa-cloud"></i><i class="fa fa-2x fa-sun-o"></i></a></li
+            ><li id="findings-nav-btn" class="sidebar-nav-btn disabled"><a href="#findings-screen"><i class="fa fa-3x fa-users"></i></a></li>
             <!-- <li id="exit-nav-btn" class="sidebar-nav-btn"><a href="https://pvcitizenscience.org/"><i class="fa fa-3x fa-sign-out"></i></a></li> -->
         </ul>
     </div>
     <!-- /#sidebar-wrapper -->
-
-    <!-- Sidebar-bottom -->
-    <!-- the list items are placed one after the other to get rid of white space http://stackoverflow.com/questions/5256533/a-space-between-inline-block-list-items -->
-    <div id="sidebar-wrapper-bottom" class="sidebar-wrapper">
-        <ul class="sidebar-navigation">
-            <li id="collect-nav-btn" class="sidebar-nav-btn disabled"><a href="#collect-screen"><i class="fa fa-3x fa-binoculars"></i></a></li><li id="map-nav-btn" class="sidebar-nav-btn disabled">
-            <a href="#map-screen"><i class="fa fa-3x fa-compass"></i><!--<i class="fa fa-3x fa-map-marker"></i>--></a></li><li id="weather-nav-btn" class="sidebar-nav-btn disabled">
-            <a href="#weather-screen"><i class="fa fa-3x fa-cloud"></i><i class="fa fa-2x fa-sun-o"></i></a></li><li id="findings-nav-btn" class="sidebar-nav-btn disabled">
-            <a href="#findings-screen"><i class="fa fa-3x fa-users"></i></a></li><!-- <li id="exit-nav-btn" class="sidebar-nav-btn"><a href="https://pvcitizenscience.org/"><i class="fa fa-3x fa-sign-out"></i></a></li> -->
-        </ul>
-    </div>
-    <!-- /#sidebar-wrapper-bottom -->
 
     <div id="collect-screen" class="container">
         <div class="row-fluid">
