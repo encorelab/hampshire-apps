@@ -116,13 +116,13 @@
     </div>
     <!-- /#sidebar-wrapper -->
 
-    <div id="collect-screen" class="container">
+    <div id="collect-screen" class="container-view container-fluid">
         <div class="row-fluid">
 
 
             <div id="title-page" class="page">
                 <div class="first-page text-center center-block row">
-                    <img src="img/salamanderlogo_colour.png" class="img-responsive salamander-logo" alt="Leaf Drop logo">
+                    <img src="img/salamanderlogo_colour.png" class="img-responsive logo" alt="Leaf Drop logo">
                     <h1 class="salamader-watch">Salamander Watch</h1>
                     <button id="new-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Start New Observation</button>
                     <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Resume Observation</button>
@@ -131,107 +131,121 @@
             </div>
 
             <div id="photo-uploader" class="page hidden">
-                <img src="img/progressbar_step1.png" class="img-responsive wizard" alt="progress bar step 1 take a photo">
-                <p class="wizard-text">Take a photo</p>
+                <div class="wizard-container">
+                    <img src="img/progressbar_step1.png" class="img-responsive wizard" alt="progress bar step 1 take a photo">
+                    <p class="wizard-text wizard-photo">Take a photo</p>
+                </div>
                 <div class="photo-wrapper">
                     <label for="photo-file" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
                     <input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" />
                     <button id="upload-btn" class="btn btn-default waiting-for-file">Add photo to this observation</button>
                 </div>
-                <div class="text-center center-block row">
+                <div class="btn-move-container text-center center-block row">
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
                 </div>
             </div>
 
             <div id="orientation" class="page hidden">
-                <img src="img/progressbar_step2.png" class="img-responsive wizard" alt="progress bar step 2 migration orientation">
+                <div class="wizard-container">
+                    <img src="img/progressbar_step2.png" class="img-responsive wizard" alt="progress bar step 2 migration orientation">
+                    <p class="wizard-text wizard-orientation">Migration Orientation</p>
+                </div>
                 <div class="alpha-readout"></div>
                 <div id="compass-container">
-                    <img src="img/compass.png" id="compass"/>
+                    <img src="img/compass.png" id="compass" class="img-responsive" />
                 </div>
                 <div>
-                    <button id="record-orientation-btn" class="btn btn-default btn-lg">Capture Orientation</button>
-                    <div>Recorded orientation: <span id="orientation-field"></span>&deg; from North</div>
+                    <button id="record-orientation-btn" class="btn btn-default btn-lg mb-20">Capture Orientation</button>
+                    <div class="orientation-readout">Recorded orientation: <span id="orientation-field"></span>&deg; from North</div>
                 </div>
-                <div class="text-center center-block row">
+                <div class="btn-move-container text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="photo-uploader">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="life_status">Next</button>
                 </div>
             </div>
 
             <div id="life_status" class="page hidden">
-                <div class="progress-bar">Life Status</div>
-                <img src="img/progressbar_step3.png" class="img-responsive wizard" alt="progress bar step 3 life status">
+                <div class="wizard-container">
+                    <img src="img/progressbar_step3.png" class="img-responsive wizard" alt="progress bar step 3 life status">
+                    <p class="wizard-text wizard-life-status">Life Status</p>
+                </div>
                 <div class="observation-choice text-center center-block row">
                     <div class="btn-container center-block">
-                        <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive" class="btn btn-default">Alive</label>
+                        <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive" class="btn btn-default btn-valign">Alive</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-life-status-injured" type="radio" name="life_status" value="injured"><label for="id-life-status-injured" class="btn btn-default">Injured</label>
+                        <input id="id-life-status-injured" type="radio" name="life_status" value="injured"><label for="id-life-status-injured" class="btn btn-default btn-valign">Injured</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-life-status-dead" type="radio" name="life_status" value="dead"><label for="id-life-status-dead" class="btn btn-default">Dead</label>
+                        <input id="id-life-status-dead" type="radio" name="life_status" value="dead"><label for="id-life-status-dead" class="btn btn-default btn-valign">Dead</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown" class="btn btn-default">I don't know</label>
+                        <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown" class="btn btn-default btn-valign">I don't know</label>
                     </div>
                 </div>
-                <div class="text-center center-block row">
+                <div class="btn-move-container text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="orientation">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="traffic_level">Next</button>
                 </div>
             </div>
 
             <div id="traffic_level" class="page hidden">
-                <img src="img/progressbar_step4.png" class="img-responsive wizard" alt="progress bar step 4 traffic conditions">
+                <div class="wizard-container">
+                    <img src="img/progressbar_step4.png" class="img-responsive wizard" alt="progress bar step 4 traffic conditions">
+                    <p class="wizard-text wizard-traffic">Traffic Conditions</p>
+                </div>
                 <div class="observation-choice text-center center-block row">
                     <div class="btn-container center-block">
-                        <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light" class="btn btn-default">Light Traffic</label>
+                        <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light" class="btn btn-default btn-valign">Light Traffic</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-traffic-level-medium" type="radio" name="traffic_level" value="medium"><label for="id-traffic-level-medium" class="btn btn-default">Moderate Traffic</label>
+                        <input id="id-traffic-level-medium" type="radio" name="traffic_level" value="medium"><label for="id-traffic-level-medium" class="btn btn-default btn-valign">Moderate Traffic</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-traffic-level-heavy" type="radio" name="traffic_level" value="heavy"><label for="id-traffic-level-heavy" class="btn btn-default">Heavy Traffic</label>
+                        <input id="id-traffic-level-heavy" type="radio" name="traffic_level" value="heavy"><label for="id-traffic-level-heavy" class="btn btn-default btn-valign">Heavy Traffic</label>
                     </div>
                 </div>
-                <div class="text-center center-block row">
+                <div class="btn-move-container text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="life_status">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="tunnel_use">Next</button>
                 </div>
             </div>
 
             <div id="tunnel_use" class="page hidden">
-                <div class="progress-bar">Tunnel Use</div>
-                <img src="img/progressbar_step5.png" class="img-responsive wizard" alt="progress bar step 5 tunnel use">
+                <div class="wizard-container">
+                    <img src="img/progressbar_step5.png" class="img-responsive wizard" alt="progress bar step 5 tunnel use">
+                    <p class="wizard-text wizard-tunnel">Tunnel Use</p>
+                </div>
                 <div class="observation-choice text-center center-block row">
                     <div class="btn-container center-block">
-                        <input id="id-tunnel-use-enter" type="radio" name="tunnel_use" value="enter"><label for="id-tunnel-use-enter" class="btn btn-default">I saw this salamander ENTER a tunnel (only)</label>
+                        <input id="id-tunnel-use-enter" type="radio" name="tunnel_use" value="enter"><label for="id-tunnel-use-enter" class="btn btn-default btn-word-wrap">I saw this salamander ENTER a tunnel (only)</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="btn btn-default">I saw this salamander both ENTER and EXIT a tunnel</label>
+                        <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="btn btn-default btn-word-wrap">I saw this salamander both ENTER and EXIT a tunnel</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-tunnel-use-exit" type="radio" name="tunnel_use" value="exit"><label for="id-tunnel-use-exit" class="btn btn-default">I saw this salamander EXIT a tunnel (only)</label>
+                        <input id="id-tunnel-use-exit" type="radio" name="tunnel_use" value="exit"><label for="id-tunnel-use-exit" class="btn btn-default btn-word-wrap">I saw this salamander EXIT a tunnel (only)</label>
                     </div>
                     <div class="btn-container center-block">
-                        <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none" class="btn btn-default">I did not see a salamander use a tunnel</label>
+                        <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none" class="btn btn-default btn-word-wrap">I did not see a salamander use a tunnel</label>
                     </div>
                 </div>
-                <div class="text-center center-block row">
+                <div class="btn-move-container text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="traffic_level">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="additional_notes">Next</button>
                 </div>
             </div>
 
             <div id="additional_notes" class="page hidden">
-                <!-- <div class="progress-bar"></div> -->
-                <img src="img/progressbar_step6.png" class="img-responsive wizard" alt="progress bar step 6 additional field notes">
+                <div class="wizard-container">
+                    <img src="img/progressbar_step6.png" class="img-responsive wizard" alt="progress bar step 6 additional field notes">
+                    <p class="wizard-text wizard-notes">Additional Field Notes</p>
+                </div>
                 <h3>Additional Field Notes (Optional)</h3>
                 <p class="text-muted">Notes about field conditions, other organisms, or any human activity you notice while collecting data</p>
                 <!-- can this text area be changed to an input?? -->
                 <textarea name="additional_notes"></textarea>
-                <div class="text-center center-block row">
+                <div class="btn-move-container text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="tunnel_use">Back</button>
                     <button class="finish-btn btn btn-lg btn-success pull-right btn-move">Finish</button>
                 </div>
@@ -241,7 +255,7 @@
     </div>
 
     <!-- Weather Screen -->
-    <div id="weather-screen" class="container">
+    <div id="weather-screen" class="container-view container-fluid">
         <div class="row-fluid">
             <div>
                 <div class="row">
@@ -273,7 +287,7 @@
     </div>
 
     <!-- Map Screen -->
-    <div id="map-screen" class="container">
+    <div id="map-screen" class="container-view container-fluid">
         <div class="row-fluid">
             <div>
                 <div id="map-canvas"></div>
@@ -300,7 +314,7 @@
 
 
     <!-- Findings Screen -->
-    <div id="findings-screen" class="container">
+    <div id="findings-screen" class="container-view container-fluid">
         <div id="findings-list" class="row-fluid">
             <!-- filled in the view -->
         </div>

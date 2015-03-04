@@ -545,7 +545,7 @@
   };
 
   app.hideAllContainers = function () {
-    jQuery('.container').each(function (){
+    jQuery('.container-view').each(function (){
       jQuery(this).addClass('hidden');
     });
   };

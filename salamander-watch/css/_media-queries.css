@@ -22,14 +22,41 @@
         position: absolute;
         right: 25%;
     }
+
+    .wizard {
+        padding: 0;
+    }
+    .wizard-photo {
+        left: 3%;
+    }
+    .wizard-orientation {
+        left: 8%;
+    }
+    .wizard-life-status {
+        left: 32%;
+    }
+    .wizard-traffic {
+        left: 43%;
+    }
+    .wizard-tunnel {
+        left: 64%;
+    }
+    .wizard-notes {
+        left: 78%;
+    }
+
 }
 
-/* Extra small devices PORTRAIT (PHONES, less than 768px) */
-@media all and (max-width: 767px) and (orientation: portrait) {
+/* Extra small devices PORTRAIT (PHONES, less than 450px) */
+@media all and (max-width: 450px) and (orientation: portrait) {
 
 	/*font-awesome icons*/
 	.sidebar-wrapper .fa {
 	    margin: 15px 20px;
+	}
+
+	.btn-move {
+		min-width: 130px;
 	}
 
 	h1 {
@@ -37,7 +64,7 @@
 		margin: 10px auto;
 	}
 
-	.salamander-logo {
+	.logo {
 	    width: 85%;
 	}
 
@@ -45,12 +72,27 @@
 	    margin: 0 auto 10px;
 	}
 
-	.list-styles li:nth-of-type(2n) {
-        margin-left: 0;
-    }
-
     input[type=text] {
        width: 25%;
+    }
+
+    .wizard-container {
+    	margin-bottom: 10%;
+    }
+
+    .camera-icon-label {
+    	display: block;
+    }
+
+    .camera-icon {
+    	width: 50%;
+    	max-width: 125px; /*is this necessary??*/
+    	margin-left: auto;
+    	margin-right: auto;
+    }
+
+    #compass-container {
+    	width: auto;
     }
 
 }
@@ -129,8 +171,8 @@
 
 }
 
-/* Small devices (TABLETS, 768px and up) */
-@media all and (min-width: 768px) {
+/* Small devices (PHONES/TABLETS, 500px and up) */
+@media all and (min-width: 500px) and (orientation: portrait) {
 
 	.first-page {
 	    max-width: 500px;

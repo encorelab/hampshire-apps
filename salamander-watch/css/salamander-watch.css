@@ -1,5 +1,4 @@
-/* Extra small devices (phones, less than 768px) */
-/* No media query since this is the default in Bootstrap */
+/* Extra small devices (phones, less than 768px) is the default in Bootstrap */
 
 /********** G L O B A L **********/
 a,
@@ -13,12 +12,15 @@ button:hover {
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-ul {
-    margin: 0;
+
+.page {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 950px;
+    height: calc(100vh - 57px);
 }
 
-/********** M I S C **********/
-/*does this still need to be here?? couldn't find orientation-warning in css or js*/
+/*delete? couldn't find orientation-warning in css or js*/
 .orientation-warning {
     display: none;
 }
@@ -95,17 +97,25 @@ input[type=radio]:checked + label {
     border: none;
 }
 
-.btn-move {
-    margin-top: 20px;
-    background-color: #27465f;
-}
-
-.btn-move:hover {
-    background-color: #526B7F;
-}
-
+/*btn-container applied to parent of input elements made to appear as buttons*/
 .btn-container + .btn-container {
     margin: 20px auto 0;
+}
+
+.btn-move-container {
+    margin-bottom: 72px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.btn-valign {
+    line-height: 41px;
+}
+
+.btn-word-wrap {
+    white-space: normal;
 }
 
 .scrollable {
@@ -135,11 +145,12 @@ input[type=radio]:checked + label {
     opacity: 0.7;
 }
 
-/*what is this used for??*/
+/*to help indicate to users what to do next*/
 .highlighted {
-    color: #5cb85c;
+    color: #72aab6;
 }
 
+/*delete? couldn't find in css or js*/
 .top-btn-container {
     position: absolute;
     top: 3px;
@@ -147,7 +158,19 @@ input[type=radio]:checked + label {
 }
 
 ul {
+    margin: 0;
     padding: 0;
+}
+
+/********** S A L A M A N D E R  S T Y L E S **********/
+
+.btn-move {
+    margin-top: 20px;
+    background-color: #27465f;
+}
+
+.btn-move:hover {
+    background-color: #526B7F;
 }
 
 /********** T Y P O G R A P H Y **********/
@@ -270,29 +293,50 @@ input:disabled {
 /********** P R O G R E S S  B A R **********/
 
 /*have to use wizard b/c progress & progress-bar are bootstrap classes*/
+.wizard-container {
+    padding: 5% 0;
+}
 .wizard {
-    margin-top: 5%;
     padding: 0 5%;
 }
 .wizard-text {
+    position: absolute;
     margin-top: 10px;
-    margin-bottom: 20px;
+}
+.wizard-photo {
+    left: 12%;
+}
+.wizard-orientation {
+    left: 24%;
+}
+.wizard-life-status {
+    left: 43%;
+}
+.wizard-traffic {
+    left: 57%;
+}
+.wizard-tunnel {
+    left: 73%;
+}
+.wizard-notes {
+    left: 89%;
 }
 
 /********** I M A G E S **********/
 
+/*delete?*/
 img.space-bottom {
     margin-bottom: 15px;
 }
 
-.salamander-logo {
+.logo {
     margin: 0 auto;
 }
 
 /********** B O D Y - A L L **********/
 
 .row-fluid {
-    padding-top: 50px;
+    padding-top: 57px;
 }
 
 .row-fluid .hidden {
@@ -356,15 +400,25 @@ img.space-bottom {
 
 /***** orientation page *****/
 
+/*uncomment once done testing
+.alpha-readout {
+    display: none;
+}*/
+
 #compass-container {
     width: 400px;
+    margin: 0 auto;
 }
 
 #compass{
-    width:100%;
+    width: 100%;
     transform-origin: 50% 50%;
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
+}
+
+.orientation-readout {
+    text-align: center;
 }
 
 .pointer {
