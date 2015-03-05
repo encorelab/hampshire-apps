@@ -98,7 +98,7 @@
 }
 
 /* Extra small devices LANDSCAPE (PHONES, less than 300px HIGH) */
-@media all and (max-width: 767px) and (max-height: 300px) and (orientation: landscape) {
+@media all and (max-width: 766px) and (max-height: 385px) and (orientation: landscape) {
 
 	h1 {
 		font-size: 48px;
@@ -107,17 +107,16 @@
 		margin-bottom: 0;
 	}
 	.sidebar-wrapper {
-	    max-height: 218px;
-	    top: 50%;
-	    margin-top: -82px;
+	    margin-top: 57px;
+	    height: 100%;
 	}
 	/*font-awesome icons*/
 	.sidebar-wrapper .fa {
-	    margin-top: 10px;
+	    margin-top: 12%;
 	    margin-bottom: 0;
 	}
 	.sidebar-wrapper .fa-users {
-		margin-bottom: 10px;
+		margin-bottom: 12%;
 	}
 	.logo {
 		display: none;
@@ -152,43 +151,22 @@
 }
 
 /* Extra small devices LANDSCAPE (PHONES, less than 350px HIGH) */
-@media all and (max-width: 767px) and (min-height: 301px) and (max-height: 424px) and (orientation: landscape) {
+/*@media all and (max-width: 767px) and (min-height: 301px) and (max-height: 424px) and (orientation: landscape) {
 
-	.btn-move-container {
-		margin-bottom: 0;
-	}
-	.sidebar-wrapper {
-	    height: 268px;
-	    top: 50%;
-	    margin-top: -106px;
-	}
+
 	/*font-awesome icons*/
-	.sidebar-wrapper .fa {
+/*	.sidebar-wrapper .fa {
 	    margin-top: 20px;
 	    margin-bottom: 0;
 	}
 	.sidebar-wrapper .fa-users {
 		margin-bottom: 20px;
 	}
-	.logo {
-		display: none;
-	}
-	.page {
-		margin-left: 85px;
-		width: auto;
-	}
-	.first-page {
-		background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
-	}
-	.first-page button {
-		display: inline-block;
-		width: 225px;
-		z-index: 100;
-	}
-	.first-page button + button {
-		margin-left: 10px;
-	}
-}
+
+
+
+
+}*/
 
 /* Extra small devices LANDSCAPE (PHONES, less than 768px) */
 @media all and (max-width: 767px) and (min-height: 350px) and (orientation: landscape) {
