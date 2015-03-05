@@ -104,7 +104,13 @@
 		font-size: 48px;
 	}
 	.btn-move-container {
-		margin-bottom: 0;
+		display: none;
+	}
+	.caret-move {
+		position: fixed;
+		top: 50%;
+		width: 83.5%;
+		margin-left: -1.5%;
 	}
 	.btn-container + .btn-container {
 		margin-top: 0;
@@ -127,6 +133,8 @@
 	/*font-awesome icons*/
 	.sidebar-wrapper .fa {
 	    margin-top: 12%;
+	    /*figure out how to do this using calc so that is responsive*/
+	    /*margin-top: calc((100% - 168px) / 5);*/
 	    margin-bottom: 0;
 	}
 	.sidebar-wrapper .fa-users {
@@ -150,16 +158,32 @@
 	.first-page button + button {
 		margin-left: 10px;
 	}
+	.camera-icon-label,
 	#compass-container {
 		float: left;
 		width: 250px;
 	}
+	.waiting-for-file,
 	.orientation-wrapper {
+		max-width: 200px;
 		float: right;
 		margin-top: 15%;
 	}
+	/*does this need to be here? likely not*/
 	.btn-move-container {
 		clear: both;
+	}
+
+	.field-notes {
+		margin: 0 auto;
+		width: 85%;
+		max-width: ;
+	}
+	.field-notes h3 {
+		margin-top: 0;
+	}
+	.field-notes textarea {
+		width: 100%;
 	}
 
 	.wizard-container {
@@ -181,7 +205,7 @@
 	    left: 72%;
 	}
 	.wizard-notes {
-	    left: 80%;
+	    left: 75%;
 	    text-align: center;
 	}
 

@@ -105,6 +105,9 @@ input[type=radio]:checked + label {
 .btn-move-container {
     margin-bottom: 72px;
 }
+.btn-move {
+    margin-top: 20px;
+}
 
 .mb-20 {
     margin-bottom: 20px;
@@ -165,12 +168,27 @@ ul {
 /********** S A L A M A N D E R  S T Y L E S **********/
 
 .btn-move {
-    margin-top: 20px;
     background-color: #27465f;
 }
 
-.btn-move:hover {
+.btn-move:hover,
+.btn-move:focus,
+.btn-move:active {
     background-color: #526B7F;
+}
+
+.fa-caret-left,
+.fa-caret-right {
+    color: #27465f;
+}
+
+.fa-caret-left:hover,
+.fa-caret-left:focus,
+.fa-caret-left:active,
+.fa-caret-right:hover,
+.fa-caret-right:focus,
+.fa-caret-right:active {
+    color: #526B7F;
 }
 
 /********** T Y P O G R A P H Y **********/
@@ -211,6 +229,10 @@ label {
     font-size: 20px;
     font-weight: 300;
     margin-top: -25px;
+}
+
+.fa-6x {
+    font-size: 6em !important;
 }
 
 /********** N A V B A R **********/
