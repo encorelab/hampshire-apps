@@ -357,6 +357,7 @@ img.space-bottom {
 
 .first-page > button {
     margin: 0 auto 20px;
+    background-color: rgba(0,0,0,0);
 }
 
 
