@@ -170,19 +170,23 @@
                     <p class="wizard-text wizard-life-status">Life Status</p>
                 </div>
                 <div class="observation-choice text-center center-block row">
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive" class="btn btn-default btn-valign">Alive</label>
                     </div>
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-life-status-injured" type="radio" name="life_status" value="injured"><label for="id-life-status-injured" class="btn btn-default btn-valign">Injured</label>
                     </div>
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-life-status-dead" type="radio" name="life_status" value="dead"><label for="id-life-status-dead" class="btn btn-default btn-valign">Dead</label>
                     </div>
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown" class="btn btn-default btn-valign">I don't know</label>
                     </div>
                 </div>
+<!--                 <div>
+                    <i class="fa fa-caret-left fa-5x" data-target-page="orientation"></i>
+                    <i class="fa fa-caret-right fa-3x" data-target-page="traffic_level"></i>
+                </div> -->
                 <div class="btn-move-container text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="orientation">Back</button>
                     <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="traffic_level">Next</button>
@@ -195,13 +199,13 @@
                     <p class="wizard-text wizard-traffic">Traffic Conditions</p>
                 </div>
                 <div class="observation-choice text-center center-block row">
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light" class="btn btn-default btn-valign">Light Traffic</label>
                     </div>
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-traffic-level-medium" type="radio" name="traffic_level" value="medium"><label for="id-traffic-level-medium" class="btn btn-default btn-valign">Moderate Traffic</label>
                     </div>
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-traffic-level-heavy" type="radio" name="traffic_level" value="heavy"><label for="id-traffic-level-heavy" class="btn btn-default btn-valign">Heavy Traffic</label>
                     </div>
                 </div>
@@ -217,16 +221,16 @@
                     <p class="wizard-text wizard-tunnel">Tunnel Use</p>
                 </div>
                 <div class="observation-choice text-center center-block row">
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-tunnel-use-enter" type="radio" name="tunnel_use" value="enter"><label for="id-tunnel-use-enter" class="btn btn-default btn-word-wrap">I saw this salamander ENTER a tunnel (only)</label>
                     </div>
-                    <div class="btn-container center-block">
-                        <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="btn btn-default btn-word-wrap">I saw this salamander both ENTER and EXIT a tunnel</label>
+                    <div class="btn-container center-block btn-inline">
+                        <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="btn btn-default btn-word-wrap">I saw this salamander both ENTER & EXIT a tunnel</label>
                     </div>
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-tunnel-use-exit" type="radio" name="tunnel_use" value="exit"><label for="id-tunnel-use-exit" class="btn btn-default btn-word-wrap">I saw this salamander EXIT a tunnel (only)</label>
                     </div>
-                    <div class="btn-container center-block">
+                    <div class="btn-container center-block btn-inline">
                         <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none" class="btn btn-default btn-word-wrap">I did not see a salamander use a tunnel</label>
                     </div>
                 </div>

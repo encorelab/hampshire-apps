@@ -97,7 +97,7 @@
 
 }
 
-/* Extra small devices LANDSCAPE (PHONES, less than 300px HIGH) */
+/* Extra small devices LANDSCAPE (PHONES, less than 385px HIGH) */
 @media all and (max-width: 766px) and (max-height: 385px) and (orientation: landscape) {
 
 	h1 {
@@ -105,6 +105,20 @@
 	}
 	.btn-move-container {
 		margin-bottom: 0;
+	}
+	.btn-container + .btn-container {
+		margin-top: 0;
+	}
+	.btn-container:nth-of-type(3),
+	.btn-container:nth-of-type(4) {
+		margin-top: 2%;
+	}
+	.btn-inline {
+		display: inline-block;
+		width: 42%;
+	}
+	.btn-inline:nth-of-type(2n) {
+	    margin-left: 1%;
 	}
 	.sidebar-wrapper {
 	    margin-top: 57px;
@@ -148,23 +162,42 @@
 		clear: both;
 	}
 
+	.wizard-container {
+		padding-bottom: 8%;
+	}
+	.wizard-photo {
+	    left: 16%;
+	}
+	.wizard-orientation {
+	    left: 24%;
+	}
+	.wizard-life-status {
+	    left: 44%;
+	}
+	.wizard-traffic {
+	    left: 55%;
+	}
+	.wizard-tunnel {
+	    left: 72%;
+	}
+	.wizard-notes {
+	    left: 80%;
+	    text-align: center;
+	}
+
 }
 
-/* Extra small devices LANDSCAPE (PHONES, less than 350px HIGH) */
-/*@media all and (max-width: 767px) and (min-height: 301px) and (max-height: 424px) and (orientation: landscape) {
-
+/* Extra small devices LANDSCAPE (PHONES, less than 386px HIGH) */
+/*@media all and (max-width: 767px) and (min-height: 386px) and (max-height: 424px) and (orientation: landscape) {
 
 	/*font-awesome icons*/
 /*	.sidebar-wrapper .fa {
-	    margin-top: 20px;
+	    margin-top: 25%;
 	    margin-bottom: 0;
 	}
 	.sidebar-wrapper .fa-users {
-		margin-bottom: 20px;
+		margin-bottom: 25%;
 	}
-
-
-
 
 }*/
 
