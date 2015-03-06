@@ -178,7 +178,8 @@ ul {
 }
 
 .fa-caret-left,
-.fa-caret-right {
+.fa-caret-right,
+.fa-check {
     color: #27465f;
 }
 
@@ -187,7 +188,10 @@ ul {
 .fa-caret-left:active,
 .fa-caret-right:hover,
 .fa-caret-right:focus,
-.fa-caret-right:active {
+.fa-caret-right:active,
+.fa-check:hover,
+.fa-check:focus,
+.fa-check:active {
     color: #526B7F;
 }
 
@@ -423,10 +427,9 @@ img.space-bottom {
 
 /***** orientation page *****/
 
-/*uncomment once done testing
 .alpha-readout {
     display: none;
-}*/
+}
 
 #compass-container {
     width: 400px;
@@ -462,6 +465,12 @@ img.space-bottom {
   position: absolute;
   font: 5em Helvetica;
   margin: 0 0 0 -40px;
+}
+
+/***** field notes page *****/
+
+.field-notes textarea {
+    width: 100%;
 }
 
 

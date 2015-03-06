@@ -154,12 +154,14 @@
                     <p class="wizard-text wizard-orientation">Migration Orientation</p>
                 </div>
                 <div class="alpha-readout"></div>
-                <div id="compass-container">
-                    <img src="img/compass.png" id="compass" class="img-responsive" />
-                </div>
                 <div class="orientation-wrapper">
-                    <button id="record-orientation-btn" class="btn btn-default btn-lg btn-word-wrap mb-20">Capture Orientation</button>
-                    <div class="orientation-readout">Recorded orientation: <span id="orientation-field"></span>&deg; from North</div>
+                    <div id="compass-container">
+                        <img src="img/compass.png" id="compass" class="img-responsive" />
+                    </div>
+                    <div class="orientation-capture-wrapper">
+                        <button id="record-orientation-btn" class="btn btn-default btn-word-wrap mb-20">Capture Orientation</button>
+                        <div class="orientation-readout">Recorded orientation: <span id="orientation-field"></span>&deg; from North</div>
+                    </div>
                 </div>
                 <div class="caret-move">
                     <i class="fa fa-caret-left fa-6x back-btn pull-left" data-target-page="photo-uploader"></i>
@@ -245,7 +247,7 @@
                         <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none" class="btn btn-default btn-word-wrap">I did not see a salamander use a tunnel</label>
                     </div>
                 </div>
-                <div class="caret-move">
+                <div class="visible-xsmall-landscape">
                     <i class="fa fa-caret-left fa-6x back-btn pull-left" data-target-page="traffic_level"></i>
                     <i class="fa fa-caret-right fa-6x next-btn pull-right" data-target-page="additional_notes"></i>
                 </div>
@@ -268,7 +270,7 @@
                 </div>
                 <div class="caret-move">
                     <i class="fa fa-caret-left fa-6x back-btn pull-left" data-target-page="tunnel_use"></i>
-                    <i class="fa fa-caret-right fa-6x next-btn pull-right finish-btn" data-target-page="traffic_level"></i>
+                    <i class="fa fa-check fa-4x finish-btn pull-right" data-target-page="traffic_level"></i>
                 </div>
                 <div class="btn-move-container text-center center-block row">
                     <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="tunnel_use">Back</button>
