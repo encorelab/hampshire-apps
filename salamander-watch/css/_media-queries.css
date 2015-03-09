@@ -3,7 +3,7 @@
 /* Up to small devices PORTRAIT (PHONES & TABLETS, less than 991px) */
 @media all and (max-width: 991px) and (orientation: portrait) {
 
-    .visible-xsmall-landscape {
+    .caret-container {
     	display: none;
     }
 
@@ -55,7 +55,7 @@
 
 }
 
-/* Extra small devices PORTRAIT (PHONES, less than 450px) */
+/* Extra small devices PORTRAIT (PHONES, less than 450px wide) */
 @media all and (max-width: 450px) and (orientation: portrait) {
 
 	/*font-awesome icons*/
@@ -114,7 +114,7 @@
 	.btn-move-container {
 		display: none;
 	}
-	.visible-xsmall-landscape {
+	.caret-container {
 		position: fixed;
 		top: 50%;
 		width: 83.5%;
@@ -249,7 +249,7 @@
 /* Extra small devices LANDSCAPE (PHONES, less than 768px) */
 @media all and (max-width: 767px) and (min-height: 350px) and (orientation: landscape) {
 
-    .visible-xsmall-landscape {
+    .caret-container {
     	display: none;
     }
 
@@ -304,7 +304,7 @@
 /* Small devices (PHONES/TABLETS, 500px and up) */
 @media all and (min-width: 500px) and (orientation: portrait) {
 
-	.visible-xsmall-landscape {
+	.caret-container {
 		display: none;
 	}
 
@@ -323,7 +323,7 @@
 /* Small devices PORTRAIT (TABLETS, 768px and up) */
 @media all and (min-width: 768px) and (orientation: portrait) {
 
-    .visible-xsmall-landscape {
+    .caret-container {
     	display: none;
     }
 
@@ -374,7 +374,7 @@
 /* Small devices LANDSCAPE (TABLETS, 768px and up) */
 @media all and (min-width: 768px) and (orientation: landscape) {
 
-    .visible-xsmall-landscape {
+    .caret-container {
     	display: none;
     }
 
@@ -433,7 +433,7 @@
 /* Medium devices (DESKTOPS, 992px and up) */
 @media all and (min-width: 992px) {
 
-    .visible-xsmall-landscape {
+    .caret-container {
     	display: none;
     }
 
