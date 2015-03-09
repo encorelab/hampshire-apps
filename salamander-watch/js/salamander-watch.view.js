@@ -71,6 +71,8 @@
 
           // begin new observation
           view.setupNewObservation();
+        } else {
+          jQuery().toastmessage('showErrorToast', "This browser is borked!");
         }
       } else {
         // else just being new observation
