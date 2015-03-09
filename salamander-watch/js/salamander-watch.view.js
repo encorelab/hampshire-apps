@@ -61,7 +61,7 @@
       var view = this;
       // if there are unpublished observations, prompt
       if (view.collection.findWhere({published: false, author: app.username})) {
-        if (confirm('You have unpublished observations. Select OK to proceed and delete these unpublished observations')) {
+        if (confirm("You have unpublished observations. Select OK to proceed and delete these unpublished observations")) {
           // delete the old unpublished observations
           var modelsToDelete = view.collection.where({"published": false, "author": app.username});
           modelsToDelete.forEach(function(model) {
@@ -71,8 +71,6 @@
 
           // begin new observation
           view.setupNewObservation();
-        } else {
-          jQuery().toastmessage('showErrorToast', "This browser is borked!");
         }
       } else {
         // else just being new observation
