@@ -61,6 +61,16 @@
       var view = this;
       // if there are unpublished observations, prompt
       if (view.collection.findWhere({published: false, author: app.username})) {
+        /*
+          Ok, something is super strange here. This code block does not seem to work under the following conditions:
+          - our 7 inch Samsung tablets
+          - Chrome (40.xx)
+          - code is served locally
+
+          If you switch browsers, serve from the server, or create a desktop site, things work as expected.
+
+          It seems to have something to do with confirm, as it will always return false (without prompting the user for a choice). This shouldn't affect the run, since the behaviour is only observed when serving it locally, so we're taking the close our eyes and hope this goes away approach to this bug...
+        */
         if (confirm("You have unpublished observations. Select OK to proceed and delete these unpublished observations")) {
           // delete the old unpublished observations
           var modelsToDelete = view.collection.where({"published": false, "author": app.username});
