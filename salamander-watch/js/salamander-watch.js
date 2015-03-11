@@ -488,7 +488,7 @@
     console.log(app.config.runs);
 
     // change header
-    jQuery('#login-picker .modal-header h3').text('Please choose your class');
+    jQuery('#login-picker .modal-header h3').text('Please choose your group');
 
     _.each(app.config.runs, function(run) {
       var button = jQuery('<button class="btn btn-large btn-primary login-button">');
