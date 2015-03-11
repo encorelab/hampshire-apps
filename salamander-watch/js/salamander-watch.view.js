@@ -137,7 +137,7 @@
       app.clearAutoSaveTimer();
 
       // do a last save of the text in the additional_notes field (in case user typed anything since autoSave fired)
-      app.observation.get('data')['additional_notes'] = jQuery('[name=additional_notes]').val();
+      app.observation.get('data').additional_notes = jQuery('[name=additional_notes]').val();
       app.observation.set('location',view.getLocationData());
       app.observation.set('weather', view.getWeatherData());
       app.observation.set('published', true);
