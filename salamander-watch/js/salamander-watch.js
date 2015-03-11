@@ -428,6 +428,10 @@
         jQuery.cookie('hunger-games_mobile_username', app.username, { expires: 1, path: '/' });
         jQuery('.username-display a').text(app.runId+' - '+user.get('display_name'));
 
+        // set that user to logged in on the backend
+        user.set('logged_in',true);
+        user.save();
+
         hideLogin();
         hideUserLoginPicker();
         showUsername();
@@ -450,14 +454,21 @@
     jQuery.removeCookie('hunger-games_mobile_username',  { path: '/' });
     jQuery.removeCookie('hunger-games_mobile_runId',  { path: '/' });
 
-    // to make reload not log us in again after logout is called we need to remove URL parameters
-    if (window.location.search && window.location.search !== "") {
-      var reloadUrl = window.location.origin + window.location.pathname;
-      window.location.replace(reloadUrl);
-    } else {
-      window.location.reload();
-    }
-    return true;
+    // set logged_in flag on the user to false
+    app.rollcall.user(app.username)
+    .done(function (user) {
+      user.set('logged_in',false);
+      user.save().done(function() {
+        // to make reload not log us in again after logout is called we need to remove URL parameters
+        if (window.location.search && window.location.search !== "") {
+          var reloadUrl = window.location.origin + window.location.pathname;
+          window.location.replace(reloadUrl);
+        } else {
+          window.location.reload();
+        }
+        return true;
+      });
+    });
   };
 
   var showLogin = function () {
@@ -530,6 +541,12 @@
         var button = jQuery('<button class="btn btn-large btn-primary login-button">');
         button.val(user.get('username'));
         button.text(user.get('display_name'));
+        // if the user has already been chosen (eg is logged in), disable the button
+        if (user.get('logged_in')) {
+          jQuery(button).addClass('disabled');
+        } else {
+          jQuery(button).removeClass('disabled');
+        }
         jQuery('.login-buttons').append(button);
       });
 

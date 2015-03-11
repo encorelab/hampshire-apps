@@ -296,7 +296,7 @@
 
     handleOrientation: function(event) {
       var view = this;
-      var trueAlpha = 360 - event.alpha
+      var trueAlpha = 360 - event.alpha;
 
       // for testing - remove me!
       // trueAlpha is an output measure, flipped from what event.alpha records (since that appears to be 'backwards')
