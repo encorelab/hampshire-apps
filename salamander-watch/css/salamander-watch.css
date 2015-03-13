@@ -441,13 +441,16 @@ input:disabled {
 }
 
 /*salamander image*/
-#compass-container img:first-child {
+#salamander-compass-img {
     position: absolute;
     top: 55px;
     left: -25%;
     z-index: 1;
     opacity: 0.6;
     width: 400px;
+/*    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);*/
 }
 
 #compass{

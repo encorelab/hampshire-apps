@@ -309,9 +309,23 @@
 
       // based on http://mobiforge.com/design-development/html5-mobile-web-device-orientation-events
       var compass = document.getElementById('compass');
+      var salamander = document.getElementById('salamander-compass-img');
 
+      // abandon all hope, ye who enter here
+      // this is the biggest, ugliest hack-fest ever. transform, rotate and orientation are all implemented differently on different browsers/devices, hence the blinding nonsense below
       if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', function(event) {
+
+          // dealing with the salamander image - needs to be rotated so that the head always points to the physical top of the device (eg where the compass will point)
+          var salImgOffset;
+          if (window.orientation === 90 || window.orientation === -90) {
+            salImgOffset = window.orientation+90;
+          } else {
+            salImgOffset = window.orientation-90;
+          }
+          salamander.style.WebkitTransform = 'rotate(' + salImgOffset + 'deg)';
+
+
           var adjustedAlpha = event.alpha + window.orientation;
           var webkitAlpha;
           // check for iOS property (working on safari/ipad)
