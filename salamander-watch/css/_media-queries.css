@@ -1,8 +1,23 @@
 /********** M E D I A  Q U E R I E S **********/
 
+@media all and (orientation: portrait) {
+
+}
+
+@media all and (orientation: landscape) {
+
+	.sidebar-wrapper {
+	    margin-top: 57px;
+	    max-height: 328px;
+	}
+}
+
 /* Up to small devices PORTRAIT (PHONES & TABLETS, less than 991px) */
 @media all and (max-width: 991px) and (orientation: portrait) {
 
+    .btn-move-container {
+        margin-bottom: 72px;
+    }
     .caret-container {
     	display: none;
     }
@@ -49,9 +64,9 @@
         left: 78%;
     }
 
-	.page {
+/*	.page {
 		width: 100%;
-	}
+	}*/
 
 }
 
@@ -146,7 +161,7 @@
 	}
 	/*font-awesome icons*/
 	.sidebar-wrapper .fa {
-		margin: 0 20px;
+		margin: 0 15px;
 	}
 	.logo {
 		display: none;
@@ -157,6 +172,7 @@
 	}
 	.first-page {
 		background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
+		margin-top: 5%;
 	}
 	.first-page button {
 		display: inline-block;
@@ -231,20 +247,6 @@
 	}
 
 }
-
-/* Extra small devices LANDSCAPE (PHONES, less than 386px HIGH) */
-/*@media all and (max-width: 767px) and (min-height: 386px) and (max-height: 424px) and (orientation: landscape) {
-
-	/*font-awesome icons*/
-/*	.sidebar-wrapper .fa {
-	    margin-top: 25%;
-	    margin-bottom: 0;
-	}
-	.sidebar-wrapper .fa-users {
-		margin-bottom: 25%;
-	}
-
-}*/
 
 /* Extra small devices LANDSCAPE (PHONES, less than 768px) */
 @media all and (max-width: 767px) and (min-height: 350px) and (orientation: landscape) {
@@ -378,6 +380,10 @@
     	display: none;
     }
 
+    .btn {
+    	margin-bottom: 0;
+    }
+
     .sidebar-wrapper {
         top: 50%;
         left: 250px;
@@ -388,9 +394,13 @@
     .sidebar-wrapper .fa {
         margin: 20px;
     }
+    .wizard-container {
+    	padding-top: 0;
+    	padding-bottom: 7%;
+    }
 
 	/*https://css-tricks.com/centering-css-complete-guide/*/
-	#title-page {
+	.page {
 		position: relative;
 	}
     .first-page {
@@ -399,6 +409,43 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
     }
+    .page-inner-wrapper {
+    	position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		min-height: 500px;
+    }
+	.photo-wrapper {
+		max-width: 100%;
+	}
+	.camera-icon-label {
+		float: left;
+		margin-left: 15%;
+		width: 42%;
+	}
+	#compass-container {
+		float: left;
+		margin-left: 10%;
+		width: 45%;
+	}
+	.waiting-for-file,
+	.orientation-capture-wrapper {
+		max-width: 200px;
+		float: right;
+		margin-top: 15%;
+		margin-right: 10%;
+	}
+	.btn-move-container {
+		clear: both;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+	.observation-choice {
+		margin-top: 5%;
+	}
+
+
 
     #weather-screen .col-sm-4 {
         margin-left: 0;

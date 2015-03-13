@@ -1,14 +1,14 @@
 /* * * * *  legend  * * * * * */
-/* G L O B A L */
-/* S A L A M A N D E R  S T Y L E S */
-/* T Y P O G R A P H Y */
-/* N A V B A R */
-/* S I D E - B O T T O M  S E C O N D A R Y  N A V */
-/* P R O G R E S S  B A R */
-/* C O L L E C T  P A G E S */
-/* W E A T H E R  S C R E E N */
-/* M A P S C R E E N */
-/* F I N D I N G S  S C R E E N */
+/* GLOBAL */
+/* SALAMANDER  STYLES */
+/* TYPOGRAPHY */
+/* NAVBAR */
+/* SIDE-BOTTOM SECONDARY NAV */
+/* PROGRESS BAR */
+/* COLLECT PAGES */
+/* WEATHER SCREEN */
+/* MAP SCREEN */
+/* FINDINGS SCREEN */
 
 
 /********** G L O B A L **********/
@@ -17,7 +17,9 @@ a:hover,
 li,
 li:hover,
 button,
-button:hover {
+button:hover,
+label,
+label:hover {
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -29,11 +31,17 @@ button:hover {
     display: none;
 }
 
-.row-fluid {
+#collect-screen.container-fluid,
+#weather-screen.container-fluid,
+#map-screen.container-fluid,
+#findings-screen.container-fluid {
     padding-top: 57px;
 }
 
-.row-fluid .hidden {
+#collect-screen.container-fluid .hidden,
+#weather-screen.container-fluid .hidden,
+#map-screen.container-fluid .hidden,
+#findings-screen.container-fluid .hidden {
     /* TODO: this is a crude way of hiding right now and should be improved */
     display: none;
 }
@@ -115,9 +123,6 @@ input[type=radio]:checked + label {
     margin: 20px auto 0;
 }
 
-.btn-move-container {
-    margin-bottom: 72px;
-}
 .btn-move {
     margin-top: 20px;
 }
@@ -161,7 +166,7 @@ input[type=radio]:checked + label {
     opacity: 0.7;
 }
 
-/*to help indicate to users what to do next*/
+/*to indicate to users what to do next*/
 .highlighted {
     color: #72aab6;
 }
@@ -291,9 +296,7 @@ input:disabled {
     position: fixed;
     background: #eee;
     overflow-y: auto;
-    margin-top: 57px;
     height: 100%;
-    max-height: 328px;
 }
 .sidebar-wrapper li {
     text-align: center;
@@ -336,32 +339,30 @@ input:disabled {
     position: absolute;
     margin-top: 10px;
 }
+/*where are these values being applied to???*/
 .wizard-photo {
-    left: 12%;
+    left: 3%;
 }
 .wizard-orientation {
-    left: 24%;
+    left: 15%;
 }
 .wizard-life-status {
-    left: 43%;
+    left: 36%;
 }
 .wizard-traffic {
-    left: 57%;
+    left: 50%;
 }
 .wizard-tunnel {
-    left: 73%;
+    left: 69%;
 }
 .wizard-notes {
-    left: 89%;
+    left: 83%;
 }
 
 
 /********** C O L L E C T  P A G E S **********/
 
 .page {
-    margin: 0 auto;
-    width: 90%;
-    max-width: 950px;
     height: calc(100vh - 57px);
 }
 
@@ -370,7 +371,6 @@ input:disabled {
 .first-page {
     width: 100%;
     max-width: 500px;
-    margin-top: 15px;
 }
 
 .first-page > button {
