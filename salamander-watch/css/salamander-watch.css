@@ -65,9 +65,16 @@ input[type=text] {
 }
 
 /*trying to get additional field notes text to align to top, currently not working*/
-input[type=textarea] {
+input[type=textarea],
+textarea {
     vertical-align: top;
-    line-height: 100%;
+    min-height: 20vh;
+    line-height: 2em;
+    color: #333;
+    border-radius: 7px;
+    border: solid #ddd 1px;
+    padding: 2%;
+    width: 100%;
 }
 
 /*hiding radio buttons*/
@@ -430,6 +437,17 @@ input:disabled {
 #compass-container {
     width: 400px;
     margin: 0 auto;
+    position: relative;
+}
+
+/*salamander image*/
+#compass-container img:first-child {
+    position: absolute;
+    top: 55px;
+    left: -25%;
+    z-index: 1;
+    opacity: 0.6;
+    width: 400px;
 }
 
 #compass{
@@ -437,6 +455,8 @@ input:disabled {
     transform-origin: 50% 50%;
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
+    position: absolute;
+    z-index: 1000;
 }
 
 .orientation-readout {
@@ -465,8 +485,8 @@ input:disabled {
 
 /***** field notes page *****/
 
-.field-notes textarea {
-    width: 100%;
+.field-notes p {
+    margin-bottom: 20px;
 }
 
 
