@@ -1,6 +1,7 @@
 {
     "drowsy": {
-        "url": "https://drowsy.badger.encorelab.org",
+        "url": "https://coati.encorelab.org/drowsy",
+        "url_old": "https://drowsy.badger.encorelab.org",
         "url_dev": "http://localhost:9292",
         "db": "hampshire-apps",
         "username":"foo",
