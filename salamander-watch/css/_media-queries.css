@@ -5,9 +5,6 @@
     .btn-move-container {
         margin-bottom: 72px;
     }
-    .caret-container {
-        display: none;
-    }
     .sidebar-wrapper {
         bottom: 0;
         left: 0;
@@ -38,10 +35,38 @@
 	}
 }
 
-/* Up to small devices PORTRAIT (PHONES & TABLETS, less than 991px) */
-@media all and (max-width: 991px) and (orientation: portrait) {
+/* Extra small devices PORTRAIT (PHONES, less than 450px wide) */
+@media all and (max-width: 450px) and (orientation: portrait) {
 
+	/*font-awesome icons*/
+	.sidebar-wrapper .fa {
+	    margin: 15px 20px;
+	}
 
+	.btn-move {
+		min-width: 130px;
+	}
+
+	h1 {
+	    font-size: 44px;
+		margin: 10px auto;
+	}
+
+    .logo {
+        display: none;
+    }
+    .first-page {
+        background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
+        margin-top: 10vh;
+    }
+
+    input[type=text] {
+       width: 25%;
+    }
+
+    .wizard-container {
+    	margin-bottom: 10%;
+    }
     .wizard {
         padding: 0;
     }
@@ -64,58 +89,31 @@
         left: 78%;
     }
 
-/*	.page {
-		width: 100%;
-	}*/
-
-}
-
-/* Extra small devices PORTRAIT (PHONES, less than 450px wide) */
-@media all and (max-width: 450px) and (orientation: portrait) {
-
-	/*font-awesome icons*/
-	.sidebar-wrapper .fa {
-	    margin: 15px 20px;
-	}
-
-	.btn-move {
-		min-width: 130px;
-	}
-
-	h1 {
-	    font-size: 44px;
-		margin: 10px auto;
-	}
-
-	.logo {
-	    width: 85%;
-	}
-
-	.first-page > button {
-	    margin: 0 auto 10px;
-	}
-
-    input[type=text] {
-       width: 25%;
-    }
-
-    .wizard-container {
-    	margin-bottom: 10%;
-    }
-
     .camera-icon-label {
     	display: block;
     }
 
     .camera-icon {
-    	width: 50%;
-    	max-width: 125px; /*is this necessary??*/
+    	width: 75%;
+    	max-width: 150px;
     	margin-left: auto;
     	margin-right: auto;
     }
 
     #compass-container {
-    	width: auto;
+    	width: 90%;
+        top: 10px;
+    }
+    #salamander-compass-img {
+        top: 75px;
+        left: -16%;
+        height: 175px;
+    }
+    #record-orientation-btn {
+        margin-top: 300px;
+    }
+    .field-notes textarea {
+        margin-bottom: 5%;
     }
 
 }
@@ -130,6 +128,7 @@
 		display: none;
 	}
 	.caret-container {
+        display: block;
 		position: fixed;
 		top: 50%;
 		width: 83.5%;
@@ -193,15 +192,20 @@
 		float: left;
 		width: 42%;
 	}
+    .waiting-for-file,
+    .orientation-capture-wrapper {
+        max-width: 200px;
+        float: right;
+        margin-top: 10%;
+    }
 	#compass-container {
 		width: 45%;
 	}
-	.waiting-for-file,
-	.orientation-capture-wrapper {
-		max-width: 200px;
-		float: right;
-		margin-top: 10%;
-	}
+    #salamander-compass-img {
+        top: 20px;
+        left: -5%;
+        width: 300px;
+    }
 	/*does this need to be here? likely not*/
 	.btn-move-container {
 		clear: both;
@@ -375,10 +379,6 @@
 
 /* Small devices LANDSCAPE (TABLETS, 768px and up) */
 @media all and (min-width: 768px) and (orientation: landscape) {
-
-    .caret-container {
-    	display: none;
-    }
 
     .btn {
     	margin-bottom: 0;

@@ -373,6 +373,10 @@ input:disabled {
     height: calc(100vh - 57px);
 }
 
+.caret-container {
+    display: none;
+}
+
 /***** first page *****/
 
 .first-page {
@@ -438,6 +442,7 @@ input:disabled {
     width: 400px;
     margin: 0 auto;
     position: relative;
+    height: 100%;
 }
 
 /*salamander image*/
