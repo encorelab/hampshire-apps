@@ -118,8 +118,8 @@
 
 }
 
-/* Extra small devices LANDSCAPE (PHONES, less than 385px HIGH) */
-@media all and (max-height: 500px) and (orientation: landscape) {
+/* Extra small devices LANDSCAPE (PHONES, less than 550px HIGH) */
+@media all and (max-height: 550px) and (orientation: landscape) {
 
 	h1 {
 		font-size: 48px;
@@ -438,17 +438,48 @@
 
 }
 
-/* Small devices LANDSCAPE (TABLETS, 768px and up) */
-@media all and (min-width: 768px) and (min-height: 501px) and (orientation: landscape) {
+/* Small devices LANDSCAPE (TABLETS, 501px tall and up) */
+/*@media handheld and (min-height: 501px) and (orientation: landscape) {
 
-    .btn {
-    	margin-bottom: 0;
+    .wizard-container {
+        padding: 7%;
+    }
+    .btn-move-container {
+        margin-bottom: 7%;
+    }
+    .page-inner-wrapper {
+        position: static;
+    }
+    .camera-icon-label {
+        width: 40%;
+        margin-left: 8%;
+    }
+    #compass-container {
+        margin-left: 0;
+    }
+    #salamander-compass-img {
+        left: -15%;
+        top: 50px;
     }
 
+}*/
+
+/* Small devices LANDSCAPE (TABLETS, 551px tall and up) */
+@media all and (min-height: 551px) and (orientation: landscape) {
+
+    .btn-move {
+    	margin-bottom: 0;
+    }
+    .btn-container:nth-of-type(3),
+    .btn-container:nth-of-type(4),
+    .btn-container + .btn-container {
+        margin-top: 2%;
+    }
+    .btn-inline:nth-of-type(2n) {
+        margin-left: 0;
+    }
     .sidebar-wrapper {
         top: 50%;
-/*        left: 250px;
-        margin-left: -250px;*/
         margin-top: -164px;
     }
     /*font-awesome icons*/
@@ -481,7 +512,7 @@
 	}
 	.camera-icon-label {
 		float: left;
-		margin-left: 15%;
+		margin-left: 10%;
 		width: 42%;
 	}
 	#compass-container {
@@ -541,6 +572,13 @@
 /* Medium devices (DESKTOPS, 992px and up) */
 @media all and (min-width: 992px) {
 
+    #collect-screen,
+    #weather-screen,
+    #map-screen,
+    #findings-screen {
+        margin-left: 0;
+    }
+
     /*salamander image*/
     #salamander-compass-img {
         width: 130%;
@@ -567,5 +605,11 @@
 /* Large devices (LARGE DESKTOPS, 1200px and up) */
 @media all and (min-width: 1200px) {
 
+    #salamander-compass-image {
+        width: 120%;
+    }
+    #compass {
+        width: 75%;
+    }
 
 }
