@@ -256,7 +256,23 @@
 
 }
 
+/* Extra extra small devices LANDSCAPE (PHONES) */
+@media all and (max-height: 350px) and (orientation: landscape) {
+
+    .sidebar-wrapper {
+        height: 79%;
+    }
+    .sidebar-wrapper ul {
+        height: 90%;
+    }
+    .sidebar-wrapper .fa {
+        margin: 15% 15px;
+    }
+
+}
+
 /* Extra small devices LANDSCAPE (PHONES) */
+/*change this to max-height something?? or move into landscape media query at top???*/
 @media all and (min-height: 351px) and (orientation: landscape) {
 
     .btn-container {
