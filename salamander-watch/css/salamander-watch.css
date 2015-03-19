@@ -624,13 +624,26 @@ body {
 
 
 /********** F I N D I N G S  S C R E E N **********/
+#findings-list {
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
 .findings-list-item {
-    width: 220px;
+/*    width: 220px;
     height: 220px;
-    padding: 20px;
+    padding: 20px;*/
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 15px;
 }
 
 .findings-list-photo, .findings-list-text {
-    width: 200px;
+    /*width: 200px;*/
     height: 200px;
+    border-radius: 15px;
+}
+
+#findings-modal .modal-content {
+    padding: 15px;
 }

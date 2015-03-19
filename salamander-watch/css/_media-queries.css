@@ -165,10 +165,16 @@
 	.logo {
 		display: none;
 	}
-	.page {
+/*	.page {
 		margin-left: 70px;
 		width: auto;
-	}
+	}*/
+    #collect-screen,
+    #weather-screen,
+    #map-screen,
+    #findings-screen {
+        margin-left: 70px;
+    }
 	.first-page {
 		background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
 		margin-top: 5%;
@@ -310,28 +316,68 @@
 /* Small devices (PHONES/TABLETS, 500px and up) */
 @media all and (min-width: 500px) and (orientation: portrait) {
 
-	.caret-container {
-		display: none;
-	}
+    .sidebar-wrapper {
+        height: 82px;
+    }
+    .sidebar-wrapper .fa {
+        margin: 20px;
+    }
 
-	.first-page {
-	    max-width: 500px;
-	    /*to position salamander title in center at all times*/
-	    position: absolute;
-	    top: 50%;
-	    left: 50%;
-	    margin-top: -209px;
-	    margin-left: -250px;
-	}
+    .wizard-container {
+        padding-bottom: 15%;
+    }
+
+    .page {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        min-height: 500px;
+        height: 75vh;
+    }
+    .page-inner-wrapper {
+        height: 100%;
+    }
+    .btn-move-container {
+        margin-bottom: 72px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    .btn-move.pull-right {
+        margin-right: 30px;
+    }
+    #title-page {
+        height: 500px;
+    }
+    #orientation.page {
+        height: auto;
+    }
+    #orientation .wizard-container {
+        padding-bottom: 5%;
+    }
+    #orientation .btn-move-container {
+        position: static;
+    }
+    #orientation .btn-move {
+        margin-right: 0;
+    }
+
+    #compass-container {
+        top: -410px;
+    }
+    #salamander-compass-img {
+        top: 115px;
+        left: 0;
+    }
+    .orientation-capture-wrapper {
+        margin-top: 400px;
+    }
 
 }
 
 /* Small devices PORTRAIT (TABLETS, 768px and up) */
 @media all and (min-width: 768px) and (orientation: portrait) {
-
-    .caret-container {
-    	display: none;
-    }
 
     .sidebar-wrapper {
         height: 82px;
@@ -339,10 +385,6 @@
     /*font-awesome icons*/
     .sidebar-wrapper .fa {
         margin: 20px;
-    }
-
-    input[type=number] {
-       width: 45%;
     }
 
     #weather-screen .col-sm-4:nth-child(2) {
@@ -480,8 +522,9 @@
 /* Medium devices (DESKTOPS, 992px and up) */
 @media all and (min-width: 992px) {
 
-    .caret-container {
-    	display: none;
+    /*salamander image*/
+    #salamander-compass-img {
+        width: 130%;
     }
 
     #weather-screen .weather-image {
@@ -507,21 +550,3 @@
 
 
 }
-
-
-/********** S I D E - B O T T O M  S E C O N D A R Y  N A V **********/
-/*@media all and (max-width: 991px) and (orientation: portrait) {
-
-	#sidebar-wrapper-side {
-		display: none;
-	}
-
-}
-
-@media all and (orientation: landscape) {
-
-	#sidebar-wrapper-bottom {
-		display: none;
-	}
-
-}*/
