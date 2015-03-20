@@ -11,7 +11,7 @@
         "url": "https://coati.encorelab.org/faye"
     },
     "pikachu": {
-        "url": "http://pikachu.badger.encorelab.org/"
+        "url": "http://pikachu.coati.encorelab.org/"
     },
     "login_picker": true,
     "runs":["Hitchcock"],
