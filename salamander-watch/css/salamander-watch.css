@@ -190,6 +190,16 @@ ul {
     padding: 0;
 }
 
+/***** modals *****/
+.table {
+    display: table;
+    height:100%;
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 /********** S A L A M A N D E R  S T Y L E S **********/
 
 .btn-move {
