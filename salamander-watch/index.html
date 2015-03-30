@@ -295,30 +295,28 @@
     <!-- Weather Screen -->
     <div id="weather-screen" class="container-view container-fluid">
         <div class="row">
-            <div>
+            <div class="weather-icon-container col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-2">
+                <img src="" alt="weather icon" class="weather-image img-responsive">
+            </div>
+            <div class="temperature col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0">
+                <p class="temp-f-container"><span class="temp-f"></span>&#176;F</p>
+                <p class="weather-string"></p>
+            </div>
+            <div class="weather col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-1">
                 <div class="row">
-                    <img src="" alt="weather icon" class="weather-image col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-1">
-                    <div class="temperature col-xs-8 col-xs-offset-2 col-sm-4">
-                        <p class="temp-f-container"><span class="temp-f"></span>&#176;F</p>
-                        <p class="weather-string"></p>
-                    </div>
-                    <div class="weather col-xs-8 col-xs-offset-2 col-sm-3 col-md-2 col-md-offset-1">
-                        <div class="row">
-                            <img src="img/icons/icon_wind.png" class="img-responsive icon" alt=""><p><span class="wind-mph">##</span> mph <span class="wind-dir">##</span></p>
-                        </div>
-                        <div class="row">
-                            <img src="img/icons/icon_rain.png" class="img-responsive icon" alt=""><p><span class="precipitation-percent">##</span> pop</p>
-                        </div>
-                        <div class="row">
-                            <img src="img/icons/icon_humidity.png" class="img-responsive icon" alt=""><p><span class="humidity">##</span> humidity</p>
-                        </div>
-                        <div class="row">
-                            <img src="img/icons/icon_uv.png" class="img-responsive icon" alt=""><p class="uv"></p>
-                        </div>
-                        <div class="row">
-                            <img src="img/icons/icon_dew.png" class="img-responsive icon" alt=""><p><span class="dewpoint_f">##</span>&#176;F dewpoint</p>
-                        </div>
-                    </div>
+                    <img src="img/icons/icon_wind.png" class="img-responsive icon" alt=""><p><span class="wind-mph">##</span> mph <span class="wind-dir">##</span></p>
+                </div>
+                <div class="row">
+                    <img src="img/icons/icon_rain.png" class="img-responsive icon" alt=""><p><span class="precipitation-percent">##</span> pop</p>
+                </div>
+                <div class="row">
+                    <img src="img/icons/icon_humidity.png" class="img-responsive icon" alt=""><p><span class="humidity">##</span> humidity</p>
+                </div>
+                <div class="row">
+                    <img src="img/icons/icon_uv.png" class="img-responsive icon" alt=""><p class="uv"></p>
+                </div>
+                <div class="row">
+                    <img src="img/icons/icon_dew.png" class="img-responsive icon" alt=""><p><span class="dewpoint_f">##</span>&#176;F dewpoint</p>
                 </div>
             </div>
         </div><!-- /.row -->

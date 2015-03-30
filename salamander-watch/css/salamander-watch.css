@@ -514,13 +514,20 @@ input:disabled {
     background: url(../img/PVautumn.png) no-repeat;
     background-size: cover;
     min-height: 100vh;
-    margin: 0;
-    width: 100%;
+    /*margin: 0;*/
+    /*width: 100%;*/
+}
+
+.weather-icon-container {
+/*    top: 50%;
+    transform: translateY(-50%);*/
+    height: 100%;
 }
 
 #weather-screen .weather-image {
-    margin-top: 25px;
     color: #333;
+    width: 100%;
+    display: inline-block;
 }
 
 .temperature {
@@ -554,9 +561,10 @@ p.weather-string {
 }
 
 .weather img {
-    width: 15%;
-    margin-right: 20px;
+    /*width: 15%;*/
+    /*margin-right: 20px;*/
     display: inline-block;
+    max-width: 50px;
 }
 
 .weather p {

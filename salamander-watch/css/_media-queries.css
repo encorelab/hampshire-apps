@@ -342,7 +342,7 @@
     }
 
     .weather {
-        padding: 30px 15%;
+        padding: 30px 3%;
         font-size: 1.7em;
     }
 
@@ -423,11 +423,11 @@
     }
 
     #weather-screen .col-sm-4:nth-child(2) {
-        margin-left: 0;
+        /*margin-left: 0;*/
     }
 
     #weather-screen .weather-image {
-        margin-top: 15%;
+        /*margin-top: 15%;*/
     }
 
     #weather-screen .temperature {
@@ -446,8 +446,8 @@
 
     .weather {
         margin-top: 15%;
-        margin-left: 25%;
-        width: 50%;
+        /*margin-left: 25%;*/
+        /*width: 50%;*/
         font-size: 2em;
         padding: 30px 10%;
     }
@@ -560,7 +560,7 @@
     }
 
     #weather-screen .weather-image {
-        margin-top: 18%;
+        /*margin-top: 18%;*/
     }
 
     #weather-screen .temperature {
@@ -580,7 +580,7 @@
 
     .weather {
         margin-top: 14%;
-        margin-left: 3%;
+        /*margin-left: 3%;*/
         font-size: 1.3em;
     }
 }
@@ -601,19 +601,19 @@
     }
 
     #weather-screen .weather-image {
-        margin-left: 5%;
-        margin-top: 13%;
+        /*margin-left: 5%;*/
+        /*margin-top: 13%;*/
         max-height: 350px;
     }
 
     #weather-screen .temperature {
         margin-top: 17%;
-        margin-left: -2%;
+        /*margin-left: -2%;*/
         padding: 0 15px;
     }
 
     .weather {
-        margin-top: 12%;
+        margin-top: 5%;
         font-size: 1.1em;
     }
 }
