@@ -1,0 +1,371 @@
+/* * * * *  legend  * * * * * */
+/* LANDSCAPE styles to be applied all sizes */
+/* Extra small devices LANDSCAPE (PHONES, less than 550px HIGH) */
+/* Extra extra small devices LANDSCAPE (PHONES, less than 350px HIGH) */
+/* Extra small devices LANDSCAPE (PHONES, more than 351px HIGH) */
+/* Small devices LANDSCAPE (TABLETS, 551px tall and up) */
+
+/*Media queries for desktops & large desktops found at end of _media-queries-portrait.css*/
+
+/********** M E D I A  Q U E R I E S  L A N D S C A P E **********/
+
+/* LANDSCAPE styles to be applied all sizes */
+@media all and (orientation: landscape) {
+
+	.sidebar-wrapper {
+	    margin-top: 57px;
+	    max-height: 328px;
+	}
+
+    .weather-icon-container {
+        margin-left: 12%;
+    }
+}
+
+/* Extra small devices LANDSCAPE (PHONES, less than 550px HIGH) */
+@media all and (max-height: 550px) and (orientation: landscape) {
+
+	h1 {
+		font-size: 48px;
+	}
+	.btn-move-container {
+		display: none;
+	}
+	.caret-container {
+        display: block;
+		position: fixed;
+		top: 50%;
+		width: 83.5%;
+	}
+    .btn-block + .btn-block,
+	.btn-container + .btn-container {
+		margin-top: 0;
+	}
+	.btn-container:nth-of-type(3),
+	.btn-container:nth-of-type(4) {
+		margin-top: 2%;
+	}
+	.btn-inline {
+		display: inline-block;
+		width: 42%;
+	}
+	.btn-inline:nth-of-type(2n) {
+	    margin-left: 1%;
+	}
+	.sidebar-wrapper {
+	    margin-top: 57px;
+        /*i have no idea why this appears better; think it should be height 100%;*/
+        height: 87%;
+        max-height: 87%;
+	}
+	.sidebar-wrapper ul {
+		height: 100%;
+	}
+	.sidebar-wrapper li {
+		height: 25%;
+	}
+	/*font-awesome icons*/
+	.sidebar-wrapper .fa {
+        margin: 30% 15px;
+	}
+	.logo {
+		display: none;
+	}
+    #collect-screen,
+    #map-screen,
+    #findings-screen {
+        margin-left: 70px;
+    }
+	.first-page {
+		background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
+		margin-top: 5%;
+	}
+	.first-page button {
+		display: inline-block;
+		width: 225px;
+		z-index: 100;
+	}
+	.first-page button + button {
+		margin-left: 10px;
+	}
+	.photo-wrapper,
+	.orientation-wrapper {
+		width: 82%;
+		min-width: 82%;
+		margin: 0 auto;
+	}
+	.camera-icon-label,
+	#compass-container {
+		float: left;
+		width: 42%;
+	}
+    .waiting-for-file,
+    .orientation-capture-wrapper {
+        max-width: 200px;
+        float: right;
+        margin-top: 10%;
+    }
+	#compass-container {
+		width: 45%;
+	}
+    #salamander-compass-img {
+        top: 20px;
+        left: -5%;
+        width: 300px;
+    }
+	/*does this need to be here? likely not*/
+	.btn-move-container {
+		clear: both;
+	}
+
+	.field-notes {
+		margin: 0 auto;
+		width: 85%;
+		max-width: ;
+	}
+	.field-notes h3 {
+		margin-top: 0;
+	}
+	.field-notes p {
+		padding-right: 15px;
+	}
+	.fa-check {
+		margin-top: 2%;
+	}
+
+	.wizard-container {
+		/*padding-bottom: 8%;*/
+		padding-bottom: 12vh;
+	}
+	.wizard-photo {
+	    left: 16%;
+	}
+	.wizard-orientation {
+	    left: 24%;
+	}
+	.wizard-life-status {
+	    left: 44%;
+	}
+	.wizard-traffic {
+	    left: 55%;
+	}
+	.wizard-tunnel {
+	    left: 72%;
+	}
+	.wizard-notes {
+	    left: 75%;
+	    text-align: center;
+	}
+
+    .weather-icon-container,
+    .weather-container {
+        margin-left: 15%;
+    }
+
+
+}
+
+/* Extra extra small devices LANDSCAPE (PHONES, less than 350px HIGH) */
+/*Must come after media query for PHONES, less than 550px HIGH or will be overwritten*/
+@media all and (max-height: 350px) and (orientation: landscape) {
+
+    .sidebar-wrapper {
+        height: 79%;
+    }
+    .sidebar-wrapper ul {
+        height: 90%;
+    }
+    .sidebar-wrapper .fa {
+        margin: 15% 15px;
+    }
+
+}
+
+/* Extra small devices LANDSCAPE (PHONES, more than 351px HIGH) */
+/*change this to max-height something?? or move into landscape media query at top???*/
+@media all and (min-height: 351px) and (orientation: landscape) {
+
+    .btn-container {
+        padding: 6px;
+    }
+    .btn-container:nth-of-type(3),
+    .btn-container:nth-of-type(4) {
+        margin-top: 4%;
+    }
+    .btn-inline:nth-of-type(2n) {
+        margin-left: 4%;
+    }
+    .caret-container {
+        position: absolute;
+        width: 125%;
+        left: -12.5%;
+        top: 40%;
+    }
+    .fa-size {
+        font-size: 10em !important;
+    }
+    .fa-check {
+        font-size: 7em !important;
+    }
+    /*font-awesome icons*/
+    .sidebar-wrapper .fa {
+        margin: 30% 20px;
+    }
+    .logo {
+        display: block;
+    }
+    #collect-screen,
+    #map-screen,
+    #findings-screen {
+        margin-left: 85px;
+    }
+    .first-page {
+        background: none;
+        margin-top: 2%;
+    }
+    #salamander-compass-img {
+        top: 40px;
+    }
+
+    .wizard-container {
+        padding-bottom: 20vh;
+    }
+    .wizard-photo {
+        left: 3%;
+    }
+    .wizard-orientation {
+        left: 14%;
+    }
+    .wizard-life-status {
+        left: 36%;
+    }
+    .wizard-traffic {
+        left: 49%;
+    }
+    .wizard-tunnel {
+        left: 69%;
+    }
+    .wizard-notes {
+        left: 80%;
+        text-align: center;
+    }
+
+    .weather {
+        font-size: 1.7em;
+    }
+}
+
+/* Small devices LANDSCAPE (TABLETS, 501px tall and up) */
+/*@media handheld and (min-height: 501px) and (orientation: landscape) {
+
+    .wizard-container {
+        padding: 7%;
+    }
+    .btn-move-container {
+        margin-bottom: 7%;
+    }
+    .page-inner-wrapper {
+        position: static;
+    }
+    .camera-icon-label {
+        width: 40%;
+        margin-left: 8%;
+    }
+    #compass-container {
+        margin-left: 0;
+    }
+    #salamander-compass-img {
+        left: -15%;
+        top: 50px;
+    }
+
+}*/
+
+/* Small devices LANDSCAPE (TABLETS, 551px tall and up) */
+@media all and (min-height: 551px) and (orientation: landscape) {
+
+    .btn-move {
+    	margin-bottom: 0;
+    }
+    .btn-container:nth-of-type(3),
+    .btn-container:nth-of-type(4),
+    .btn-container + .btn-container {
+        margin-top: 2%;
+    }
+    .btn-inline:nth-of-type(2n) {
+        margin-left: 0;
+    }
+    .sidebar-wrapper {
+        top: 50%;
+        margin-top: -164px;
+    }
+    /*font-awesome icons*/
+    .sidebar-wrapper .fa {
+        margin: 20px;
+    }
+    .wizard-container {
+    	padding-top: 0;
+    	padding-bottom: 7%;
+    }
+
+	/*https://css-tricks.com/centering-css-complete-guide/*/
+	.page {
+		position: relative;
+	}
+    .first-page {
+    	position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+    }
+    .page-inner-wrapper {
+    	position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		min-height: 500px;
+    }
+	.photo-wrapper {
+		max-width: 100%;
+	}
+	.camera-icon-label {
+		float: left;
+		margin-left: 10%;
+		width: 42%;
+	}
+	#compass-container {
+		float: left;
+		margin-left: 10%;
+		width: 45%;
+	}
+	.waiting-for-file,
+	.orientation-capture-wrapper {
+		max-width: 200px;
+		float: right;
+		margin-top: 15%;
+		margin-right: 10%;
+	}
+	.btn-move-container {
+		clear: both;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+	.observation-choice {
+		margin-top: 5%;
+	}
+
+    .temp-f-container {
+        font-size: 6em;
+    }
+    .weather-string {
+        font-size: 5em;
+    }
+
+    .weather {
+        font-size: 1.1em;
+    }
+    .weather .row {
+        margin-bottom: 50px;
+    }
+
+}

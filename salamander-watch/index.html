@@ -13,7 +13,8 @@
     <link href='///fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
 
     <link href="css/salamander-watch.css" rel="stylesheet">
-    <link href="css/_media-queries.css" rel="stylesheet">
+    <link href="css/_media-queries-landscape.css" rel="stylesheet">
+    <link  href="css/_media-queries-portrait.css" rel="stylesheet">
 
     <link href="../shared/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -140,7 +141,7 @@
                         <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-6x next-btn pull-right" data-target-page="orientation"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
@@ -166,8 +167,8 @@
                         </div>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-left fa-6x back-btn pull-left" data-target-page="photo-uploader"></i>
-                        <i class="fa fa-caret-right fa-6x next-btn pull-right" data-target-page="life_status"></i>
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="photo-uploader"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="life_status"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="photo-uploader">Back</button>
@@ -197,8 +198,8 @@
                         </div>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-left fa-6x back-btn pull-left" data-target-page="orientation"></i>
-                        <i class="fa fa-caret-right fa-6x next-btn pull-right" data-target-page="traffic_level"></i>
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="orientation"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="traffic_level"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="orientation">Back</button>
@@ -225,8 +226,8 @@
                         </div>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-left fa-6x back-btn pull-left" data-target-page="life_status"></i>
-                        <i class="fa fa-caret-right fa-6x next-btn pull-right" data-target-page="tunnel_use"></i>
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="life_status"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="tunnel_use"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="life_status">Back</button>
@@ -256,8 +257,8 @@
                         </div>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-left fa-6x back-btn pull-left" data-target-page="traffic_level"></i>
-                        <i class="fa fa-caret-right fa-6x next-btn pull-right" data-target-page="additional_notes"></i>
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="traffic_level"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="additional_notes"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="traffic_level">Back</button>
@@ -279,7 +280,7 @@
                         <textarea name="additional_notes"></textarea>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-left fa-6x back-btn pull-left" data-target-page="tunnel_use"></i>
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="tunnel_use"></i>
                         <i class="fa fa-check fa-4x finish-btn pull-right" data-target-page="traffic_level"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
@@ -295,14 +296,20 @@
     <!-- Weather Screen -->
     <div id="weather-screen" class="container-view container-fluid">
         <div class="row">
-            <div>
-                <div class="row">
-                    <img src="" alt="weather icon" class="weather-image col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-1">
-                    <div class="temperature col-xs-8 col-xs-offset-2 col-sm-4">
-                        <p class="temp-f-container"><span class="temp-f"></span>&#176;F</p>
-                        <p class="weather-string"></p>
-                    </div>
-                    <div class="weather col-xs-8 col-xs-offset-2 col-sm-3 col-md-2 col-md-offset-1">
+            <div class="weather-icon-container col-xs-5 col-xs-offset-1 col-sm-3 col-sm-offset-1">
+                <div class="weather-icon-inner-container">
+                    <img src="" alt="weather icon" class="weather-image img-responsive">
+                </div>
+            </div>
+            <div class="temperature-icon-container col-xs-5 col-xs-offset-0 col-sm- col-sm-offset-0">
+                <div class="temperature">
+                    <p class="temp-f-container"><span class="temp-f"></span>&#176;F</p>
+                    <p class="weather-string"></p>
+                </div>
+            </div>
+            <div class="weather-container col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-0">
+                <div class="weather-inner-container">
+                    <div class="weather">
                         <div class="row">
                             <img src="img/icons/icon_wind.png" class="img-responsive icon" alt=""><p><span class="wind-mph">##</span> mph <span class="wind-dir">##</span></p>
                         </div>
@@ -376,11 +383,15 @@
 
     <!-- Findings Modal-->
     <div id="findings-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="findingsModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <div class="findings-modal-body">
-                    <!-- content inserted here -->
+        <div class="table">
+            <div class="table-cell">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <div class="findings-modal-body">
+                            <!-- content inserted here -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

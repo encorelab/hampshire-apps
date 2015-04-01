@@ -332,6 +332,9 @@
 
       var infowindow = new google.maps.InfoWindow(options);
       app.map.setCenter(options.position);
+
+      console.error("Geolocation is not working...");
+      alert("Geolocation is not enabled on your phone, so map and weather are unavailable");
     }
     google.maps.event.addDomListener(window, 'load', initializeMap());
   };
@@ -542,11 +545,11 @@
         button.val(user.get('username'));
         button.text(user.get('display_name'));
         // if the user has already been chosen (eg is logged in), disable the button
-        if (user.get('logged_in')) {
-          jQuery(button).addClass('disabled');
-        } else {
-          jQuery(button).removeClass('disabled');
-        }
+        // if (user.get('logged_in')) {
+        //   jQuery(button).addClass('disabled');
+        // } else {
+        //   jQuery(button).removeClass('disabled');
+        // }
         jQuery('.login-buttons').append(button);
       });
 

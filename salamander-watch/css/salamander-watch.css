@@ -190,6 +190,16 @@ ul {
     padding: 0;
 }
 
+/***** modals *****/
+.table {
+    display: table;
+    height:100%;
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 /********** S A L A M A N D E R  S T Y L E S **********/
 
 .btn-move {
@@ -254,7 +264,7 @@ label {
     vertical-align: middle;
 }
 
-.fa-6x {
+.fa-size {
     font-size: 6em !important;
 }
 
@@ -373,6 +383,10 @@ input:disabled {
     height: calc(100vh - 57px);
 }
 
+.caret-container {
+    display: none;
+}
+
 /***** first page *****/
 
 .first-page {
@@ -438,6 +452,7 @@ input:disabled {
     width: 400px;
     margin: 0 auto;
     position: relative;
+    height: 100%;
 }
 
 /*salamander image*/
@@ -489,7 +504,7 @@ input:disabled {
 /***** field notes page *****/
 
 .field-notes p {
-    margin-bottom: 20px;
+    margin-bottom: 3%;
 }
 
 
@@ -499,33 +514,37 @@ input:disabled {
     background: url(../img/PVautumn.png) no-repeat;
     background-size: cover;
     min-height: 100vh;
-    margin: 0;
+}
+
+.weather-icon-container,
+.temperature-icon-container,
+.weather-container {
+    height: calc(100vh - 57px);
+    display: table;
+}
+.weather-icon-inner-container,
+.temperature,
+.weather-inner-container {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.weather-image {
+    color: #333;
     width: 100%;
 }
 
-#weather-screen .weather-image {
-    margin-top: 25px;
-    color: #333;
-}
-
-.temperature {
-    margin-top: 25px;
-    color: #333;
-}
-
-.temperature > p {
+.temp-f-container,
+.weather-string {
+    text-align: center;
     font-size: 5em;
+}
+.temp-f-container {
     font-weight: 400;
 }
-
-p.temp-f-container {
-    text-align: center;
-}
-
-p.weather-string {
+.weather-string {
     font-size: 2.5em;
     font-weight: 300;
-    text-align: center;
 }
 
 .weather {
@@ -534,24 +553,19 @@ p.weather-string {
     font-weight: 300;
     font-size: 1.3em;
     padding: 15px 30px;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
-
 .weather img {
-    width: 15%;
-    margin-right: 20px;
     display: inline-block;
+    width: 25%;
+    max-width: 50px;
+    margin-right: 5%;
 }
-
 .weather p {
     display: inline-block;
 }
-
 .weather .row {
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
-
 .weather .row:last-child {
     margin-bottom: 0;
 }
@@ -619,13 +633,26 @@ body {
 
 
 /********** F I N D I N G S  S C R E E N **********/
+#findings-list {
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
 .findings-list-item {
-    width: 220px;
+/*    width: 220px;
     height: 220px;
-    padding: 20px;
+    padding: 20px;*/
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 15px;
 }
 
 .findings-list-photo, .findings-list-text {
-    width: 200px;
+    /*width: 200px;*/
     height: 200px;
+    border-radius: 15px;
+}
+
+#findings-modal .modal-content {
+    padding: 15px;
 }
