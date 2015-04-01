@@ -112,7 +112,7 @@
           var currentUser = app.users.findWhere({username: app.username});
 
           if (currentUser) {
-            jQuery('.username-display a').text(app.runId+' - '+currentUser.get('display_name'));
+            jQuery('.username-display a').text(currentUser.get('display_name'));
 
             hideLogin();
             showUsername();

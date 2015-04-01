@@ -654,5 +654,10 @@ body {
 }
 
 #findings-modal .modal-content {
+    font-weight: 300;
     padding: 15px;
+}
+
+#findings-modal .modal-key-text {
+    font-weight: 400;
 }

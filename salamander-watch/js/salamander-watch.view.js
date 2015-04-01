@@ -469,6 +469,19 @@
       jQuery('.humidity').text(app.weatherConditions.relative_humidity);
       jQuery('.uv').text(app.weatherConditions.UV);
       jQuery('.dewpoint_f').text(app.weatherConditions.dewpoint_f);
+
+
+      // change the background of the weather screen depending on the time of day
+      // Megs, for reference: http://www.w3schools.com/jsref/jsref_obj_date.asp
+      var date = new Date();
+      var month = date.getMonth();            // note: this works like an array, where Jan == 0 and Dec == 11
+      console.log("It be month "+month);
+      var hour = date.getHours();
+      if (hour > 20 || hour < 6) {
+        console.log('It be nighttime!');
+      } else {
+        console.log('It be daytime!');
+      }
     }
   });
 
@@ -585,7 +598,12 @@
       ev.preventDefault();
       var obsId = jQuery(ev.target).parent().data('obs-id');
       var obs = this.collection.get(obsId);
-      var el = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "date": obs.get('modified_at'), "orientation": obs.get('data').orientation, "life_status": obs.get('data').life_status, "traffic_level": obs.get('data').traffic_level, "tunnel_use": obs.get('data').tunnel_use, "additional_notes": obs.get('data').additional_notes });
+      var el = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "date": obs.get('modified_at'), "orientation": obs.get('data').orientation, "life_status": obs.get('data').life_status, "traffic_level": obs.get('data').traffic_level, "tunnel_use": obs.get('data').tunnel_use, "additional_notes": obs.get('data').additional_notes});
+      // if there's a photo, add it to the modal
+      if (obs.get('data') && obs.get('data').photo_url) {
+        el += '<div><img src=' + app.config.pikachu.url+obs.get('data').photo_url + '></img></div>';
+      }
+
       jQuery('.findings-modal-body').html(el);
     },
 
@@ -593,11 +611,17 @@
       var view = this;
       console.log('Rendering FindingsView...');
 
+      view.collection.comparator = function(model) {
+        return model.get('created_at');
+      };
+
+      var publishedSortedFindings = view.collection.sort().where({published: true});
+
       // clear out any previous values
       jQuery('#findings-list').html('');
       var list = jQuery('#findings-list');
       // populate the list using the template
-      view.collection.each(function(obs) {
+      _.each(publishedSortedFindings, function(obs) {
         var el;
         // if the finding is published and has proper data
         if (obs.get('published') === true && obs.get('data')) {
@@ -611,7 +635,7 @@
             el = "<div class='findings-list-item col-xs-12 col-sm-5' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><div class='findings-list-text'>"+obs.get('author')+"'s observation</div></div>";
           }
         }
-        list.append(el);
+        list.prepend(el);
       });
 
     }
