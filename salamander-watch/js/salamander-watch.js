@@ -332,6 +332,9 @@
 
       var infowindow = new google.maps.InfoWindow(options);
       app.map.setCenter(options.position);
+
+      console.error("Geolocation is not working...");
+      alert("Geolocation is not enabled on your phone, so map and weather are unavailable");
     }
     google.maps.event.addDomListener(window, 'load', initializeMap());
   };

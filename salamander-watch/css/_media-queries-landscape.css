@@ -1,121 +1,25 @@
-/********** M E D I A  Q U E R I E S **********/
+/* * * * *  legend  * * * * * */
+/* LANDSCAPE styles to be applied all sizes */
+/* Extra small devices LANDSCAPE (PHONES, less than 550px HIGH) */
+/* Extra extra small devices LANDSCAPE (PHONES, less than 350px HIGH) */
+/* Extra small devices LANDSCAPE (PHONES, more than 351px HIGH) */
+/* Small devices LANDSCAPE (TABLETS, 551px tall and up) */
 
-@media all and (orientation: portrait) {
+/*Media queries for desktops & large desktops found at end of _media-queries-portrait.css*/
 
-    .btn-move-container {
-        margin-bottom: 72px;
-    }
-    .sidebar-wrapper {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        max-width: 400px;
-        width: 100%;
-        height: 72px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .sidebar-wrapper li {
-        max-width: 100px;
-        width: 25%;
-        display: inline-block;
-    }
-    .sidebar-wrapper .fa-sun-o {
-        position: absolute;
-        right: 25%;
-    }
+/********** M E D I A  Q U E R I E S  L A N D S C A P E **********/
 
-}
-
+/* LANDSCAPE styles to be applied all sizes */
 @media all and (orientation: landscape) {
 
 	.sidebar-wrapper {
 	    margin-top: 57px;
 	    max-height: 328px;
 	}
-}
 
-/* Extra small devices PORTRAIT (PHONES, less than 450px wide) */
-@media all and (max-width: 450px) and (orientation: portrait) {
-
-	/*font-awesome icons*/
-	.sidebar-wrapper .fa {
-	    margin: 15px 20px;
-	}
-
-	.btn-move {
-		min-width: 130px;
-	}
-
-	h1 {
-	    font-size: 44px;
-		margin: 10px auto;
-	}
-
-    .logo {
-        display: none;
+    .weather-icon-container {
+        margin-left: 12%;
     }
-    .first-page {
-        background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
-        margin-top: 10vh;
-    }
-
-    input[type=text] {
-       width: 25%;
-    }
-
-    .wizard-container {
-    	margin-bottom: 10%;
-    }
-    .wizard {
-        padding: 0;
-    }
-    .wizard-photo {
-        left: 3%;
-    }
-    .wizard-orientation {
-        left: 8%;
-    }
-    .wizard-life-status {
-        left: 32%;
-    }
-    .wizard-traffic {
-        left: 43%;
-    }
-    .wizard-tunnel {
-        left: 64%;
-    }
-    .wizard-notes {
-        left: 78%;
-    }
-
-    .camera-icon-label {
-    	display: block;
-    }
-
-    .camera-icon {
-    	width: 75%;
-    	max-width: 150px;
-    	margin-left: auto;
-    	margin-right: auto;
-    }
-
-    #compass-container {
-    	width: 90%;
-        top: 10px;
-    }
-    #salamander-compass-img {
-        top: 75px;
-        left: -16%;
-        height: 175px;
-    }
-    #record-orientation-btn {
-        margin-top: 300px;
-    }
-    .field-notes textarea {
-        margin-bottom: 5%;
-    }
-
 }
 
 /* Extra small devices LANDSCAPE (PHONES, less than 550px HIGH) */
@@ -168,7 +72,6 @@
 		display: none;
 	}
     #collect-screen,
-    #weather-screen,
     #map-screen,
     #findings-screen {
         margin-left: 70px;
@@ -254,9 +157,16 @@
 	    text-align: center;
 	}
 
+    .weather-icon-container,
+    .weather-container {
+        margin-left: 15%;
+    }
+
+
 }
 
-/* Extra extra small devices LANDSCAPE (PHONES) */
+/* Extra extra small devices LANDSCAPE (PHONES, less than 350px HIGH) */
+/*Must come after media query for PHONES, less than 550px HIGH or will be overwritten*/
 @media all and (max-height: 350px) and (orientation: landscape) {
 
     .sidebar-wrapper {
@@ -271,7 +181,7 @@
 
 }
 
-/* Extra small devices LANDSCAPE (PHONES) */
+/* Extra small devices LANDSCAPE (PHONES, more than 351px HIGH) */
 /*change this to max-height something?? or move into landscape media query at top???*/
 @media all and (min-height: 351px) and (orientation: landscape) {
 
@@ -305,7 +215,6 @@
         display: block;
     }
     #collect-screen,
-    #weather-screen,
     #map-screen,
     #findings-screen {
         margin-left: 85px;
@@ -342,116 +251,8 @@
     }
 
     .weather {
-        padding: 30px 3%;
         font-size: 1.7em;
     }
-
-}
-
-/* Small devices (PHONES/TABLETS, 500px and up) */
-@media all and (min-width: 500px) and (orientation: portrait) {
-
-    .sidebar-wrapper {
-        height: 82px;
-    }
-    .sidebar-wrapper .fa {
-        margin: 20px;
-    }
-
-    .wizard-container {
-        padding-bottom: 15%;
-    }
-
-    .page {
-        width: 100%;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        min-height: 500px;
-        height: 75vh;
-    }
-    .page-inner-wrapper {
-        height: 100%;
-    }
-    .btn-move-container {
-        margin-bottom: 72px;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-    .btn-move.pull-right {
-        margin-right: 30px;
-    }
-    #title-page {
-        height: 500px;
-    }
-    #orientation.page {
-        height: auto;
-    }
-    #orientation .wizard-container {
-        padding-bottom: 5%;
-    }
-    #orientation .btn-move-container {
-        position: static;
-    }
-    #orientation .btn-move {
-        margin-right: 0;
-    }
-
-    #compass-container {
-        top: -410px;
-    }
-    #salamander-compass-img {
-        top: 115px;
-        left: 0;
-    }
-    .orientation-capture-wrapper {
-        margin-top: 400px;
-    }
-
-}
-
-/* Small devices PORTRAIT (TABLETS, 768px and up) */
-@media all and (min-width: 768px) and (orientation: portrait) {
-
-    .sidebar-wrapper {
-        height: 82px;
-    }
-    /*font-awesome icons*/
-    .sidebar-wrapper .fa {
-        margin: 20px;
-    }
-
-    #weather-screen .col-sm-4:nth-child(2) {
-        /*margin-left: 0;*/
-    }
-
-    #weather-screen .weather-image {
-        /*margin-top: 15%;*/
-    }
-
-    #weather-screen .temperature {
-        margin-top: 20%;
-        padding: 0;
-    }
-
-    .temperature > p {
-        font-size: 7em;
-        padding-left: 5%;
-    }
-
-    p.weather-string {
-        font-size: 2.5em;
-    }
-
-    .weather {
-        margin-top: 15%;
-        /*margin-left: 25%;*/
-        /*width: 50%;*/
-        font-size: 2em;
-        padding: 30px 10%;
-    }
-
 }
 
 /* Small devices LANDSCAPE (TABLETS, 501px tall and up) */
@@ -553,79 +354,18 @@
 		margin-top: 5%;
 	}
 
-
-
-    #weather-screen .col-sm-4 {
-        margin-left: 0;
+    .temp-f-container {
+        font-size: 6em;
     }
-
-    #weather-screen .weather-image {
-        /*margin-top: 18%;*/
-    }
-
-    #weather-screen .temperature {
-        margin-top: 19%;
-        padding: 0;
-    }
-
-    .temperature > p {
-        font-size: 7em;
-        /*padding-left: 5%;*/
-    }
-
-    p.weather-string {
-        font-size: 4em;
-        /*padding-left: 15%;*/
+    .weather-string {
+        font-size: 5em;
     }
 
     .weather {
-        margin-top: 14%;
-        /*margin-left: 3%;*/
-        font-size: 1.3em;
-    }
-}
-
-/* Medium devices (DESKTOPS, 992px and up) */
-@media all and (min-width: 992px) {
-
-    #collect-screen,
-    #weather-screen,
-    #map-screen,
-    #findings-screen {
-        margin-left: 0;
-    }
-
-    /*salamander image*/
-    #salamander-compass-img {
-        width: 130%;
-    }
-
-    #weather-screen .weather-image {
-        /*margin-left: 5%;*/
-        /*margin-top: 13%;*/
-        max-height: 350px;
-    }
-
-    #weather-screen .temperature {
-        margin-top: 17%;
-        /*margin-left: -2%;*/
-        padding: 0 15px;
-    }
-
-    .weather {
-        margin-top: 5%;
         font-size: 1.1em;
     }
-}
-
-/* Large devices (LARGE DESKTOPS, 1200px and up) */
-@media all and (min-width: 1200px) {
-
-    #salamander-compass-image {
-        width: 120%;
-    }
-    #compass {
-        width: 75%;
+    .weather .row {
+        margin-bottom: 50px;
     }
 
 }

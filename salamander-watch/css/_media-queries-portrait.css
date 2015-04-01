@@ -1,0 +1,307 @@
+/* * * * *  legend  * * * * * */
+/* PORTRAIT styles to be applied all sizes */
+/* Extra small devices PORTRAIT (PHONES, less than 450px wide) */
+/* Small devices PORTRAIT (PHONES/TABLETS, 500px and up) */
+/* Small devices PORTRAIT (TABLETS, 768px and up) */
+/* Medium devices (DESKTOPS, 992px and up) */
+/* Large devices (LARGE DESKTOPS, 1200px and up) */
+
+/********** M E D I A  Q U E R I E S  P O R T R A I T **********/
+
+/* PORTRAIT styles to be applied all sizes */
+@media all and (orientation: portrait) {
+
+    .btn-move-container {
+        margin-bottom: 72px;
+    }
+    .sidebar-wrapper {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 400px;
+        width: 100%;
+        height: 72px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .sidebar-wrapper li {
+        max-width: 100px;
+        width: 25%;
+        display: inline-block;
+    }
+    .sidebar-wrapper .fa-sun-o {
+        position: absolute;
+        right: 25%;
+    }
+
+    .weather-icon-container,
+    .temperature-icon-container,
+    .weather-container {
+        height: 40vh;
+        display: table;
+    }
+    .temp-f-container {
+        font-size: 3em;
+    }
+    .weather {
+        font-size: 1em;
+    }
+    .weather .row {
+        width: 50%;
+        display: inline-block;
+    }
+    .weather .row:nth-child(2n) {
+        margin-left: 5%;
+    }
+}
+
+/* Extra small devices PORTRAIT (PHONES, less than 450px wide) */
+@media all and (max-width: 450px) and (orientation: portrait) {
+
+	/*font-awesome icons*/
+	.sidebar-wrapper .fa {
+	    margin: 15px 20px;
+	}
+
+	.btn-move {
+		min-width: 130px;
+	}
+
+	h1 {
+	    font-size: 44px;
+		margin: 10px auto;
+	}
+
+    .logo {
+        display: none;
+    }
+    .first-page {
+        background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
+        margin-top: 10vh;
+    }
+
+    input[type=text] {
+       width: 25%;
+    }
+
+    .wizard-container {
+    	margin-bottom: 10%;
+    }
+    .wizard {
+        padding: 0;
+    }
+    .wizard-photo {
+        left: 3%;
+    }
+    .wizard-orientation {
+        left: 8%;
+    }
+    .wizard-life-status {
+        left: 32%;
+    }
+    .wizard-traffic {
+        left: 43%;
+    }
+    .wizard-tunnel {
+        left: 64%;
+    }
+    .wizard-notes {
+        left: 78%;
+    }
+
+    .camera-icon-label {
+    	display: block;
+    }
+
+    .camera-icon {
+    	width: 75%;
+    	max-width: 150px;
+    	margin-left: auto;
+    	margin-right: auto;
+    }
+
+    #compass-container {
+    	width: 90%;
+        top: 10px;
+    }
+    #salamander-compass-img {
+        top: 75px;
+        left: -16%;
+        height: 175px;
+    }
+    #record-orientation-btn {
+        margin-top: 300px;
+    }
+    .field-notes textarea {
+        margin-bottom: 5%;
+    }
+
+    .weather-icon-container,
+    .temperature-icon-container,
+    .weather-container {
+        height: 35vh;
+        display: table;
+    }
+    .weather-container {
+        padding: 0;
+    }
+    .weather .row {
+        margin-bottom: 15px;
+    }
+    .weather .row:nth-child(2n) {
+        margin-left: 15%;
+    }
+}
+
+/* Small devices PORTRAIT (PHONES/TABLETS, 500px and up) */
+@media all and (min-width: 500px) and (orientation: portrait) {
+
+    .sidebar-wrapper {
+        height: 82px;
+    }
+    .sidebar-wrapper .fa {
+        margin: 20px;
+    }
+
+    .wizard-container {
+        padding-bottom: 15%;
+    }
+
+    .page {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        min-height: 500px;
+        height: 75vh;
+    }
+    .page-inner-wrapper {
+        height: 100%;
+    }
+    .btn-move-container {
+        margin-bottom: 72px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    .btn-move.pull-right {
+        margin-right: 30px;
+    }
+    #title-page {
+        height: 500px;
+    }
+    #orientation.page {
+        height: auto;
+    }
+    #orientation .wizard-container {
+        padding-bottom: 5%;
+    }
+    #orientation .btn-move-container {
+        position: static;
+    }
+    #orientation .btn-move {
+        margin-right: 0;
+    }
+
+    #compass-container {
+        top: -410px;
+    }
+    #salamander-compass-img {
+        top: 115px;
+        left: 0;
+    }
+    .orientation-capture-wrapper {
+        margin-top: 400px;
+    }
+
+    .weather {
+        font-size: 1.2em;
+    }
+
+}
+
+/* Small devices PORTRAIT (TABLETS, 768px and up) */
+@media all and (min-width: 768px) and (orientation: portrait) {
+
+    .sidebar-wrapper {
+        height: 82px;
+    }
+    /*font-awesome icons*/
+    .sidebar-wrapper .fa {
+        margin: 20px;
+    }
+
+    .temp-f-container {
+        font-size: 6em;
+    }
+    .weather-string {
+        font-size: 4em;
+    }
+
+    .weather {
+        font-size: 1.3em;
+    }
+}
+
+/* Medium devices (DESKTOPS, 992px and up) */
+@media all and (min-width: 992px) {
+
+    #collect-screen,
+    #weather-screen,
+    #map-screen,
+    #findings-screen {
+        margin-left: 0;
+    }
+
+    /*salamander image*/
+    #salamander-compass-img {
+        width: 130%;
+    }
+
+    .weather-image,
+    .temperature {
+        max-height: 350px;
+    }
+
+    .temp-f-container {
+        font-size: 6em;
+    }
+    .weather-string {
+        font-size: 5em;
+    }
+
+    .weather {
+        padding: 35px 20%;
+        font-size: 1.2em;
+    }
+    .weather img {
+        margin-right: 7%;
+    }
+
+}
+
+/* Large devices (LARGE DESKTOPS, 1200px and up) */
+@media all and (min-width: 1200px) {
+
+    #salamander-compass-image {
+        width: 120%;
+    }
+    #compass {
+        width: 75%;
+    }
+
+    .temp-f-container {
+        font-size: 7em;
+    }
+    .weather-string {
+        font-size: 6em;
+    }
+    .weather {
+        padding: 30px 20%;
+        font-size: 1.3em;
+    }
+    .weather img {
+        margin-right: 10%;
+    }
+
+}
