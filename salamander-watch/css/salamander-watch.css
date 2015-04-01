@@ -389,9 +389,16 @@ input:disabled {
 
 /***** first page *****/
 
+#title-page {
+    display: table;
+    margin: 0 auto;
+}
+
 .first-page {
     width: 100%;
     max-width: 500px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .first-page > button {

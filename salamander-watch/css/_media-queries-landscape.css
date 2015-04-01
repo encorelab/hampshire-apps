@@ -78,7 +78,6 @@
     }
 	.first-page {
 		background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
-		margin-top: 5%;
 	}
 	.first-page button {
 		display: inline-block;
@@ -161,6 +160,13 @@
     .weather-container {
         margin-left: 15%;
     }
+    .weather .row {
+        width: 50%;
+        display: inline-block;
+    }
+    .weather .row:nth-child(2n) {
+        margin-left: 5%;
+    }
 
 
 }
@@ -221,7 +227,6 @@
     }
     .first-page {
         background: none;
-        margin-top: 2%;
     }
     #salamander-compass-img {
         top: 40px;
@@ -251,7 +256,7 @@
     }
 
     .weather {
-        font-size: 1.7em;
+        font-size: 1.3em;
     }
 }
 
@@ -312,12 +317,6 @@
 	.page {
 		position: relative;
 	}
-    .first-page {
-    	position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-    }
     .page-inner-wrapper {
     	position: absolute;
 		top: 50%;

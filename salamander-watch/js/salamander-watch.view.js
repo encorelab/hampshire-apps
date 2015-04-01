@@ -628,7 +628,7 @@
           var listItem = null;
           // if the finding has a photo
           if (obs.get('data').photo_url) {
-            el = "<div class='findings-list-item col-xs-6 col-sm-4' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><img class='findings-list-photo' src='"+app.config.pikachu.url+obs.get('data').photo_url+"'></img></div>";
+            el = "<div class='findings-list-item col-xs-6 col-sm-4 col-lg-3' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><img class='findings-list-photo' src='"+app.config.pikachu.url+obs.get('data').photo_url+"'></img></div>";
           }
           // otherwise just throw in the author's name. Suggestions for what to do here?
           else {
