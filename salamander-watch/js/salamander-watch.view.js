@@ -325,7 +325,7 @@
           }
           salamander.style.WebkitTransform = 'rotate(' + salImgOffset + 'deg)';
 
-
+          // dealing with the compass
           var adjustedAlpha = event.alpha + window.orientation;
           var webkitAlpha;
           // check for iOS property (working on safari/ipad)
