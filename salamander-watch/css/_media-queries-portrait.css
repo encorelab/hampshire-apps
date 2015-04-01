@@ -77,7 +77,6 @@
     }
     .first-page {
         background: url("../img/salamanderlogo_light.png") no-repeat 50% 50%;
-        margin-top: 10vh;
     }
 
     input[type=text] {
@@ -248,9 +247,11 @@
 
     #collect-screen,
     #weather-screen,
-    #map-screen,
-    #findings-screen {
+    #map-screen {
         margin-left: 0;
+    }
+    #findings-screen {
+        margin-left: 100px;
     }
 
     /*salamander image*/
