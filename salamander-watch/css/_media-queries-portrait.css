@@ -54,6 +54,9 @@
     .weather .row:nth-child(2n) {
         margin-left: 5%;
     }
+    #findings-list {
+    	margin-bottom: 72px;
+    }
 }
 
 /* Extra small devices PORTRAIT (PHONES, less than 499px wide) */
@@ -156,6 +159,19 @@
     .weather .row:nth-child(2n) {
         margin-left: 15%;
     }
+    .map-sidebar {
+        display: none;
+    }
+}
+
+/* Extra small devices PORTRAIT (PHONES, less than 360px wide) */
+/*must come after max-width: 499px or will be overwritten*/
+@media all and (max-width: 360px) and (orientation: portrait) {
+
+	.weather {
+		font-size: 0.8em;
+	}
+
 }
 
 /* Small devices PORTRAIT (PHONES/TABLETS, 500px and up) */

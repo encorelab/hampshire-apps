@@ -396,6 +396,7 @@ input:disabled {
 }
 .photo-wrapper,
 .orientation-wrapper,
+.orientation-capture-wrapper,
 .observation-choice,
 .field-notes {
     z-index: 999;
