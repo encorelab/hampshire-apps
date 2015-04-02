@@ -394,7 +394,13 @@ input:disabled {
 .fa-check {
     margin-right: -0.3em;
 }
-
+.photo-wrapper,
+.orientation-wrapper,
+.observation-choice,
+.field-notes {
+    z-index: 999;
+    position: relative;
+}
 
 /***** first page *****/
 

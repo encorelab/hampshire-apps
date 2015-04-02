@@ -36,6 +36,7 @@
 		position: fixed;
 		top: 50%;
 		width: 83.5%;
+        z-index: 1;
 	}
     .btn-block + .btn-block,
 	.btn-container + .btn-container {
@@ -301,6 +302,7 @@
         width: 97%;
         left: 2%;
         top: 40%;
+        z-index: 1;
     }
     .fa-size {
         font-size: 10em !important;
@@ -363,8 +365,18 @@
     }
 }
 
-/* Extra small devices LANDSCAPE (PHONES, more than 351px HIGH) */
-@media all and (min-height: 351px) and (min-width: 740px) (orientation: landscape) {
+/* Extra small devices LANDSCAPE (PHONES, more than 400px HIGH) */
+@media all and (min-height: 400px) and (orientation: landscape) {
+
+    .caret-container {
+        width: 105%;
+        left: -2%;
+    }
+
+}
+
+/* Extra small devices LANDSCAPE (PHONES, more than 401px HIGH) */
+@media all and (min-height: 401px) and (min-width: 740px) (orientation: landscape) {
 
     .caret-container {
         width: 115%;
@@ -425,6 +437,9 @@
     /*font-awesome icons*/
     .sidebar-wrapper .fa {
         margin: 20px;
+    }
+    .sidebar-wrapper .fa-sun-o {
+        top: -21px;
     }
     .wizard-container {
     	padding-top: 0;
