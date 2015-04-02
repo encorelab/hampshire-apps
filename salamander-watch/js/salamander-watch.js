@@ -212,7 +212,7 @@
     jQuery('#investigations-nav-btn').addClass('active');           // no need to set things up here (href in html). This btn can always be highlighted, since this only applies to in-app stuff
 
     jQuery('.not-currently-enabled').click(function() {
-      jQuery().toastmessage('showErrorToast', "These sections are currently under development...");
+      jQuery().toastmessage('showErrorToast', "This section is currently under development...");
     });
 
 

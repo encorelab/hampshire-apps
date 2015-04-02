@@ -106,7 +106,7 @@
           jQuery('[name=additional_notes]').text(v);
         }
         else if (k === "orientation") {
-          jQuery('#orientation-field').text(v);
+          jQuery('#orientation-field').text("Recorded orientation: " + v + "° from North");
         }
         // photo
         else if (v.indexOf('.') !== -1) {
@@ -286,7 +286,7 @@
       if (view.orientationAlpha) {
         app.observation.get('data').orientation = Math.round(view.orientationAlpha);
         app.observation.save();
-        jQuery('#orientation-field').text(Math.round(view.orientationAlpha));
+        jQuery('#orientation-field').text("Recorded orientation: " + Math.round(view.orientationAlpha) + "° from North");
         jQuery('#record-orientation-btn').text('Measure Again');
         jQuery().toastmessage('showSuccessToast', "Salamander orientation recorded as "+view.orientationAlpha+" degrees from North...");
       } else {
