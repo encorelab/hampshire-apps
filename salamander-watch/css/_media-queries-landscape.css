@@ -36,6 +36,7 @@
 		position: fixed;
 		top: 50%;
 		width: 83.5%;
+        z-index: 1;
 	}
     .btn-block + .btn-block,
 	.btn-container + .btn-container {
@@ -298,9 +299,10 @@
     }
     .caret-container {
         position: absolute;
-        width: 125%;
-        left: -12.5%;
+        width: 97%;
+        left: 2%;
         top: 40%;
+        z-index: 1;
     }
     .fa-size {
         font-size: 10em !important;
@@ -312,6 +314,10 @@
     .sidebar-wrapper .fa {
         margin: 23% 20px;
     }
+    .sidebar-wrapper .fa-sun-o {
+        right: -22px;
+        top: -9px;
+    }
     .logo {
         display: block;
     }
@@ -322,6 +328,10 @@
     }
     .first-page {
         background: none;
+    }
+    .page-inner-wrapper {
+        width: 95%;
+        margin-left: 3%;
     }
     #salamander-compass-img {
         top: 40px;
@@ -353,6 +363,31 @@
     .weather {
         font-size: 1.3em;
     }
+}
+
+/* Extra small devices LANDSCAPE (PHONES, more than 400px HIGH) */
+@media all and (min-height: 400px) and (orientation: landscape) {
+
+    .caret-container {
+        width: 105%;
+        left: -2%;
+    }
+
+}
+
+/* Extra small devices LANDSCAPE (PHONES, more than 401px HIGH) */
+@media all and (min-height: 401px) and (min-width: 740px) (orientation: landscape) {
+
+    .caret-container {
+        width: 115%;
+        left: -6.5%;
+    }
+    /*on which device did i get these values??*/
+/*    .caret-container {
+        width: 125%;
+        left: -12.5%;
+    }*/
+
 }
 
 /* Small devices LANDSCAPE (TABLETS, 501px tall and up) */
@@ -402,6 +437,9 @@
     /*font-awesome icons*/
     .sidebar-wrapper .fa {
         margin: 20px;
+    }
+    .sidebar-wrapper .fa-sun-o {
+        top: -21px;
     }
     .wizard-container {
     	padding-top: 0;
