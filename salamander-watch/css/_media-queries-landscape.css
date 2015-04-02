@@ -298,8 +298,8 @@
     }
     .caret-container {
         position: absolute;
-        width: 125%;
-        left: -12.5%;
+        width: 97%;
+        left: 2%;
         top: 40%;
     }
     .fa-size {
@@ -312,6 +312,10 @@
     .sidebar-wrapper .fa {
         margin: 23% 20px;
     }
+    .sidebar-wrapper .fa-sun-o {
+        right: -22px;
+        top: -9px;
+    }
     .logo {
         display: block;
     }
@@ -322,6 +326,10 @@
     }
     .first-page {
         background: none;
+    }
+    .page-inner-wrapper {
+        width: 95%;
+        margin-left: 3%;
     }
     #salamander-compass-img {
         top: 40px;
@@ -353,6 +361,21 @@
     .weather {
         font-size: 1.3em;
     }
+}
+
+/* Extra small devices LANDSCAPE (PHONES, more than 351px HIGH) */
+@media all and (min-height: 351px) and (min-width: 740px) (orientation: landscape) {
+
+    .caret-container {
+        width: 115%;
+        left: -6.5%;
+    }
+    /*on which device did i get these values??*/
+/*    .caret-container {
+        width: 125%;
+        left: -12.5%;
+    }*/
+
 }
 
 /* Small devices LANDSCAPE (TABLETS, 501px tall and up) */

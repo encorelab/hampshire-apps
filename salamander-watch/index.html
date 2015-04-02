@@ -136,13 +136,13 @@
                         <img src="img/progressbar_step1.png" class="img-responsive wizard" alt="progress bar step 1 take a photo">
                         <p class="wizard-text wizard-photo">Take a photo</p>
                     </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
                     <div class="photo-wrapper">
                         <label for="photo-file" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
                         <input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" />
                         <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
@@ -156,6 +156,10 @@
                         <img src="img/progressbar_step2.png" class="img-responsive wizard" alt="progress bar step 2 migration orientation">
                         <p class="wizard-text wizard-orientation">Migration Orientation</p>
                     </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="photo-uploader"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="life_status"></i>
+                    </div>
                     <div class="alpha-readout"></div>
                     <div class="orientation-wrapper">
                         <div id="compass-container">
@@ -166,10 +170,6 @@
                             <button id="record-orientation-btn" class="btn btn-default btn-word-wrap mb-20">Capture Orientation</button>
                             <div class="orientation-readout"><span id="orientation-field"></span></div>
                         </div>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="photo-uploader"></i>
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="life_status"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="photo-uploader">Back</button>
@@ -183,6 +183,10 @@
                     <div class="wizard-container">
                         <img src="img/progressbar_step3.png" class="img-responsive wizard" alt="progress bar step 3 life status">
                         <p class="wizard-text wizard-life-status">Life Status</p>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="orientation"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="traffic_level"></i>
                     </div>
                     <div class="observation-choice text-center center-block row">
                         <div class="btn-container center-block btn-inline">
@@ -198,10 +202,6 @@
                             <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown" class="btn btn-default btn-valign">I don't know</label>
                         </div>
                     </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="orientation"></i>
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="traffic_level"></i>
-                    </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="orientation">Back</button>
                         <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="traffic_level">Next</button>
@@ -215,6 +215,10 @@
                         <img src="img/progressbar_step4.png" class="img-responsive wizard" alt="progress bar step 4 traffic conditions">
                         <p class="wizard-text wizard-traffic">Traffic Conditions</p>
                     </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="life_status"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="tunnel_use"></i>
+                    </div>
                     <div class="observation-choice text-center center-block row">
                         <div class="btn-container center-block btn-inline">
                             <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light" class="btn btn-default btn-valign">Light Traffic</label>
@@ -225,10 +229,6 @@
                         <div class="btn-container center-block btn-inline">
                             <input id="id-traffic-level-heavy" type="radio" name="traffic_level" value="heavy"><label for="id-traffic-level-heavy" class="btn btn-default btn-valign">Heavy Traffic</label>
                         </div>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="life_status"></i>
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="tunnel_use"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="life_status">Back</button>
@@ -242,6 +242,10 @@
                     <div class="wizard-container">
                         <img src="img/progressbar_step5.png" class="img-responsive wizard" alt="progress bar step 5 tunnel use">
                         <p class="wizard-text wizard-tunnel">Tunnel Use</p>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="traffic_level"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="additional_notes"></i>
                     </div>
                     <div class="observation-choice text-center center-block row">
                         <div class="btn-container center-block btn-inline">
@@ -257,10 +261,6 @@
                             <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none" class="btn btn-default btn-word-wrap">I did not see a salamander use a tunnel</label>
                         </div>
                     </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="traffic_level"></i>
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="additional_notes"></i>
-                    </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="traffic_level">Back</button>
                         <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="additional_notes">Next</button>
@@ -274,15 +274,15 @@
                         <img src="img/progressbar_step6.png" class="img-responsive wizard" alt="progress bar step 6 additional field notes">
                         <p class="wizard-text wizard-notes">Additional Field Notes</p>
                     </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="tunnel_use"></i>
+                        <i class="fa fa-check fa-4x finish-btn pull-right" data-target-page="traffic_level"></i>
+                    </div>
                     <div class="field-notes">
                         <h3>Additional Field Notes (Optional)</h3>
                         <p class="text-muted">Notes about field conditions, other organisms, or any human activity you notice while collecting data</p>
                         <!-- can this textarea be changed to input type="textarea"?? -->
                         <textarea name="additional_notes"></textarea>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="tunnel_use"></i>
-                        <i class="fa fa-check fa-4x finish-btn pull-right" data-target-page="traffic_level"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="tunnel_use">Back</button>

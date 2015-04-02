@@ -391,6 +391,10 @@ input:disabled {
 .caret-container {
     display: none;
 }
+.fa-check {
+    margin-right: -0.3em;
+}
+
 
 /***** first page *****/
 
@@ -438,14 +442,14 @@ input:disabled {
     margin-bottom: 20px;
     z-index: 999;
     /*http://stackoverflow.com/questions/18673900/how-to-center-and-crop-an-image-to-square-with-css*/
-    position: absolute;
+/*    position: absolute;
     left: -100%;
     right: -100%;
     top: -100%;
     bottom: -100%;
     margin: auto;
     height: auto;
-    width: auto;
+    width: auto;*/
 }
 
 #photo-file {
