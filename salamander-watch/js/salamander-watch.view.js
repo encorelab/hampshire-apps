@@ -471,7 +471,7 @@
       jQuery('.dewpoint_f').text(app.weatherConditions.dewpoint_f);
 
 
-      // change the background of the weather screen depending on the time of day
+      // change the background of the weather screen depending on the time of day and the month
       // Megs, for reference: http://www.w3schools.com/jsref/jsref_obj_date.asp
       var date = new Date();
       var month = date.getMonth();            // note: this works like an array, where Jan == 0 and Dec == 11
