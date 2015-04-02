@@ -423,24 +423,30 @@ input:disabled {
     margin: 0 auto;
 }
 
+.camera-icon-label {
+    padding-bottom: 42%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 15px;
+}
 .camera-icon {
     margin-bottom: 20px;
     position: relative;
     z-index: 999;
-    /*padding: 15%;
-    border: 8px dashed #a4a6a9;
-    border-radius: 25px;*/
+    position: absolute;
+    left: -100%;
+    right: -100%;
+    top: -100%;
+    bottom: -100%;
+    margin: auto;
+    height: auto;
+    width: auto;
 }
 
 #photo-file {
     margin: 0;
     display: none;
 }
-
-/*#photo-container {
-    position: absolute;
-    top: 240px;
-}*/
 
 .photo-preview {
     height: 250px;
