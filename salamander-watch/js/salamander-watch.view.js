@@ -608,7 +608,7 @@
           }
           // otherwise just throw in the author's name. Suggestions for what to do here?
           else {
-            el = "<div class='findings-list-item col-xs-12 col-sm-5' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><div class='findings-list-text'>"+obs.get('author')+"'s observation</div></div>";
+            el = "<div class='findings-list-item col-xs-6 col-sm-4 col-lg-3' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><div class='findings-list-text'>"+obs.get('author')+"'s observation</div></div>";
           }
         }
         list.append(el);

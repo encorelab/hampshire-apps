@@ -646,17 +646,13 @@ body {
 }
 
 .findings-list-item {
-/*    width: 220px;
-    height: 220px;
-    padding: 20px;*/
     overflow: hidden;
     margin-bottom: 15px;
     border-radius: 15px;
 }
 
-.findings-list-photo, .findings-list-text {
-    /*width: 200px;*/
-    height: 200px;
+.findings-list-photo,
+.findings-list-text {
     border-radius: 15px;
 }
 
