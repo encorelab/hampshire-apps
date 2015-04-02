@@ -271,7 +271,7 @@ label {
 /********** N A V B A R **********/
 
 nav {
-    margin: 0;
+    margin: 0 !important;
 }
 /* This hides any element with class alert directly after an input field with a pattern (regex) */
 input[pattern] + .alert {
