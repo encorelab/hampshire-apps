@@ -659,14 +659,23 @@ body {
     overflow: hidden;
     position: absolute;
 }
+.findings-list-text {
+    padding: 5%;
+}
 
 #findings-modal .modal-content {
     font-weight: 300;
     padding: 15px;
+    line-height: 1.5;
 }
-
 #findings-modal .modal-key-text {
     font-weight: 400;
+}
+#findings-modal img {
+    display: block;
+    width: 90%;
+    margin: 15px auto 0;
+    border-radius: 15px;
 }
 
 /*these media queries are found here b/c they apply to both orientations*/
