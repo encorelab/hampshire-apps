@@ -673,6 +673,9 @@ body {
 .findings-list-text {
     padding: 5%;
 }
+#findings-list .own-finding {
+    border: 1px solid red;
+}
 
 #findings-modal .modal-content {
     font-weight: 300;
