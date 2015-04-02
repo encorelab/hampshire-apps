@@ -26,7 +26,7 @@
 @media all and (max-height: 550px) and (orientation: landscape) {
 
 	h1 {
-		font-size: 48px;
+		font-size: 3em;
 	}
 	.btn-move-container {
 		display: none;
@@ -175,14 +175,88 @@
 /*Must come after media query for PHONES, less than 550px HIGH or will be overwritten*/
 @media all and (max-height: 350px) and (orientation: landscape) {
 
+    h1 {
+        margin-bottom: 10px;
+    }
+    .caret-container {
+        width: 82%;
+        margin-left: -3%;
+    }
+    .btn {
+        padding: 6px 4px;
+        min-width: 150px;
+    }
+    .btn-inline {
+        width: 40%;
+    }
+    .btn-inline:nth-of-type(2n) {
+        margin-left: 2%;
+    }
+    .btn-container .btn-default {
+        height: 75px;
+    }
+    .btn-valign {
+        line-height: 4.5em;
+    }
+    .btn-word-wrap {
+        overflow: hidden;
+    }
     .sidebar-wrapper {
-        height: 79%;
+        /*height: 79%;*/
+        height: calc(100vh - 57px);
     }
     .sidebar-wrapper ul {
-        height: 90%;
+        /*height: 90%;*/
+        height: 100%;
     }
     .sidebar-wrapper .fa {
         margin: 15% 15px;
+    }
+
+    .page-inner-wrapper {
+        width: 96%;
+        margin-left: 2.5%;
+    }
+
+    #upload-btn {
+        max-width: 160px;
+    }
+    #salamander-compass-img {
+        top: 30px;
+        left: -5%;
+        width: 170px;
+    }
+    .tunnel-btn-no-pad {
+        padding: 6px 0;
+    }
+/*    #tunnel-use .btn-word-wrap:nth-child(odd) {
+        padding-top: 10%;
+    }*/
+    .wizard-photo {
+        left: 3%;
+    }
+    .wizard-orientation {
+        left: 10%;
+    }
+    .wizard-life-status {
+        left: 34%;
+    }
+    .wizard-traffic {
+        left: 44%;
+    }
+    .wizard-tunnel {
+        left: 64%;
+    }
+    .wizard-notes {
+        left: 73%;
+        text-align: center;
+    }
+
+    .temp-f-container {
+        font-size: 4em;
+    }
+    .weather {
+        font-size: 1.1em;
     }
 
 }

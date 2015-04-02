@@ -31,7 +31,8 @@
     }
     .sidebar-wrapper .fa-sun-o {
         position: absolute;
-        right: 25%;
+        right: -53%;
+        top: -35%;
     }
 
     .weather-icon-container,
