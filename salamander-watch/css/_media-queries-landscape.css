@@ -98,7 +98,7 @@
 		float: left;
 		width: 42%;
 	}
-    .waiting-for-file,
+    #upload-btn,
     .orientation-capture-wrapper {
         max-width: 200px;
         float: right;
@@ -336,7 +336,7 @@
 		margin-left: 10%;
 		width: 45%;
 	}
-	.waiting-for-file,
+	#upload-btn,
 	.orientation-capture-wrapper {
 		max-width: 200px;
 		float: right;
