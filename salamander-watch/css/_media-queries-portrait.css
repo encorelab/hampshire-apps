@@ -171,6 +171,9 @@
 	.weather {
 		font-size: 0.8em;
 	}
+	.map-sidebar {
+	    display: none;
+	}
 
 }
 
@@ -192,7 +195,7 @@
     }
 
     .page {
-        width: 100%;
+        /*width: 100%;*/
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -212,7 +215,10 @@
         margin-right: 30px;
     }
     #title-page {
-        height: 500px;
+        /*height: 500px;*/
+        position: relative;
+        top: 0;
+        transform: translate(0);
     }
     .camera-icon-label {
     	margin: 0 auto 10px;
@@ -248,6 +254,9 @@
     .weather {
         font-size: 1.2em;
     }
+    .map-sidebar {
+        display: none;
+    }
 
 }
 
@@ -272,10 +281,14 @@
     .weather {
         font-size: 1.3em;
     }
+    .map-sidebar {
+    	display: block;
+    }
+
 }
 
 /* Medium devices (DESKTOPS, 992px and up) */
-@media all and (min-width: 992px) {
+@media all and (min-width: 992px) and (min-height: 550px) {
 
     #collect-screen,
     #weather-screen,
@@ -300,6 +313,9 @@
     #salamander-compass-img {
         width: 130%;
     }
+    .observation-choice {
+    	margin: 5% 18% 0;
+    }
 
     .weather-image,
     .temperature {
@@ -320,6 +336,39 @@
     .weather img {
         margin-right: 7%;
     }
+    .map-sidebar {
+    	display: block;
+    }
+
+}
+
+/* Medium devices PORTRAIT (DESKTOPS, 992px and up) */
+@media all and (min-width: 992px) and (orientation: portrait) {
+
+	.weather-icon-container,
+	.temperature-icon-container,
+	.weather-container {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	.temperature-icon-container {
+		left: 34%;
+	}
+	.weather-container {
+		left: 70%;
+	}
+
+	.weather {
+		padding: 35px 10%;
+	}
+	.weather .row {
+		display: block;
+		width: 100%;
+	}
+	.weather .row {
+		margin-left: 0 !important;
+	}
 
 }
 

@@ -443,11 +443,13 @@ input:disabled {
     padding-bottom: 42%;
     overflow: hidden;
     position: relative;
-    border-radius: 15px;
+    /*border-radius: 15px;*/
 }
 .camera-icon {
     margin-bottom: 20px;
     z-index: 999;
+    position: absolute;
+    /*border-radius: 15px;*/
     /*http://stackoverflow.com/questions/18673900/how-to-center-and-crop-an-image-to-square-with-css*/
 /*    position: absolute;
     left: -100%;
@@ -464,6 +466,7 @@ input:disabled {
     display: none;
 }
 
+/*does this exist??*/
 .photo-preview {
     height: 250px;
     width: auto;
@@ -675,7 +678,7 @@ body {
 }
 .findings-list-photo,
 .findings-list-text {
-    width: 100%;
+    width: calc(100% - 15px);
     height: 100%;
     border-radius: 15px;
     overflow: hidden;
@@ -684,8 +687,8 @@ body {
 .findings-list-text {
     padding: 5%;
 }
-#findings-list .own-finding {
-    border: 1px solid red;
+.own-finding img {
+    border: 5px solid #72aab6;
 }
 
 #findings-modal .modal-content {

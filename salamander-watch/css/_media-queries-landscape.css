@@ -38,6 +38,9 @@
 		width: 83.5%;
         z-index: 1;
 	}
+    .btn-container .btn-default {
+        height: 75px;
+    }
     .btn-block + .btn-block,
 	.btn-container + .btn-container {
 		margin-top: 0;
@@ -178,8 +181,14 @@
         width: 50%;
         display: inline-block;
     }
+    .weather-string {
+        font-size: 2em;
+    }
     .weather .row:nth-child(2n) {
         margin-left: 5%;
+    }
+    .map-sidebar {
+        display: none;
     }
 
 
@@ -206,9 +215,6 @@
     .btn-inline:nth-of-type(2n) {
         margin-left: 2%;
     }
-    .btn-container .btn-default {
-        height: 75px;
-    }
     .btn-valign {
         line-height: 4.5em;
     }
@@ -217,16 +223,17 @@
     }
     .sidebar-wrapper {
         height: calc(100vh - 57px);
+        margin-top: 57px;
     }
     .sidebar-wrapper ul {
         height: 100%;
     }
     .sidebar-wrapper .fa {
-        margin: 15% 15px;
+        margin: 7% 15px;
     }
 
     .page-inner-wrapper {
-        width: 96%;
+        width: 90%;
         margin-left: 2.5%;
     }
 
@@ -363,6 +370,9 @@
     .weather {
         font-size: 1.3em;
     }
+    .map-sidebar {
+        display: none;
+    }
 }
 
 /* Extra small devices LANDSCAPE (PHONES, more than 400px HIGH) */
@@ -376,7 +386,7 @@
 }
 
 /* Extra small devices LANDSCAPE (PHONES, more than 401px HIGH) */
-@media all and (min-height: 401px) and (min-width: 740px) (orientation: landscape) {
+@media all and (min-height: 401px) and (min-width: 740px) and (max-width: 1025px) and (orientation: landscape) {
 
     .caret-container {
         width: 115%;
@@ -387,6 +397,24 @@
         width: 125%;
         left: -12.5%;
     }*/
+    .observation-choice {
+        margin: 3% 5% 0;
+    }
+    .weather-container {
+        margin-left: 0;
+    }
+    .weather .row {
+        display: block;
+        width: auto;
+        margin-left: 0 !important;
+    }
+    .weather-string {
+        font-size: 4em;
+    }
+    .weather {
+        padding: 20px 10%;
+    }
+
 
 }
 
@@ -498,6 +526,9 @@
     }
     .weather .row {
         margin-bottom: 50px;
+    }
+    .map-sidebar {
+        display: none;
     }
 
 }
