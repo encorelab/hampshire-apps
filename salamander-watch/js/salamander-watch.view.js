@@ -92,6 +92,7 @@
       var view = this;
       // find the last unpublished observation for this user
       app.observation = view.collection.findWhere({published: false, author: app.username});
+      app.observation.wake(app.config.wakeful.url);
 
       // TODO: we're going to need a better way to do this next time - maybe storing the data type on the model? Or iterating over the html elements instead? This is bad right now
 
@@ -587,6 +588,14 @@
     initialize: function() {
       var view = this;
       console.log('Initializing FindingsView...', view.el);
+
+      view.collection.on('change', function(n) {
+        view.render();
+      });
+
+      view.collection.on('add', function(n) {
+        view.render();
+      });
     },
 
     events: {
