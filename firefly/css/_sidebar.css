@@ -1,0 +1,130 @@
+/*THIS IS JUST FOR REFERENCE; DELETE ONCE SIDEBAR IS WORKING NO ISSUES*/
+
+.sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    background: #eee;
+    overflow-y: auto;
+}
+#sidebar-wrapper-side {
+    margin-top: 57px;
+    height: 100%;
+    max-height: 328px;
+}
+#sidebar-wrapper-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 400px;
+    width: 100%;
+    height: 72px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sidebar-wrapper li {
+    text-align: center;
+}
+.sidebar-wrapper li:hover,
+.sidebar-wrapper li:focus,
+.sidebar-wrapper li:active {
+    background: #27465f;
+}
+#sidebar-wrapper-bottom li {
+    max-width: 100px;
+    width: 25%;
+    display: inline-block;
+}
+/*font-awesome icons*/
+.sidebar-wrapper .fa {
+    margin: 10px 20px;
+    color: #444;
+}
+.sidebar-wrapper li:hover .fa,
+.sidebar-wrapper li:focus .fa,
+.sidebar-wrapper li:active .fa {
+    color: #fff;
+}
+/*positioning the sun on top of the cloud*/
+.sidebar-wrapper .fa-cloud {
+    position: relative;
+}
+#sidebar-wrapper-side .fa-sun-o {
+    position: absolute;
+    right: -4px;
+}
+#sidebar-wrapper-bottom .fa-sun-o {
+    position: absolute;
+    right: 25%;
+}
+
+
+@media all and (orientation: landscape) {
+
+
+
+}
+
+
+@media all and (max-width: 991px) and (orientation: portrait) {
+
+    .sidebar-wrapper {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 400px;
+        width: 100%;
+        height: 72px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .sidebar-wrapper li {
+        max-width: 100px;
+        width: 25%;
+        display: inline-block;
+    }
+    .sidebar-wrapper .fa-sun-o {
+        position: absolute;
+        right: 25%;
+    }
+}
+
+
+/* Extra small devices PORTRAIT (PHONES, less than 768px) */
+/*font-awesome icons*/
+.sidebar-wrapper .fa {
+    margin: 15px 20px;
+}
+
+
+/* Extra small devices LANDSCAPE (PHONES, less than 768px) */
+/*font-awesome icons*/
+.sidebar-wrapper .fa {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.sidebar-wrapper .fa-users {
+    margin-bottom: 10px;
+}
+
+
+/* Small devices PORTRAIT (TABLETS, 768px and up) */
+.sidebar-wrapper {
+    height: 82px;
+}
+/*font-awesome icons*/
+.sidebar-wrapper .fa {
+    margin: 20px;
+}
+
+
+/* Small devices LANDSCAPE (TABLETS, 768px and up) */
+.sidebar-wrapper {
+    top: 50%;
+    left: 250px;
+    margin-left: -250px;
+    margin-top: -164px;
+}
+/*font-awesome icons*/
+.sidebar-wrapper .fa {
+    margin: 20px;
+}

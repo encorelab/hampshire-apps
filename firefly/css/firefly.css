@@ -1,0 +1,739 @@
+/* * * * *  legend  * * * * * */
+/* GLOBAL */
+/* SALAMANDER  STYLES */
+/* TYPOGRAPHY */
+/* NAVBAR */
+/* SIDE-BOTTOM SECONDARY NAV */
+/* PROGRESS BAR */
+/* COLLECT PAGES */
+/* WEATHER SCREEN */
+/* MAP SCREEN */
+/* FINDINGS SCREEN */
+
+
+/********** G L O B A L **********/
+a,
+a:hover,
+li,
+li:hover,
+button,
+button:hover,
+label,
+label:hover {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+/*delete? couldn't find orientation-warning in css or js*/
+.orientation-warning {
+    display: none;
+}
+
+#collect-screen.container-fluid,
+#weather-screen.container-fluid,
+#map-screen.container-fluid,
+#findings-screen.container-fluid {
+    padding-top: 57px;
+}
+
+#collect-screen.container-fluid .hidden,
+#weather-screen.container-fluid .hidden,
+#map-screen.container-fluid .hidden,
+#findings-screen.container-fluid .hidden {
+    /* TODO: this is a crude way of hiding right now and should be improved */
+    display: none;
+}
+
+input {
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    color: #333;
+    border-radius: 7px;
+    border: solid #ddd 1px;
+    height: 45px;
+    margin-left: 20px;
+}
+
+input[type=text] {
+   font-size: 20px;
+   font-weight: 300;
+   padding-left: 20px;
+   width: 20%;
+}
+
+/*trying to get additional field notes text to align to top, currently not working*/
+input[type=textarea],
+textarea {
+    vertical-align: top;
+    min-height: 20vh;
+    line-height: 2em;
+    color: #333;
+    border-radius: 7px;
+    border: solid #ddd 1px;
+    padding: 2%;
+    width: 100%;
+}
+
+/*hiding radio buttons*/
+input[type=radio] {
+    display: none;
+}
+
+input[type=radio]:checked + label {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+.btn {
+    margin-bottom: 20px;
+    height: 45px;
+    min-width: 160px;
+    max-width: 250px;
+}
+
+.btn-default {
+    height: 55px;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 250px;
+}
+
+/*removing linear gradients from button defaults*/
+.btn-default,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-success,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+    background-image: none;
+    text-shadow: none;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    border: none;
+}
+
+/*btn-container applied to parent of input elements made to appear as buttons*/
+.btn-container + .btn-container {
+    margin: 20px auto 0;
+}
+
+.btn-move {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.btn-valign {
+    line-height: 41px;
+}
+
+.btn-word-wrap {
+    white-space: normal;
+}
+
+.scrollable {
+    overflow-y: auto;
+}
+
+/*so the scroll bar appears at all times*/
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.hidden {
+    display: none;
+}
+
+/* what's the correct way to do this? */
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    /*background-color: #BDBDC1;*/                  /* we probably want something a little more stark than this */
+    opacity: 0.7;
+}
+
+/*to indicate to users what to do next*/
+.highlighted {
+    color: #72aab6;
+}
+
+/*delete? couldn't find in css or js*/
+.top-btn-container {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/***** modals *****/
+.table {
+    display: table;
+    height:100%;
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/********** S A L A M A N D E R  S T Y L E S **********/
+
+.btn-move {
+    background-color: #27465f;
+}
+
+.btn-move:hover,
+.btn-move:focus,
+.btn-move:active {
+    background-color: #526B7F;
+}
+
+.fa-caret-left,
+.fa-caret-right,
+.fa-check {
+    color: #27465f;
+}
+
+.fa-caret-left:hover,
+.fa-caret-left:focus,
+.fa-caret-left:active,
+.fa-caret-right:hover,
+.fa-caret-right:focus,
+.fa-caret-right:active,
+.fa-check:hover,
+.fa-check:focus,
+.fa-check:active {
+    color: #526B7F;
+}
+
+/********** T Y P O G R A P H Y **********/
+
+body {
+    font-family: 'Open Sans', 'HelveticaNeue', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 54px;
+    color: #444;
+    font-weight: 500;
+    margin-bottom: 35px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 25px;
+}
+
+h3,
+label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+}
+
+h4 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+label {
+    vertical-align: middle;
+}
+
+.fa-size {
+    font-size: 6em !important;
+}
+
+/********** N A V B A R **********/
+
+nav {
+    margin: 0 !important;
+}
+/* This hides any element with class alert directly after an input field with a pattern (regex) */
+input[pattern] + .alert {
+    display: none;
+}
+
+/* If pattern (regex) is violated alert is shown */
+input[pattern]:invalid + .alert {
+    display: inline-block;
+}
+
+/* If pattern (regex) is violated submit button is hidden */
+input[pattern]:invalid ~ button {
+    display: none;
+}
+
+input:disabled {
+    display: none;
+}
+
+#login-button:disabled {
+    display: none;
+}
+
+.login-button {
+    margin: 1%;
+    min-width: 6em;
+}
+
+.username-display .hide {
+    display: none;
+}
+
+.input-alert {
+    margin-top: 2%;
+}
+
+/********** S I D E - B O T T O M  S E C O N D A R Y  N A V **********/
+
+.sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    background: #eee;
+    overflow-y: auto;
+    height: 100%;
+}
+.sidebar-wrapper li {
+    text-align: center;
+}
+.sidebar-wrapper li:hover,
+.sidebar-wrapper li:focus,
+.sidebar-wrapper li:active {
+    background: #27465f;
+}
+/*font-awesome icons*/
+.sidebar-wrapper .fa {
+    margin: 10px 20px;
+    color: #444;
+}
+.sidebar-wrapper li:hover .fa,
+.sidebar-wrapper li:focus .fa,
+.sidebar-wrapper li:active .fa {
+    color: #fff;
+}
+/*positioning the sun on top of the cloud*/
+.sidebar-wrapper .fa-cloud {
+    position: relative;
+}
+.sidebar-wrapper .fa-sun-o {
+    position: absolute;
+    font-size: 0.7em;
+    right: -19px;
+    top: -7px;
+}
+
+
+/********** P R O G R E S S  B A R **********/
+
+/*have to use wizard b/c progress & progress-bar are bootstrap classes*/
+.wizard-container {
+    padding: 5% 0;
+}
+.wizard {
+    padding: 0 5%;
+}
+.wizard-text {
+    position: absolute;
+    margin-top: 10px;
+}
+/*where are these values being applied to???*/
+.wizard-photo {
+    left: 3%;
+}
+.wizard-orientation {
+    left: 15%;
+}
+.wizard-life-status {
+    left: 36%;
+}
+.wizard-traffic {
+    left: 50%;
+}
+.wizard-tunnel {
+    left: 69%;
+}
+.wizard-notes {
+    left: 83%;
+}
+
+
+/********** C O L L E C T  P A G E S **********/
+
+.page {
+    height: calc(100vh - 57px);
+}
+
+.caret-container {
+    display: none;
+}
+.fa-check {
+    margin-right: -0.3em;
+}
+.photo-wrapper,
+.orientation-wrapper,
+.orientation-capture-wrapper,
+.observation-choice,
+.field-notes {
+    z-index: 999;
+    position: relative;
+}
+
+/***** first page *****/
+
+#title-page {
+    display: table;
+    margin: 0 auto;
+}
+
+.first-page {
+    width: 100%;
+    max-width: 500px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.first-page > button {
+    margin: 0 auto 20px;
+    background-color: rgba(0,0,0,0);
+}
+
+.logo {
+    margin: 0 auto;
+}
+
+
+/***** photo page *****/
+
+.waiting-for-file {
+    opacity: 0.6;
+}
+
+.photo-wrapper {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.camera-icon-label {
+    padding-bottom: 42%;
+    overflow: hidden;
+    position: relative;
+    /*border-radius: 15px;*/
+}
+.camera-icon {
+    margin-bottom: 20px;
+    z-index: 999;
+    position: absolute;
+    /*border-radius: 15px;*/
+    /*http://stackoverflow.com/questions/18673900/how-to-center-and-crop-an-image-to-square-with-css*/
+/*    position: absolute;
+    left: -100%;
+    right: -100%;
+    top: -100%;
+    bottom: -100%;
+    margin: auto;
+    height: auto;
+    width: auto;*/
+}
+
+#photo-file {
+    margin: 0;
+    display: none;
+}
+
+/*does this exist??*/
+.photo-preview {
+    height: 250px;
+    width: auto;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+/***** orientation page *****/
+
+.alpha-readout {
+    display: none;
+}
+
+#compass-container {
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+}
+
+/*salamander image*/
+#salamander-compass-img {
+    position: absolute;
+    top: 55px;
+    left: -25%;
+    z-index: 1;
+    opacity: 0.6;
+    width: 400px;
+/*    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);*/
+}
+
+#compass{
+    width: 100%;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    position: absolute;
+    z-index: 1000;
+}
+
+.orientation-readout {
+    text-align: center;
+}
+
+.pointer {
+  height: 0;
+  width: 0;
+  border-left: 2em solid transparent;
+  border-right: 2em solid transparent;
+  border-bottom: 8em solid black;
+  margin: -10px 0 0 -40px;
+  top: 40%;
+  left: 50%;
+  position: absolute;
+}
+
+.n {
+  top: 20%;
+  left: 50%;
+  position: absolute;
+  font: 5em Helvetica;
+  margin: 0 0 0 -40px;
+}
+
+/***** field notes page *****/
+
+.field-notes p {
+    margin-bottom: 3%;
+}
+
+
+/********** W E A T H E R  S C R E E N **********/
+
+#weather-screen {
+    background: url(../img/PVautumn.png) no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.weather-icon-container,
+.temperature-icon-container,
+.weather-container {
+    height: calc(100vh - 57px);
+    display: table;
+}
+.weather-icon-inner-container,
+.temperature,
+.weather-inner-container {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.weather-image {
+    color: #333;
+    width: 100%;
+}
+
+.temp-f-container,
+.weather-string {
+    text-align: center;
+    font-size: 5em;
+}
+.temp-f-container {
+    font-weight: 400;
+}
+.weather-string {
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+.weather {
+    background: rgba(51, 51, 51, 0.5);
+    color: #fff;
+    font-weight: 300;
+    font-size: 1.3em;
+    padding: 15px 30px;
+}
+.weather img {
+    display: inline-block;
+    width: 25%;
+    max-width: 50px;
+    margin-right: 5%;
+}
+.weather p {
+    display: inline-block;
+}
+.weather .row {
+    margin-bottom: 25px;
+}
+.weather .row:last-child {
+    margin-bottom: 0;
+}
+
+/********** M A P  S C R E E N **********/
+/*html & body properties suggested in https://developers.google.com/maps/documentation/javascript/tutorial;*/
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map-screen {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map-canvas {
+    height: 100vh;
+    width: 100%;
+    margin-bottom: -50px;
+}
+
+#pano {
+    height: 300px;
+    width: 100%;
+    background: #ccc;
+    z-index: 1;
+}
+
+.map-sidebar {
+    position: absolute;
+    top: 13%;
+    right: 50px;
+    z-index: 1;
+}
+
+.map-sidebar .row {
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 15px 25px;
+}
+
+.map-sidebar .row:first-child {
+    padding: 15px 0 0 0;
+}
+
+.map-sidebar h3 {
+    margin-top: 0;
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+.map-sidebar p {
+    font-weight: 300;
+    font-size: 1.3em;
+}
+
+.streetview {
+    padding-left: 25px;
+}
+
+
+/********** F I N D I N G S  S C R E E N **********/
+#findings-list {
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.findings-list-item {
+    /*margin-bottom: 15px;*/
+    margin-bottom: 5%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.findings-list-photo,
+.findings-list-text {
+    width: calc(100% - 15px);
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    position: absolute;
+}
+.findings-list-text {
+    padding: 5%;
+}
+.own-finding img {
+    border: 5px solid #72aab6;
+}
+
+#findings-modal .modal-content {
+    font-weight: 300;
+    padding: 15px;
+    line-height: 1.5;
+}
+#findings-modal .modal-key-text {
+    font-weight: 400;
+}
+#findings-modal img {
+    display: block;
+    width: 90%;
+    margin: 15px auto 0;
+    border-radius: 15px;
+}
+
+/*these media queries are found here b/c they apply to both orientations*/
+@media all and (max-width: 767px) {
+
+    .findings-list-item {
+        width: 45%;
+        padding-bottom: 40%;
+    }
+    .findings-list-item:nth-child(odd) {
+        margin-left: 3.3333333%;
+    }
+    .findings-list-item:nth-child(even) {
+        margin-left: 1.6666666%;
+    }
+
+}
+@media all and (min-width: 768px) and (max-width: 1199px) {
+
+    .findings-list-item {
+        padding-bottom: 30%;
+        margin-bottom: 2%;
+    }
+
+}
+@media all and (min-width: 1200px) {
+
+    .findings-list-item {
+        padding-bottom: 23%;
+        margin-bottom: 2%;
+    }
+
+}

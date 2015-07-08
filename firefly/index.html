@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Firefly</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bower_components/jquery-toastmessage-plugin/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet">
+
+    <link href='///fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
+
+    <link href="css/firefly.css" rel="stylesheet">
+    <link href="css/_media-queries-landscape.css" rel="stylesheet">
+    <link  href="css/_media-queries-portrait.css" rel="stylesheet">
+
+    <link href="../shared/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN_MbOFGBx4i5G8dclAAphSWUUruTTTOg&v=3.exp"></script>
+
+    <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone/backbone.js"></script>
+
+    <script type="text/javascript" src="../node_modules/backbone.drowsy.encorelab/backbone.drowsy.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone.drowsy.encorelab/wakeful.js"></script>
+
+    <script type="text/javascript" src="../bower_components/jquery-toastmessage-plugin/src/main/javascript/jquery.toastmessage.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../bower_components/purl/purl.js"></script>
+
+    <script type="text/javascript" src="../shared/js/skeletor.js"></script>
+    <script type="text/javascript" src="../shared/js/model.js"></script>
+    <script type="text/javascript" src="../shared/js/rollcall.js"></script>
+
+    <script type="text/javascript" src="js/firefly.js"></script>
+    <script type="text/javascript" src="js/firefly.view.js"></script>
+
+    <!-- Findings Template -->
+    <script id="findings-details-template" type="text/template">
+        <div><span class="modal-key-text">Author: &nbsp; </span> <%= author %></div>
+        <div><span class="modal-key-text">Date: &nbsp; </span> <%= date %></div>
+        <div><span class="modal-key-text">Orientation: &nbsp; </span> <%= orientation %>&deg; from North</div>
+        <div><span class="modal-key-text">Traffic level: &nbsp; </span> <%= traffic_level %></div>
+        <div><span class="modal-key-text">Tunnel use: &nbsp; </span> <%= tunnel_use %></div>
+        <div><span class="modal-key-text">Additional notes: &nbsp; </span> <%= additional_notes %></div>
+
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand brand" href="#"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav top-navigation">
+                    <li id="collaboratory-nav-btn" class="top-nav-btn"><a href="https://pvcitizenscience.org/"><i class="fa fa-2x fa-home"></i></a></li>
+                    <li id="investigations-nav-btn" class="top-nav-btn"><a href="#">Investigations</a></li>
+                    <li id="news-feed-nav-btn" class="top-nav-btn not-currently-enabled"><a href="#">News Feed</a></li>
+                    <li id="my-activity-nav-btn" class="top-nav-btn not-currently-enabled"><a href="#">My Activity</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active username-display"><a></a></li>
+                    <li id="logout-user" class="active logout-user"><a>Logout</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- Sidebar -->
+    <!-- the list items are written this way to get rid of the ghost space added to inline-block elements by the browser http://stackoverflow.com/questions/28011846/browser-adds-ghost-spacing-margin-to-inline-block-list-items -->
+    <div id="sidebar-wrapper" class="sidebar-wrapper">
+        <ul class="sidebar-navigation">
+            <li id="collect-nav-btn" class="sidebar-nav-btn disabled"><a href="#collect-screen"><i class="fa fa-3x fa-binoculars"></i></a></li
+            ><li id="map-nav-btn" class="sidebar-nav-btn disabled"><a href="#map-screen"><i class="fa fa-3x fa-compass"></i><!--<i class="fa fa-3x fa-map-marker"></i>--></a></li
+            ><li id="weather-nav-btn" class="sidebar-nav-btn disabled"><a href="#weather-screen"><i class="fa fa-3x fa-cloud"><i class="fa fa-2x fa-sun-o"></i></i></a></li
+            ><li id="findings-nav-btn" class="sidebar-nav-btn disabled"><a href="#findings-screen"><i class="fa fa-3x fa-users"></i></a></li>
+            <!-- <li id="exit-nav-btn" class="sidebar-nav-btn"><a href="https://pvcitizenscience.org/"><i class="fa fa-3x fa-sign-out"></i></a></li> -->
+        </ul>
+    </div><!-- /#sidebar-wrapper -->
+
+    <div id="collect-screen" class="container-view container-fluid">
+        <div class="row">
+
+            <div id="title-page" class="page">
+                <div class="first-page text-center center-block row">
+                    <img src="img/salamanderlogo_colour.png" class="img-responsive logo" alt="Salamander Watch logo">
+                    <h1 class="salamader-watch">Salamander Watch</h1>
+                    <button id="new-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Start New Observation</button>
+                    <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Resume Observation</button>
+                    <!-- these get unhidden in the collectView render -->
+                </div><!-- /.first-page -->
+            </div><!-- /.title-page -->
+
+            <div id="photo-uploader" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div class="wizard-container">
+                        <img src="img/progressbar_step1.png" class="img-responsive wizard" alt="progress bar step 1 take a photo">
+                        <p class="wizard-text wizard-photo">Take a photo</p>
+                    </div>
+                    <div class="photo-wrapper">
+                        <label for="photo-file" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
+                        <input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" />
+                        <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#photo-uploader -->
+
+            <div id="orientation" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div class="wizard-container">
+                        <img src="img/progressbar_step2.png" class="img-responsive wizard" alt="progress bar step 2 migration orientation">
+                        <p class="wizard-text wizard-orientation">Migration Orientation</p>
+                    </div>
+                    <div class="alpha-readout"></div>
+                    <div class="orientation-wrapper">
+                        <div id="compass-container">
+                            <img src="img/salamanderlogo_grey.png" id="salamander-compass-img" alt="grey salamander">
+                            <img src="img/compass_transparent.png" id="compass" class="img-responsive" />
+                        </div>
+                        <div class="orientation-capture-wrapper">
+                            <button id="record-orientation-btn" class="btn btn-default btn-word-wrap mb-20">Capture Orientation</button>
+                            <div class="orientation-readout"><span id="orientation-field"></span></div>
+                        </div>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="photo-uploader"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="life_status"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="photo-uploader">Back</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="life_status">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#orientation -->
+
+            <div id="life_status" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div class="wizard-container">
+                        <img src="img/progressbar_step3.png" class="img-responsive wizard" alt="progress bar step 3 life status">
+                        <p class="wizard-text wizard-life-status">Life Status</p>
+                    </div>
+                    <div class="observation-choice text-center center-block row">
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive" class="btn btn-default btn-valign">Alive</label>
+                        </div>
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-life-status-injured" type="radio" name="life_status" value="injured"><label for="id-life-status-injured" class="btn btn-default btn-valign">Injured</label>
+                        </div>
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-life-status-dead" type="radio" name="life_status" value="dead"><label for="id-life-status-dead" class="btn btn-default btn-valign">Dead</label>
+                        </div>
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown" class="btn btn-default btn-valign">I don't know</label>
+                        </div>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="orientation"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="traffic_level"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="orientation">Back</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="traffic_level">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#life_status -->
+
+            <div id="traffic_level" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div class="wizard-container">
+                        <img src="img/progressbar_step4.png" class="img-responsive wizard" alt="progress bar step 4 traffic conditions">
+                        <p class="wizard-text wizard-traffic">Traffic Conditions</p>
+                    </div>
+                    <div class="observation-choice text-center center-block row">
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light" class="btn btn-default btn-valign">Light Traffic</label>
+                        </div>
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-traffic-level-medium" type="radio" name="traffic_level" value="medium"><label for="id-traffic-level-medium" class="btn btn-default btn-valign">Moderate Traffic</label>
+                        </div>
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-traffic-level-heavy" type="radio" name="traffic_level" value="heavy"><label for="id-traffic-level-heavy" class="btn btn-default btn-valign">Heavy Traffic</label>
+                        </div>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="life_status"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="tunnel_use"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="life_status">Back</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="tunnel_use">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#traffic_level -->
+
+            <div id="tunnel_use" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div class="wizard-container">
+                        <img src="img/progressbar_step5.png" class="img-responsive wizard" alt="progress bar step 5 tunnel use">
+                        <p class="wizard-text wizard-tunnel">Tunnel Use</p>
+                    </div>
+                    <div class="observation-choice text-center center-block row">
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-tunnel-use-enter" type="radio" name="tunnel_use" value="enter"><label for="id-tunnel-use-enter" class="btn btn-default btn-word-wrap">I saw this salamander ENTER a tunnel (only)</label>
+                        </div>
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="btn btn-default btn-word-wrap tunnel-btn-no-pad">I saw this salamander both ENTER & EXIT a tunnel</label>
+                        </div>
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-tunnel-use-exit" type="radio" name="tunnel_use" value="exit"><label for="id-tunnel-use-exit" class="btn btn-default btn-word-wrap">I saw this salamander EXIT a tunnel (only)</label>
+                        </div>
+                        <div class="btn-container center-block btn-inline">
+                            <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none" class="btn btn-default btn-word-wrap">I did not see a salamander use a tunnel</label>
+                        </div>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="traffic_level"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="additional_notes"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="traffic_level">Back</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="additional_notes">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#tunnel_use -->
+
+            <div id="additional_notes" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div class="wizard-container">
+                        <img src="img/progressbar_step6.png" class="img-responsive wizard" alt="progress bar step 6 additional field notes">
+                        <p class="wizard-text wizard-notes">Additional Field Notes</p>
+                    </div>
+                    <div class="field-notes">
+                        <h3>Additional Field Notes (Optional)</h3>
+                        <p class="text-muted">Notes about field conditions, other organisms, or any human activity you notice while collecting data</p>
+                        <!-- can this textarea be changed to input type="textarea"?? -->
+                        <textarea name="additional_notes"></textarea>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="tunnel_use"></i>
+                        <i class="fa fa-check fa-4x finish-btn pull-right" data-target-page="traffic_level"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="tunnel_use">Back</button>
+                        <button class="finish-btn btn btn-lg btn-success pull-right btn-move">Finish</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#additional_notes -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+    <!-- Weather Screen -->
+    <div id="weather-screen" class="container-view container-fluid">
+        <div class="row">
+            <div class="weather-icon-container col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-1">
+                <div class="weather-icon-inner-container">
+                    <img src="" alt="weather icon" class="weather-image img-responsive">
+                </div>
+            </div>
+            <div class="temperature-icon-container col-xs-5 col-xs-offset-0 col-md-4 col-md-offset-0">
+                <div class="temperature">
+                    <p class="temp-f-container"><span class="temp-f"></span>&#176;F</p>
+                    <p class="weather-string"></p>
+                </div>
+            </div>
+            <div class="weather-container col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+                <div class="weather-inner-container">
+                    <div class="weather">
+                        <div class="row">
+                            <img src="img/icons/icon_wind.png" class="img-responsive icon" alt=""><p><span class="wind-mph">##</span> mph <span class="wind-dir">##</span></p>
+                        </div>
+                        <div class="row">
+                            <img src="img/icons/icon_rain.png" class="img-responsive icon" alt=""><p><span class="precipitation-percent">##</span> pop</p>
+                        </div>
+                        <div class="row">
+                            <img src="img/icons/icon_humidity.png" class="img-responsive icon" alt=""><p><span class="humidity">##</span> humidity</p>
+                        </div>
+                        <div class="row">
+                            <img src="img/icons/icon_uv.png" class="img-responsive icon" alt=""><p class="uv"></p>
+                        </div>
+                        <div class="row">
+                            <img src="img/icons/icon_dew.png" class="img-responsive icon" alt=""><p><span class="dewpoint_f">##</span>&#176;F dewpoint</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+    <!-- Map Screen -->
+    <div id="map-screen" class="container-view container-fluid">
+        <div class="row">
+            <div>
+                <div id="map-canvas"></div>
+                <div class="row">
+                    <div class="map-sidebar col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-8">
+                        <div class="row">
+                            <h3 class="streetview">Street View:</h3>
+                            <div id="pano"></div>
+                        </div>
+                        <div class="row">
+                            <h3>GPS Position:</h3>
+                            <p><span class="latitude">##</span>&nbsp;&nbsp;&nbsp;<span class="longitude">##</span></p>
+                        </div>
+                        <div class="row">
+                            <h3>Elevation:</h3>
+                            <p><span class="elevation">##</span> ft</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+
+    <!-- Findings Screen -->
+    <div id="findings-screen" class="container-view container-fluid">
+        <div id="findings-list" class="row">
+            <!-- filled in the view -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="login-picker" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="login-picker" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3>Please log in</h3>
+                </div>
+                <div class="modal-body login-buttons">
+                <!-- filled by javascript with buttons for user login -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Findings Modal-->
+    <div id="findings-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="findingsModal" aria-hidden="true">
+        <div class="table">
+            <div class="table-cell">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <div class="findings-modal-body">
+                            <!-- content inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+          jQuery.fn.exists = function(){return this.length>0;}
+          Skeletor.Mobile.init();
+          jQuery('.note-taking-toggle').hide();
+        });
+    </script>
+</body>
+</html>

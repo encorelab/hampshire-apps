@@ -25,7 +25,7 @@
   Skeletor.Model = (function() {
     function Model() {}
 
-    Model.requiredCollections = ['leaf_drop_observations', 'salamander_watch_observations'];
+    Model.requiredCollections = ['leaf_drop_observations', 'salamander_watch_observations', 'firefly_observations'];
 
     Model.init = function(url, db) {
       var dfrInit,
@@ -122,6 +122,22 @@
 
       this.SalamanderWatchObservations = this.db.Collection('salamander_watch_observations').extend({
         model: Skeletor.Model.SalamanderWatchObservation
+      });
+
+
+      /** FireflyObservations **/
+
+      this.FireflyObservation = this.db.Document('firefly_observations').extend({
+        defaults: {
+          'created_at': new Date(),
+          'modified_at': new Date(),
+          'author': Skeletor.Mobile.username,
+          'published': false
+        }
+      });
+
+      this.FireflyObservations = this.db.Collection('firefly_observations').extend({
+        model: Skeletor.Model.FireflyObservation
       });
 
       // TODO: do custom setting for data {}
