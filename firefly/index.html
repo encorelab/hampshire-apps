@@ -122,13 +122,223 @@
 
             <div id="title-page" class="page">
                 <div class="first-page text-center center-block row">
-                    <img src="img/salamanderlogo_colour.png" class="img-responsive logo" alt="Salamander Watch logo">
-                    <h1 class="salamader-watch">Salamander Watch</h1>
+                    <img src="img/firefly.jpg" class="img-responsive logo" alt="Firefly Watch logo">
+                    <h1 class="salamader-watch">Firefly Watch</h1>
                     <button id="new-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Start New Observation</button>
                     <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Resume Observation</button>
                     <!-- these get unhidden in the collectView render -->
                 </div><!-- /.first-page -->
             </div><!-- /.title-page -->
+
+            <div id="habitat-name" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">Habitat Name</h2>
+                        <p>If possible, please collect data once a week. It is not necessary to make your observations at the same time every evening, but it is important to work from the same location: your habitat site.</p>
+                        <h3>Give your habitat a name:</h3>
+                        <input id="" data-field-name="" class="" type="text">
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#habitat-name -->
+
+            <div id="firefly-colors" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">Firefly Habitat Overview Observations</h2>
+                        <p>How many different firefly colors did you observe?</p>
+                        <img src="img/3fireflies.jpg" alt="green firefly, red firefly, yellow firefly">
+                        <input id="zero-colors" type="radio" name="firefly-colors" value="0"><label for="zero-colors" class="btn btn-default">0</label>
+                        <input id="one-color" type="radio" name="firefly-colors" value="1"><label for="one-color" class="btn btn-default">1</label>
+                        <input id="two-colors" type="radio" name="firefly-colors" value="2"><label for="two-colors" class="btn btn-default">2</label>
+                        <input id="three-colors" type="radio" name="firefly-colors" value="3"><label for="three-colors" class="btn btn-default">3</label>
+                        <input id="four-plus-colors" type="radio" name="firefly-colors" value="4+"><label for="four-plus-colors" class="btn btn-default">4+</label>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#firefly-colors -->
+
+            <div id="flashing-patterns" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">Firefly Habitat Overview Observations</h2>
+                        <p>How many different firefly flashing patterns did you observe?</p>
+                        <img src="img/rectangles.png" alt="patterns of grey rectangles">
+                        <input id="zero-patterns" type="radio" name="firefly-patterns" value="0"><label for="zero-patterns" class="btn btn-default">0</label>
+                        <input id="one-pattern" type="radio" name="firefly-patterns" value="1"><label for="one-pattern" class="btn btn-default">1</label>
+                        <input id="two-patterns" type="radio" name="firefly-patterns" value="2"><label for="two-patterns" class="btn btn-default">2</label>
+                        <input id="three-patterns" type="radio" name="firefly-patterns" value="3"><label for="three-patterns" class="btn btn-default">3</label>
+                        <input id="four-plus-patterns" type="radio" name="firefly-patterns" value="4+"><label for="four-plus-patterns" class="btn btn-default">4+</label>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#flashing-patterns -->
+
+            <div id="firefly-location" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">Firefly Habitat Overview Observations</h2>
+                        <p>Where were the fireflies that you observed?</p>
+                        <div class="observation-choice text-center center-block row">
+                            <div class="btn-container center-block btn-inline">
+                                <input id="location-perched" type="radio" name="location" value="perched"><label for="location-perched" class="btn btn-default btn-valign">Mostly perched</label>
+                            </div>
+                            <div class="btn-container center-block btn-inline">
+                                <input id="location-flying" type="radio" name="location" value="flying"><label for="location-flying" class="btn btn-default btn-valign">Mostly flying</label>
+                            </div>
+                            <div class="btn-container center-block btn-inline">
+                                <input id="location-both" type="radio" name="location" value="both"><label for="location-both" class="btn btn-default btn-valign">Some flying, some perched</label>
+                            </div>
+                            <div class="btn-container center-block btn-inline">
+                                <input id="location-none" type="radio" name="location" value="none"><label for="location-none" class="btn btn-default btn-valign">None observed</label>
+                            </div>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#firefly-location -->
+
+            <div id="firefly-amount" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">Firefly Habitat Overview Observations</h2>
+                        <p>During a 10-second period, how many fireflies did you observe?</p>
+                        <input id="none-amount" type="radio" name="amount" value="0"><label for="none-amount" class="btn btn-default">None</label>
+                        <input id="one-amount" type="radio" name="amount" value="1"><label for="one-amount" class="btn btn-default">1</label>
+                        <input id="two-five-amount" type="radio" name="amount" value="2-5"><label for="two-five-amount" class="btn btn-default">2-5</label>
+                        <input id="six-twenty-amount" type="radio" name="amount" value="6-20"><label for="six-twenty-amount" class="btn btn-default">6-20</label>
+                        <input id="twentyone-plus-amount" type="radio" name="amount" value="21+"><label for="twentyone-plus-amount" class="btn btn-default">21+</label>
+                        <input id="other-amount" type="radio" name="amount" value="other"><label for="other-amount" class="btn btn-default">4+</label>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#firefly-amount -->
+
+            <div id="firefly-reporting" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">Focused Firefly Reporting</h2>
+                        <p>If possible, choose three (or more) fireflies with different colors or flashing patterns. Observing them closely will help you differentiate between species and give you a greater appreciation of what is happening in your firefly habitat.</p>
+                        <h3>Firefly Observations:</h3>
+                        <div class="new-observation-wrapper">
+                            <label for="new-observation" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
+                            <input id="new-observation" type="" name="" />
+                            <button id="new-observation-btn" class="btn btn-default btn-word-wrap">Add a new firefly</button>
+                        </div>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#firefly-reporting -->
+
+            <div id="photo-uploader" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <h2 class="page-title">New Firefly Observation</h2>
+                    <p>Take a photo of your firefly.</p>
+                    <div class="photo-wrapper">
+                        <label for="photo-file" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
+                        <input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" />
+                        <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#photo-uploader -->
+
+            <div id="flash-pattern-replicator" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <h2 class="page-title">New Firefly Observation</h2>
+                    <p>Tap your finger on the circle below to replicate the firefly's flash pattern</p>
+                    <div class="flash-pattern-wrapper">
+
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#flash-pattern-replicator -->
+
+            <div id="firefly-flash-location" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">New Firefly Observation</h2>
+                        <p>Where was the firefly when you saw it flash?</p>
+                        <div class="observation-choice text-center center-block row">
+                            <div class="btn-container center-block btn-inline">
+                                <input id="new-location-perched" type="radio" name="new-location" value="sitting still"><label for="new-location-perched" class="btn btn-default btn-valign">Sitting still</label>
+                            </div>
+                            <div class="btn-container center-block btn-inline">
+                                <input id="new-location-flying" type="radio" name="new-location" value="flying"><label for="new-location-flying" class="btn btn-default btn-valign">Flying</label>
+                            </div>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#firefly-flash-location -->
+
+            <div id="fly-j-shape" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">New Firefly Observation</h2>
+                        <p>Did it fly in a J-shape?</p>
+                        <div class="observation-choice text-center center-block row">
+                            <div class="btn-container center-block btn-inline">
+                                <input id="j-shape-yes" type="radio" name="j-shape" value="yes"><label for="j-shape-yes" class="btn btn-default btn-valign">Yes</label>
+                            </div>
+                            <div class="btn-container center-block btn-inline">
+                                <input id="j-shape-no" type="radio" name="j-shape" value="no"><label for="j-shape-no" class="btn btn-default btn-valign">No</label>
+                            </div>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#fly-j-shape -->
+
+
+
 
             <div id="photo-uploader" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
