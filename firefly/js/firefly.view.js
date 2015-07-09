@@ -16,7 +16,6 @@
   app.View.CollectView = Backbone.View.extend({
     view: this,
     cleanCollectHTML: null,
-    orientationAlpha: null,
 
     initialize: function() {
       var view = this;
@@ -34,7 +33,6 @@
       'click input[type=radio]'        : "updateObservation",
       'click .next-btn'                : "determineTarget",
       'click .back-btn'                : "determineTarget",
-      'click #record-orientation-btn'  : "recordOrientation",
       'change #photo-file'             : "enableUpload",
       'click #upload-btn'              : "checkUploadEnabled",
       'click .finish-btn'              : "publishObservation",
@@ -97,27 +95,24 @@
       // TODO: we're going to need a better way to do this next time - maybe storing the data type on the model? Or iterating over the html elements instead? This is bad right now
 
       // populate the radios based on the model
-      _.each(app.observation.get('data'), function(v,k) {
-        console.log(k, v);
-        // special fields (add other text fields here, and broaden as necessary). Holy gods this is stainy. TODO: check back how Matt did this in VEOS
-        if (v === "enter and exit") {
-          jQuery('#id-tunnel-use-enter-exit').attr('checked','checked');
-        }
-        else if (k === "additional_notes") {
-          jQuery('[name=additional_notes]').text(v);
-        }
-        else if (k === "orientation") {
-          jQuery('#orientation-field').text("Recorded orientation: " + v + "° from North");
-        }
-        // photo
-        else if (v.indexOf('.') !== -1) {
-          view.showPhoto(v);
-        }
-        // radios
-        else if (v.length > 0 && jQuery(':radio[value='+v+']').length > 0) {
-          jQuery(':radio[value='+v+']').attr('checked','checked');
-        }
-      });
+      // _.each(app.observation.get('data'), function(v,k) {
+      //   console.log(k, v);
+      //   // special fields (add other text fields here, and broaden as necessary). Holy gods this is stainy. TODO: check back how Matt did this in VEOS
+      //   if (v === "enter and exit") {
+      //     jQuery('#id-tunnel-use-enter-exit').attr('checked','checked');
+      //   }
+      //   else if (k === "additional_notes") {
+      //     jQuery('[name=additional_notes]').text(v);
+      //   }
+      //   // photo
+      //   else if (v.indexOf('.') !== -1) {
+      //     view.showPhoto(v);
+      //   }
+      //   // radios
+      //   else if (v.length > 0 && jQuery(':radio[value='+v+']').length > 0) {
+      //     jQuery(':radio[value='+v+']').attr('checked','checked');
+      //   }
+      // });
 
       var page = app.observation.get('data').current_page;
       view.jumpToPage(page);
@@ -166,7 +161,7 @@
       // UI changes
       jQuery('#title-page').addClass('hidden');
 
-      view.jumpToPage("photo-uploader");
+      view.jumpToPage("habitat-name");
     },
 
     getLocationData: function() {
@@ -282,80 +277,6 @@
       jQuery('.camera-icon').attr('src',app.config.pikachu.url + photoId);
     },
 
-    recordOrientation: function() {
-      var view = this;
-      if (view.orientationAlpha) {
-        app.observation.get('data').orientation = Math.round(view.orientationAlpha);
-        app.observation.save();
-        jQuery('#orientation-field').text("Recorded orientation: " + Math.round(view.orientationAlpha) + "° from North");
-        jQuery('#record-orientation-btn').text('Measure Again');
-        jQuery().toastmessage('showSuccessToast', "Salamander orientation recorded as "+view.orientationAlpha+" degrees from North...");
-      } else {
-        jQuery().toastmessage('showErrorToast', "Orientation data not available. Please try again or proceed without recording the orientation. Note that laptops cannot generate orientation data.");
-      }
-    },
-
-    handleOrientation: function(event) {
-      var view = this;
-      var trueAlpha = 360 - event.alpha;
-
-      // for testing - remove me!
-      // trueAlpha is an output measure, flipped from what event.alpha records (since that appears to be 'backwards')
-      jQuery('.alpha-readout').text("Alpha: " + trueAlpha);
-      // setting this to have wider scope so that the value can be used for recordOrientation
-      view.orientationAlpha = trueAlpha;
-
-      // first should check for laptop vs mobile, since laptops don't seem to have internal compasses?
-      // TODO: add something that checks for laptop vs mobile and shows... something else for laptops
-
-      // based on http://mobiforge.com/design-development/html5-mobile-web-device-orientation-events
-      var compass = document.getElementById('compass');
-      var salamander = document.getElementById('salamander-compass-img');
-
-      // abandon all hope, ye who enter here
-      // this is the biggest, ugliest hack-fest ever. transform, rotate and orientation are all implemented differently on different browsers/devices, hence the blinding nonsense below
-      if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', function(event) {
-
-          // dealing with the salamander image - needs to be rotated so that the head always points to the physical top of the device (eg where the compass will point)
-          var salImgOffset;
-          if (window.orientation === 90 || window.orientation === -90) {
-            salImgOffset = window.orientation+90;
-          } else {
-            salImgOffset = window.orientation-90;
-          }
-          salamander.style.WebkitTransform = 'rotate(' + salImgOffset + 'deg)';
-
-          // dealing with the compass
-          var adjustedAlpha = event.alpha + window.orientation;
-          var webkitAlpha;
-          // check for iOS property (working on safari/ipad)
-          if (event.webkitCompassHeading) {
-            // window.orientation will return a value of 0, 90, 180, 270 depending on how the user is holding the tablet (0 and 180 are portrait, eg)
-            // rotation is reversed for iOS (hence + window.orientation)
-            adjustedAlpha = event.webkitCompassHeading + window.orientation;
-            compass.style.WebkitTransform = 'rotate(-' + adjustedAlpha + 'deg)';
-          }
-          // non iOS (working on chrome/phone and chrome/tablet)
-          else {
-            // adjustedAlpha is the device orientation value combined with the window orientation value
-            adjustedAlpha = event.alpha - window.orientation;
-            webkitAlpha = adjustedAlpha;
-            if (!window.chrome) {
-              // assume Android stock (TEST ME)
-              webkitAlpha = adjustedAlpha-270;
-            }
-          }
-
-          compass.style.Transform = 'rotate(' + adjustedAlpha + 'deg)';
-          compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
-          // rotation is reversed for FF (TEST ME)
-          compass.style.MozTransform = 'rotate(-' + adjustedAlpha + 'deg)';
-        }, false);
-      }
-
-    },
-
     checkForAutoSave: function(ev) {
       var view = this,
           field = ev.target.name,
@@ -389,17 +310,6 @@
       // determine if we want resume button showing - if any unpublished notes (note the bang), removeClass. Should also probably be contains instead of findWhere
       if (!view.collection.findWhere({published: false, author: app.username})) {
         jQuery('#resume-observation-btn').addClass('hidden');
-      }
-
-      // add orientation (this is ongoing, even when the page is hidden)
-      if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', function(event) {
-          // we'll want to flip the orientation, it's counterclockwise for some reason, hence 360 - x
-          view.handleOrientation(event);
-        }, false);
-      } else {
-        // we probably want more help here?
-        jQuery().toastmessage('showErrorToast', "Orientation data not available. Please ask for technical assistance or proceed to take an incomplete observation.");
       }
     }
 
@@ -607,7 +517,7 @@
       ev.preventDefault();
       var obsId = jQuery(ev.target).parent().data('obs-id');
       var obs = this.collection.get(obsId);
-      var el = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "date": obs.get('modified_at'), "orientation": obs.get('data').orientation, "life_status": obs.get('data').life_status, "traffic_level": obs.get('data').traffic_level, "tunnel_use": obs.get('data').tunnel_use, "additional_notes": obs.get('data').additional_notes});
+      var el = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "date": obs.get('modified_at'), "life_status": obs.get('data').life_status, "traffic_level": obs.get('data').traffic_level, "tunnel_use": obs.get('data').tunnel_use, "additional_notes": obs.get('data').additional_notes});
       // if there's a photo, add it to the modal
       if (obs.get('data') && obs.get('data').photo_url) {
         el += '<div><img src=' + app.config.pikachu.url+obs.get('data').photo_url + '></img></div>';
