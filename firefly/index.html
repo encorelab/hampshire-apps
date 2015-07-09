@@ -10,7 +10,7 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="../bower_components/jquery-toastmessage-plugin/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet">
 
-    <link href='///fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
 
     <link href="css/firefly.css" rel="stylesheet">
     <link href="css/_media-queries-landscape.css" rel="stylesheet">
@@ -42,7 +42,7 @@
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN_MbOFGBx4i5G8dclAAphSWUUruTTTOg&v=3.exp"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN_MbOFGBx4i5G8dclAAphSWUUruTTTOg&amp;v=3.exp"></script>
 
     <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
     <script type="text/javascript" src="../node_modules/backbone/backbone.js"></script>
@@ -136,7 +136,7 @@
                         <h2 class="page-title">Habitat Name</h2>
                         <p>If possible, please collect data once a week. It is not necessary to make your observations at the same time every evening, but it is important to work from the same location: your habitat site.</p>
                         <h3>Give your habitat a name:</h3>
-                        <input id="" data-field-name="" class="" type="text">
+                        <input id="PICK_ID" data-field-name="" class="" type="text"> <!-- Meagan this needs a unique ID value -->
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
@@ -207,6 +207,7 @@
                             <div class="btn-container center-block btn-inline">
                                 <input id="location-none" type="radio" name="location" value="none"><label for="location-none" class="btn btn-default btn-valign">None observed</label>
                             </div>
+                        </div>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
@@ -246,8 +247,8 @@
                         <h3>Firefly Observations:</h3>
                         <div class="new-observation-wrapper">
                             <label for="new-observation" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
-                            <input id="new-observation" type="" name="" />
-                            <button id="new-observation-btn" class="btn btn-default btn-word-wrap">Add a new firefly</button>
+                            <input id="new-observation" type="text" name="HELLO_MY_NAME_IS" /> <!-- Meagan please add/change a type and name -->
+                            <button id="new-observation-btn-unique" class="btn btn-default btn-word-wrap">Add a new firefly</button> <!-- Meagan this is a ID dublication I changed it from new-observation-btn to the current val -->
                         </div>
                     </div>
                     <div class="caret-container">
@@ -305,6 +306,7 @@
                             <div class="btn-container center-block btn-inline">
                                 <input id="new-location-flying" type="radio" name="new-location" value="flying"><label for="new-location-flying" class="btn btn-default btn-valign">Flying</label>
                             </div>
+                        </div>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
@@ -327,6 +329,7 @@
                             <div class="btn-container center-block btn-inline">
                                 <input id="j-shape-no" type="radio" name="j-shape" value="no"><label for="j-shape-no" class="btn btn-default btn-valign">No</label>
                             </div>
+                        </div>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
@@ -340,168 +343,7 @@
 
 
 
-            <div id="photo-uploader" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <div class="page-inner-wrapper">
-                    <div class="wizard-container">
-                        <img src="img/progressbar_step1.png" class="img-responsive wizard" alt="progress bar step 1 take a photo">
-                        <p class="wizard-text wizard-photo">Take a photo</p>
-                    </div>
-                    <div class="photo-wrapper">
-                        <label for="photo-file" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
-                        <input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" />
-                        <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="orientation"></i>
-                    </div>
-                    <div class="btn-move-container text-center center-block row">
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="orientation">Next</button>
-                    </div>
-                </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#photo-uploader -->
-
-            <div id="orientation" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <div class="page-inner-wrapper">
-                    <div class="wizard-container">
-                        <img src="img/progressbar_step2.png" class="img-responsive wizard" alt="progress bar step 2 migration orientation">
-                        <p class="wizard-text wizard-orientation">Migration Orientation</p>
-                    </div>
-                    <div class="alpha-readout"></div>
-                    <div class="orientation-wrapper">
-                        <div id="compass-container">
-                            <img src="img/salamanderlogo_grey.png" id="salamander-compass-img" alt="grey salamander">
-                            <img src="img/compass_transparent.png" id="compass" class="img-responsive" />
-                        </div>
-                        <div class="orientation-capture-wrapper">
-                            <button id="record-orientation-btn" class="btn btn-default btn-word-wrap mb-20">Capture Orientation</button>
-                            <div class="orientation-readout"><span id="orientation-field"></span></div>
-                        </div>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="photo-uploader"></i>
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="life_status"></i>
-                    </div>
-                    <div class="btn-move-container text-center center-block row">
-                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="photo-uploader">Back</button>
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="life_status">Next</button>
-                    </div>
-                </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#orientation -->
-
-            <div id="life_status" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <div class="page-inner-wrapper">
-                    <div class="wizard-container">
-                        <img src="img/progressbar_step3.png" class="img-responsive wizard" alt="progress bar step 3 life status">
-                        <p class="wizard-text wizard-life-status">Life Status</p>
-                    </div>
-                    <div class="observation-choice text-center center-block row">
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-life-status-alive" type="radio" name="life_status" value="alive"><label for="id-life-status-alive" class="btn btn-default btn-valign">Alive</label>
-                        </div>
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-life-status-injured" type="radio" name="life_status" value="injured"><label for="id-life-status-injured" class="btn btn-default btn-valign">Injured</label>
-                        </div>
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-life-status-dead" type="radio" name="life_status" value="dead"><label for="id-life-status-dead" class="btn btn-default btn-valign">Dead</label>
-                        </div>
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-life-status-unknown" type="radio" name="life_status" value="unknown"><label for="id-life-status-unknown" class="btn btn-default btn-valign">I don't know</label>
-                        </div>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="orientation"></i>
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="traffic_level"></i>
-                    </div>
-                    <div class="btn-move-container text-center center-block row">
-                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="orientation">Back</button>
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="traffic_level">Next</button>
-                    </div>
-                </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#life_status -->
-
-            <div id="traffic_level" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <div class="page-inner-wrapper">
-                    <div class="wizard-container">
-                        <img src="img/progressbar_step4.png" class="img-responsive wizard" alt="progress bar step 4 traffic conditions">
-                        <p class="wizard-text wizard-traffic">Traffic Conditions</p>
-                    </div>
-                    <div class="observation-choice text-center center-block row">
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-traffic-level-light" type="radio" name="traffic_level" value="light"><label for="id-traffic-level-light" class="btn btn-default btn-valign">Light Traffic</label>
-                        </div>
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-traffic-level-medium" type="radio" name="traffic_level" value="medium"><label for="id-traffic-level-medium" class="btn btn-default btn-valign">Moderate Traffic</label>
-                        </div>
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-traffic-level-heavy" type="radio" name="traffic_level" value="heavy"><label for="id-traffic-level-heavy" class="btn btn-default btn-valign">Heavy Traffic</label>
-                        </div>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="life_status"></i>
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="tunnel_use"></i>
-                    </div>
-                    <div class="btn-move-container text-center center-block row">
-                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="life_status">Back</button>
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="tunnel_use">Next</button>
-                    </div>
-                </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#traffic_level -->
-
-            <div id="tunnel_use" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <div class="page-inner-wrapper">
-                    <div class="wizard-container">
-                        <img src="img/progressbar_step5.png" class="img-responsive wizard" alt="progress bar step 5 tunnel use">
-                        <p class="wizard-text wizard-tunnel">Tunnel Use</p>
-                    </div>
-                    <div class="observation-choice text-center center-block row">
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-tunnel-use-enter" type="radio" name="tunnel_use" value="enter"><label for="id-tunnel-use-enter" class="btn btn-default btn-word-wrap">I saw this salamander ENTER a tunnel (only)</label>
-                        </div>
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-tunnel-use-enter-exit" type="radio" name="tunnel_use" value="enter and exit"><label for="id-tunnel-use-enter-exit" class="btn btn-default btn-word-wrap tunnel-btn-no-pad">I saw this salamander both ENTER & EXIT a tunnel</label>
-                        </div>
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-tunnel-use-exit" type="radio" name="tunnel_use" value="exit"><label for="id-tunnel-use-exit" class="btn btn-default btn-word-wrap">I saw this salamander EXIT a tunnel (only)</label>
-                        </div>
-                        <div class="btn-container center-block btn-inline">
-                            <input id="id-tunnel-use-none" type="radio" name="tunnel_use" value="none"><label for="id-tunnel-use-none" class="btn btn-default btn-word-wrap">I did not see a salamander use a tunnel</label>
-                        </div>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="traffic_level"></i>
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="additional_notes"></i>
-                    </div>
-                    <div class="btn-move-container text-center center-block row">
-                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="traffic_level">Back</button>
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="additional_notes">Next</button>
-                    </div>
-                </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#tunnel_use -->
-
-            <div id="additional_notes" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <div class="page-inner-wrapper">
-                    <div class="wizard-container">
-                        <img src="img/progressbar_step6.png" class="img-responsive wizard" alt="progress bar step 6 additional field notes">
-                        <p class="wizard-text wizard-notes">Additional Field Notes</p>
-                    </div>
-                    <div class="field-notes">
-                        <h3>Additional Field Notes (Optional)</h3>
-                        <p class="text-muted">Notes about field conditions, other organisms, or any human activity you notice while collecting data</p>
-                        <!-- can this textarea be changed to input type="textarea"?? -->
-                        <textarea name="additional_notes"></textarea>
-                    </div>
-                    <div class="caret-container">
-                        <i class="fa fa-caret-left fa-size back-btn pull-left" data-target-page="tunnel_use"></i>
-                        <i class="fa fa-check fa-4x finish-btn pull-right" data-target-page="traffic_level"></i>
-                    </div>
-                    <div class="btn-move-container text-center center-block row">
-                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="tunnel_use">Back</button>
-                        <button class="finish-btn btn btn-lg btn-success pull-right btn-move">Finish</button>
-                    </div>
-                </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#additional_notes -->
-
-        </div><!-- /.row -->
+        </div>
     </div><!-- /.container-fluid -->
 
     <!-- Weather Screen -->
@@ -509,7 +351,7 @@
         <div class="row">
             <div class="weather-icon-container col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-1">
                 <div class="weather-icon-inner-container">
-                    <img src="" alt="weather icon" class="weather-image img-responsive">
+                    <!-- <img src="" alt="weather icon" class="weather-image img-responsive"> -->
                 </div>
             </div>
             <div class="temperature-icon-container col-xs-5 col-xs-offset-0 col-md-4 col-md-offset-0">
@@ -583,17 +425,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h3>Please log in</h3>
+                    <h3>Please log in</h3>
                 </div>
                 <div class="modal-body login-buttons">
-                <!-- filled by javascript with buttons for user login -->
+                    <!-- filled by javascript with buttons for user login -->
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Findings Modal-->
-    <div id="findings-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="findingsModal" aria-hidden="true">
+    <div id="findings-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="findings-modal" aria-hidden="true">
         <div class="table">
             <div class="table-cell">
                 <div class="modal-dialog modal-lg">
