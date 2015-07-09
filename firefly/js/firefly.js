@@ -544,13 +544,13 @@
         var button = jQuery('<button class="btn btn-large btn-primary login-button">');
         button.val(user.get('username'));
         button.text(user.get('display_name'));
-        // ADD ME BACK FROM PROD
+        // ADD ME BACK FOR PROD
         //if the user has already been chosen (eg is logged in), disable the button
-        if (user.get('logged_in')) {
-          jQuery(button).addClass('disabled');
-        } else {
-          jQuery(button).removeClass('disabled');
-        }
+        // if (user.get('logged_in')) {
+        //   jQuery(button).addClass('disabled');
+        // } else {
+        //   jQuery(button).removeClass('disabled');
+        // }
         jQuery('.login-buttons').append(button);
       });
 
