@@ -33,6 +33,7 @@
       'click input[type=radio]'        : "updateObservation",
       'click .next-btn'                : "determineTarget",
       'click .back-btn'                : "determineTarget",
+      'click #new-report-btn'          : "addReport",
       'change #photo-file'             : "enableUpload",
       'click #upload-btn'              : "checkUploadEnabled",
       'click .finish-btn'              : "publishObservation",
@@ -123,7 +124,16 @@
       // update the data object (model.attributes.data{})
       var key = jQuery(ev.target).attr('name');
       var value = jQuery(ev.target).val();
-      app.observation.get('data')[key] = value;
+
+      // dealing with the nested array of reports
+      if (jQuery(ev.target).hasClass('reporting')) {
+        var reportsObj = app.observation.get('data').reports;
+        _.last(reportsObj)[key] = value;
+        app.observation.get('data').reports = reportsObj;
+      } else {
+        app.observation.get('data')[key] = value;
+      }
+
       app.observation.save();
     },
 
@@ -156,12 +166,24 @@
       view.collection.add(app.observation);
 
       // begin the main observation content and add it to the obj
-      app.observation.set('data',{});
+      var data = {};
+      data.reports = [];
+      app.observation.set('data',data);
+      app.observation.save();
 
       // UI changes
       jQuery('#title-page').addClass('hidden');
 
       view.jumpToPage("habitat-name-page");
+    },
+
+    addReport: function() {
+      var view = this;
+
+      var reportsObj = app.observation.get('data').reports;
+      reportsObj.push({});
+      app.observation.get('data').reports = reportsObj;
+      app.observation.save();
     },
 
     getLocationData: function() {
@@ -257,8 +279,12 @@
       function success(data, status, xhr) {
         console.log("UPLOAD SUCCEEDED!");
         console.log(xhr.getAllResponseHeaders());
-        app.observation.get('data').photo_url = data.url;
+
+        var reportsObj = app.observation.get('data').reports;
+        _.last(reportsObj)['photo_url'] = data.url;
+        app.observation.get('data').reports = reportsObj;
         app.observation.save();
+
         jQuery('#upload-btn').text("Replace Photo");
         view.showPhoto(data.url);
       }

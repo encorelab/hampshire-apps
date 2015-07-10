@@ -122,9 +122,9 @@
             <div id="title-page" class="page">
                 <div class="first-page text-center center-block row">
                     <img src="img/firefly.jpg" class="img-responsive logo" alt="Firefly Watch logo">
-                    <h1 class="salamader-watch">Firefly Watch</h1>
+                    <h1 class="firefly-watch">Firefly Watch</h1>
                     <button id="new-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Get Started</button>
-                    <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Resume Where You Left Off</button>
+                    <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Resume</button>
                     <!-- these get unhidden in the collectView render -->
                 </div><!-- /.first-page -->
             </div><!-- /.title-page -->
@@ -249,7 +249,7 @@
                         <p>If possible, choose three (or more) fireflies with different colors or flashing patterns. Observing them closely will help you differentiate between species and give you a greater appreciation of what is happening in your firefly habitat.</p>
                         <h3>Firefly Observations:</h3>
                         <div class="new-reporting-wrapper">
-                            <button id="new-reporting-btn" class="next-btn btn btn-default btn-word-wrap" data-target-page="reporting-photo-uploader-page">Add a new firefly</button>
+                            <button id="new-report-btn" class="next-btn btn btn-default btn-word-wrap" data-target-page="reporting-photo-uploader-page">Add a new firefly</button>
                         </div>
                     </div>
                     <div class="caret-container">
@@ -303,10 +303,10 @@
                         <p>Where was the firefly when you saw it flash?</p>
                         <div class="observation-choice text-center center-block row">
                             <div class="btn-container center-block btn-inline">
-                                <input id="movement-perched" type="radio" name="movement" value="Sitting still"><label for="movement-perched" class="btn btn-default btn-valign">Sitting still</label>
+                                <input id="movement-perched" class="reporting" type="radio" name="movement" value="Sitting still"><label for="movement-perched" class="btn btn-default btn-valign">Sitting still</label>
                             </div>
                             <div class="btn-container center-block btn-inline">
-                                <input id="movement-flying" type="radio" name="movement" value="Flying"><label for="movement-flying" class="btn btn-default btn-valign">Flying</label>
+                                <input id="movement-flying" class="reporting" type="radio" name="movement" value="Flying"><label for="movement-flying" class="btn btn-default btn-valign">Flying</label>
                             </div>
                         </div>
                     </div>
@@ -326,10 +326,10 @@
                         <p>Did it fly in a J-shape?</p>
                         <div class="observation-choice text-center center-block row">
                             <div class="btn-container center-block btn-inline">
-                                <input id="j-shape-yes" type="radio" name="j_shape" value="Yes"><label for="j-shape-yes" class="btn btn-default btn-valign">Yes</label>
+                                <input id="j-shape-yes" class="reporting" type="radio" name="j_shape" value="Yes"><label for="j-shape-yes" class="btn btn-default btn-valign">Yes</label>
                             </div>
                             <div class="btn-container center-block btn-inline">
-                                <input id="j-shape-no" type="radio" name="j_shape" value="No"><label for="j-shape-no" class="btn btn-default btn-valign">No</label>
+                                <input id="j-shape-no" class="reporting" type="radio" name="j_shape" value="No"><label for="j-shape-no" class="btn btn-default btn-valign">No</label>
                             </div>
                         </div>
                     </div>
