@@ -133,7 +133,6 @@
       app.clearAutoSaveTimer();
 
       // do a last save of the text in the additional_notes field (in case user typed anything since autoSave fired)
-      app.observation.get('data').additional_notes = jQuery('[name=additional_notes]').val();
       app.observation.set('location',view.getLocationData());
       app.observation.set('weather', view.getWeatherData());
       app.observation.set('published', true);
@@ -265,14 +264,6 @@
     },
 
     showPhoto: function(photoId) {
-      // delete old photo
-      // jQuery('.camera-icon').html('');
-      // set up an element to hold the new photo
-      // var imgEl = jQuery('<img>');
-      // imgEl.attr('src',app.config.pikachu.url + photoId);
-      // imgEl.addClass('photo-preview');
-      // jQuery('.camera-icon').append(imgEl);
-
       // trying this a different way - now overwrites the photo icon instead of creating a new element
       jQuery('.camera-icon').attr('src',app.config.pikachu.url + photoId);
     },
