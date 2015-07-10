@@ -183,7 +183,13 @@
       var reportsObj = app.observation.get('data').reports;
       reportsObj.push({});
       app.observation.get('data').reports = reportsObj;
-      app.observation.save();
+      app.observation.save()
+        .done(function() {
+          view.jumpToPage('reporting-photo-uploader-page');
+        })
+        .fail(function() {
+          jQuery().toastmessage('showErrorToast', "Unable to create a new reporting observation. Please check your internet connection...");
+        });
     },
 
     getLocationData: function() {
@@ -254,6 +260,9 @@
     uploadPhoto: function() {
       var view = this;
 
+      jQuery('.camera-icon').addClass('hidden');
+      jQuery('#photo-spinner').removeClass('hidden');
+
       var file = jQuery('#photo-file')[0].files.item(0);
       var formData = new FormData();
       formData.append('file', file);
@@ -274,6 +283,8 @@
 
       function failure(err) {
         jQuery().toastmessage('showErrorToast', "Photo could not be uploaded. Please try again");
+        jQuery('.camera-icon').removeClass('hidden');
+        jQuery('#photo-spinner').addClass('hidden');
       }
 
       function success(data, status, xhr) {
@@ -287,6 +298,8 @@
 
         jQuery('#upload-btn').text("Replace Photo");
         view.showPhoto(data.url);
+        jQuery('.camera-icon').removeClass('hidden');
+        jQuery('#photo-spinner').addClass('hidden');
       }
     },
 

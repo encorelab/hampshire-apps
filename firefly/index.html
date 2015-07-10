@@ -249,7 +249,10 @@
                         <p>If possible, choose three (or more) fireflies with different colors or flashing patterns. Observing them closely will help you differentiate between species and give you a greater appreciation of what is happening in your firefly habitat.</p>
                         <h3>Firefly Observations:</h3>
                         <div class="new-reporting-wrapper">
-                            <button id="new-report-btn" class="next-btn btn btn-default btn-word-wrap" data-target-page="reporting-photo-uploader-page">Add a new firefly</button>
+                            <button id="new-report-btn" class="next-btn btn btn-default btn-word-wrap">Add a new firefly</button>
+                        </div>
+                        <div class="reports-container">
+                            <!-- populated by view -->
                         </div>
                     </div>
                     <div class="caret-container">
@@ -265,8 +268,9 @@
             <div id="reporting-photo-uploader-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <h2 class="page-title">New Firefly Observation</h2>
-                    <p>Take a photo of your firefly.</p>
+                    <p>Take a photo of your firefly, then add the photo to this observation</p>
                     <div class="photo-wrapper">
+                        <i id="photo-spinner" class="hidden fa fa-spinner fa-5x"></i>
                         <label for="photo-file" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
                         <input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" />
                         <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>

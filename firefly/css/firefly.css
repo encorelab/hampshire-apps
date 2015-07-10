@@ -175,7 +175,7 @@ input[type=radio]:checked + label {
 
 /*to indicate to users what to do next*/
 .highlighted {
-    color: #72aab6;
+    color: #36FF7F;
 }
 
 /*delete? couldn't find in css or js*/
@@ -401,6 +401,13 @@ input:disabled {
 .field-notes {
     z-index: 999;
     position: relative;
+}
+
+/* MEGS - this is unlikely to be good enough, adjust as you see fit */
+#photo-spinner {
+    position: absolute;
+    top: 160px;
+    left: 175px;
 }
 
 /***** first page *****/
