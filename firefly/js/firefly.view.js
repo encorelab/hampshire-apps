@@ -161,7 +161,7 @@
       // UI changes
       jQuery('#title-page').addClass('hidden');
 
-      view.jumpToPage("habitat-name");
+      view.jumpToPage("habitat-name-page");
     },
 
     getLocationData: function() {
