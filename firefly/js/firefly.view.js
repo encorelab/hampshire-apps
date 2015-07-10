@@ -47,6 +47,7 @@
     },
 
     jumpToPage: function(page) {
+      var view = this;
       // NB: doing the above three lines in one line, but this does not use set and therefore no events will fire
       app.observation.get('data').current_page = page;
       app.observation.save();

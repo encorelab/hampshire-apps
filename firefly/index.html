@@ -63,13 +63,12 @@
 
     <!-- Findings Template -->
     <script id="findings-details-template" type="text/template">
-        <div><span class="modal-key-text">Author: &nbsp; </span> <%= author %></div>
-        <div><span class="modal-key-text">Date: &nbsp; </span> <%= date %></div>
-        <div><span class="modal-key-text">Orientation: &nbsp; </span> <%= orientation %>&deg; from North</div>
-        <div><span class="modal-key-text">Traffic level: &nbsp; </span> <%= traffic_level %></div>
-        <div><span class="modal-key-text">Tunnel use: &nbsp; </span> <%= tunnel_use %></div>
-        <div><span class="modal-key-text">Additional notes: &nbsp; </span> <%= additional_notes %></div>
-
+    //     <div><span class="modal-key-text">Author: &nbsp; </span> <%= author %></div>
+    //     <div><span class="modal-key-text">Date: &nbsp; </span> <%= date %></div>
+    //     <div><span class="modal-key-text">Orientation: &nbsp; </span> <%= orientation %>&deg; from North</div>
+    //     <div><span class="modal-key-text">Traffic level: &nbsp; </span> <%= traffic_level %></div>
+    //     <div><span class="modal-key-text">Tunnel use: &nbsp; </span> <%= tunnel_use %></div>
+    //     <div><span class="modal-key-text">Additional notes: &nbsp; </span> <%= additional_notes %></div>
     </script>
 
 </head>
@@ -124,8 +123,8 @@
                 <div class="first-page text-center center-block row">
                     <img src="img/firefly.jpg" class="img-responsive logo" alt="Firefly Watch logo">
                     <h1 class="salamader-watch">Firefly Watch</h1>
-                    <button id="new-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Start New Observation</button>
-                    <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Resume Observation</button>
+                    <button id="new-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Get Started</button>
+                    <button id="resume-observation-btn" class="btn btn-default btn-lg btn-block start-obs-btn hidden">Resume Where You Left Off</button>
                     <!-- these get unhidden in the collectView render -->
                 </div><!-- /.first-page -->
             </div><!-- /.title-page -->
@@ -136,7 +135,7 @@
                         <h2 class="page-title">Habitat Name</h2>
                         <p>If possible, please collect data once a week. It is not necessary to make your observations at the same time every evening, but it is important to work from the same location: your habitat site.</p>
                         <h3>Give your habitat a name:</h3>
-                        <input id="PICK_ID" data-field-name="" class="" type="text"> <!-- Meagan this needs a unique ID value -->
+                        <input id="PICK_ID" name="habitat_name" class="" type="text"> <!-- Meagan this needs a unique ID value -->
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="number-of-colors-page"></i>
@@ -234,38 +233,36 @@
                         <input id="other-amount" type="radio" name="10_second_count" value="other"><label for="other-amount" class="btn btn-default">4+</label>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="observation-overview-page"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-overview-page"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="observation-overview-page">Next</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-overview-page">Next</button>
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="location-page">Back</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
             </div><!-- /#ten-second-count-page -->
 
-            <div id="observation-overview-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div id="reporting-overview-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <div>
                         <h2 class="page-title">Focused Firefly Reporting</h2>
                         <p>If possible, choose three (or more) fireflies with different colors or flashing patterns. Observing them closely will help you differentiate between species and give you a greater appreciation of what is happening in your firefly habitat.</p>
                         <h3>Firefly Observations:</h3>
-                        <div class="new-observation-wrapper">
-                            <label for="new-observation" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
-                            <input id="new-observation" type="text" name="HELLO_MY_NAME_IS" /> <!-- Meagan please add/change a type and name -->
-                            <button id="new-observation-btn-unique" class="next-btn btn btn-default btn-word-wrap" data-target-page="observation-photo-uploader-page">Add a new firefly</button> <!-- Meagan this is a ID dublication I changed it from new-observation-btn to the current val -->
+                        <div class="new-reporting-wrapper">
+                            <button id="new-reporting-btn" class="next-btn btn btn-default btn-word-wrap" data-target-page="reporting-photo-uploader-page">Add a new firefly</button>
                         </div>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="observation-photo-uploader-page"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-photo-uploader-page"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
                         <button class="finish-btn btn btn-lg btn-success pull-right btn-move">Finish</button>
                         <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="ten-second-count-page">Back</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#observation-overview-page -->
+            </div><!-- /#reporting-overview-page -->
 
-            <div id="observation-photo-uploader-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div id="reporting-photo-uploader-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <h2 class="page-title">New Firefly Observation</h2>
                     <p>Take a photo of your firefly.</p>
@@ -275,15 +272,15 @@
                         <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="observation-pattern-page"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-pattern-page"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="observation-pattern-page">Next</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-pattern-page">Next</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#observation-photo-uploader-page -->
+            </div><!-- /#reporting-photo-uploader-page -->
 
-            <div id="observation-pattern-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div id="reporting-pattern-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <h2 class="page-title">New Firefly Observation</h2>
                     <p>Tap your finger on the circle below to replicate the firefly's flash pattern</p>
@@ -291,15 +288,15 @@
 
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="observation-movement-page"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-movement-page"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="observation-movement-page">Next</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-movement-page">Next</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#observation-pattern-page -->
+            </div><!-- /#reporting-pattern-page -->
 
-            <div id="observation-movement-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div id="reporting-movement-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <div>
                         <h2 class="page-title">New Firefly Observation</h2>
@@ -314,15 +311,15 @@
                         </div>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="observation-j-shape-page"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-j-shape-page"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="observation-j-shape-page">Next</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-j-shape-page">Next</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#observation-movement-page -->
+            </div><!-- /#reporting-movement-page -->
 
-            <div id="observation-j-shape-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div id="reporting-j-shape-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <div>
                         <h2 class="page-title">New Firefly Observation</h2>
@@ -337,13 +334,13 @@
                         </div>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="observation-overview-page"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-overview-page"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="observation-overview-page">Next</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-overview-page">Next</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#observation-j-shape-page -->
+            </div><!-- /#reporting-j-shape-page -->
 
 
 
