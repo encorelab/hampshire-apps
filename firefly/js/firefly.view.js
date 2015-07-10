@@ -53,6 +53,11 @@
       app.observation.get('data').current_page = page;
       app.observation.save();
 
+      // this is a bit gross, but saves us a tonne of unnecessary renders
+      if (page === "reporting-overview-page") {
+        view.render();
+      }
+
       jQuery('.page').addClass('hidden');
       jQuery('#'+page).removeClass('hidden');
     },
@@ -127,9 +132,9 @@
 
       // dealing with the nested array of reports
       if (jQuery(ev.target).hasClass('reporting')) {
-        var reportsObj = app.observation.get('data').reports;
-        _.last(reportsObj)[key] = value;
-        app.observation.get('data').reports = reportsObj;
+        var reportsArr = app.observation.get('data').reports;
+        _.last(reportsArr)[key] = value;
+        app.observation.get('data').reports = reportsArr;
       } else {
         app.observation.get('data')[key] = value;
       }
@@ -180,9 +185,9 @@
     addReport: function() {
       var view = this;
 
-      var reportsObj = app.observation.get('data').reports;
-      reportsObj.push({});
-      app.observation.get('data').reports = reportsObj;
+      var reportsArr = app.observation.get('data').reports;
+      reportsArr.push({});
+      app.observation.get('data').reports = reportsArr;
       app.observation.save()
         .done(function() {
           view.jumpToPage('reporting-photo-uploader-page');
@@ -291,9 +296,9 @@
         console.log("UPLOAD SUCCEEDED!");
         console.log(xhr.getAllResponseHeaders());
 
-        var reportsObj = app.observation.get('data').reports;
-        _.last(reportsObj)['photo_url'] = data.url;
-        app.observation.get('data').reports = reportsObj;
+        var reportsArr = app.observation.get('data').reports;
+        _.last(reportsArr)['photo_url'] = data.url;
+        app.observation.get('data').reports = reportsArr;
         app.observation.save();
 
         jQuery('#upload-btn').text("Replace Photo");
@@ -342,6 +347,23 @@
       if (!view.collection.findWhere({published: false, author: app.username})) {
         jQuery('#resume-observation-btn').addClass('hidden');
       }
+
+      if (app.observation && app.observation.get('data')) {
+        var reportsArr = app.observation.get('data').reports;
+        if (reportsArr.length > 0) {
+          jQuery('#reports-container').html('');
+          var list = jQuery('#reports-container');
+
+          _.each(reportsArr, function(r) {
+            var el;
+            if (r.photo_url) {
+              el = "<div class='report-item col-xs-6 col-sm-4 col-lg-3'><img class='report-list-photo' src='"+app.config.pikachu.url+r.photo_url+"'></img></div>";
+            }
+            list.append(el);
+          });
+        }
+      }
+
     }
 
   });

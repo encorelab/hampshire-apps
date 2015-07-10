@@ -473,7 +473,7 @@ input:disabled {
     display: none;
 }
 
-/*does this exist??*/
+/* in mapView */
 .photo-preview {
     height: 250px;
     width: auto;
@@ -481,10 +481,27 @@ input:disabled {
     z-index: 1;
 }
 
-/***** field notes page *****/
+/***** report overview page *****/
 
-.field-notes p {
-    margin-bottom: 3%;
+/* MEGS - these are, again, probably just terrible. Plz adjust */
+#reports-container {
+    height: 200px;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.report-list-item {
+    height: 180px;
+    margin-bottom: 5%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.report-list-photo {
+    width: calc(100% - 15px);
+    height: 165px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: absolute;
 }
 
 
