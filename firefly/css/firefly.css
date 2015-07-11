@@ -440,6 +440,17 @@ input:disabled {
 
 /***** photo page *****/
 
+#reporting-overview-page h3,
+.new-reporting-wrapper {
+    display: inline-block;
+}
+
+#new-report-btn {
+    min-width: 250px;
+}
+
+/***** photo page *****/
+
 .waiting-for-file {
     opacity: 0.6;
 }
