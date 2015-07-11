@@ -153,6 +153,13 @@ input[type=radio]:checked + label {
     margin-left: 2%;
 }
 
+.third {
+    display: inline-block;
+    width: 28%;
+    min-width: 28%;
+    margin-left: 4%;
+}
+
 
 .scrollable {
     overflow-y: auto;

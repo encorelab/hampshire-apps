@@ -276,10 +276,10 @@
                         <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-pattern-page"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="select-color-page"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-pattern-page">Next</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="select-color-page">Next</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
             </div><!-- /#reporting-photo-uploader-page -->
@@ -291,24 +291,18 @@
                         <h2 class="page-title">Firefly Habitat Overview Observations</h2>
                         <p>What color is this firefly's flash?</p>
                         <img src="img/3fireflies.jpg" class="img-centre" alt="green firefly, red firefly, yellow firefly">
-                        <input id="green-color" type="radio" name="select_flash_color" value="0"><label for="green-color" class="btn btn-default third label">0</label>
+                        <input id="green-color" type="radio" name="select_flash_color" value="green"><label for="green-color" class="btn btn-default third label">Green</label>
+                        <input id="orange-color" type="radio" name="select_flash_color" value="orange-red"><label for="orange-color" class="btn btn-default third label">Orange-red</label>
                         <input id="yellow-color" type="radio" name="select_flash_color" value="yellow-green"><label for="yellow-color" class="btn btn-default third label">Yellow-green</label>
-                        <input id="orange-color" type="radio" name="select_flash_color" value="orange-red"><label for="two-colors" class="btn btn-default third label">Orange-red</label>
                     </div>
                     <div class="caret-container">
-                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="number-of-patterns-page"></i>
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-pattern-page"></i>
                     </div>
                     <div class="btn-move-container text-center center-block row">
-                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="number-of-patterns-page">Next</button>
-                        <button class="back-btn btn btn-lg btn-success pull-left btn-move" data-target-page="habitat-name-page">Back</button>
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-pattern-page">Next</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#number-of-colors-page -->
-
-
-
-
-
+            </div><!-- /#select-color-page -->
 
             <div id="reporting-pattern-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
