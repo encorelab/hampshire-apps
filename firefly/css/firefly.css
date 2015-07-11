@@ -4,7 +4,6 @@
 /* TYPOGRAPHY */
 /* NAVBAR */
 /* SIDE-BOTTOM SECONDARY NAV */
-/* PROGRESS BAR */
 /* COLLECT PAGES */
 /* WEATHER SCREEN */
 /* MAP SCREEN */
@@ -54,14 +53,14 @@ input {
     border-radius: 7px;
     border: solid #ddd 1px;
     height: 45px;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
 }
 
 input[type=text] {
    font-size: 20px;
    font-weight: 300;
    padding-left: 20px;
-   width: 20%;
+   width: 50%;
 }
 
 /*trying to get additional field notes text to align to top, currently not working*/
@@ -146,6 +145,14 @@ input[type=radio]:checked + label {
     white-space: normal;
 }
 
+.fifth {
+    display: inline-block;
+    width: 18%;
+    min-width: 18%;
+    margin-left: 2%;
+}
+
+
 .scrollable {
     overflow-y: auto;
 }
@@ -190,6 +197,12 @@ ul {
     padding: 0;
 }
 
+.img-centre {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+}
+
 /***** modals *****/
 .table {
     display: table;
@@ -200,7 +213,7 @@ ul {
     vertical-align: middle;
 }
 
-/********** S A L A M A N D E R  S T Y L E S **********/
+/********** F I R E F L Y  S T Y L E S **********/
 
 .btn-move {
     background-color: #27465f;
@@ -245,19 +258,24 @@ h1 {
 
 h2 {
     color: #333;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 h3,
 label {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 500;
     color: #555;
 }
 
 h4 {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
+}
+
+p {
+    font-size: 18px;
+    font-weight: 200;
 }
 
 label {
@@ -345,40 +363,6 @@ input:disabled {
     font-size: 0.7em;
     right: -19px;
     top: -7px;
-}
-
-
-/********** P R O G R E S S  B A R **********/
-
-/*have to use wizard b/c progress & progress-bar are bootstrap classes*/
-.wizard-container {
-    padding: 5% 0;
-}
-.wizard {
-    padding: 0 5%;
-}
-.wizard-text {
-    position: absolute;
-    margin-top: 10px;
-}
-/*where are these values being applied to???*/
-.wizard-photo {
-    left: 3%;
-}
-.wizard-orientation {
-    left: 15%;
-}
-.wizard-life-status {
-    left: 36%;
-}
-.wizard-traffic {
-    left: 50%;
-}
-.wizard-tunnel {
-    left: 69%;
-}
-.wizard-notes {
-    left: 83%;
 }
 
 

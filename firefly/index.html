@@ -10,13 +10,13 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="../bower_components/jquery-toastmessage-plugin/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,200,300' rel='stylesheet' type='text/css'>
+
+    <link href="../shared/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="css/firefly.css" rel="stylesheet">
     <link href="css/_media-queries-landscape.css" rel="stylesheet">
     <link  href="css/_media-queries-portrait.css" rel="stylesheet">
-
-    <link href="../shared/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -135,7 +135,7 @@
                         <h2 class="page-title">Habitat Name</h2>
                         <p>If possible, please collect data once a week. It is not necessary to make your observations at the same time every evening, but it is important to work from the same location: your habitat site.</p>
                         <h3>Give your habitat a name:</h3>
-                        <input id="PICK_ID" name="habitat_name" class="" type="text"> <!-- Meagan this needs a unique ID value -->
+                        <input id="habitat-name" name="habitat_name" class="" type="text"> <!-- Meagan this needs a unique ID value; I believe habitat-name is now available? -->
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="number-of-colors-page"></i>
@@ -151,12 +151,12 @@
                     <div>
                         <h2 class="page-title">Firefly Habitat Overview Observations</h2>
                         <p>How many different firefly colors did you observe?</p>
-                        <img src="img/3fireflies.jpg" alt="green firefly, red firefly, yellow firefly">
-                        <input id="zero-colors" type="radio" name="number_of_colors" value="0"><label for="zero-colors" class="btn btn-default">0</label>
-                        <input id="one-color" type="radio" name="number_of_colors" value="1"><label for="one-color" class="btn btn-default">1</label>
-                        <input id="two-colors" type="radio" name="number_of_colors" value="2"><label for="two-colors" class="btn btn-default">2</label>
-                        <input id="three-colors" type="radio" name="number_of_colors" value="3"><label for="three-colors" class="btn btn-default">3</label>
-                        <input id="four-plus-colors" type="radio" name="number_of_colors" value="4+"><label for="four-plus-colors" class="btn btn-default">4+</label>
+                        <img src="img/3fireflies.jpg" class="img-centre" alt="green firefly, red firefly, yellow firefly">
+                        <input id="zero-colors" type="radio" name="number_of_colors" value="0"><label for="zero-colors" class="btn btn-default fifth">0</label>
+                        <input id="one-color" type="radio" name="number_of_colors" value="1"><label for="one-color" class="btn btn-default fifth">1</label>
+                        <input id="two-colors" type="radio" name="number_of_colors" value="2"><label for="two-colors" class="btn btn-default fifth">2</label>
+                        <input id="three-colors" type="radio" name="number_of_colors" value="3"><label for="three-colors" class="btn btn-default fifth">3</label>
+                        <input id="four-plus-colors" type="radio" name="number_of_colors" value="4+"><label for="four-plus-colors" class="btn btn-default fifth">4+</label>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="number-of-patterns-page"></i>
