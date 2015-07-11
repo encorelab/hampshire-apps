@@ -92,6 +92,7 @@ input[type=radio]:checked + label {
     height: 45px;
     min-width: 160px;
     max-width: 250px;
+    border-radius: 7px;
 }
 
 .btn-default {
@@ -147,8 +148,8 @@ input[type=radio]:checked + label {
 
 .fifth {
     display: inline-block;
-    width: 18%;
-    min-width: 18%;
+    width: 17%;
+    min-width: 17%;
     margin-left: 2%;
 }
 
@@ -201,6 +202,7 @@ ul {
     display: block;
     margin: 0 auto;
     width: 90%;
+    margin-bottom: 5%;
 }
 
 /***** modals *****/
@@ -257,15 +259,16 @@ h1 {
 }
 
 h2 {
-    color: #333;
+    color: #444;
     margin-bottom: 30px;
 }
 
 h3,
-label {
+.label {
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 200;
     color: #555;
+    padding: .5em .6em .3em;
 }
 
 h4 {
