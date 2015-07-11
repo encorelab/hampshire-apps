@@ -200,9 +200,8 @@ ul {
 
 .img-centre {
     display: block;
-    margin: 0 auto;
+    margin: 5% auto;
     width: 90%;
-    margin: 5%;
 }
 
 /***** modals *****/
@@ -427,7 +426,7 @@ input:disabled {
 }
 
 #ten-second-count-page .btn-default:last-child {
-    min-width: 94%;
+    min-width: 95%;
     margin-left: 2%;
     margin-top: 2%;
 }
@@ -477,6 +476,12 @@ input:disabled {
     width: auto;
     border-radius: 20px;
     z-index: 1;
+}
+
+/***** flash pattern page *****/
+/* delete after inserting real tap pattern thingy */
+#reporting-pattern-page img {
+    width: 50%;
 }
 
 /***** report overview page *****/
