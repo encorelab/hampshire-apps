@@ -202,7 +202,7 @@ ul {
     display: block;
     margin: 0 auto;
     width: 90%;
-    margin-bottom: 5%;
+    margin: 5%;
 }
 
 /***** modals *****/
@@ -393,8 +393,8 @@ input:disabled {
 /* MEGS - this is unlikely to be good enough, adjust as you see fit */
 #photo-spinner {
     position: absolute;
-    top: 160px;
-    left: 175px;
+    top: 120px;
+    left: 200px;
 }
 
 /***** first page *****/
@@ -420,6 +420,17 @@ input:disabled {
     margin: 0 auto;
 }
 
+/***** ten second count page *****/
+
+#ten-second-count-page label {
+    margin-top: 13%;
+}
+
+#ten-second-count-page .btn-default:last-child {
+    min-width: 94%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
 
 /***** photo page *****/
 
