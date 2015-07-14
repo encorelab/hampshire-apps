@@ -10,13 +10,13 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="../bower_components/jquery-toastmessage-plugin/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,200,300' rel='stylesheet' type='text/css'>
+
+    <link href="../shared/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="css/firefly.css" rel="stylesheet">
     <link href="css/_media-queries-landscape.css" rel="stylesheet">
     <link  href="css/_media-queries-portrait.css" rel="stylesheet">
-
-    <link href="../shared/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -151,12 +151,12 @@
                     <div>
                         <h2 class="page-title">Firefly Habitat Overview Observations</h2>
                         <p>How many different firefly colors did you observe?</p>
-                        <img src="img/3fireflies.jpg" alt="green firefly, red firefly, yellow firefly">
-                        <input id="zero-colors" type="radio" name="number_of_colors" value="0"><label for="zero-colors" class="btn btn-default">0</label>
-                        <input id="one-color" type="radio" name="number_of_colors" value="1"><label for="one-color" class="btn btn-default">1</label>
-                        <input id="two-colors" type="radio" name="number_of_colors" value="2"><label for="two-colors" class="btn btn-default">2</label>
-                        <input id="three-colors" type="radio" name="number_of_colors" value="3"><label for="three-colors" class="btn btn-default">3</label>
-                        <input id="four-plus-colors" type="radio" name="number_of_colors" value="4+"><label for="four-plus-colors" class="btn btn-default">4+</label>
+                        <img src="img/3fireflies.jpg" class="img-centre" alt="green firefly, red firefly, yellow firefly">
+                        <input id="zero-colors" type="radio" name="number_of_colors" value="0"><label for="zero-colors" class="btn btn-default fifth label">0</label>
+                        <input id="one-color" type="radio" name="number_of_colors" value="1"><label for="one-color" class="btn btn-default fifth label">1</label>
+                        <input id="two-colors" type="radio" name="number_of_colors" value="2"><label for="two-colors" class="btn btn-default fifth label">2</label>
+                        <input id="three-colors" type="radio" name="number_of_colors" value="3"><label for="three-colors" class="btn btn-default fifth label">3</label>
+                        <input id="four-plus-colors" type="radio" name="number_of_colors" value="4+"><label for="four-plus-colors" class="btn btn-default fifth label">4+</label>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="number-of-patterns-page"></i>
@@ -173,12 +173,12 @@
                     <div>
                         <h2 class="page-title">Firefly Habitat Overview Observations</h2>
                         <p>How many different firefly flashing patterns did you observe?</p>
-                        <img src="img/rectangles.png" alt="patterns of grey rectangles">
-                        <input id="zero-patterns" type="radio" name="number_of_patterns" value="0"><label for="zero-patterns" class="btn btn-default">0</label>
-                        <input id="one-pattern" type="radio" name="number_of_patterns" value="1"><label for="one-pattern" class="btn btn-default">1</label>
-                        <input id="two-patterns" type="radio" name="number_of_patterns" value="2"><label for="two-patterns" class="btn btn-default">2</label>
-                        <input id="three-patterns" type="radio" name="number_of_patterns" value="3"><label for="three-patterns" class="btn btn-default">3</label>
-                        <input id="four-plus-patterns" type="radio" name="number_of_patterns" value="4+"><label for="four-plus-patterns" class="btn btn-default">4+</label>
+                        <img src="img/rectangles.png" class="img-centre" alt="patterns of grey rectangles">
+                        <input id="zero-patterns" type="radio" name="number_of_patterns" value="0"><label for="zero-patterns" class="btn btn-default fifth label">0</label>
+                        <input id="one-pattern" type="radio" name="number_of_patterns" value="1"><label for="one-pattern" class="btn btn-default fifth label">1</label>
+                        <input id="two-patterns" type="radio" name="number_of_patterns" value="2"><label for="two-patterns" class="btn btn-default fifth label">2</label>
+                        <input id="three-patterns" type="radio" name="number_of_patterns" value="3"><label for="three-patterns" class="btn btn-default fifth label">3</label>
+                        <input id="four-plus-patterns" type="radio" name="number_of_patterns" value="4+"><label for="four-plus-patterns" class="btn btn-default fifth label">4+</label>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="location-page"></i>
@@ -225,12 +225,18 @@
                     <div>
                         <h2 class="page-title">Firefly Habitat Overview Observations</h2>
                         <p>During a 10-second period, how many fireflies did you observe?</p>
-                        <input id="none-amount" type="radio" name="10_second_count" value="0"><label for="none-amount" class="btn btn-default">None</label>
+<!--                         <input id="none-amount" type="radio" name="10_second_count" value="0"><label for="none-amount" class="btn btn-default">None</label>
                         <input id="one-amount" type="radio" name="10_second_count" value="1"><label for="one-amount" class="btn btn-default">1</label>
                         <input id="two-five-amount" type="radio" name="10_second_count" value="2-5"><label for="two-five-amount" class="btn btn-default">2-5</label>
                         <input id="six-twenty-amount" type="radio" name="10_second_count" value="6-20"><label for="six-twenty-amount" class="btn btn-default">6-20</label>
                         <input id="twentyone-plus-amount" type="radio" name="10_second_count" value="21+"><label for="twentyone-plus-amount" class="btn btn-default">21+</label>
-                        <input id="other-amount" type="radio" name="10_second_count" value="other"><label for="other-amount" class="btn btn-default">None during the 10-second period, but some before or after</label>
+                        <input id="other-amount" type="radio" name="10_second_count" value="other"><label for="other-amount" class="btn btn-default">None during the 10-second period, but some before or after</label> -->
+                        <input id="none-amount" type="radio" name="10_second_count" value="0"><label for="none-amount" class="btn btn-default fifth label">None</label>
+                        <input id="one-amount" type="radio" name="10_second_count" value="1"><label for="one-amount" class="btn btn-default fifth label">1</label>
+                        <input id="two-five-amount" type="radio" name="10_second_count" value="2-5"><label for="two-five-amount" class="btn btn-default fifth label">2-5</label>
+                        <input id="six-twenty-amount" type="radio" name="10_second_count" value="6-20"><label for="six-twenty-amount" class="btn btn-default fifth label">6-20</label>
+                        <input id="twentyone-plus-amount" type="radio" name="10_second_count" value="21+"><label for="twentyone-plus-amount" class="btn btn-default fifth label">21+</label>
+                        <input id="other-amount" type="radio" name="10_second_count" value="other"><label for="other-amount" class="btn btn-default label">None during a 10-second period, but some before or after</label>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-overview-page"></i>
@@ -270,10 +276,30 @@
                     <h2 class="page-title">New Firefly Observation</h2>
                     <p>Take a photo of your firefly, then add the photo to this observation</p>
                     <div class="photo-wrapper">
-                        <i id="photo-spinner" class="hidden fa fa-spinner fa-5x"></i>
+                        <i id="photo-spinner" class="hidden fa fa-spinner fa-spin fa-5x"></i>
                         <label for="photo-file" class="camera-icon-label"><img src="img/icons/camera_icon.png" class="camera-icon img-responsive" alt="camera icon"></label>
                         <input id="photo-file" type="file" name="file" accept=".jpg,.gif,.jpeg,.png" />
                         <button id="upload-btn" class="btn btn-default waiting-for-file btn-word-wrap">Add photo to this observation</button>
+                    </div>
+                    <div class="caret-container">
+                        <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-flash-color-page"></i>
+                    </div>
+                    <div class="btn-move-container text-center center-block row">
+                        <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-flash-color-page">Next</button>
+                    </div>
+                </div><!-- /.page-inner-wrapper -->
+            </div><!-- /#reporting-photo-uploader-page -->
+
+
+            <div id="reporting-flash-color-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <div class="page-inner-wrapper">
+                    <div>
+                        <h2 class="page-title">Firefly Habitat Overview Observations</h2>
+                        <p>What color is this firefly's flash?</p>
+                        <img src="img/3fireflies.jpg" class="img-centre" alt="green firefly, red firefly, yellow firefly">
+                        <input id="green-color" type="radio" name="flash_color" value="Green"><label for="green-color" class="btn btn-default third label">Green</label>
+                        <input id="orange-color" type="radio" name="flash_color" value="Orange-red"><label for="orange-color" class="btn btn-default third label">Orange-red</label>
+                        <input id="yellow-color" type="radio" name="flash_color" value="Yellow-green"><label for="yellow-color" class="btn btn-default third label">Yellow-green</label>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-pattern-page"></i>
@@ -282,14 +308,14 @@
                         <button class="next-btn btn btn-lg btn-success pull-right btn-move" data-target-page="reporting-pattern-page">Next</button>
                     </div>
                 </div><!-- /.page-inner-wrapper -->
-            </div><!-- /#reporting-photo-uploader-page -->
+            </div><!-- /#select-color-page -->
 
             <div id="reporting-pattern-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <h2 class="page-title">New Firefly Observation</h2>
                     <p>Tap your finger on the circle below to replicate the firefly's flash pattern</p>
                     <div class="flash-pattern-wrapper">
-
+                        <img src="img/tap-pattern.png" class="img-centre img-responsive" alt="tap pattern image">
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-movement-page"></i>

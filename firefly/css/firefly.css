@@ -4,7 +4,6 @@
 /* TYPOGRAPHY */
 /* NAVBAR */
 /* SIDE-BOTTOM SECONDARY NAV */
-/* PROGRESS BAR */
 /* COLLECT PAGES */
 /* WEATHER SCREEN */
 /* MAP SCREEN */
@@ -54,14 +53,14 @@ input {
     border-radius: 7px;
     border: solid #ddd 1px;
     height: 45px;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
 }
 
 input[type=text] {
    font-size: 20px;
    font-weight: 300;
    padding-left: 20px;
-   width: 20%;
+   width: 50%;
 }
 
 /*trying to get additional field notes text to align to top, currently not working*/
@@ -93,6 +92,7 @@ input[type=radio]:checked + label {
     height: 45px;
     min-width: 160px;
     max-width: 250px;
+    border-radius: 7px;
 }
 
 .btn-default {
@@ -146,6 +146,21 @@ input[type=radio]:checked + label {
     white-space: normal;
 }
 
+.fifth {
+    display: inline-block;
+    width: 17%;
+    min-width: 17%;
+    margin-left: 2%;
+}
+
+.third {
+    display: inline-block;
+    width: 28%;
+    min-width: 28%;
+    margin-left: 4%;
+}
+
+
 .scrollable {
     overflow-y: auto;
 }
@@ -190,6 +205,12 @@ ul {
     padding: 0;
 }
 
+.img-centre {
+    display: block;
+    margin: 5% auto;
+    width: 90%;
+}
+
 /***** modals *****/
 .table {
     display: table;
@@ -200,7 +221,7 @@ ul {
     vertical-align: middle;
 }
 
-/********** S A L A M A N D E R  S T Y L E S **********/
+/********** F I R E F L Y  S T Y L E S **********/
 
 .btn-move {
     background-color: #27465f;
@@ -244,20 +265,26 @@ h1 {
 }
 
 h2 {
-    color: #333;
-    margin-bottom: 25px;
+    color: #444;
+    margin-bottom: 30px;
 }
 
 h3,
-label {
-    font-size: 16px;
-    font-weight: 500;
+.label {
+    font-size: 24px;
+    font-weight: 200;
     color: #555;
+    padding: .5em .6em .3em;
 }
 
 h4 {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
+}
+
+p {
+    font-size: 18px;
+    font-weight: 200;
 }
 
 label {
@@ -348,40 +375,6 @@ input:disabled {
 }
 
 
-/********** P R O G R E S S  B A R **********/
-
-/*have to use wizard b/c progress & progress-bar are bootstrap classes*/
-.wizard-container {
-    padding: 5% 0;
-}
-.wizard {
-    padding: 0 5%;
-}
-.wizard-text {
-    position: absolute;
-    margin-top: 10px;
-}
-/*where are these values being applied to???*/
-.wizard-photo {
-    left: 3%;
-}
-.wizard-orientation {
-    left: 15%;
-}
-.wizard-life-status {
-    left: 36%;
-}
-.wizard-traffic {
-    left: 50%;
-}
-.wizard-tunnel {
-    left: 69%;
-}
-.wizard-notes {
-    left: 83%;
-}
-
-
 /********** C O L L E C T  P A G E S **********/
 
 .page {
@@ -406,8 +399,8 @@ input:disabled {
 /* MEGS - this is unlikely to be good enough, adjust as you see fit */
 #photo-spinner {
     position: absolute;
-    top: 160px;
-    left: 175px;
+    top: 120px;
+    left: 200px;
 }
 
 /***** first page *****/
@@ -433,6 +426,28 @@ input:disabled {
     margin: 0 auto;
 }
 
+/***** ten second count page *****/
+
+#ten-second-count-page label {
+    margin-top: 13%;
+}
+
+#ten-second-count-page .btn-default:last-child {
+    min-width: 95%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+/***** photo page *****/
+
+#reporting-overview-page h3,
+.new-reporting-wrapper {
+    display: inline-block;
+}
+
+#new-report-btn {
+    min-width: 250px;
+}
 
 /***** photo page *****/
 
@@ -479,6 +494,12 @@ input:disabled {
     width: auto;
     border-radius: 20px;
     z-index: 1;
+}
+
+/***** flash pattern page *****/
+/* delete after inserting real tap pattern thingy */
+#reporting-pattern-page img {
+    width: 50%;
 }
 
 /***** report overview page *****/
