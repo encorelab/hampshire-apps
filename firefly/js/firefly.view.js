@@ -575,7 +575,7 @@
       ev.preventDefault();
       var obsId = jQuery(ev.target).parent().data('obs-id');
       var obs = this.collection.get(obsId);
-      var el = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "date": obs.get('modified_at'), "life_status": obs.get('data').life_status, "traffic_level": obs.get('data').traffic_level, "tunnel_use": obs.get('data').tunnel_use, "additional_notes": obs.get('data').additional_notes});
+      var el = _.template(jQuery(view.template).text(), { "author": obs.get('author'), "date": obs.get('modified_at'), "habitat_name": obs.get('data').habitat_name, "number_of_colors": obs.get('data').number_of_colors, "number_of_patterns": obs.get('data').number_of_patterns, "location": obs.get('data').location, "ten_second_count": obs.get('data').ten_second_count });
       // if there's a photo, add it to the modal
       if (obs.get('data') && obs.get('data').photo_url) {
         el += '<div><img src=' + app.config.pikachu.url+obs.get('data').photo_url + '></img></div>';
@@ -603,9 +603,9 @@
         // if the finding is published and has proper data
         if (obs.get('published') === true && obs.get('data')) {
           var listItem = null;
-          // if the finding has a photo
-          if (obs.get('data').photo_url) {
-            el = "<div class='findings-list-item col-xs-6 col-sm-4 col-lg-3' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><img class='findings-list-photo' src='"+app.config.pikachu.url+obs.get('data').photo_url+"'></img></div>";
+          // if there are reports and the first has a photo
+          if (obs.get('data').reports && _.first(obs.get('data').reports) && _.first(obs.get('data').reports).photo_url) {
+            el = "<div class='findings-list-item col-xs-6 col-sm-4 col-lg-3' data-toggle='modal' href='#findings-modal' data-obs-id='"+obs.get('_id')+"'><img class='findings-list-photo' src='"+app.config.pikachu.url+_.first(obs.get('data').reports).photo_url+"'></img></div>";
           }
           // otherwise just throw in the author's name. Suggestions for what to do here?
           else {

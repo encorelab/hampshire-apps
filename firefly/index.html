@@ -63,12 +63,13 @@
 
     <!-- Findings Template -->
     <script id="findings-details-template" type="text/template">
-    //     <div><span class="modal-key-text">Author: &nbsp; </span> <%= author %></div>
-    //     <div><span class="modal-key-text">Date: &nbsp; </span> <%= date %></div>
-    //     <div><span class="modal-key-text">Orientation: &nbsp; </span> <%= orientation %>&deg; from North</div>
-    //     <div><span class="modal-key-text">Traffic level: &nbsp; </span> <%= traffic_level %></div>
-    //     <div><span class="modal-key-text">Tunnel use: &nbsp; </span> <%= tunnel_use %></div>
-    //     <div><span class="modal-key-text">Additional notes: &nbsp; </span> <%= additional_notes %></div>
+        <div><span class="modal-key-text">Author: &nbsp; </span> <%= author %></div>
+        <div><span class="modal-key-text">Date: &nbsp; </span> <%= date %></div>
+        <div><span class="modal-key-text">Habitat name: &nbsp; </span> <%= habitat_name %></div>
+        <div><span class="modal-key-text">Number of colors: &nbsp; </span> <%= number_of_colors %></div>
+        <div><span class="modal-key-text">Number of patterns: &nbsp; </span> <%= number_of_patterns %></div>
+        <div><span class="modal-key-text">Firefly locations: &nbsp; </span> <%= location %></div>
+        <div><span class="modal-key-text">10-second observational period: &nbsp; </span> <%= ten_second_count %></div>
     </script>
 
 </head>
@@ -225,18 +226,12 @@
                     <div>
                         <h2 class="page-title">Firefly Habitat Overview Observations</h2>
                         <p>During a 10-second period, how many fireflies did you observe?</p>
-<!--                         <input id="none-amount" type="radio" name="10_second_count" value="0"><label for="none-amount" class="btn btn-default">None</label>
-                        <input id="one-amount" type="radio" name="10_second_count" value="1"><label for="one-amount" class="btn btn-default">1</label>
-                        <input id="two-five-amount" type="radio" name="10_second_count" value="2-5"><label for="two-five-amount" class="btn btn-default">2-5</label>
-                        <input id="six-twenty-amount" type="radio" name="10_second_count" value="6-20"><label for="six-twenty-amount" class="btn btn-default">6-20</label>
-                        <input id="twentyone-plus-amount" type="radio" name="10_second_count" value="21+"><label for="twentyone-plus-amount" class="btn btn-default">21+</label>
-                        <input id="other-amount" type="radio" name="10_second_count" value="other"><label for="other-amount" class="btn btn-default">None during the 10-second period, but some before or after</label> -->
-                        <input id="none-amount" type="radio" name="10_second_count" value="0"><label for="none-amount" class="btn btn-default fifth label">None</label>
-                        <input id="one-amount" type="radio" name="10_second_count" value="1"><label for="one-amount" class="btn btn-default fifth label">1</label>
-                        <input id="two-five-amount" type="radio" name="10_second_count" value="2-5"><label for="two-five-amount" class="btn btn-default fifth label">2-5</label>
-                        <input id="six-twenty-amount" type="radio" name="10_second_count" value="6-20"><label for="six-twenty-amount" class="btn btn-default fifth label">6-20</label>
-                        <input id="twentyone-plus-amount" type="radio" name="10_second_count" value="21+"><label for="twentyone-plus-amount" class="btn btn-default fifth label">21+</label>
-                        <input id="other-amount" type="radio" name="10_second_count" value="other"><label for="other-amount" class="btn btn-default label">None during a 10-second period, but some before or after</label>
+                        <input id="none-amount" type="radio" name="ten_second_count" value="0"><label for="none-amount" class="btn btn-default fifth label">None</label>
+                        <input id="one-amount" type="radio" name="ten_second_count" value="1"><label for="one-amount" class="btn btn-default fifth label">1</label>
+                        <input id="two-five-amount" type="radio" name="ten_second_count" value="2-5"><label for="two-five-amount" class="btn btn-default fifth label">2-5</label>
+                        <input id="six-twenty-amount" type="radio" name="ten_second_count" value="6-20"><label for="six-twenty-amount" class="btn btn-default fifth label">6-20</label>
+                        <input id="twentyone-plus-amount" type="radio" name="ten_second_count" value="21+"><label for="twentyone-plus-amount" class="btn btn-default fifth label">21+</label>
+                        <input id="other-amount" type="radio" name="ten_second_count" value="other"><label for="other-amount" class="btn btn-default label">None during a 10-second period, but some before or after</label>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-overview-page"></i>
@@ -313,7 +308,7 @@
             <div id="reporting-pattern-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <h2 class="page-title">New Firefly Observation</h2>
-                    <p>Tap your finger on the circle below to replicate the firefly's flash pattern</p>
+                    <p>Tap your finger on the circle below to replicate the firefly's flash pattern (not currently enabled)</p>
                     <div class="flash-pattern-wrapper">
                         <img src="img/tap-pattern.png" class="img-centre img-responsive" alt="tap pattern image">
                     </div>
@@ -383,7 +378,7 @@
         <div class="row">
             <div class="weather-icon-container col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-1">
                 <div class="weather-icon-inner-container">
-                    <!-- <img src="" alt="weather icon" class="weather-image img-responsive"> -->
+                    <img src="" alt="weather icon" class="weather-image img-responsive">
                 </div>
             </div>
             <div class="temperature-icon-container col-xs-5 col-xs-offset-0 col-md-4 col-md-offset-0">
