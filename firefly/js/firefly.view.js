@@ -101,25 +101,25 @@
 
       // TODO: we're going to need a better way to do this next time - maybe storing the data type on the model? Or iterating over the html elements instead? This is bad right now
 
-      // populate the radios based on the model
-      // _.each(app.observation.get('data'), function(v,k) {
-      //   console.log(k, v);
-      //   // special fields (add other text fields here, and broaden as necessary). Holy gods this is stainy. TODO: check back how Matt did this in VEOS
-      //   if (v === "enter and exit") {
-      //     jQuery('#id-tunnel-use-enter-exit').attr('checked','checked');
-      //   }
-      //   else if (k === "additional_notes") {
-      //     jQuery('[name=additional_notes]').text(v);
-      //   }
-      //   // photo
-      //   else if (v.indexOf('.') !== -1) {
-      //     view.showPhoto(v);
-      //   }
-      //   // radios
-      //   else if (v.length > 0 && jQuery(':radio[value='+v+']').length > 0) {
-      //     jQuery(':radio[value='+v+']').attr('checked','checked');
-      //   }
-      // });
+      //populate the radios based on the model
+      _.each(app.observation.get('data'), function(v,k) {
+        console.log(k, v);
+        // special fields (add other text fields here, and broaden as necessary). Holy gods this is stainy. TODO: check back how Matt did this in VEOS
+        if (k === "habitat_name") {
+          jQuery('#habitat-name-field').val(v);
+        }
+        // else if (k === "additional_notes") {
+        //   jQuery('[name=additional_notes]').text(v);
+        // }
+        // // photo
+        // else if (v.indexOf('.') !== -1) {
+        //   view.showPhoto(v);
+        // }
+        // radios
+        else if (v.length > 0 && jQuery(':radio[value="'+v+'"]').length > 0) {
+          jQuery(':radio[value="'+v+'"]').attr('checked','checked');
+        }
+      });
 
       var page = app.observation.get('data').current_page;
       view.jumpToPage(page);
@@ -185,16 +185,21 @@
     addReport: function() {
       var view = this;
 
+      // clear any previous values
+      jQuery('.camera-icon').attr('src','img/icons/camera_icon.png');
+      jQuery('.reporting').prop('checked', false);
+      jQuery('#upload-btn').text("Add photo to this observation");
+
       var reportsArr = app.observation.get('data').reports;
       reportsArr.push({});
       app.observation.get('data').reports = reportsArr;
       app.observation.save()
-        .done(function() {
-          view.jumpToPage('reporting-photo-uploader-page');
-        })
-        .fail(function() {
-          jQuery().toastmessage('showErrorToast', "Unable to create a new reporting observation. Please check your internet connection...");
-        });
+      .done(function() {
+        view.jumpToPage('reporting-photo-uploader-page');
+      })
+      .fail(function() {
+        jQuery().toastmessage('showErrorToast', "Unable to create a new reporting observation. Please check your internet connection...");
+      });
     },
 
     getLocationData: function() {
@@ -349,9 +354,9 @@
       }
 
       if (app.observation && app.observation.get('data')) {
+        jQuery('#reports-container').html('');
         var reportsArr = app.observation.get('data').reports;
         if (reportsArr.length > 0) {
-          jQuery('#reports-container').html('');
           var list = jQuery('#reports-container');
 
           _.each(reportsArr, function(r) {
