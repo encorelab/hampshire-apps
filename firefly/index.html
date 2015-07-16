@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
+    <link href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="../bower_components/jquery-toastmessage-plugin/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet">
@@ -16,7 +17,7 @@
 
     <link href="css/firefly.css" rel="stylesheet">
     <link href="css/_media-queries-landscape.css" rel="stylesheet">
-    <link  href="css/_media-queries-portrait.css" rel="stylesheet">
+    <link href="css/_media-queries-portrait.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -40,6 +41,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN_MbOFGBx4i5G8dclAAphSWUUruTTTOg&amp;v=3.exp"></script>
@@ -308,9 +310,12 @@
             <div id="reporting-pattern-page" class="page hidden col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <div class="page-inner-wrapper">
                     <h2 class="page-title">New Firefly Observation</h2>
-                    <p>Tap your finger on the circle below to replicate the firefly's flash pattern (not currently enabled)</p>
-                    <div class="flash-pattern-wrapper">
-                        <img src="img/tap-pattern.png" class="img-centre img-responsive" alt="tap pattern image">
+                    <p>Tap your finger on the circle below to replicate the firefly's flash pattern</p>
+                    <button id="tap-timer-test-btn">Record</button>
+                    <div class="tap-pattern-wrapper">
+                        <!-- NOTE: this is a temporary element for Tim to test (see also the references in view.js) -->
+                        <span id="pattern-output-container" style="float:left; margin-right:20px">TESTING OUTPUT: <br /></span>
+                        <img src="img/tap-pattern.png" class="img-centre img-responsive" alt="tap pattern image" style="z-index: 1"/>
                     </div>
                     <div class="caret-container">
                         <i class="fa fa-caret-right fa-size next-btn pull-right" data-target-page="reporting-movement-page"></i>

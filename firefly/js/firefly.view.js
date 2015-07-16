@@ -35,6 +35,8 @@
       'click .back-btn'                : "determineTarget",
       'click #new-report-btn'          : "addReport",
       'change #photo-file'             : "enableUpload",
+      'vmousedown #tap-timer-test-btn' : "recordPatternTimeDown",
+      'vmouseup #tap-timer-test-btn'   : "recordPatternTimeUp",
       'click #upload-btn'              : "checkUploadEnabled",
       'click .finish-btn'              : "publishObservation",
       'keyup :input'                   : "checkForAutoSave"
@@ -200,6 +202,16 @@
       .fail(function() {
         jQuery().toastmessage('showErrorToast', "Unable to create a new reporting observation. Please check your internet connection...");
       });
+    },
+
+    recordPatternTimeDown: function() {
+      var d = new Date();
+      jQuery('#pattern-output-container').append("Start: " + d.toTimeString().slice(0,8) + "<br />");
+    },
+
+    recordPatternTimeUp: function() {
+      var d = new Date();
+      jQuery('#pattern-output-container').append("Stop: " + d.toTimeString().slice(0,8) + "<br />");
     },
 
     getLocationData: function() {

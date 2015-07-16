@@ -207,7 +207,6 @@
       logoutUser();
     });
 
-
     /* Buttons that manage the app/site/diaspora navigation */
     jQuery('#investigations-nav-btn').addClass('active');           // no need to set things up here (href in html). This btn can always be highlighted, since this only applies to in-app stuff
 
