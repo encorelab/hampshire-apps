@@ -347,7 +347,7 @@
 
   app.grabWeatherConditions = function() {
     var deferred = jQuery.ajax({
-      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
+      url: "https://api.wunderground.com/api/3fb52372e8662ab2/geolookup/conditions/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
       dataType : "jsonp"
     }).then(function(response){
       app.weatherConditions = response.current_observation;
@@ -357,7 +357,7 @@
 
   app.grabWeatherForecast = function() {
     var deferred = jQuery.ajax({
-      url: "http://api.wunderground.com/api/3fb52372e8662ab2/geolookup/forecast/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
+      url: "https://api.wunderground.com/api/3fb52372e8662ab2/geolookup/forecast/q/"+app.mapPosition.latitude+","+app.mapPosition.longitude+".json",
       dataType : "jsonp"
     }).then(function(response){
       app.weatherForecast = response.forecast;
